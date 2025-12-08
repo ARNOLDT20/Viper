@@ -2,7 +2,7 @@
   "name": "WHATSAPP BOT",
   "description": "Javascript WhatsApp bot made by SIR BRAVIN",
   "logo": "https://res.cloudinary.com/dgy2dutjs/image/upload/v1751656256/url.crissvevo.co.tz/%E1%B4%8F%CA%99%E1%B4%87%E1%B4%85%E1%B4%9B%E1%B4%87%E1%B4%84%CA%9C1_xyfpby.jpg",
-  "keywords": ["WHATSAPP XMD"],
+  "keywords": ["Viper MD"],
   "success_url": "/",
 
     "stack": "container",
@@ -16,7 +16,7 @@
     "STICKER_NAME": {
       "description": "type your sticker pack name.",
       "required": false,
-      "value": "WHATSAPP XMD"
+      "value": "Viper MD"
     }, 
       
     "PREFIX": {
@@ -79,7 +79,7 @@
     "AUTO_STATUS_MSG": {
       "description": "Type custom message on status reply",
       "required": true,
-      "value": "*𝚂𝙴𝙴𝙽 𝚈𝙾𝚄𝚁 𝚂𝚃𝙰𝚃𝚄𝚂 𝙱𝚈 whatsapp bot *"
+      "value": "*𝚂𝙴𝙴𝙽 𝚈𝙾𝚄𝚁 𝚂𝚃𝙰𝚃𝚄𝚂 𝙱𝚈 Viper MD *"
    
      }, 
     
@@ -99,7 +99,7 @@
     "BOT_NAME": {
       "description": "Type here the bot name.",
       "required": false,
-      "value": "WHATSAPP XMD"
+      "value": "Viper MD"
 
       }, 
 

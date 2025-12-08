@@ -1,4 +1,4 @@
-name: whatsapp xmd
+name: Viper MD
 services:
   - name: whatsapp-xmd-service
     type: web
