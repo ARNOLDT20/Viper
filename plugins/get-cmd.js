@@ -43,7 +43,7 @@ Powered By *ʜᴜɴᴛᴇʀ xᴍᴅ* 💜`;
 
         // Send image with truncated source code
         await conn.sendMessage(from, { 
-            image: { url: `https://res.cloudinary.com/dgy2dutjs/image/upload/v1751707342/url.crissvevo.co.tz/%E1%B4%8F%CA%99%E1%B4%87%E1%B4%85%E1%B4%9B%E1%B4%87%E1%B4%84%CA%9C1_exmbht.jpg` },
+            image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],

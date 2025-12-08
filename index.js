@@ -128,7 +128,7 @@ const port = process.env.PORT || 9090;
 ╰─🛠️ *Prefix:* \`${prefix}\`
 
 > _© 𝙼𝙰𝙳𝙴 𝙱𝚈 T20_STARBOY  _`;
-    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/4n1tap.jpg  ` }, caption: up })
+    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/gv53bk.png` }, caption: up })
   }
   })
   conn.ev.on('creds.update', saveCreds)

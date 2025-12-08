@@ -26,7 +26,7 @@ async (conn, mek, m, { from, sender, isGroup, reply, quoted, participants }) => 
         try {
             ppUrl = await conn.profilePictureUrl(userJid, 'image');
         } catch {
-            ppUrl = 'https://i.ibb.co/KhYC4FY/1221bc0bdd2354b42b293317ff2adbcf-icon.png';
+            ppUrl = 'https://files.catbox.moe/gv53bk.png';
         }
 
         // 4. GET NAME (MULTI-SOURCE FALLBACK)

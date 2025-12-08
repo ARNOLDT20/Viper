@@ -47,7 +47,7 @@ async (conn, mek, m, { from, sender, pushname, reply }) => {
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/4n1tap.jpg` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -125,7 +125,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/4n1tap.jpg  ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -191,7 +191,7 @@ async (conn, mek, m, { from, quoted, reply }) => {
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/4n1tap.jpg  ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -274,7 +274,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/cz0181.jpg ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -352,7 +352,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/cz0181.jpg ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -419,7 +419,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/cz0181.jpg ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -490,7 +490,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/cz0181.jpg` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -542,7 +542,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/huqk1i.jpg  ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -601,7 +601,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/huqk1i.jpg ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -662,7 +662,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/huqk1i.jpg ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -731,7 +731,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/huqk1i.jpg ` },
+                image: { url: `https://files.catbox.moe/gv53bk.png` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
