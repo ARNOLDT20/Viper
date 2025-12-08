@@ -55,7 +55,7 @@ async (conn, mek, m, { from, sender, pushname, reply }) => {
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: 'sir bravin',
+                        newsletterName: 'T20_STARBOY',
                         serverMessageId: 143
                     }
                 }
@@ -133,7 +133,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -199,7 +199,7 @@ async (conn, mek, m, { from, quoted, reply }) => {
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -282,7 +282,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -360,7 +360,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -427,7 +427,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -498,7 +498,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -550,7 +550,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -609,7 +609,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -670,7 +670,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -739,7 +739,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }
@@ -798,7 +798,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: "sir bravin",
+                        newsletterName: "T20_STARBOY",
                         serverMessageId: 143
                     }
                 }

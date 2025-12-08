@@ -112,13 +112,13 @@ const port = process.env.PORT || 9090;
   console.log('Plugins installed successful ✅')
   console.log('Bot connected to whatsapp ✅')
   
-  let up = `*✨ bravin's! ✨*
+  let up = `*✨ T20_STARBOY! ✨*
 
-╭─〔 *💻 Bravin's* 〕  
-├─▸ *Simplicity. Speed. Power. BY sir bravin|*  
+╭─〔 *💻 T20_STARBOY* 〕  
+├─▸ *Simplicity. Speed. Power. BY T20_STARBOY |*  
 ╰─➤ *Your New WhatsApp Sidekick is Here!*
 
-*❤️ Thank you for Choosing Viper MD!* 
+*❤️ Thank you for Choosing Viper MD!*`
 
 ╭──〔 🔗 *Quick Links* 〕  
 ├─ 📢 *Join Our Channel:*  
@@ -127,7 +127,7 @@ const port = process.env.PORT || 9090;
 │   Star Us [**Here**](https://github.com/whatsapp-bot254/whatsapp-xmd)!  
 ╰─🛠️ *Prefix:* \`${prefix}\`
 
-> _© 𝙼𝙰𝙳𝙴 𝙱𝚈 sir bravin  _`;
+> _© 𝙼𝙰𝙳𝙴 𝙱𝚈 T20_STARBOY  _`;
     conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/4n1tap.jpg  ` }, caption: up })
   }
   })
@@ -783,7 +783,7 @@ if (!isReact && senderNumber === botNumber) {
   }
   
   app.get("/", (req, res) => {
-  res.send(" sir bravin is started  ✅");
+  res.send("T20_STARBOY is started  ✅");
   });
   app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
   setTimeout(() => {

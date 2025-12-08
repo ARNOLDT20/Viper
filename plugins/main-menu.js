@@ -249,7 +249,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• ♦️ luma
 ┃◈┃• ♦️ dj
 ┃◈┃• ♦️ obed
-┃◈┃• ♦️ hunter
+┃◈┃• ♦️ viper
 ┃◈┃• ♦️ gpt4
 ┃◈┃• ♦️ bing
 ┃◈┃• ♦️ imagine

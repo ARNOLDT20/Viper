@@ -56,9 +56,9 @@ cmd({
     const githubRepo = 'https://github.com/Obedweb/Hunter-Xmd1';
 
     // Check update status
-    let updateMessage = `✅ Your ʜᴜɴᴛᴇʀ xᴍᴅ bot is up-to-date!`;
+    let updateMessage = `✅ Your Viper MD bot is up-to-date!`;
     if (localVersion !== latestVersion) {
-      updateMessage = `🚀 Your ʜᴜɴᴛᴇʀ xᴍᴅ bot is outdated!
+      updateMessage = `🚀 Your Viper MD bot is outdated!
 🔹 *Current Version:* ${localVersion}
 🔹 *Latest Version:* ${latestVersion}
 
@@ -66,7 +66,7 @@ Use *.update* to update.`;
     }
 
     const statusMessage = `🌟 *Good ${new Date().getHours() < 12 ? 'Morning' : 'Night'}, ${pushname}!* 🌟\n\n` +
-      `📌 *Bot Name:* ʜᴜɴᴛᴇʀ xᴍᴅ\n🔖 *Current Version:* ${localVersion}\n📢 *Latest Version:* ${latestVersion}\n📂 *Total Plugins:* ${pluginCount}\n🔢 *Total Commands:* ${totalCommands}\n\n` +
+      `📌 *Bot Name:* Viper MD\n🔖 *Current Version:* ${localVersion}\n📢 *Latest Version:* ${latestVersion}\n📂 *Total Plugins:* ${pluginCount}\n🔢 *Total Commands:* ${totalCommands}\n\n` +
       `💾 *System Info:*\n⏳ *Uptime:* ${uptime}\n📟 *RAM Usage:* ${ramUsage}MB / ${totalRam}MB\n⚙️ *Host Name:* ${hostName}\n📅 *Last Update:* ${lastUpdate}\n\n` +
       `📝 *Changelog:*\n${latestChangelog}\n\n` +
       `⭐ *GitHub Repo:* ${githubRepo}\n👤 *Owner:* [Obedweb](https://github.com/Obedweb)\n\n${updateMessage}\n\n🚀 *Hey! Don't forget to fork & star the repo!*`;
@@ -81,7 +81,7 @@ Use *.update* to update.`;
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: 'ʜᴜɴᴛᴇʀ xᴍᴅ',
+                        newsletterName: 'Viper MD',
                         serverMessageId: 143
         }
       }

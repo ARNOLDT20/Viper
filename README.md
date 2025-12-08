@@ -1,7 +1,7 @@
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=100&pause=1000&color=8A2BE2&center=true&width=1000&height=200&lines=whatsapp-xmd" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=100&pause=1000&color=8A2BE2&center=true&width=1000&height=200&lines=Viper+MD" alt="Typing SVG" /></a>
   
 <p align="center">
-  <a href="https://github.com/pkdriller"><img title="Developer" src="https://img.shields.io/badge/Author-WHATSAPP%20XMD%20MADE%20BY%20SIR+BRAVIN-FF00FF.svg?style=big-square&logo=github" /></a>
+  <a href="https://github.com/pkdriller"><img title="Developer" src="https://img.shields.io/badge/Author-Viper%20MD%20MADE%20BY%20T20_STARBOY-FF00FF.svg?style=big-square&logo=github" /></a>
 </p>
 
 <div align="center">
@@ -59,7 +59,7 @@
 
 
 
-## 𝐑𝐄𝐀𝐂𝐇 𝐎𝐔𝐓 bravin SIR
+## 𝐑𝐄𝐀𝐂𝐇 𝐎𝐔𝐓 T20_STARBOY
 
  <a href="https://github.com/whatsapp-bot254/whatsapp-xmd"><img title="REACH OUT OBEDTECH" src="https://img.shields.io/badge/OUR-WHATSAPP CHANNEL-h?color=green&style=for-the-badge&logo=whatsapp" width="280" height="38.45"/></a></p>
  
