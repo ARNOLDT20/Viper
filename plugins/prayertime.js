@@ -60,8 +60,8 @@ async(conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, se
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363378608564635@newsletter',
-                        newsletterName: 'CRISS AI SUPPORT',
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'blaze tech',
                         serverMessageId: 143
                     }
                 }

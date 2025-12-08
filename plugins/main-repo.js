@@ -38,8 +38,8 @@ async (conn, mek, m, { from, reply }) => {
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363416335506023@newsletter',
-                    newsletterName: 'Viper MD',
+                    newsletterJid: '120363420222821450@newsletter',
+                    newsletterName: 'blaze tech',
                     serverMessageId: 143
                 }
             }
@@ -55,8 +55,8 @@ async (conn, mek, m, { from, reply }) => {
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '.120363416335506023@newsletter',
-                    newsletterName: 'Viper MD',
+                    newsletterJid: '.120363420222821450@newsletter',
+                    newsletterName: 'blaze tech',
                     serverMessageId: 143
                 }
             }

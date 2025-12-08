@@ -50,8 +50,8 @@ Powered By *ʜᴜɴᴛᴇʀ xᴍᴅ* 💜`;
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363416335506023@newsletter',
-                        newsletterName: 'ʜᴜɴᴛᴇʀ xᴍᴅ',
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'blaze tech',
                         serverMessageId: 143
                 }
             }
