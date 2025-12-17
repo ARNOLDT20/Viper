@@ -66,14 +66,28 @@ const {
   
   //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
-if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
-const sessdata = config.SESSION_ID.replace("POPKID;;;", '');
-const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
-filer.download((err, data) => {
-if(err) throw err
-fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-console.log("Session downloaded ✅")
-})})}
+  if (!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
+
+  // Use configured prefix (fall back to POPKID;;;)
+  const prefix = (config.SESSION_PREFIX && String(config.SESSION_PREFIX)) || 'POPKID;;;' ;
+
+  // Ensure the SESSION_ID strictly starts with the required prefix
+  if (!String(config.SESSION_ID).startsWith(prefix)) {
+    return console.log(`Invalid SESSION_ID. It must start with the prefix: ${prefix}`)
+  }
+
+  // Extract the token after the prefix and trim whitespace
+  const sessdata = String(config.SESSION_ID).slice(prefix.length).trim();
+  if (!sessdata) return console.log('SESSION_ID token missing after prefix')
+
+  const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
+  filer.download((err, data) => {
+    if (err) throw err
+    fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
+      console.log("Session downloaded ✅")
+    })
+  })
+}
 
 const express = require("express");
 const app = express();

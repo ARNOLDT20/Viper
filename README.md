@@ -28,6 +28,14 @@
 𝐒𝐄𝐂𝐎𝐍𝐃 𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐖𝐄𝐁
 <a href="https://peace-maker-jwwc.onrender.com "><img title="GET-SESSION ID HERE" src="https://img.shields.io/badge/GET-SESSION ID HERE-h?color=green&style=for-the-badge&logo=nike" width="230" height="38.45"/></a></p>  
 
+**Important — Session ID format**
+
+The bot expects session IDs to include a constant prefix. All session IDs must start with the prefix `POPKID;;;` followed by the session token. Example:
+
+`POPKID;;;LZtnkKKL#wON0UKqd_Uh8mWg05tbSWMsn-JE56QzknHXPv_qT3nU`
+
+When you set the `SESSION_ID` environment variable (or paste it into `config.js`), ensure the value begins with `POPKID;;;`.
+
  ## 𝐅𝐎𝐑 𝐎𝐍𝐄-𝐓𝐀𝐏 𝐃𝐄𝐏𝐋𝐎𝐘𝐌𝐄𝐍𝐓 𝐔𝐒𝐄 𝐓𝐇𝐈𝐒 𝐁𝐔𝐓𝐓𝐎𝐍
 
    🕳IF YOU LOVE THIS PROJECT BY PK DRILLER... FOLLOW ME
