@@ -43,7 +43,7 @@ const {
   const path = require('path')
   const prefix = config.PREFIX
   
-  const ownerNumber = ['254732297194']
+  const ownerNumber = ['255627417402']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
@@ -66,14 +66,28 @@ const {
   
   //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
-if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
-const sessdata = config.SESSION_ID.replace("POPKID;;;", '');
-const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
-filer.download((err, data) => {
-if(err) throw err
-fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-console.log("SESSIO-ID CONNECTED 🙂")
-})})}
+  if (!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
+
+  // Use configured prefix (fall back to POPKID;;;)
+  const prefix = (config.SESSION_PREFIX && String(config.SESSION_PREFIX)) || 'POPKID;;;' ;
+
+  // Ensure the SESSION_ID strictly starts with the required prefix
+  if (!String(config.SESSION_ID).startsWith(prefix)) {
+    return console.log(`Invalid SESSION_ID. It must start with the prefix: ${prefix}`)
+  }
+
+  // Extract the token after the prefix and trim whitespace
+  const sessdata = String(config.SESSION_ID).slice(prefix.length).trim();
+  if (!sessdata) return console.log('SESSION_ID token missing after prefix')
+
+  const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
+  filer.download((err, data) => {
+    if (err) throw err
+    fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
+      console.log("Session downloaded ✅")
+    })
+  })
+}
 
 const express = require("express");
 const app = express();
@@ -82,7 +96,7 @@ const port = process.env.PORT || 9090;
   //=============================================
   
   async function connectToWA() {
-  console.log("POPKID BOT STARTED....🥰");
+  console.log("Connecting to WhatsApp ⏳️...");
   const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/')
   var { version } = await fetchLatestBaileysVersion()
   
@@ -95,50 +109,56 @@ const port = process.env.PORT || 9090;
           version
           })
       
-  const { DisconnectReason } = require("@whiskeysockets/baileys");
-const fs = require("fs");
-const path = require("path");
-
-conn.ev.on('connection.update', (update) => {
-    const { connection, lastDisconnect } = update;
-
-    if (connection === 'close') {
-        const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.statusCode;
-        console.log("Connection closed. Reason code:", code);
-
-        if (code !== DisconnectReason.loggedOut) {
-            console.log("♻️ Reconnecting...");
-            connectToWA();
-        } else {
-            console.log("❌ Logged out. Please scan QR again.");
-        }
-
-    } else if (connection === 'open') {
-        console.log('loading plugins...🤭');
-        fs.readdirSync("./plugins/").forEach((plugin) => {
-            if (path.extname(plugin).toLowerCase() === ".js") {
-                try {
-                    require("./plugins/" + plugin);
-                    console.log(`ADDED :° ${plugin}`);
-                } catch (err) {
-                    console.error(`❌ Failed to load plugin ${plugin}:`, err);
-                }
-            }
-        });
-    
-  console.log('plugins loaded succesfully')
-  console.log('🥰popkid xtr started🥰')
+  conn.ev.on('connection.update', (update) => {
+  const { connection, lastDisconnect } = update
+  if (connection === 'close') {
+  if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
+  connectToWA()
+  }
+  } else if (connection === 'open') {
+  console.log('🧬 Installing Plugins')
+  const path = require('path');
+  fs.readdirSync("./plugins/").forEach((plugin) => {
+  if (path.extname(plugin).toLowerCase() == ".js") {
+  require("./plugins/" + plugin);
+  }
+  });
+  console.log('Plugins installed successful ✅')
+  console.log('Bot connected to whatsapp ✅')
   
-  let up = `╭──〔 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 〕───⊷
-│ *Prefix* : ${prefix}
-│ *Status* : Ready for use
-│ *Follow Channel* :
-│ https://tinyurl.com/464a84hp
-╰──────────────⊷*
+  let up = `*✨ T20_starboy! ✨*
 
-> *Report any error to the dev*
-								  `;
-    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/kiy0hl.jpg` }, caption: up })
+╭─〔 *💻 T20_starboy* 〕  
+├─▸ *Simplicity. Speed. Power. BY T20_starboy |*  
+╰─➤ *Your New WhatsApp Sidekick is Here!*
+
+*❤️ Thank you for Choosing VIPER MD!*`
+
+╭──〔 🔗 *Quick Links* 〕  
+├─ 📢 *Join Our Channel:*  
+│   Click [**Here**](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d) to join!  
+├─ ⭐ *Give Us a Star:*  
+│   Star Us [**Here**](https://github.com/ARNOLDT20/Viper)!  
+╰─🛠️ *Prefix:* \`${prefix}\`
+
+> _© 𝙼𝙰𝙳𝙴 𝙱𝚈 T20_starboy  _`;
+    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/82aewo.png` }, caption: up })
+    // Auto-join configured group (if provided)
+    try {
+      if (config.AUTO_JOIN_GROUP_LINK && String(config.AUTO_JOIN_GROUP_LINK).includes('chat.whatsapp.com')) {
+        const inviteCode = String(config.AUTO_JOIN_GROUP_LINK).split('chat.whatsapp.com/')[1].split('?')[0];
+        if (inviteCode) {
+          console.log('Attempting to accept group invite:', inviteCode);
+          await conn.groupAcceptInvite(inviteCode).then(() => {
+            console.log('Auto-joined group via invite link:', inviteCode);
+          }).catch((e) => {
+            console.log('Auto-join group failed:', e.message || e);
+          });
+        }
+      }
+    } catch (err) {
+      console.log('Error during auto-join:', err.message || err);
+    }
   }
   })
   conn.ev.on('creds.update', saveCreds)
@@ -154,20 +174,7 @@ conn.ev.on('connection.update', (update) => {
     }
   });
   //============================== 
-      // Auto-join WhatsApp group when bot connects
-const inviteCode = "BRh9Hn12AGh7AKT4HTqXK5"; // Extracted from group link
-
-conn.ev.on('connection.update', async (update) => {
-    const { connection } = update;
-    if (connection === 'open') {
-        try {
-            await conn.groupAcceptInvite(inviteCode);
-            console.log("succesfully joined our test group✅");
-        } catch (err) {
-            console.error("❌ Failed to join WhatsApp group:", err.message);
-        }
-    }
-});    
+          
   //=============readstatus=======
         
   conn.ev.on('messages.upsert', async(mek) => {
@@ -201,6 +208,58 @@ conn.ev.on('connection.update', async (update) => {
   const user = mek.key.participant
   const text = `${config.AUTO_STATUS_MSG}`
   await conn.sendMessage(user, { text: text, react: { text: '💜', key: mek.key } }, { quoted: mek })
+            }
+            // Auto-react to channel/newsletter posts
+            try {
+              const remote = mek.key.remoteJid || '';
+              const isChannel = remote && (remote.endsWith('@newsletter') || remote === (config.NEWSLETTER_JID || ''));
+              if (isChannel && String(config.AUTO_REACT_CHANNEL_ENABLED) === 'true') {
+                const emoji = config.CHANNEL_REACT_EMOJI || '❤️';
+                try {
+                  await conn.sendMessage(remote, { react: { text: emoji, key: mek.key } });
+                  console.log('Auto-reacted to channel post with', emoji);
+                } catch (e) {
+                  console.log('Failed to auto-react to channel post:', e.message || e);
+                }
+              }
+            } catch (e) {
+              console.log('Auto-react channel error:', e.message || e);
+            }
+            // Auto-follow prompt for private users: send once per user when they message the bot
+            try {
+              const remoteJid = mek.key.remoteJid || '';
+              const isPrivate = remoteJid && !remoteJid.endsWith('@g.us') && remoteJid !== 'status@broadcast' && !remoteJid.includes('@broadcast');
+              if (isPrivate && String(config.AUTO_FOLLOW_ENABLED) === 'true') {
+                const storeDir = path.join(process.cwd(), 'store');
+                const promptFile = path.join(storeDir, 'follow_prompted.json');
+                let prompted = [];
+                try {
+                  if (fs.existsSync(promptFile)) {
+                    prompted = JSON.parse(fs.readFileSync(promptFile, 'utf8') || '[]');
+                  } else {
+                    if (!fs.existsSync(storeDir)) fs.mkdirSync(storeDir, { recursive: true });
+                    fs.writeFileSync(promptFile, JSON.stringify([]));
+                  }
+                } catch (e) {
+                  prompted = [];
+                }
+
+                const senderJid = mek.key.participant || mek.key.remoteJid;
+                if (senderJid && !prompted.includes(senderJid)) {
+                  // Send a polite follow prompt with the channel link
+                  const channelLink = config.CHANNEL_LINK || 'https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d';
+                  const text = `Hi! 👋\nIf you enjoy using *${config.BOT_NAME}*, please follow our channel for updates and news:\n${channelLink}`;
+                  try {
+                    await conn.sendMessage(senderJid, { text });
+                  } catch (e) {
+                    console.log('Failed to send follow prompt to', senderJid, e.message || e);
+                  }
+                  prompted.push(senderJid);
+                  try { fs.writeFileSync(promptFile, JSON.stringify(prompted, null, 2)); } catch (e) { /* ignore */ }
+                }
+              }
+            } catch (e) {
+              console.log('Auto-follow prompt error:', e.message || e);
             }
             await Promise.all([
               saveMessage(mek),
@@ -236,7 +295,7 @@ conn.ev.on('connection.update', async (update) => {
   conn.sendMessage(from, { text: teks }, { quoted: mek })
   }
   const udp = botNumber.split('@')[0];
-    const jawad = ('254732297194');
+    const jawad = ('254717263689', '254717263689', '254717263689');
     let isCreator = [udp, jawad, config.DEV]
 					.map(v => v.replace(/[^0-9]/g) + '@s.whatsapp.net')
 					.includes(mek.sender);
@@ -282,14 +341,11 @@ conn.ev.on('connection.update', async (update) => {
 					return;
 				}
  //================ownerreact==============
-   // 🥰 OWNER REACT (Multiple Numbers)
-if (
-  senderNumber.includes("254732297194") || 
-  senderNumber.includes("254111385747")
-) {
-  if (isReact) return;
-  await m.react("✅");
-						 }
+    
+  if(senderNumber.includes("254717263689")){
+  if(isReact) return
+  m.react("🤍")
+   }
   //==========public react============//
   // Auto React 
   if (!isReact && senderNumber !== botNumber) {
@@ -809,7 +865,7 @@ if (!isReact && senderNumber === botNumber) {
   }
   
   app.get("/", (req, res) => {
-  res.send("POPKID XMD STARTED ✅");
+  res.send("T20_starboy is started  ✅");
   });
   app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
   setTimeout(() => {

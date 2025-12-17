@@ -50,8 +50,8 @@ async (conn, mek, m, { from, sender, pushname, reply, isCreator }) => {
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363289379419860@newsletter',
-                        newsletterName: 'popkid',
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'blaze tech',
                         serverMessageId: 143
                     }
                 }

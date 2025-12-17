@@ -5,17 +5,17 @@ const path = require('path');
 const axios = require("axios");
 
 
-cmd({
-    pattern: "privacy",
+                {
+                image: { url: `https://files.catbox.moe/82aewo.png` },
     alias: ["privacymenu"],
     desc: "Privacy settings menu",
     category: "privacy",
     react: "🔐",
     filename: __filename
 }, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let privacyMenu = `*┏────〘 popkid 〙───⊷*
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'blaze tech',
+        let privacyMenu = `*┏────〘 VIPER MD 〙───⊷*
 *┃* • blocklist - View blocked users
 *┃* • getbio - Get user's bio
 *┃* • setppall - Set profile pic privacy
@@ -41,13 +41,13 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             {
                 image: { url: `https://files.catbox.moe/kiy0hl.jpg` }, // Replace with privacy-themed image if available
                 caption: privacyMenu,
-                contextInfo: {
+                    contextInfo: {
                     mentionedJid: [m.sender],
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363289379419860@newsletter',
-                        newsletterName: "popkid",
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'blaze tech',
                         serverMessageId: 143
                     }
                 }

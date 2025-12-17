@@ -41,7 +41,7 @@ async (conn, mek, m, { from, q, sender, reply }) => {
 │• 🔄 Updated: ${app.updated}
 │• 🔗 Link: ${app.url}
 ╰─────────────────
-> popkid`.trim();
+> VIPER MD`.trim();
 
         if (app.icon) {
             await conn.sendMessage(

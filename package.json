@@ -1,12 +1,12 @@
 {
-  "name": "POPKID",
+  "name": "viper-md",
   "version": "3.0.0",
-  "description": "A WhatsApp Bot Created By POPKID",
+  "description": "A WhatsApp Bot — VIPER MD by T20_starboy",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name POPKID-XTR",
-    "stop": "pm2 stop POPKID-XTR",
-    "restart": "pm2 restart POPKID-XTR"
+    "start": "pm2 start index.js --deep-monitoring --attach --name VIPER-MD",
+    "stop": "pm2 stop VIPER-MD",
+    "restart": "pm2 restart VIPER-MD"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "6.7.20",

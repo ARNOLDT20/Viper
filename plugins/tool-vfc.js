@@ -39,7 +39,7 @@ cmd({
         await conn.sendMessage(from, {
             document: fs.readFileSync(nmfilect), 
             mimetype: 'text/vcard', 
-            fileName: 'popkid.vcf', 
+            fileName: 'viper.vcf', 
             caption: `\nDone saving.\nGroup Name: *${cmiggc.subject}*\nContacts: *${cmiggc.participants.length}*\n> mᥱrᥴᥱძᥱs`}, { quoted: mek });
 
         fs.unlinkSync(nmfilect); // Cleanup the file after sending

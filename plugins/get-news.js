@@ -24,7 +24,7 @@ async (conn, mek, m, { from, reply }) => {
 ⚠️ _${article.description}_
 🔗 _${article.url}_
 
-  *popkid xtr*
+            *VIPER MD*
             `;
 
             console.log('Article URL:', article.urlToImage); // Log image URL for debugging

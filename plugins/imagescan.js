@@ -75,7 +75,7 @@ cmd({
     await reply(
       `🔍 *Image Analysis Results*\n\n` +
       `${scanResponse.data.result}\n\n` +
-      `> *popkid xtr*`
+      `> *VIPER MD*`
     );
 
   } catch (error) {

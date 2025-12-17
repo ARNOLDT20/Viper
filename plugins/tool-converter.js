@@ -36,7 +36,7 @@ cmd({
         // Send result
         await client.sendMessage(from, {
             image: imageBuffer,
-            caption: "> Powered By popkid❤️",
+            caption: "> Powered By VIPER MD ❤️",
             mimetype: 'image/png'
         }, { quoted: message });
 

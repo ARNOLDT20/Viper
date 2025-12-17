@@ -32,7 +32,7 @@ cmd({
         // Send the image
         await conn.sendMessage(from, {
             image: { url: imageUrl },
-            caption: '> popkid xtr '
+            caption: '> VIPER MD '
         }, { quoted: mek });
 
     } catch (error) {

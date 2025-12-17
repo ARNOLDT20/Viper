@@ -76,16 +76,16 @@ cmd({
     };
 
     let menu = `
-*┏────〘 ᴘᴏᴘᴋɪᴅ xᴛʀ 〙───⊷*
-*┃ ᴜꜱᴇʀ : @${sender.split("@")[0]}*
-*┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
-*┃ ᴍᴏᴅᴇ : ${config.MODE}*
-*┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
-*┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
-*┃ ᴘʟᴜɢɪɴꜱ : 『 ${commands.length} 』*
-*┃ ᴅᴇᴠ : ᴘᴏᴘᴋɪᴅ*
-*┃ ᴠᴇʀꜱɪᴏɴ : 2.0.0*
-*┗──────────────⊷*`;
+  *┏────〘 VIPER MD 〙───⊷*
+  *┃ ᴜꜱᴇʀ : @${sender.split("@")[0]}*
+  *┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
+  *┃ ᴍᴏᴅᴇ : ${config.MODE}*
+  *┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
+  *┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
+  *┃ ᴘʟᴜɢɪɴꜱ : 『 ${commands.length} 』*
+  *┃ ᴅᴇᴠ : VIPER MD*
+  *┃ ᴠᴇʀꜱɪᴏɴ : 2.0.0*
+  *┗──────────────⊷*`;
 
     // Group commands by category (improved logic)
     const categories = {};
@@ -115,8 +115,8 @@ cmd({
       forwardingScore: 999,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: config.NEWSLETTER_JID || '120363289379419860@newsletter',
-        newsletterName: config.OWNER_NAME || toUpperStylized('popkid'),
+        newsletterJid: config.NEWSLETTER_JID || '120363420222821450@newsletter',
+        newsletterName: config.OWNER_NAME || toUpperStylized('VIPER MD'),
         serverMessageId: 143
       }
     };
@@ -145,9 +145,9 @@ cmd({
             mentionedJid: [sender],
             forwardingScore: 999,
             isForwarded: true,
-            forwardedNewsletterMessageInfo: {
-              newsletterName: config.OWNER_NAME || toUpperStylized('popkid'),
-              serverMessageId: 143
+              forwardedNewsletterMessageInfo: {
+                newsletterName: config.OWNER_NAME || toUpperStylized('VIPER MD'),
+                serverMessageId: 143
             }
           }
         },

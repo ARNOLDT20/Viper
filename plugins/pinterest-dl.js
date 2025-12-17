@@ -32,14 +32,14 @@ cmd({
         const title = response.data.result.title || 'No title available';
         const videoUrl = media.find(item => item.type.includes('720p'))?.download_url || media[0].download_url;
 
-        const desc = `*┏────〘 popkid 〙───⊷*
+        const desc = `*┏────〘 VIPER MD 〙───⊷*
 *┃* *PINS DOWNLOADER*
 *┗──────────────⊷*
-*┏────〘 popkid 〙───⊷*
+*┏────〘 VIPER MD 〙───⊷*
 *┃* *Title* - ${title}
 *┃* *Media Type* - ${media[0].type}
 *┗──────────────⊷*
-> powered by popkid`;
+> powered by VIPER MD`;
 
         // Send video or image
         if (videoUrl) {

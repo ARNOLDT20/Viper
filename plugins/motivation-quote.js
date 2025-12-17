@@ -27,7 +27,7 @@ async (conn, mek, m, { from, reply }) => {
 
 _— ${data.response.author}_
 
-_powered by popkid_
+_powered by VIPER MD_
 `.trim();
 
         await reply(quoteMessage);

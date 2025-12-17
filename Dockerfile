@@ -1,10 +1,10 @@
 FROM node:lts-buster
 
 # Clone bot from GitHub
-RUN git clone https://github.com/newwrld-dev/POPKID-XTR.git /root/popkid-xtr-bot
+RUN git clone https://github.com/ARNOLDT20/Viper.git /root/viper-md
 
 # Set working directory
-WORKDIR /root/popkid-xtr-bot
+WORKDIR /root/viper-md
 
 # Install dependencies
 RUN npm install && npm install -g pm2
