@@ -1,8 +1,7 @@
-const fetch = require('node-fetch'); 
 const { cmd, commands } = require('../command');
 const { fetchJson } = require('../lib/functions');
 const { translate } = require('@vitalets/google-translate-api');
-const axios = require('axios')
+const axios = require('axios');
 
 cmd({
   pattern: "quran",
@@ -13,7 +12,6 @@ cmd({
   filename: __filename
 }, async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
   try {
-
     let surahInput = args[0];
 
     if (!surahInput) {
@@ -33,17 +31,15 @@ cmd({
       return reply(`Couldn't find surah with number or name "${surahInput}"`);
     }
 
-    let res = await fetch(`https://quran-endpoint.vercel.app/quran/${surahData.number}`);
+    let res = await axios.get(`https://quran-endpoint.vercel.app/quran/${surahData.number}`);
     
-    if (!res.ok) {
-      let error = await res.json(); 
-      return reply(`API request failed with status ${res.status} and message ${error.message}`);
+    if (res.status !== 200) {
+      return reply(`API request failed with status ${res.status} and message ${res.statusText}`);
     }
 
-    let json = await res.json();
+    let json = res.data;
 
     let translatedTafsirUrdu = await translate(json.data.tafsir.id, { to: 'ur', autoCorrect: true });
-
     let translatedTafsirEnglish = await translate(json.data.tafsir.id, { to: 'en', autoCorrect: true });
 
     let quranSurah = `
@@ -59,16 +55,16 @@ ${translatedTafsirEnglish.text}`;
     await conn.sendMessage(
       from,
       {
-        image: { url: `https://files.catbox.moe/gv53bk.png` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363420222821450@newsletter',
-                        newsletterName: 'blaze tech',
-                        serverMessageId: 143
+        image: { url: `https://files.catbox.moe/kiy0hl.jpg` },
+        caption: quranSurah,
+        contextInfo: {
+          mentionedJid: [m.sender], 
+          forwardingScore: 999,  
+          isForwarded: true,   
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363289379419860@newsletter', 
+            newsletterName: 'popkid MD', 
+            serverMessageId: 143
           }
         }
       },
@@ -89,7 +85,6 @@ ${translatedTafsirEnglish.text}`;
   }
 });
 
-
 cmd({
     pattern: "quranmenu",
     alias: ["surahmenu", "surahlist"],
@@ -98,7 +93,7 @@ cmd({
     react: "❤️",
     filename: __filename
 }, 
-async (conn, mek, m, { from, quoted, body,isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
         let dec = `❤️  ⊷┈ *QURAN KAREEM* ┈⊷  🤍
 
@@ -449,15 +444,15 @@ async (conn, mek, m, { from, quoted, body,isCmd, command, args, q, isGroup, send
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/gv53bk.png` },
+                image: { url: `https://files.catbox.moe/kiy0hl.jpg` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363420222821450@newsletter',
-                        newsletterName: 'blaze tech',
+                        newsletterJid: '120363289379419860@newsletter',
+                        newsletterName: 'popkid',
                         serverMessageId: 143
                     }
                 }
@@ -465,14 +460,10 @@ async (conn, mek, m, { from, quoted, body,isCmd, command, args, q, isGroup, send
             { quoted: mek }
         );
 
-        await conn.sendMessage(from, {
-            audio: { url: 'https://github.com/criss-vevo/CRISS-DATA/raw/refs/heads/main/autovoice/Quran.m4a' },
-            mimetype: 'audio/mp4',
-            ptt: false
-        }, { quoted: mek });
-        
     } catch (e) {
         console.log(e);
         reply(`${e}`);
     }
 });
+
+

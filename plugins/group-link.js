@@ -8,42 +8,33 @@ const path = require('path');
 
 cmd({
     pattern: "invite",
-    alias: ["glink", "grouplink"],
+    alias: ["link", "grouplink"],
     desc: "Get group invite link.",
-    category: "group", // Already group
+    category: "group",
     filename: __filename,
-}, async (conn, mek, m, { from, quoted, body, args, q, isGroup, sender, reply }) => {
+}, async (conn, mek, m, { from, isGroup, sender, reply }) => {
     try {
-        // Ensure this is being used in a group
-        if (!isGroup) return reply("𝐓𝐡𝐢𝐬 𝐅𝐞𝐚𝐭𝐮𝐫𝐞 𝐈𝐬 𝐎𝐧𝐥𝐲 𝐅𝐨𝐫 𝐆𝐫𝐨𝐮𝐩❗");
+        if (!isGroup) return reply("❌ 𝐓𝐡𝐢𝐬 𝐅𝐞𝐚𝐭𝐮𝐫𝐞 𝐈𝐬 𝐎𝐧𝐥𝐲 𝐅𝐨𝐫 𝐆𝐫𝐨𝐮𝐩𝐬.");
 
-        // Get the sender's number
-        const senderNumber = sender.split('@')[0];
         const botNumber = conn.user.id.split(':')[0];
-        
-        // Check if the bot is an admin
-        const groupMetadata = isGroup ? await conn.groupMetadata(from) : '';
-        const groupAdmins = groupMetadata ? groupMetadata.participants.filter(member => member.admin) : [];
-        const isBotAdmins = isGroup ? groupAdmins.some(admin => admin.id === botNumber + '@s.whatsapp.net') : false;
-        
-        if (!isBotAdmins) return reply("𝐏𝐥𝐞𝐚𝐬𝐞 𝐏𝐫𝐨𝐯𝐢𝐝𝐞 𝐌𝐞 𝐀𝐝𝐦𝐢𝐧 𝐑𝐨𝐥𝐞 ❗");
 
-        // Check if the sender is an admin
-        const isAdmins = isGroup ? groupAdmins.some(admin => admin.id === sender) : false;
-        if (!isAdmins) return reply("𝐏𝐥𝐞𝐚𝐬𝐞 𝐏𝐫𝐨𝐯𝐢𝐝𝐞 𝐌𝐞 𝐀𝐝𝐦𝐢𝐧 𝐑𝐨𝐥𝐞 ❗");
+        // Get group metadata and admin list
+        const groupMetadata = await conn.groupMetadata(from);
+        const groupAdmins = groupMetadata.participants.filter(member => member.admin);
+        const isBotAdmins = groupAdmins.some(admin => admin.id === botNumber + '@s.whatsapp.net');
 
-        // Get the invite code and generate the link
+        if (!isBotAdmins) {
+            return reply("⚠️ 𝙋𝙡𝙚𝙖𝙨𝙚 𝙋𝙧𝙤𝙢𝙤𝙩𝙚 𝙈𝙚 𝘼𝙨 𝘼𝙙𝙢𝙞𝙣 𝙏𝙤 𝙂𝙚𝙣𝙚𝙧𝙖𝙩𝙚 𝙏𝙝𝙚 𝙂𝙧𝙤𝙪𝙥 𝙄𝙣𝙫𝙞𝙩𝙚 𝙇𝙞𝙣𝙠 ❗");
+        }
+
         const inviteCode = await conn.groupInviteCode(from);
-        if (!inviteCode) return reply("Failed to retrieve the invite code.");
+        if (!inviteCode) return reply("❌ Failed to retrieve the invite code.");
 
         const inviteLink = `https://chat.whatsapp.com/${inviteCode}`;
+        return reply(`🔗 *Here is your group invite link:*\n${inviteLink}`);
 
-        // Reply with the invite link
-        return reply(`*Here is your group invite link:*\n${inviteLink}`);
-        
     } catch (error) {
         console.error("Error in invite command:", error);
-        reply(`An error occurred: ${error.message || "Unknown error"}`);
+        reply(`❌ An error occurred: ${error.message || "Unknown error"}`);
     }
 });
-

@@ -1,6 +1,6 @@
-name: Viper MD
+name: popkid-md
 services:
-  - name: whatsapp-xmd-service
+  - name: popkid-md-service
     type: web
     ports:
       - 5000
@@ -13,4 +13,3 @@ services:
       - fra
       - sin
       
-

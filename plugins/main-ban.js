@@ -19,17 +19,17 @@ cmd({
 
         if (!target) return reply("❌ Please provide a number or tag/reply a user.");
 
-        let banned = JSON.parse(fs.readFileSync("./lib/ban.json", "utf-8"));
+        let banned = JSON.parse(fs.readFileSync("./assets/ban.json", "utf-8"));
 
         if (banned.includes(target)) {
             return reply("❌ This user is already banned.");
         }
 
         banned.push(target);
-        fs.writeFileSync("./lib/ban.json", JSON.stringify([...new Set(banned)], null, 2));
+        fs.writeFileSync("./assets/ban.json", JSON.stringify([...new Set(banned)], null, 2));
 
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/gv53bk.png" },
+            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
             caption: `⛔ User has been banned from using the bot.`
         }, { quoted: mek });
 
@@ -56,17 +56,17 @@ cmd({
 
         if (!target) return reply("❌ Please provide a number or tag/reply a user.");
 
-        let banned = JSON.parse(fs.readFileSync("./lib/ban.json", "utf-8"));
+        let banned = JSON.parse(fs.readFileSync("./assets/ban.json", "utf-8"));
 
         if (!banned.includes(target)) {
             return reply("❌ This user is not banned.");
         }
 
         const updated = banned.filter(u => u !== target);
-        fs.writeFileSync("./lib/ban.json", JSON.stringify(updated, null, 2));
+        fs.writeFileSync("./assets/ban.json", JSON.stringify(updated, null, 2));
 
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/gv53bk.png" },
+            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
             caption: `✅ User has been unbanned.`
         }, { quoted: mek });
 
@@ -87,7 +87,7 @@ cmd({
     try {
         if (!isCreator) return reply("_❗Only the bot owner can use this command!_");
 
-        let banned = JSON.parse(fs.readFileSync("./lib/ban.json", "utf-8"));
+        let banned = JSON.parse(fs.readFileSync("./assets/ban.json", "utf-8"));
         banned = [...new Set(banned)];
 
         if (banned.length === 0) return reply("✅ No banned users found.");
@@ -98,7 +98,7 @@ cmd({
         });
 
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/gv53bk.png" },
+            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
             caption: msg
         }, { quoted: mek });
     } catch (err) {

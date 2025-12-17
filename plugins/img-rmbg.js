@@ -75,7 +75,7 @@ cmd({
 
     await conn.sendMessage(m.chat, {
       image: imageBuffer,
-      caption: `Background removed\n\n> *Powered by CrissVevo*`
+      caption: `Background removed\n\n> *popkid*`
     });
 
   } catch (error) {

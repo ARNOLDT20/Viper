@@ -37,8 +37,8 @@ cmd({
       + `┃📝 *Tweets:* ${user.tweets_count}\n`
       + `┃📅 *Joined:* ${user.created}\n`
       + `┃🔗 *Profile:* [Click Here](${user.url})\n`
-      + `╰━━━⪼\n\n`
-      + `🔹 *Powered BY ʜᴜɴᴛᴇʀ xᴍᴅ*`;
+      + `┗──────────────⊷\n\n`
+      + `🔹 *popkid*`;
 
     await conn.sendMessage(from, {
       image: { url: user.avatar },

@@ -1,48 +1,59 @@
 const config = require('../config')
-const { cmd, commands } = require('../command')
-const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson} = require('../lib/functions')
+const { cmd } = require('../command')
+const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep } = require('../lib/functions')
 
 cmd({
     pattern: "ginfo",
     react: "🥏",
     alias: ["groupinfo"],
-    desc: "Get group informations.",
+    desc: "Get group information.",
     category: "group",
     use: '.ginfo',
     filename: __filename
 },
-async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isCreator ,isDev, isAdmins, reply}) => {
-try{
-const msr = (await fetchJson('https://raw.githubusercontent.com/JawadTech3/KHAN-DATA/refs/heads/main/MSG/mreply.json')).replyMsg
+async (conn, mek, m, {
+    from, quoted, isCmd, isGroup, sender, isBotAdmins,
+    isAdmins, isDev, reply, groupMetadata, participants
+}) => {
+    try {
+        // Requirements
+        if (!isGroup) return reply(`❌ This command only works in group chats.`);
+        if (!isAdmins && !isDev) return reply(`⛔ Only *Group Admins* or *Bot Dev* can use this.`);
+        if (!isBotAdmins) return reply(`❌ I need *admin* rights to fetch group details.`);
 
-if (!isGroup) return reply(msr.only_gp)
-if (!isAdmins) { if (!isDev) return reply(msr.you_adm),{quoted:mek }} 
-if (!isBotAdmins) return reply(msr.give_adm)
-const ppUrls = [
-        'https://files.catbox.moe/gv53bk.png',
-        'https://files.catbox.moe/gv53bk.png',
-        'https://files.catbox.moe/gv53bk.png',
-      ];
-let ppUrl = await conn.profilePictureUrl( from , 'image')
-if (!ppUrl) { ppUrl = ppUrls[Math.floor(Math.random() * ppUrls.length)];}
-const metadata = await conn.groupMetadata(from)
-const groupAdmins = participants.filter(p => p.admin);
-const listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.id.split('@')[0]}`).join('\n');
-const owner = metadata.owner
+        const fallbackPpUrls = [
+            'https://i.ibb.co/KhYC4FY/1221bc0bdd2354b42b293317ff2adbcf-icon.png',
+            'https://i.ibb.co/KhYC4FY/1221bc0bdd2354b42b293317ff2adbcf-icon.png',
+        ];
+        let ppUrl;
+        try {
+            ppUrl = await conn.profilePictureUrl(from, 'image');
+        } catch {
+            ppUrl = fallbackPpUrls[Math.floor(Math.random() * fallbackPpUrls.length)];
+        }
 
-const gdata = `*「 Group Information 」*\n
-\t*${metadata.subject}*
+        const metadata = await conn.groupMetadata(from);
+        const groupAdmins = participants.filter(p => p.admin);
+        const listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.id.split('@')[0]}`).join('\n');
+        const owner = metadata.owner || groupAdmins[0]?.id || "unknown";
 
-*Group Jid* - ${metadata.id}
-*Participant Count* - ${metadata.size}
-*Group Creator* - ${owner.split('@')[0]}
-*Group Description* - ${metadata.desc?.toString() || 'undefined'}\n
-*Group Admins* - \n${listAdmin}\n`
+        const gdata = `*「 Group Information 」*\n
+*Group Name* : ${metadata.subject}
+*Group ID* : ${metadata.id}
+*Participants* : ${metadata.size}
+*Group Creator* : @${owner.split('@')[0]}
+*Description* : ${metadata.desc?.toString() || 'No description'}\n
+*Admins (${groupAdmins.length})*:\n${listAdmin}`
 
-await conn.sendMessage(from,{image:{url: ppUrl },caption: gdata },{quoted:mek })
-} catch (e) {
-await conn.sendMessage(from, { react: { text: '❌', key: mek.key } })
-console.log(e)
-reply(`❌ *Error Accurated !!*\n\n${e}`)
-}
-} )
+        await conn.sendMessage(from, {
+            image: { url: ppUrl },
+            caption: gdata,
+            mentions: groupAdmins.map(v => v.id).concat([owner])
+        }, { quoted: mek });
+
+    } catch (e) {
+        console.error(e);
+        await conn.sendMessage(from, { react: { text: '❌', key: mek.key } });
+        reply(`❌ An error occurred:\n\n${e}`);
+    }
+});

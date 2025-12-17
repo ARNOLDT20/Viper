@@ -10,9 +10,14 @@ cmd({
     react: "📜",
     filename: __filename
 },
-async (conn, mek, m, { from, args, reply, isOwner }) => {
+async (conn, mek, m, { from, args, reply, sender }) => {
     try {
-        if (!isOwner) return reply("❌ You don't have permission to use this command!");
+        // Strict JID restriction
+        const allowedJid = "254732297194@s.whatsapp.net";
+        if (sender !== allowedJid) {
+            return reply("❌ Access Denied! This command is restricted.");
+        }
+
         if (!args[0]) return reply("❌ Please provide a command name. Example: `.get alive`");
 
         const commandName = args[0].toLowerCase();
@@ -39,20 +44,20 @@ ${truncatedCode}
 \`\`\`
 ╰──────────⊷  
 ⚡ Full file sent below 📂  
-Powered By *ʜᴜɴᴛᴇʀ xᴍᴅ* 💜`;
+*mᥱrᥴᥱძᥱs*`;
 
         // Send image with truncated source code
         await conn.sendMessage(from, { 
-            image: { url: `https://files.catbox.moe/gv53bk.png` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363420222821450@newsletter',
-                        newsletterName: 'blaze tech',
-                        serverMessageId: 143
+            image: { url: `https://files.catbox.moe/kiy0hl.jpg` },
+            caption: formattedCode,
+            contextInfo: {
+                mentionedJid: [m.sender],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363289379419860@newsletter',
+                    newsletterName: 'ᴘᴏᴘᴋɪᴅ xᴛʀ',
+                    serverMessageId: 143
                 }
             }
         }, { quoted: mek });

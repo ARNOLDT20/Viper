@@ -1,19 +1,16 @@
-# Base image
-FROM node:16
+FROM node:lts-buster
+
+# Clone bot from GitHub
+RUN git clone https://github.com/newwrld-dev/POPKID-XTR.git /root/popkid-xtr-bot
 
 # Set working directory
-WORKDIR /usr/src/app
+WORKDIR /root/popkid-xtr-bot
 
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
+# Install dependencies
+RUN npm install && npm install -g pm2
 
-# Copy application source code
-COPY . .
+# Expose port
+EXPOSE 9090
 
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Start the application
+# Start the bot
 CMD ["npm", "start"]
-

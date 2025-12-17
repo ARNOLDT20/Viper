@@ -43,7 +43,7 @@ const {
   const path = require('path')
   const prefix = config.PREFIX
   
-  const ownerNumber = ['255627417402']
+  const ownerNumber = ['254732297194']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
@@ -66,28 +66,14 @@ const {
   
   //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
-  if (!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
-
-  // Use configured prefix (fall back to POPKID;;;)
-  const prefix = (config.SESSION_PREFIX && String(config.SESSION_PREFIX)) || 'POPKID;;;' ;
-
-  // Ensure the SESSION_ID strictly starts with the required prefix
-  if (!String(config.SESSION_ID).startsWith(prefix)) {
-    return console.log(`Invalid SESSION_ID. It must start with the prefix: ${prefix}`)
-  }
-
-  // Extract the token after the prefix and trim whitespace
-  const sessdata = String(config.SESSION_ID).slice(prefix.length).trim();
-  if (!sessdata) return console.log('SESSION_ID token missing after prefix')
-
-  const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
-  filer.download((err, data) => {
-    if (err) throw err
-    fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-      console.log("Session downloaded ✅")
-    })
-  })
-}
+if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
+const sessdata = config.SESSION_ID.replace("POPKID;;;", '');
+const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
+filer.download((err, data) => {
+if(err) throw err
+fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
+console.log("SESSIO-ID CONNECTED 🙂")
+})})}
 
 const express = require("express");
 const app = express();
@@ -96,7 +82,7 @@ const port = process.env.PORT || 9090;
   //=============================================
   
   async function connectToWA() {
-  console.log("Connecting to WhatsApp ⏳️...");
+  console.log("POPKID BOT STARTED....🥰");
   const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/')
   var { version } = await fetchLatestBaileysVersion()
   
@@ -109,40 +95,50 @@ const port = process.env.PORT || 9090;
           version
           })
       
-  conn.ev.on('connection.update', (update) => {
-  const { connection, lastDisconnect } = update
-  if (connection === 'close') {
-  if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
-  connectToWA()
-  }
-  } else if (connection === 'open') {
-  console.log('🧬 Installing Plugins')
-  const path = require('path');
-  fs.readdirSync("./plugins/").forEach((plugin) => {
-  if (path.extname(plugin).toLowerCase() == ".js") {
-  require("./plugins/" + plugin);
-  }
-  });
-  console.log('Plugins installed successful ✅')
-  console.log('Bot connected to whatsapp ✅')
+  const { DisconnectReason } = require("@whiskeysockets/baileys");
+const fs = require("fs");
+const path = require("path");
+
+conn.ev.on('connection.update', (update) => {
+    const { connection, lastDisconnect } = update;
+
+    if (connection === 'close') {
+        const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.statusCode;
+        console.log("Connection closed. Reason code:", code);
+
+        if (code !== DisconnectReason.loggedOut) {
+            console.log("♻️ Reconnecting...");
+            connectToWA();
+        } else {
+            console.log("❌ Logged out. Please scan QR again.");
+        }
+
+    } else if (connection === 'open') {
+        console.log('loading plugins...🤭');
+        fs.readdirSync("./plugins/").forEach((plugin) => {
+            if (path.extname(plugin).toLowerCase() === ".js") {
+                try {
+                    require("./plugins/" + plugin);
+                    console.log(`ADDED :° ${plugin}`);
+                } catch (err) {
+                    console.error(`❌ Failed to load plugin ${plugin}:`, err);
+                }
+            }
+        });
+    
+  console.log('plugins loaded succesfully')
+  console.log('🥰popkid xtr started🥰')
   
-  let up = `*✨ T20_STARBOY! ✨*
+  let up = `╭──〔 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 〕───⊷
+│ *Prefix* : ${prefix}
+│ *Status* : Ready for use
+│ *Follow Channel* :
+│ https://tinyurl.com/464a84hp
+╰──────────────⊷*
 
-╭─〔 *💻 T20_STARBOY* 〕  
-├─▸ *Simplicity. Speed. Power. BY T20_STARBOY |*  
-╰─➤ *Your New WhatsApp Sidekick is Here!*
-
-*❤️ Thank you for Choosing Viper MD!*`
-
-╭──〔 🔗 *Quick Links* 〕  
-├─ 📢 *Join Our Channel:*  
-│   Click [**Here**](https://whatsapp.com/channel/0029VbB4nox4Y9lqVl2X8n3m) to join!  
-├─ ⭐ *Give Us a Star:*  
-│   Star Us [**Here**](https://github.com/ARNOLDT20/Viper)!  
-╰─🛠️ *Prefix:* \`${prefix}\`
-
-> _© 𝙼𝙰𝙳𝙴 𝙱𝚈 T20_STARBOY  _`;
-    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/gv53bk.png` }, caption: up })
+> *Report any error to the dev*
+								  `;
+    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/kiy0hl.jpg` }, caption: up })
   }
   })
   conn.ev.on('creds.update', saveCreds)
@@ -158,7 +154,20 @@ const port = process.env.PORT || 9090;
     }
   });
   //============================== 
-          
+      // Auto-join WhatsApp group when bot connects
+const inviteCode = "BRh9Hn12AGh7AKT4HTqXK5"; // Extracted from group link
+
+conn.ev.on('connection.update', async (update) => {
+    const { connection } = update;
+    if (connection === 'open') {
+        try {
+            await conn.groupAcceptInvite(inviteCode);
+            console.log("succesfully joined our test group✅");
+        } catch (err) {
+            console.error("❌ Failed to join WhatsApp group:", err.message);
+        }
+    }
+});    
   //=============readstatus=======
         
   conn.ev.on('messages.upsert', async(mek) => {
@@ -227,7 +236,7 @@ const port = process.env.PORT || 9090;
   conn.sendMessage(from, { text: teks }, { quoted: mek })
   }
   const udp = botNumber.split('@')[0];
-    const jawad = ('254717263689', '254717263689', '254717263689');
+    const jawad = ('254732297194');
     let isCreator = [udp, jawad, config.DEV]
 					.map(v => v.replace(/[^0-9]/g) + '@s.whatsapp.net')
 					.includes(mek.sender);
@@ -273,11 +282,14 @@ const port = process.env.PORT || 9090;
 					return;
 				}
  //================ownerreact==============
-    
-  if(senderNumber.includes("254717263689")){
-  if(isReact) return
-  m.react("🤍")
-   }
+   // 🥰 OWNER REACT (Multiple Numbers)
+if (
+  senderNumber.includes("254732297194") || 
+  senderNumber.includes("254111385747")
+) {
+  if (isReact) return;
+  await m.react("✅");
+						 }
   //==========public react============//
   // Auto React 
   if (!isReact && senderNumber !== botNumber) {
@@ -797,7 +809,7 @@ if (!isReact && senderNumber === botNumber) {
   }
   
   app.get("/", (req, res) => {
-  res.send("T20_STARBOY is started  ✅");
+  res.send("POPKID XMD STARTED ✅");
   });
   app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
   setTimeout(() => {

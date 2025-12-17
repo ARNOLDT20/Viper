@@ -73,17 +73,6 @@ async (conn, mek, m, { from, isOwner, reply }) => {
     }
 });
 
-cmd({
-    pattern: "jid",
-    desc: "Get the bot's JID.",
-    category: "owner",
-    react: "🤖",
-    filename: __filename
-},
-async (conn, mek, m, { from, isOwner, reply }) => {
-    if (!isOwner) return reply("❌ You are not the owner!");
-    reply(`🤖 *Bot JID:* ${conn.user.jid}`);
-});
 // 8. Group JIDs List
 cmd({
     pattern: "gjid",

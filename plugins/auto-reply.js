@@ -1,30 +1,23 @@
-const axios = require('axios');
-const config = require('../config');
 const fs = require('fs');
 const path = require('path');
+const config = require('../config')
 const {cmd , commands} = require('../command')
 
-
-// Replace this with your actual GitHub RAW JSON URL
-const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/criss-vevo/CRISS-DATA/main/autoreply.json';
-
+//auto reply 
 cmd({
   on: "body"
-},
-async (conn, mek, m, { body }) => {
-  try {
-    const res = await axios.get(GITHUB_RAW_URL);
-    const data = res.data;
-
+},    
+async (conn, mek, m, { from, body, isOwner }) => {
+    const filePath = path.join(__dirname, '../assets/autoreply.json');
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     for (const text in data) {
-      if (body.toLowerCase() === text.toLowerCase()) {
-        if (config.AUTO_REPLY === 'true') {
-          await m.reply(data[text]);
+        if (body.toLowerCase() === text.toLowerCase()) {
+            
+            if (config.AUTO_REPLY === 'true') {
+                //if (isOwner) return;        
+                await m.reply(data[text])
+            
+            }
         }
-        break;
-      }
-    }
-  } catch (err) {
-    console.error('Auto-reply fetch error:', err.message);
-  }
+    }                
 });

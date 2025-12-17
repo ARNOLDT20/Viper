@@ -1,25 +1,24 @@
 {
-  "name": "Viper_MD",
-  "version": "4.5.0",
-  "description": "A WhatsApp Bot Created Obed Tech",
+  "name": "POPKID",
+  "version": "3.0.0",
+  "description": "A WhatsApp Bot Created By POPKID",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name Viper_MD",
-    "stop": "pm2 stop Viper_MD",
-    "restart": "pm2 restart Viper_MD"
+    "start": "pm2 start index.js --deep-monitoring --attach --name POPKID-XTR",
+    "stop": "pm2 stop POPKID-XTR",
+    "restart": "pm2 restart POPKID-XTR"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "npm:@fizzxydev/baileys-pro@8.5.12",
+    "@whiskeysockets/baileys": "6.7.20",
     "@adiwajshing/keyed-db": "^0.2.4",
     "@dark-yasiya/yt-dl.js": "1.0.5",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@vitalets/google-translate-api": "^9.2.0",
     "@dark-yasiya/scrap":"1.0.1",    
-    "pino": "^7.0.5",
-    "pm2": "^6.0.5",
+    "pino": "^10.0.0",
+    "pm2": "^6.0.13",
     "util": "^0.12.4",
     "express": "latest",
-    "moment-timezone": "^0.5.45",
     "axios": "^1.2.5",
     "crypto-digest-sync": "^1.0.0",
     "crypto-js": "latest",
@@ -53,4 +52,4 @@
     "@mrnima/facebook-downloader":"1.0.0",
     "mrnima-moviedl":"1.0.0"
   }
-  }
+}

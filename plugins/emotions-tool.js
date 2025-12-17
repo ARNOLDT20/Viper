@@ -1,4 +1,97 @@
-const { cmd } = require('../command');
+const { cmd } = require("../command");
+const { sleep } = require("../lib/functions");
+
+cmd({
+    pattern: "fing",
+    alias: ['fingering', 'hath', 'ungli', 'touch', 'moan'],
+    desc: "Funny girl animation (owner only)",
+    category: "tools",
+    react: "👅",
+    filename: __filename
+},
+async (conn, mek, m, { from, reply }) => {
+    try {
+        const loadingMessage = await conn.sendMessage(from, { text: '👀 Starting... 🍑💦' });
+        
+        const animationFrames = [
+            "👆🏻------🍑", 
+            "👆🏻-----🍑", 
+            "👆🏻----🍑", 
+            "👆🏻---🍑", 
+            "👆🏻--🍑", 
+            "👆🏻-🍑", 
+            "👆🏻🍑", 
+            "👉🏻🍑", 
+            "👉🏻💦🍑", 
+            "👉🏻💦💦🍑", 
+            "👉🏻💦💦💦🍑", 
+            "💦🍑💦 *Awf 🥵👅*"
+        ];
+
+        for (const frame of animationFrames) {
+            await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
+            await conn.relayMessage(
+                from,
+                {
+                    protocolMessage: {
+                        key: loadingMessage.key,
+                        type: 14,
+                        editedMessage: {
+                            conversation: frame,
+                        },
+                    },
+                },
+                {}
+            );
+        }
+    } catch (e) {
+        console.log(e);
+        reply(`❌ *Error!* ${e.message}`);
+    }
+});
+
+cmd({
+    pattern: "muth",
+    alias: ["handjob", "hand"],
+    desc: "Displays a simple handjob animation",
+    category: "fun",
+    react: "✊",
+    filename: __filename
+},
+async (conn, mek, m, { from, reply }) => {
+    try {
+        const loadingMessage = await conn.sendMessage(from, { text: '✊ Starting...' });
+        
+        const animationFrames = [
+            "✊ 🍌",
+            "✊🍌",
+            "✊🍌💦",
+            "✊🍌💦💦",
+            "😩💦💦💦",
+            "😵‍💫 Done!"
+        ];
+
+        for (const frame of animationFrames) {
+            await sleep(800); // 0.8 second delay
+            await conn.relayMessage(
+                from,
+                {
+                    protocolMessage: {
+                        key: loadingMessage.key,
+                        type: 14,
+                        editedMessage: {
+                            conversation: frame,
+                        },
+                    },
+                },
+                {}
+            );
+        }
+    } catch (e) {
+        console.log(e);
+        reply(`❌ Error: ${e.message}`);
+    }
+});
 
 cmd({
     pattern: "happy",
@@ -269,7 +362,7 @@ async (conn, mek, m, { from, reply }) => {
 });
 
 cmd({
-    pattern: "hot",
+    pattern: "chumi",
     desc: "Displays a dynamic edit msg for fun.",
     category: "tools",
     react: "💋",
@@ -316,7 +409,7 @@ cmd({
 },
 async (conn, mek, m, { from, reply }) => {
     try {
-        const loadingMessage = await conn.sendMessage(from, { text: 'CRISS-AI🗿' });
+        const loadingMessage = await conn.sendMessage(from, { text: 'KHANX-AI🗿' });
         
         // Define the ASCII art messages
         const asciiMessages = [
@@ -346,4 +439,4 @@ async (conn, mek, m, { from, reply }) => {
     }
 });
 
-// > Criss Vevo 
+// > ᴘᴏᴘ

@@ -9,20 +9,18 @@ cmd({
     filename: __filename
 },
 async (conn, mek, m, {
-    from, q, isGroup, isBotAdmins, reply, groupMetadata, senderNumber
+    from, q, isGroup, isBotAdmins, reply, groupMetadata, isCreator
 }) => {
-    // Check if the command is used in a group
     if (!isGroup) return reply("❌ This command can only be used in groups.");
 
-    // Get the bot owner's number dynamically from conn.user.id
-    const botOwner = conn.user.id.split(":")[0];
-    if (senderNumber !== botOwner) {
-        return reply("❌ Only the bot owner can use this command.");
+    // Permission check using isCreator
+    if (!isCreator) {
+        return await conn.sendMessage(from, {
+            text: "*📛 This is an owner command.*"
+        }, { quoted: mek });
     }
 
-    // Check if the bot is an admin
     if (!isBotAdmins) return reply("❌ I need to be an admin to use this command.");
-
     if (!q) return reply("❌ Please provide a country code. Example: .out 92");
 
     const countryCode = q.trim();
@@ -33,8 +31,7 @@ async (conn, mek, m, {
     try {
         const participants = await groupMetadata.participants;
         const targets = participants.filter(
-            participant => participant.id.startsWith(countryCode) && 
-                         !participant.admin // Don't remove admins
+            participant => participant.id.startsWith(countryCode) && !participant.admin
         );
 
         if (targets.length === 0) {
@@ -43,7 +40,7 @@ async (conn, mek, m, {
 
         const jids = targets.map(p => p.id);
         await conn.groupParticipantsUpdate(from, jids, "remove");
-        
+
         reply(`✅ Successfully removed ${targets.length} members with country code +${countryCode}`);
     } catch (error) {
         console.error("Out command error:", error);

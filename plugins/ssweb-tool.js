@@ -1,54 +1,81 @@
-// code by ⿻ ⌜ 𝐂𝐑𝐈𝐒𝐒 ⌟⿻⃮͛🇵🇰𖤐
+// code by ⿻ ⌜ ɪᴍᴍᴜ ⌟⿻⃮͛🇵🇰𖤐
 
 const axios = require("axios");
-const config = require('../config');
-const { cmd } = require('../command');
+const { cmd } = require("../command");
+const { sleep } = require('../lib/functions');
 
 cmd({
-  pattern: "sss",
-  alias: ["ssweb"],
-  react: "💫",
-  desc: "Download screenshot of a given link.",
-  category: "other",
-  use: ".ss <link>",
+  pattern: "screenshot",
+  react: "🌐",
+  alias: ["ss", "ssweb"],
+  desc: "Capture a full-page screenshot of a website.",
+  category: "utility",
+  use: ".screenshot <url>",
   filename: __filename,
-}, 
-async (conn, mek, m, {
-  from, l, quoted, body, isCmd, command, args, q, isGroup, sender, 
-  senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, 
-  groupMetadata, groupName, participants, isItzcp, groupAdmins, 
-  isBotAdmins, isAdmins, reply 
-}) => {
-  if (!q) {
-    return reply("Please provide a URL to capture a screenshot.");
-  }
-
+}, async (conn, mek, msg, { from, args, reply }) => {
   try {
-    // created by jawad tech 
-    const response = await axios.get(`https://api.davidcyriltech.my.id/ssweb?url=${q}`);
-    const screenshotUrl = response.data.screenshotUrl;
+    const url = args[0];
+    if (!url) return reply("❌ Please provide a URL\nExample: .screenshot https://google.com");
+    if (!url.startsWith("http")) return reply("❌ URL must start with http:// or https://");
 
-    // give credit and use
-    const imageMessage = {
-      image: { url: screenshotUrl },
-      caption: "*WEB SS DOWNLOADER*\n\n> *© Powered By CRISS VEVO*",
-      contextInfo: {
-        mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
-          newsletterName: "blaze tech",
-          serverMessageId: 143,
-        },
-      },
-    };
+    // ASCII loading bars with percentage
+    const loadingBars = [
+        { percent: 10, bar: "[▓░░░░░░░░░]", text: "✦ Initializing capture..." },
+        { percent: 20, bar: "[▓▓░░░░░░░░]", text: "✦ Connecting to website..." },
+        { percent: 30, bar: "[▓▓▓░░░░░░░]", text: "✦ Loading page content..." },
+        { percent: 40, bar: "[▓▓▓▓░░░░░░]", text: "✦ Rendering elements..." },
+        { percent: 50, bar: "[▓▓▓▓▓░░░░░]", text: "✦ Processing JavaScript..." },
+        { percent: 60, bar: "[▓▓▓▓▓▓░░░░]", text: "✦ Capturing viewport..." },
+        { percent: 70, bar: "[▓▓▓▓▓▓▓░░░]", text: "✦ Scrolling page..." },
+        { percent: 80, bar: "[▓▓▓▓▓▓▓▓░░]", text: "✦ Finalizing screenshot..." },
+        { percent: 90, bar: "[▓▓▓▓▓▓▓▓▓░]", text: "✦ Optimizing image..." },
+        { percent: 100, bar: "[▓▓▓▓▓▓▓▓▓▓]", text: "✓ Capture complete!" }
+    ];
 
-    await conn.sendMessage(from, imageMessage, { quoted: m });
+    // Send initial message
+    const loadingMsg = await conn.sendMessage(from, {
+        text: "🔄 Starting screenshot capture...\n✦ Please wait..."
+    }, { quoted: mek });
+
+    // Animate loading progress
+    for (const frame of loadingBars) {
+        await sleep(800);
+        await conn.relayMessage(from, {
+            protocolMessage: {
+                key: loadingMsg.key,
+                type: 14,
+                editedMessage: {
+                    conversation: `📸 ${frame.bar} ${frame.percent}%\n${frame.text}`
+                }
+            }
+        }, {});
+    }
+
+    // Final update before sending
+    await sleep(800);
+    await conn.relayMessage(from, {
+        protocolMessage: {
+            key: loadingMsg.key,
+            type: 14,
+            editedMessage: {
+                conversation: "✅ Screenshot Captured!\n✦ Sending now..."
+            }
+        }
+    }, {});
+
+    await sleep(1000);
+
+    // Send the actual screenshot
+    await conn.sendMessage(from, {
+        image: { url: `https://image.thum.io/get/fullpage/${url}` },
+        caption: "- 🖼️ *Screenshot Generated*\n\n" +
+                "> popkid"
+    }, { quoted: mek });
+
   } catch (error) {
-    console.error(error);
-    reply("Failed to capture the screenshot. Please try again.");
+    console.error("Error:", error);
+    reply("❌ Failed to capture screenshot\n✦ Please try again later");
   }
 });
 
-// ⿻ ⌜ 𝐂𝐑𝐈𝐒𝐒 ⌟⿻⃮͛🇵🇰𖤐
+// ⿻ ⌜ popkid ⌟⿻⃮͛𖤐

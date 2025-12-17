@@ -1,46 +1,34 @@
 const { cmd } = require('../command');
 
-cmd({
+cmd(
+  {
     pattern: "add",
-    alias: ["a", "invite"],
-    desc: "Adds a member to the group",
-    category: "admin",
-    react: "➕",
-    filename: __filename
-},
-async (conn, mek, m, {
-    from, q, isGroup, isBotAdmins, reply, quoted, senderNumber
-}) => {
-    // Check if the command is used in a group
-    if (!isGroup) return reply("❌ This command can only be used in groups.");
-
-    // Get the bot owner's number dynamically from conn.user.id
-    const botOwner = conn.user.id.split(":")[0];
-    if (senderNumber !== botOwner) {
-        return reply("❌ Only the bot owner can use this command.");
-    }
-
-    // Check if the bot is an admin
-    if (!isBotAdmins) return reply("❌ I need to be an admin to use this command.");
-
-    let number;
-    if (m.quoted) {
-        number = m.quoted.sender.split("@")[0]; // If replying to a message, get the sender's number
-    } else if (q && q.includes("@")) {
-        number = q.replace(/[@\s]/g, ''); // If manually typing a number with '@'
-    } else if (q && /^\d+$/.test(q)) {
-        number = q; // If directly typing a number
-    } else {
-        return reply("❌ Please reply to a message, mention a user, or provide a number to add.");
-    }
-
-    const jid = number + "@s.whatsapp.net";
-
+    alias: ["invite", "addmember", "a", "summon"],
+    desc: "Adds a person to group",
+    category: "group",
+    filename: __filename,
+  },
+  async (conn, mek, m, { from, quoted, args, reply, isGroup, isBotAdmins, isCreator }) => {
     try {
-        await conn.groupParticipantsUpdate(from, [jid], "add");
-        reply(`✅ Successfully added @${number}`, { mentions: [jid] });
-    } catch (error) {
-        console.error("Add command error:", error);
-        reply("❌ Failed to add the member.");
+      if (!isCreator) {
+        return await conn.sendMessage(from, {
+          text: "*📛 This is an owner command.*"
+        }, { quoted: mek });
+      }
+
+      if (!isGroup) return reply("_This command is for groups_");
+      if (!isBotAdmins) return reply("_I'm not admin_");
+      if (!args[0] && !quoted) return reply("_Mention user to add_");
+
+      let jid = m.mentionedJid?.[0] 
+            || (m.quoted?.sender ?? null)
+            || (args[0]?.replace(/[^0-9]/g, '') + "@s.whatsapp.net");
+            
+      await conn.groupParticipantsUpdate(from, [jid], "add");
+      return reply(`@${jid.split("@")[0]} added`, { mentions: [jid] });
+    } catch (e) {
+      console.log(e);
+      m.reply(`${e}`);
     }
-});
+  }
+);
