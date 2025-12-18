@@ -118,7 +118,7 @@ const port = process.env.PORT || 9090;
 ├─▸ *Simplicity. Speed. Power.*  
 ╰─➤ *Your New WhatsApp Sidekick is Here!*
 
-*❤️ Thank you for Choosing Viper md!* 
+*❤️ Thank you for Choosing Viper MD!* 
 
 ╭──〔 🔗 *Quick Links* 〕  
 ├─ 📢 *Join Our Channel:*  
