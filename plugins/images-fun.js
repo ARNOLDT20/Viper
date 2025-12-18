@@ -23,10 +23,15 @@ try{
 let res = await axios.get('https://api.lolicon.app/setu/v2?num=1&r18=0&tag=lolicon')
 let wm = `😎 Random Garl image
 
-©ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md`
+©ᴘᴏᴡᴇʀᴇᴅ ʙʏ ʜᴜɴᴛᴇʀ xᴍᴅ`
 await conn.sendMessage(from, { image: { url: res.data.data[0].urls.original }, caption: wm}, { quoted: mek })
 } catch (e) {
 reply(cants)
+     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
+     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
+     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
+     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
+     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
 console.log(e)
 }
 })
@@ -46,7 +51,7 @@ try{
 let res = await axios.get('https://api.waifu.pics/sfw/waifu')
 let wm = `🩵 Random Waifu image
 
-©ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md`
+©ᴘᴏᴡᴇʀᴇᴅ ʙʏ ʜᴜɴᴛᴇʀ xᴍᴅ`
 await conn.sendMessage(from, { image: { url: res.data.url }, caption: wm}, { quoted: mek })
 } catch (e) {
 reply(cants)
@@ -69,7 +74,7 @@ try{
 let res = await axios.get('https://api.waifu.pics/sfw/neko')
 let wm = `🩷 Random neko image
 
-©ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md`
+©ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ`
 await conn.sendMessage(from, { image: { url: res.data.url  }, caption: wm}, { quoted: mek })
 } catch (e) {
 reply(cants)
@@ -92,7 +97,7 @@ try{
 let res = await axios.get('https://api.waifu.pics/sfw/megumin')
 let wm = `❤️‍🔥Random megumin image
 
-©ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md`
+©ᴘᴏᴡᴇʀᴇᴅ ʙʏ ʜᴜɴᴛᴇʀ xᴍᴅ`
 await conn.sendMessage(from, { image: { url: res.data.url }, caption: wm}, { quoted: mek })
 } catch (e) {
 reply(cants)
@@ -115,7 +120,7 @@ try{
 let res = await axios.get('https://api.waifu.im/search/?included_tags=maid')
 let wm = `😎 Random maid image
 
-©ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md`
+©ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ`
 await conn.sendMessage(from, { image: { url: res.data.images[0].url  }, caption: wm}, { quoted: mek })
 } catch (e) {
 reply(cants)
@@ -138,7 +143,7 @@ try{
 let res = await axios.get('https://api.waifu.pics/sfw/awoo')
 let wm = `😎 Random awoo image
 
-©ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md`
+©ᴘᴏᴡᴇʀᴇᴅ ʙʏ ʜᴜɴᴛᴇʀ xᴍᴅ`
 await conn.sendMessage(from, { image: { url: res.data.url }, caption: wm}, { quoted: mek })
 } catch (e) {
 reply(cants)
@@ -280,14 +285,14 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-let dec = `> Viper md ANIME IMGS*`
-await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/faypwi.png`},caption:dec},{quoted:mek});
-await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/faypwi.png`},caption:dec},{quoted:mek});
-await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/faypwi.png`},caption:dec},{quoted:mek});
-await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/faypwi.png`},caption:dec},{quoted:mek});
-await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/faypwi.png`},caption:dec},{quoted:mek});
-await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/faypwi.png`},caption:dec},{quoted:mek});
-await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/faypwi.png`},caption:dec},{quoted:mek});
+let dec = `> VIPER MD ANIME IMGS*`
+await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/gv53bk.png`},caption:dec},{quoted:mek});
+await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/gv53bk.png`},caption:dec},{quoted:mek});
+await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/gv53bk.png`},caption:dec},{quoted:mek});
+await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/gv53bk.png`},caption:dec},{quoted:mek});
+await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/gv53bk.png`},caption:dec},{quoted:mek});
+await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/gv53bk.png`},caption:dec},{quoted:mek});
+await conn.sendMessage(from,{image:{url: `https://files.catbox.moe/gv53bk.png`},caption:dec},{quoted:mek});
 
 }catch(e){
 console.log(e)
@@ -306,15 +311,15 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪX' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
 }catch(e){
 console.log(e)
@@ -332,15 +337,15 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
 }catch(e){
 console.log(e)
@@ -359,15 +364,15 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
 }catch(e){
 console.log(e)
@@ -386,15 +391,15 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
 }catch(e){
 console.log(e)
@@ -413,15 +418,15 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
-await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/faypwi.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper md' },{quoted:mek});
+await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʀɪss ᴀɪ' },{quoted:mek});
 
 }catch(e){
 console.log(e)
@@ -442,7 +447,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         const response = await axios.get(apiUrl);
         const data = response.data;
 
-        await conn.sendMessage(from, { image: { url: data.message }, caption: '> *© Powered By Viper md* ' }, { quoted: mek });
+        await conn.sendMessage(from, { image: { url: data.message }, caption: '> *© Powered By ʜᴜɴᴛᴇʀ xᴍᴅ> ' }, { quoted: mek });
     } catch (e) {
         console.log(e); // ❯❯ Powered by CRISS-AI 👑
         reply(`єяяσя ƒєт¢нιηg ∂σg ιмαgє: ${e.message}`);

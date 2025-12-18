@@ -1,12 +1,12 @@
 {
-  "name": "Viper_md",
+  "name": "viper-md",
   "version": "4.5.0",
   "description": "A WhatsApp Bot Created Obed Tech",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name Viper_md",
-    "stop": "pm2 stop Viper_md",
-    "restart": "pm2 restart Viper_md"
+    "start": "pm2 start index.js --deep-monitoring --attach --name viper-md",
+    "stop": "pm2 stop viper-md",
+    "restart": "pm2 restart viper-md"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "npm:@fizzxydev/baileys-pro@8.5.12",
