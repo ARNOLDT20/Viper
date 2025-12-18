@@ -3,58 +3,59 @@ const axios = require('axios');
 
 cmd({
     pattern: "pindl",
-    alias: ["pinterestdl", "pint", "pins", "pindownload"],
+    alias: ["pinterestdl", "pin", "pins", "pindownload"],
     desc: "Download media from Pinterest",
     category: "download",
-    react: "📌",
     filename: __filename
 }, async (conn, mek, m, { args, quoted, from, reply }) => {
     try {
-        // ⏳ React: Processing Start
-        await conn.sendMessage(from, { react: { text: "⏳", key: mek.key } });
-
         // Make sure the user provided the Pinterest URL
         if (args.length < 1) {
-            await conn.sendMessage(from, { react: { text: "⚠️", key: mek.key } });
             return reply('❎ Please provide the Pinterest URL to download from.');
         }
 
+        // Extract Pinterest URL from the arguments
         const pinterestUrl = args[0];
+
+        // Call your Pinterest download API
         const response = await axios.get(`https://api.giftedtech.web.id/api/download/pinterestdl?apikey=gifted&url=${encodeURIComponent(pinterestUrl)}`);
 
         if (!response.data.success) {
-            await conn.sendMessage(from, { react: { text: "❌", key: mek.key } });
             return reply('❎ Failed to fetch data from Pinterest.');
         }
 
         const media = response.data.result.media;
-        const description = response.data.result.description || 'No description available';
+        const description = response.data.result.description || 'No description available'; // Check if description exists
         const title = response.data.result.title || 'No title available';
+
+        // Select the best video quality or you can choose based on size or type
         const videoUrl = media.find(item => item.type.includes('720p'))?.download_url || media[0].download_url;
 
-        const desc = `*┏────〘 VIPER MD 〙───⊷*
-*┃* *PINS DOWNLOADER*
-*┗──────────────⊷*
-*┏────〘 VIPER MD 〙───⊷*
-*┃* *Title* - ${title}
-*┃* *Media Type* - ${media[0].type}
-*┗──────────────⊷*
-> powered by VIPER MD`;
+        // Prepare the new message with the updated caption
+        const desc = `╭━━━〔 *CRISS-AI* 〕━━━┈⊷
+┃▸╭───────────
+┃▸┃๏ *PINS DOWNLOADER*
+┃▸└───────────···๏
+╰────────────────┈⊷
+╭━━❐━⪼
+┇๏ *Title* - ${title}
+┇๏ *Media Type* - ${media[0].type}
+╰━━❑━⪼
+> *© Pᴏᴡᴇʀᴇᴅ Bʏ ᴄʀɪss-Aɪ ♡*`;
 
-        // Send video or image
+        // Send the media (video or image) to the user
         if (videoUrl) {
+            // If it's a video, send the video
             await conn.sendMessage(from, { video: { url: videoUrl }, caption: desc }, { quoted: mek });
         } else {
+            // If it's an image, send the image
             const imageUrl = media.find(item => item.type === 'Thumbnail')?.download_url;
             await conn.sendMessage(from, { image: { url: imageUrl }, caption: desc }, { quoted: mek });
         }
 
-        // ✅ React: Completed Successfully
-        await conn.sendMessage(from, { react: { text: "✅", key: mek.key } });
-
     } catch (e) {
         console.error(e);
-        await conn.sendMessage(from, { react: { text: "❌", key: mek.key } });
+        await conn.sendMessage(from, { react: { text: '❌', key: mek.key } });
         reply('❎ An error occurred while processing your request.');
     }
 });

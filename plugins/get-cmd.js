@@ -10,14 +10,9 @@ cmd({
     react: "📜",
     filename: __filename
 },
-async (conn, mek, m, { from, args, reply, sender }) => {
+async (conn, mek, m, { from, args, reply, isOwner }) => {
     try {
-        // Strict JID restriction
-        const allowedJid = "254732297194@s.whatsapp.net";
-        if (sender !== allowedJid) {
-            return reply("❌ Access Denied! This command is restricted.");
-        }
-
+        if (!isOwner) return reply("❌ You don't have permission to use this command!");
         if (!args[0]) return reply("❌ Please provide a command name. Example: `.get alive`");
 
         const commandName = args[0].toLowerCase();
@@ -44,20 +39,20 @@ ${truncatedCode}
 \`\`\`
 ╰──────────⊷  
 ⚡ Full file sent below 📂  
-*mᥱrᥴᥱძᥱs*`;
+Powered By *ʜᴜɴᴛᴇʀ xᴍᴅ* 💜`;
 
         // Send image with truncated source code
         await conn.sendMessage(from, { 
-            image: { url: `https://files.catbox.moe/kiy0hl.jpg` },
-            caption: formattedCode,
-            contextInfo: {
-                mentionedJid: [m.sender],
-                forwardingScore: 999,
-                isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363420222821450@newsletter',
-                    newsletterName: 'ᴘᴏᴘᴋɪᴅ xᴛʀ',
-                    serverMessageId: 143
+            image: { url: `https://res.cloudinary.com/dgy2dutjs/image/upload/v1751707342/url.crissvevo.co.tz/%E1%B4%8F%CA%99%E1%B4%87%E1%B4%85%E1%B4%9B%E1%B4%87%E1%B4%84%CA%9C1_exmbht.jpg` },
+                caption: dec,
+                contextInfo: {
+                    mentionedJid: [m.sender],
+                    forwardingScore: 999,
+                    isForwarded: true,
+                    forwardedNewsletterMessageInfo: {
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'ʜᴜɴᴛᴇʀ xᴍᴅ',
+                        serverMessageId: 143
                 }
             }
         }, { quoted: mek });

@@ -1,6 +1,9 @@
 const { sleep } = require('../lib/functions');
-const config = require('../config');
-const { cmd, commands } = require('../command');
+const config = require('../config')
+const { cmd, commands } = require('../command')
+
+
+// JawadTechX
 
 cmd({
     pattern: "leave",
@@ -11,27 +14,27 @@ cmd({
     filename: __filename
 },
 async (conn, mek, m, {
-    from, isGroup, isCreator, reply
+    from, quoted, body, isCmd, command, args, q, isGroup, senderNumber, reply
 }) => {
     try {
+
         if (!isGroup) {
-            return reply("❗ This command can only be used in *groups*.");
+            return reply("This command can only be used in groups.");
+        }
+        
+
+        const botOwner = conn.user.id.split(":")[0]; 
+        if (senderNumber !== botOwner) {
+            return reply("Only the bot owner can use this command.");
         }
 
-        if (!isCreator) {
-            return reply("❗ This command can only be used by my *owner*.");
-        }
-
-        // Send a goodbye message first
-        await reply(`👋 *Goodbye everyone!*  
-I am leaving the group now.  
-Thanks for having me here! ❤️`);
-
-        await sleep(1500); // Wait a bit before leaving
+        reply("Leaving group...");
+        await sleep(1500);
         await conn.groupLeave(from);
-
+        reply("Goodbye! 👋");
     } catch (e) {
         console.error(e);
-        reply(`❌ Error: ${e.message}`);
+        reply(`❌ Error: ${e}`);
     }
 });
+

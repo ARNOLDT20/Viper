@@ -56,7 +56,7 @@ _Email will expire after 24 hours_
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363420222821450@newsletter',
-                        newsletterName: 'blaze tech',
+                        newsletterName: 'TempMail Service',
                         serverMessageId: 101
                     }
                 }

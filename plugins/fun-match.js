@@ -1,69 +1,73 @@
 const { cmd } = require("../command");
 
-// Random Boy Selection Command
+// Command for random boy selection
 cmd({
   pattern: "bacha",
-  alias: ["larka"],
+  alias: ["boy", "larka"],
   desc: "Randomly selects a boy from the group",
   react: "👦",
   category: "fun",
   filename: __filename
-}, async (conn, mek, store, { isGroup, groupMetadata, reply }) => {
+}, async (conn, mek, store, { isGroup, groupMetadata, reply, sender }) => {
   try {
     if (!isGroup) return reply("❌ This command can only be used in groups!");
-    if (!groupMetadata?.participants) return reply("⚠️ Couldn't fetch group members.");
 
-    const botNumber = conn.user.id;
-    const participants = groupMetadata.participants.filter(p => p.id !== botNumber);
+    const participants = groupMetadata.participants;
+    
+    // Filter out bot and get random participant
+    const eligible = participants.filter(p => !p.id.includes(conn.user.id.split('@')[0]));
+    
+    if (eligible.length < 1) return reply("❌ No eligible participants found!");
 
-    if (participants.length < 1) return reply("❌ No eligible participants found!");
-
-    const randomUser = participants[Math.floor(Math.random() * participants.length)];
-
+    const randomUser = eligible[Math.floor(Math.random() * eligible.length)];
+    
     await conn.sendMessage(
       mek.chat,
-      {
-        text: `👦 *Yeh lo tumhara Bacha!*\n\n@${randomUser.id.split('@')[0]} is your handsome boy! 😎`,
-        mentions: [randomUser.id]
+      { 
+        text: `👦 *Yeh lo tumhara Bacha!* \n\n@${randomUser.id.split('@')[0]} is your handsome boy! 😎`, 
+        mentions: [randomUser.id] 
       },
       { quoted: mek }
     );
+
   } catch (error) {
     console.error("Error in .bacha command:", error);
-    reply("❌ An error occurred while selecting a boy.");
+    reply(`❌ Error: ${error.message}`);
   }
 });
 
-// Random Girl Selection Command
+// Command for random girl selection
 cmd({
   pattern: "bachi",
-  alias: ["kuri", "larki"],
+  alias: ["girl", "kuri", "larki"],
   desc: "Randomly selects a girl from the group",
   react: "👧",
   category: "fun",
   filename: __filename
-}, async (conn, mek, store, { isGroup, groupMetadata, reply }) => {
+}, async (conn, mek, store, { isGroup, groupMetadata, reply, sender }) => {
   try {
     if (!isGroup) return reply("❌ This command can only be used in groups!");
-    if (!groupMetadata?.participants) return reply("⚠️ Couldn't fetch group members.");
 
-    const botNumber = conn.user.id;
-    const participants = groupMetadata.participants.filter(p => p.id !== botNumber);
+    const participants = groupMetadata.participants;
+    
+    // Filter out bot and get random participant
+    const eligible = participants.filter(p => !p.id.includes(conn.user.id.split('@')[0]));
+    
+    if (eligible.length < 1) return reply("❌ No eligible participants found!");
 
-    if (participants.length < 1) return reply("❌ No eligible participants found!");
-
-    const randomUser = participants[Math.floor(Math.random() * participants.length)];
-
+    const randomUser = eligible[Math.floor(Math.random() * eligible.length)];
+    
     await conn.sendMessage(
       mek.chat,
-      {
-        text: `👧 *Yeh lo tumhari Bachi!*\n\n@${randomUser.id.split('@')[0]} is your beautiful girl! 💖`,
-        mentions: [randomUser.id]
+      { 
+        text: `👧 *Yeh lo tumhari Bachi!* \n\n@${randomUser.id.split('@')[0]} is your beautiful girl! 💖`, 
+        mentions: [randomUser.id] 
       },
       { quoted: mek }
     );
+
   } catch (error) {
     console.error("Error in .bachi command:", error);
-    reply("❌ An error occurred while selecting a girl.");
+    reply(`❌ Error: ${error.message}`);
   }
 });

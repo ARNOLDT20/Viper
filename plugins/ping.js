@@ -2,14 +2,14 @@ const config = require('../config');
 const { cmd, commands } = require('../command');
 
 cmd({
-    pattern: "ping",
+    pattern: "ping2",
     alias: ["speed","pong"],use: '.ping',
     desc: "Check bot's response time.",
     category: "main",
     react: "⚡",
     filename: __filename
 },
-async (conn, mek, m, { from, quoted, sender, reply }) => {
+async (conn, mek, m, { from, quoted, sender, reply, }) => {
     try {
         const start = new Date().getTime();
 
@@ -32,7 +32,7 @@ async (conn, mek, m, { from, quoted, sender, reply }) => {
         const end = new Date().getTime();
         const responseTime = (end - start) / 1000;
 
-        const text = `> *ᴘᴏɴɢ: ${responseTime.toFixed(2)}ms ${reactionEmoji}*`;
+        const text = `> *ʜᴜɴᴛᴇʀ xᴍᴅ ꜱᴘᴇᴇᴅ: ${responseTime.toFixed(2)}ms ${reactionEmoji}*`;
 
         await conn.sendMessage(from, {
             text,
@@ -42,7 +42,7 @@ async (conn, mek, m, { from, quoted, sender, reply }) => {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: '120363420222821450@newsletter',
-                    newsletterName: "blaze tech",
+                    newsletterName: "Obedtech",
                     serverMessageId: 143
                 }
             }
@@ -57,7 +57,7 @@ async (conn, mek, m, { from, quoted, sender, reply }) => {
 // ping2 
 
 cmd({
-    pattern: "ping2",
+    pattern: "ping",
     desc: "Check bot's response time.",
     category: "main",
     react: "🍂",
@@ -69,7 +69,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         const message = await conn.sendMessage(from, { text: '*PINGING...*' })
         const endTime = Date.now()
         const ping = endTime - startTime
-        await conn.sendMessage(from, { text: `*sᴘᴇᴇᴅ : ${ping}ms*` }, { quoted: message })
+        await conn.sendMessage(from, { text: `*🔥 ʜᴜɴᴛᴇʀ xᴍᴅ ꜱᴘᴇᴇᴅ : ${ping}ms*` }, { quoted: message })
     } catch (e) {
         console.log(e)
         reply(`${e}`)

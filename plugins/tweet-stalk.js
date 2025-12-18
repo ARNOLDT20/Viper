@@ -37,8 +37,8 @@ cmd({
       + `┃📝 *Tweets:* ${user.tweets_count}\n`
       + `┃📅 *Joined:* ${user.created}\n`
       + `┃🔗 *Profile:* [Click Here](${user.url})\n`
-      + `┗──────────────⊷\n\n`
-      + `🔹 *VIPER MD*`;
+      + `╰━━━⪼\n\n`
+      + `🔹 *Powered BY ʜᴜɴᴛᴇʀ xᴍᴅ*`;
 
     await conn.sendMessage(from, {
       image: { url: user.avatar },

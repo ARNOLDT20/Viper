@@ -11,8 +11,8 @@ const stylizedChars = {
 };
 
 cmd({
-    pattern: "ch",
-    alias: ["chreact"],
+    pattern: "chr",
+    alias: ["creact"],
     react: "🔤",
     desc: "React to channel messages with stylized text",
     category: "owner",
@@ -45,15 +45,14 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         const channelMeta = await conn.newsletterMetadata("invite", channelId);
         await conn.newsletterReactMessage(channelMeta.id, messageId, emoji);
 
-        return reply(`╭━━━〔 *VIPER MD* 〕━━━┈⊷
+        return reply(`╭━━━〔 *ʜᴜɴᴛᴇʀ xᴍᴅ* 〕━━━┈⊷
 ┃▸ *Success!* Reaction sent
 ┃▸ *Channel:* ${channelMeta.name}
 ┃▸ *Reaction:* ${emoji}
 ╰────────────────┈⊷
-> *VIPER MD*`);
+> *© Pᴏᴡᴇʀᴇᴅ Bʏ ʜᴜɴᴛᴇʀ xᴍᴅ ♡*`);
     } catch (e) {
         console.error(e);
         reply(`❎ Error: ${e.message || "Failed to send reaction"}`);
     }
 });
-

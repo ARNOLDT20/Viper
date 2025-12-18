@@ -5,49 +5,51 @@ const path = require('path');
 const axios = require("axios");
 
 
-                {
-                image: { url: `https://files.catbox.moe/82aewo.png` },
+cmd({
+    pattern: "privacy",
     alias: ["privacymenu"],
     desc: "Privacy settings menu",
     category: "privacy",
     react: "🔐",
     filename: __filename
 }, 
-                        newsletterJid: '120363420222821450@newsletter',
-                        newsletterName: 'blaze tech',
-        let privacyMenu = `*┏────〘 VIPER MD 〙───⊷*
-*┃* • blocklist - View blocked users
-*┃* • getbio - Get user's bio
-*┃* • setppall - Set profile pic privacy
-*┃* • setonline - Set online privacy
-*┃*• setpp - Change bot's profile pic
-*┃* • setmyname - Change bot's name
-*┃* • updatebio - Change bot's bio
-*┃* • groupsprivacy - Set group add privacy
-*┃* • getprivacy - View current privacy settings
-*┃* • getpp - Get user's profile picture
-*┃*
-*┃**Options for privacy commands:*
-*┃* • all - Everyone
-*┃* • contacts - My contacts only
-*┃* • contact_blacklist - Contacts except blocked
-*┃* • none - Nobody
-*┃* • match_last_seen - Match last seen
-*┗──────────────⊷*
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    try {
+        let privacyMenu = `╭━━〔 *Privacy Settings* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• blocklist - View blocked users
+┃◈┃• getbio - Get user's bio
+┃◈┃• setppall - Set profile pic privacy
+┃◈┃• setonline - Set online privacy
+┃◈┃• setpp - Change bot's profile pic
+┃◈┃• setmyname - Change bot's name
+┃◈┃• updatebio - Change bot's bio
+┃◈┃• groupsprivacy - Set group add privacy
+┃◈┃• getprivacy - View current privacy settings
+┃◈┃• getpp - Get user's profile picture
+┃◈┃
+┃◈┃*Options for privacy commands:*
+┃◈┃• all - Everyone
+┃◈┃• contacts - My contacts only
+┃◈┃• contact_blacklist - Contacts except blocked
+┃◈┃• none - Nobody
+┃◈┃• match_last_seen - Match last seen
+┃◈└───────────┈⊷
+╰──────────────┈⊷
 *Note:* Most commands are owner-only`;
 
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://files.catbox.moe/kiy0hl.jpg` }, // Replace with privacy-themed image if available
-                caption: privacyMenu,
-                    contextInfo: {
+                image: { url: `https://files.catbox.moe/37xk9g.jpg` },
+                caption: dec,
+                contextInfo: {
                     mentionedJid: [m.sender],
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363420222821450@newsletter',
-                        newsletterName: 'blaze tech',
+                        newsletterJid: '120363378608564635@newsletter',
+                        newsletterName: 'CRISS AI SUPPORT',
                         serverMessageId: 143
                     }
                 }
@@ -69,8 +71,8 @@ cmd({
     react: "📋",
     filename: __filename
 },
-async (conn, mek, m, { from, isCreator, reply }) => {
-    if (!isCreator) return reply("*📛 You are not the owner!*");
+async (conn, mek, m, { from, isOwner, reply }) => {
+    if (!isOwner) return reply("*📛 You are not the owner!*");
 
     try {
         // Fetch the block list
@@ -116,8 +118,8 @@ cmd({
     react: "🔐",
     filename: __filename
 }, 
-async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    if (!isCreator) return reply("❌ You are not the owner!");
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
     
     try {
         const value = args[0] || 'all'; 
@@ -140,8 +142,8 @@ cmd({
     react: "🔐",
     filename: __filename
 }, 
-async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    if (!isCreator) return reply("❌ You are not the owner!");
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
 
     try {
         const value = args[0] || 'all'; 
@@ -165,8 +167,8 @@ cmd({
     react: "🖼️",
     filename: __filename
 },
-async (conn, mek, m, { from, isCreator, quoted, reply }) => {
-    if (!isCreator) return reply("❌ You are not the owner!");
+async (conn, mek, m, { from, isOwner, quoted, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
     if (!quoted || !quoted.message.imageMessage) return reply("❌ Please reply to an image.");
     try {
         const stream = await downloadContentFromMessage(quoted.message.imageMessage, 'image');
@@ -194,8 +196,8 @@ cmd({
     react: "⚙️",
     filename: __filename
 },
-async (conn, mek, m, { from, isCreator, reply, args }) => {
-    if (!isCreator) return reply("❌ You are not the owner!");
+async (conn, mek, m, { from, isOwner, reply, args }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
 
     // Ensure you have the display name argument
     const displayName = args.join(" ");
@@ -228,9 +230,9 @@ cmd({
     use: '.updatebio',
     filename: __filename
 },
-async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        if (!isCreator) return reply('🚫 *You must be an Owner to use this command*');
+        if (!isOwner) return reply('🚫 *You must be an Owner to use this command*');
         if (!q) return reply('❓ *Enter the New Bio*');
         if (q.length > 139) return reply('❗ *Sorry! Character limit exceeded*');
         await conn.updateProfileStatus(q);
@@ -247,8 +249,8 @@ cmd({
     react: "🔐",
     filename: __filename
 }, 
-async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    if (!isCreator) return reply("❌ You are not the owner!");
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    if (!isOwner) return reply("❌ You are not the owner!");
 
     try {
         const value = args[0] || 'all'; 
@@ -272,9 +274,9 @@ cmd({
     use: '.getprivacy',
     filename: __filename
 },
-async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        if (!isCreator) return reply('🚫 *You must be an Owner to use this command*');
+        if (!isOwner) return reply('🚫 *You must be an Owner to use this command*');
         const duka = await conn.fetchPrivacySettings?.(true);
         if (!duka) return reply('🚫 *Failed to fetch privacy settings*');
         
@@ -294,48 +296,32 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, 
         l(e);
     }
 });
-
 cmd({
     pattern: "getpp",
-    alias: ["stealpp"],
-    react: "🖼️",
-    desc: "Sends the profile picture of a user by phone number (owner only)",
+    desc: "Fetch the profile picture of a tagged or replied user.",
     category: "owner",
-    use: ".getpp <phone number>",
     filename: __filename
-},
-async (conn, mek, m, { from, prefix, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isCreator, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+}, async (conn, mek, m, { quoted, isGroup, sender, participants, reply }) => {
     try {
-        if (!isCreator) return reply("Only the owner can use this command.");
+        // Determine the target user
+        const targetJid = quoted ? quoted.sender : sender;
 
-        if (!args[0]) return reply("Please provide a phone number.");
+        if (!targetJid) return reply("⚠️ Please reply to a message to fetch the profile picture.");
 
-        let targetJid = args[0].replace(/[^0-9]/g, "") + "@s.whatsapp.net";
+        // Fetch the user's profile picture URL
+        const userPicUrl = await conn.profilePictureUrl(targetJid, "image").catch(() => null);
 
-        let ppUrl;
-        try {
-            ppUrl = await conn.profilePictureUrl(targetJid, "image");
-        } catch (e) {
-            return reply("This user has no profile picture or it cannot be accessed.");
-        }
+        if (!userPicUrl) return reply("⚠️ No profile picture found for the specified user.");
 
-        let userName = targetJid.split("@")[0];
-        try {
-            const contact = await conn.getContact(targetJid);
-            userName = contact.notify || contact.vname || userName;
-        } catch {
-            // keep default number as fallback
-        }
-
-        await conn.sendMessage(from, { 
-            image: { url: ppUrl }, 
-            caption: `> Profile Pic Downloaded Successfully`
+        // Send the user's profile picture
+        await conn.sendMessage(m.chat, {
+            image: { url: userPicUrl },
+            caption: "🖼️ Here is the profile picture of the specified user."
         });
-
-        await conn.sendMessage(from, { react: { text: "✅", key: mek.key } });
-
     } catch (e) {
-        reply("An error occurred while fetching the profile picture. Please try again later.");
-        l(e);
+        console.error("Error fetching user profile picture:", e);
+        reply("❌ An error occurred while fetching the profile picture. Please try again later.");
     }
 });
+
+          

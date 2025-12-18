@@ -85,4 +85,4 @@ module.exports = {
     getAllAntiDeleteSettings,
 };
 
-// by nima
+// by jawadtechx

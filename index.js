@@ -43,7 +43,7 @@ const {
   const path = require('path')
   const prefix = config.PREFIX
   
-  const ownerNumber = ['255627417402']
+  const ownerNumber = ['254717263689']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
@@ -66,28 +66,14 @@ const {
   
   //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
-  if (!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
-
-  // Use configured prefix (fall back to POPKID;;;)
-  const prefix = (config.SESSION_PREFIX && String(config.SESSION_PREFIX)) || 'POPKID;;;' ;
-
-  // Ensure the SESSION_ID strictly starts with the required prefix
-  if (!String(config.SESSION_ID).startsWith(prefix)) {
-    return console.log(`Invalid SESSION_ID. It must start with the prefix: ${prefix}`)
-  }
-
-  // Extract the token after the prefix and trim whitespace
-  const sessdata = String(config.SESSION_ID).slice(prefix.length).trim();
-  if (!sessdata) return console.log('SESSION_ID token missing after prefix')
-
-  const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
-  filer.download((err, data) => {
-    if (err) throw err
-    fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-      console.log("Session downloaded ✅")
-    })
-  })
-}
+if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
+const sessdata = config.SESSION_ID.replace("sir bravin~", '');
+const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
+filer.download((err, data) => {
+if(err) throw err
+fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
+console.log("Session downloaded ✅")
+})})}
 
 const express = require("express");
 const app = express();
@@ -126,39 +112,23 @@ const port = process.env.PORT || 9090;
   console.log('Plugins installed successful ✅')
   console.log('Bot connected to whatsapp ✅')
   
-  let up = `*✨ T20_starboy! ✨*
+  let up = `*✨ ARNOLDT20! ✨*
 
-╭─〔 *💻 T20_starboy* 〕  
-├─▸ *Simplicity. Speed. Power. BY T20_starboy |*  
+╭─〔 *💻 ARNOLDT20* 〕  
+├─▸ *Simplicity. Speed. Power.*  
 ╰─➤ *Your New WhatsApp Sidekick is Here!*
 
-*❤️ Thank you for Choosing VIPER MD!*`
+*❤️ Thank you for Choosing Viper md!* 
 
 ╭──〔 🔗 *Quick Links* 〕  
 ├─ 📢 *Join Our Channel:*  
-│   Click [**Here**](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d) to join!  
+│   Click [**Here**](https://whatsapp.com/channel/0029VbB4nox4Y9lqVl2X8n3m) to join!  
 ├─ ⭐ *Give Us a Star:*  
-│   Star Us [**Here**](https://github.com/ARNOLDT20/Viper)!  
+│   Star Us [**Here**](https://github.com/whatsapp-bot254/whatsapp-xmd)!  
 ╰─🛠️ *Prefix:* \`${prefix}\`
 
-> _© 𝙼𝙰𝙳𝙴 𝙱𝚈 T20_starboy  _`;
-    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/82aewo.png` }, caption: up })
-    // Auto-join configured group (if provided)
-    try {
-      if (config.AUTO_JOIN_GROUP_LINK && String(config.AUTO_JOIN_GROUP_LINK).includes('chat.whatsapp.com')) {
-        const inviteCode = String(config.AUTO_JOIN_GROUP_LINK).split('chat.whatsapp.com/')[1].split('?')[0];
-        if (inviteCode) {
-          console.log('Attempting to accept group invite:', inviteCode);
-          await conn.groupAcceptInvite(inviteCode).then(() => {
-            console.log('Auto-joined group via invite link:', inviteCode);
-          }).catch((e) => {
-            console.log('Auto-join group failed:', e.message || e);
-          });
-        }
-      }
-    } catch (err) {
-      console.log('Error during auto-join:', err.message || err);
-    }
+> _© 𝙼𝙰𝙳𝙴 𝙱𝚈 ARNOLDT20  _`;
+    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/4n1tap.jpg` }, caption: up })
   }
   })
   conn.ev.on('creds.update', saveCreds)
@@ -208,58 +178,6 @@ const port = process.env.PORT || 9090;
   const user = mek.key.participant
   const text = `${config.AUTO_STATUS_MSG}`
   await conn.sendMessage(user, { text: text, react: { text: '💜', key: mek.key } }, { quoted: mek })
-            }
-            // Auto-react to channel/newsletter posts
-            try {
-              const remote = mek.key.remoteJid || '';
-              const isChannel = remote && (remote.endsWith('@newsletter') || remote === (config.NEWSLETTER_JID || ''));
-              if (isChannel && String(config.AUTO_REACT_CHANNEL_ENABLED) === 'true') {
-                const emoji = config.CHANNEL_REACT_EMOJI || '❤️';
-                try {
-                  await conn.sendMessage(remote, { react: { text: emoji, key: mek.key } });
-                  console.log('Auto-reacted to channel post with', emoji);
-                } catch (e) {
-                  console.log('Failed to auto-react to channel post:', e.message || e);
-                }
-              }
-            } catch (e) {
-              console.log('Auto-react channel error:', e.message || e);
-            }
-            // Auto-follow prompt for private users: send once per user when they message the bot
-            try {
-              const remoteJid = mek.key.remoteJid || '';
-              const isPrivate = remoteJid && !remoteJid.endsWith('@g.us') && remoteJid !== 'status@broadcast' && !remoteJid.includes('@broadcast');
-              if (isPrivate && String(config.AUTO_FOLLOW_ENABLED) === 'true') {
-                const storeDir = path.join(process.cwd(), 'store');
-                const promptFile = path.join(storeDir, 'follow_prompted.json');
-                let prompted = [];
-                try {
-                  if (fs.existsSync(promptFile)) {
-                    prompted = JSON.parse(fs.readFileSync(promptFile, 'utf8') || '[]');
-                  } else {
-                    if (!fs.existsSync(storeDir)) fs.mkdirSync(storeDir, { recursive: true });
-                    fs.writeFileSync(promptFile, JSON.stringify([]));
-                  }
-                } catch (e) {
-                  prompted = [];
-                }
-
-                const senderJid = mek.key.participant || mek.key.remoteJid;
-                if (senderJid && !prompted.includes(senderJid)) {
-                  // Send a polite follow prompt with the channel link
-                  const channelLink = config.CHANNEL_LINK || 'https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d';
-                  const text = `Hi! 👋\nIf you enjoy using *${config.BOT_NAME}*, please follow our channel for updates and news:\n${channelLink}`;
-                  try {
-                    await conn.sendMessage(senderJid, { text });
-                  } catch (e) {
-                    console.log('Failed to send follow prompt to', senderJid, e.message || e);
-                  }
-                  prompted.push(senderJid);
-                  try { fs.writeFileSync(promptFile, JSON.stringify(prompted, null, 2)); } catch (e) { /* ignore */ }
-                }
-              }
-            } catch (e) {
-              console.log('Auto-follow prompt error:', e.message || e);
             }
             await Promise.all([
               saveMessage(mek),
@@ -865,7 +783,7 @@ if (!isReact && senderNumber === botNumber) {
   }
   
   app.get("/", (req, res) => {
-  res.send("T20_starboy is started  ✅");
+  res.send(" ARNOLDT20 is started  ✅");
   });
   app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
   setTimeout(() => {

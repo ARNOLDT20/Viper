@@ -3,9 +3,9 @@ const axios = require("axios");
 
 cmd({
     pattern: "img",
-    alias: ["image", "pinterest", "searchimg"],
-    react: "🫧",
-    desc: "Search and download images from Pinterest",
+    alias: ["image", "googleimage", "searchimg"],
+    react: "🦋",
+    desc: "Search and download Google images",
     category: "fun",
     use: ".img <keywords>",
     filename: __filename
@@ -16,28 +16,28 @@ cmd({
             return reply("🖼️ Please provide a search query\nExample: .img cute cats");
         }
 
-        await reply(`🔍 Searching Pinterest for "${query}"...`);
+        await reply(`🔍 Searching images for "${query}"...`);
 
-        const url = `https://zenzxz.dpdns.org/search/pinterest?q=${encodeURIComponent(query)}`;
+        const url = `https://apis.davidcyriltech.my.id/googleimage?query=${encodeURIComponent(query)}`;
         const response = await axios.get(url);
 
         // Validate response
-        if (!response.data?.status || !response.data.result?.length) {
+        if (!response.data?.success || !response.data.results?.length) {
             return reply("❌ No images found. Try different keywords");
         }
 
-        const results = response.data.result;
+        const results = response.data.results;
         // Get 5 random images
         const selectedImages = results
             .sort(() => 0.5 - Math.random())
             .slice(0, 5);
 
-        for (const image of selectedImages) {
+        for (const imageUrl of selectedImages) {
             await conn.sendMessage(
                 from,
                 { 
-                    image: { url: image.images_url },
-                    caption: `*📷 Result for*: ${query}\n> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴘᴏᴘᴋɪᴅ*`
+                    image: { url: imageUrl },
+                    caption: `📷 Result for: ${query}\n> © Powered by ʜᴜɴᴛᴇʀ xᴍᴅ`
                 },
                 { quoted: mek }
             );

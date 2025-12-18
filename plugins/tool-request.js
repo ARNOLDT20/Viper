@@ -4,7 +4,7 @@ const config = require("../config");
 
 cmd({
     pattern: "report",
-    alias: ["ask", "request"],
+    alias: ["ask", "bug", "request"],
     desc: "Report a bug or request a feature",
     category: "utility",
     filename: __filename
@@ -22,7 +22,7 @@ cmd({
         }
 
         const reportedMessages = {};
-        const devNumber = "254732297194"; // Bot owner's number
+        const devNumber = "255687068672"; // Bot owner's number
         const messageId = m.key.id;
 
         if (reportedMessages[messageId]) {

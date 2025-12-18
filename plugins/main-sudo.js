@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { cmd } = require("../command");
 
-const OWNER_PATH = path.join(__dirname, "../assets/sudo.json");
+const OWNER_PATH = path.join(__dirname, "../lib/sudo.json");
 
 // Ensure the sudo.json file exists
 const ensureOwnerFile = () => {
@@ -42,7 +42,7 @@ cmd({
 
         const successMsg = "✅ Successfully Added User As Temporary Owner";
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
+            image: { url: "https://files.catbox.moe/j67u2n.jpg" },
             caption: successMsg
         }, { quoted: mek });
     } catch (err) {
@@ -80,7 +80,7 @@ cmd({
 
         const successMsg = "✅ Successfully Removed User As Temporary Owner";
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
+            image: { url: "https://files.catbox.moe/j67u2n.jpg" },
             caption: successMsg
         }, { quoted: mek });
     } catch (err) {
@@ -114,7 +114,7 @@ cmd({
         });
 
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
+            image: { url: "https://files.catbox.moe/j67u2n.jpg" },
             caption: listMessage
         }, { quoted: mek });
     } catch (err) {

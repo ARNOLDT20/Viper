@@ -75,7 +75,7 @@ cmd({
 
     await conn.sendMessage(m.chat, {
       image: imageBuffer,
-      caption: `> *powered by VIPER MD*`
+      caption: `> *Powered by CrissVevo*`
     });
 
   } catch (error) {

@@ -1,75 +1,69 @@
-const config = require('../config')
-const {cmd , commands} = require('../command')
-const os = require("os")
-const {runtime} = require('../lib/functions')
-const axios = require('axios')
-const {sleep} = require('../lib/functions')
-const fs = require('fs')
-const path = require('path')
+const fetch = require('node-fetch');
+const config = require('../config');    
+const { cmd } = require('../command');
 
 cmd({
     pattern: "repo",
-    alias: ["sc", "script", "repository"],
+    alias: ["sc", "script", "info"],
     desc: "Fetch information about a GitHub repository.",
     react: "📂",
     category: "info",
     filename: __filename,
 },
 async (conn, mek, m, { from, reply }) => {
-    const githubRepoURL = 'https://github.com/ARNOLDT20/Viper';
+    const githubRepoURL = 'https://github.com/Obedweb/Hunter-Xmd1';
 
     try {
         // Extract username and repo name from the URL
         const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/);
 
-        // Fetch repository details using GitHub API with axios
-        const response = await axios.get(`https://api.github.com/repos/${username}/${repoName}`);
+        // Fetch repository details using GitHub API
+        const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
         
-        const repoData = response.data;
+        if (!response.ok) {
+            throw new Error(`GitHub API request failed with status ${response.status}`);
+        }
 
-        // Format the repository information in new stylish format
-        const formattedInfo = `
-*┏────〘 *VIPER MD* 〙───⊷*
-*┃* *📌 Repository Name:* ${repoData.name}
-*┃* *👑 Owner:* T20_starboy
-*┃* *⭐ Stars:* ${repoData.stargazers_count}
-*┃* *⑂ Forks:* ${repoData.forks_count}
-*┃* *📝 Description:* ${repoData.description || '*World Best WhatsApp Bot powered by VIPER MD*'}
-*┃* *🔗 GitHub Link:* ${repoData.html_url}
-*┗──────────────⊷*
-`.trim();
+        const repoData = await response.json();
 
-        // Send an image with the formatted info as a caption
+        // Format the repository information
+        const formattedInfo = `*BOT NAME:* *${repoData.name}*\n\n*OWNER NAME:* *${repoData.owner.login}*\n\n*STARS:* *${repoData.stargazers_count}*\n\n*FORKS:* *${repoData.forks_count}*\n\n*GITHUB LINK:*\n> ${repoData.html_url}\n\n*DESCRIPTION:*\n> ${repoData.description || 'No description'}\n\n*Don't Forget To Star and Fork Repository*\n\n> *© Powered By CRISS VEVO 🖤*`;
+
+        // Send an image with the formatted info as a caption and context info
         await conn.sendMessage(from, {
-            image: { url: `https://files.catbox.moe/82aewo.png` }, // replaced with VIPER MD image
+            image: { url: `https://res.cloudinary.com/dgy2dutjs/image/upload/v1751659999/url.crissvevo.co.tz/%E1%B4%8F%CA%99%E1%B4%87%E1%B4%85%E1%B4%9B%E1%B4%87%E1%B4%84%CA%9C1_pl1cki.jpg` },
             caption: formattedInfo,
             contextInfo: { 
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
                 isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
+                forwardedNewsletterMessageInfo: {
                     newsletterJid: '120363420222821450@newsletter',
-                    newsletterName: 'blaze tech',
+                    newsletterName: 'ʜᴜɴᴛᴇʀ xᴍᴅ',
                     serverMessageId: 143
                 }
             }
         }, { quoted: mek });
 
-        // Send audio voice message after sending repo info
-        const audioPath = path.join(__dirname, '../assets/menux.m4a');
-        
-        if (fs.existsSync(audioPath)) {
-            await conn.sendMessage(from, {
-                audio: { url: audioPath },
-                mimetype: 'audio/mp4',
-                ptt: true
-            }, { quoted: mek });
-        } else {
-            console.error("Audio file not found at path:", audioPath);
-        }
+        // Send the audio file with context info
+        await conn.sendMessage(from, {
+            audio: { url: 'https://github.com/criss-vevo/CRISS-DATA/raw/refs/heads/main/autovoice/menunew.m4a' },
+            mimetype: 'audio/mp4',
+            ptt: true,
+            contextInfo: { 
+                mentionedJid: [m.sender],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '.120363420222821450@newsletter',
+                    newsletterName: 'ʜᴜɴᴛᴇʀ xᴍᴅ',
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: mek });
 
     } catch (error) {
         console.error("Error in repo command:", error);
-        reply("❌ Sorry, something went wrong while fetching the repository information. Please try again later.");
+        reply("Sorry, something went wrong while fetching the repository information. Please try again later.");
     }
 });

@@ -1,6 +1,6 @@
 const { cmd } = require('../command');
 
-// Fixed & Created By IMMU MD
+// Fixed & Created By JawadTechX
 cmd({
   pattern: "hidetag",
   alias: ["tag", "h"],  
