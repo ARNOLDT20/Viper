@@ -27,11 +27,6 @@ let wm = `😎 Random Garl image
 await conn.sendMessage(from, { image: { url: res.data.data[0].urls.original }, caption: wm}, { quoted: mek })
 } catch (e) {
 reply(cants)
-     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
-     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
-     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
-     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
-     await conn.sendMessage(from,{image :{ url: `https://files.catbox.moe/gv53bk.png` },caption: '> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ Viper MD' },{quoted:mek});
 console.log(e)
 }
 })

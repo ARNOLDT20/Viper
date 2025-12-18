@@ -5,15 +5,17 @@ function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 module.exports = {
-SESSION_ID: process.env.SESSION_ID || "sir bravin~A6tEGYTa#fDCz5st8EIw_WPc4FeBmZ986fQnPQN_bNfTodKIqegE",
-// add your Session Id 
+// constant session prefix required for all sessions
+SESSION_PREFIX: process.env.SESSION_PREFIX || "POPKID;;;",
+SESSION_ID: process.env.SESSION_ID || "POPKID;;;LZtnkKKL#wON0UKqd_Uh8mWg05tbSWMsn-JE56QzknHXPv_qT3nU",
+// add your Session Id (must start with the constant prefix "POPKID;;;")
 AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN || "true",
 // make true or false status auto seen
 AUTO_STATUS_REPLY: process.env.AUTO_STATUS_REPLY || "false",
 // make true if you want auto reply on status 
 AUTO_STATUS_REACT: process.env.AUTO_STATUS_REACT || "true",
 // make true if you want auto reply on status 
-AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*SEEN YOUR STATUS BY WHATSAPP xmd 🤍*",
+AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*SEEN YOUR STATUS BY Viper MD 🤍*",
 // set the auto reply massage on status reply  
 WELCOME: process.env.WELCOME || "true",
 // true if want welcome and goodbye msg in groups    
@@ -23,7 +25,7 @@ ANTI_LINK: process.env.ANTI_LINK || "true",
 // make anti link true,false for groups 
 MENTION_REPLY: process.env.MENTION_REPLY || "false",
 // make true if want auto voice reply if someone menetion you 
-MENU_IMAGE_URL: process.env.MENU_IMAGE_URL || "https://files.catbox.moe/faypwi.png",
+MENU_IMAGE_URL: process.env.MENU_IMAGE_URL || "https://res.cloudinary.com/dgy2dutjs/image/upload/v1751656256/url.crissvevo.co.tz/%E1%B4%8F%CA%99%E1%B4%87%E1%B4%85%E1%B4%9B%E1%B4%87%E1%B4%84%CA%9C1_xyfpby.jpg",
 // add custom menu and mention reply image url
 PREFIX: process.env.PREFIX || ".",
 // add your prifix for bot   
@@ -41,9 +43,9 @@ OWNER_NUMBER: process.env.OWNER_NUMBER || "25717263689",
 // add your bot owner number
 OWNER_NAME: process.env.OWNER_NAME || "T20_STARBOY",
 // add bot owner name
-DESCRIPTION: process.env.DESCRIPTION || "*© ᴘᴏᴡᴇʀᴇᴅ by ARNOLDT20*",
+DESCRIPTION: process.env.DESCRIPTION || "*© ᴘᴏᴡᴇʀᴇᴅ by T20_STARBOY*",
 // add bot owner name    
-ALIVE_IMG: process.env.ALIVE_IMG || "https://files.catbox.moe/faypwi.png",
+ALIVE_IMG: process.env.ALIVE_IMG || "https://files.catbox.moe/z62ts0.jpg",
 // add img for alive msg
 LIVE_MSG: process.env.LIVE_MSG || "> Zinda Hun Yar *Viper MD*⚡",
 // add alive msg here 
@@ -62,11 +64,6 @@ AUTO_VOICE: process.env.AUTO_VOICE || "false",
 AUTO_STICKER: process.env.AUTO_STICKER || "false",
 // make true for automatic stickers 
 AUTO_REPLY: process.env.AUTO_REPLY || "false",
-
-// Claude (Anthropic) integration flags
-CLAUDE_ENABLED: process.env.CLAUDE_ENABLED || "true",
-// Set to the URL of a proxy/endpoint that accepts a `q` query param and returns plain text response
-CLAUDE_API_URL: process.env.CLAUDE_API_URL || "",
 // make true or false automatic text reply 
 ALWAYS_ONLINE: process.env.ALWAYS_ONLINE || "true",
 // maks true for always online 

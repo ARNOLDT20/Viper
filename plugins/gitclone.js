@@ -56,7 +56,7 @@ cmd({
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363420222821450@newsletter',
-          newsletterName: 'ʜᴜɴᴛᴇʀ xᴍᴅ',
+          newsletterName: 'blaze tech',
           serverMessageId: 143
         }
       }

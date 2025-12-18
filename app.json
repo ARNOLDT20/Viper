@@ -1,8 +1,8 @@
 {
   "name": "WHATSAPP BOT",
   "description": "Javascript WhatsApp bot made by T20_STARBOY",
-  "logo": "https://res.cloudinary.com/dgy2dutjs/image/upload/v1751656256/url.crissvevo.co.tz/%E1%B4%8F%CA%99%E1%B4%87%E1%B4%85%E1%B4%9B%E1%B4%87%E1%B4%84%CA%9C1_xyfpby.jpg",
-  "keywords": ["WHATSAPP XMD"],
+  "logo": "https://files.catbox.moe/gv53bk.png",
+  "keywords": ["Viper MD"],
   "success_url": "/",
 
     "stack": "container",
@@ -79,27 +79,27 @@
     "AUTO_STATUS_MSG": {
       "description": "Type custom message on status reply",
       "required": true,
-      "value": "*𝚂𝙴𝙴𝙽 𝚈𝙾𝚄𝚁 𝚂𝚃𝙰𝚃𝚄𝚂 𝙱𝚈 whatsapp bot *"
+      "value": "*𝚂𝙴𝙴𝙽 𝚈𝙾𝚄𝚁 𝚂𝚃𝙰𝚃𝚄𝚂 𝙱𝚈 Viper MD *"
    
      }, 
     
     "OWNER_NAME": {
       "description": "Type Bot Owner Name.",
       "required": false,
-      "value": "sir bravin"
+      "value": "T20_STARBOY"
 }, 
 
     "OWNER_NUMBER": {
       "description": "put the owner number for bot.",
       "required": false,
-      "value": "254717263689"
+      "value": "255627417402"
 
     }, 
 
     "BOT_NAME": {
       "description": "Type here the bot name.",
       "required": false,
-      "value": "WHATSAPP XMD"
+      "value": "Viper MD"
 
       }, 
 
@@ -138,7 +138,7 @@
      "DESCRIPTION": {
       "description": "add caption for menu and other",
       "required": false,
-      "value": "*© sir bravin *"
+      "value": "*© T20_STARBOY *"
     },
 
       "DELETE_LINKS": {

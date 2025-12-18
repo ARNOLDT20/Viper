@@ -29,7 +29,7 @@ async (conn, mek, m, { from }) => {
 
         // Send the owner contact message with image and audio
         await conn.sendMessage(from, {
-            image: { url: 'https://res.cloudinary.com/dgy2dutjs/image/upload/v1751659999/url.crissvevo.co.tz/%E1%B4%8F%CA%99%E1%B4%87%E1%B4%85%E1%B4%9B%E1%B4%87%E1%B4%84%CA%9C1_pl1cki.jpg' }, // Image URL from your request
+            image: { url: 'https://files.catbox.moe/gv53bk.png' }, // standardized owner image
             caption: `╭━━〔 *ʜᴜɴᴛᴇʀ xᴍᴅ* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• *Here is the owner details*
@@ -45,7 +45,7 @@ async (conn, mek, m, { from }) => {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: '120363420222821450@newsletter',
-                    newsletterName: 'ʜᴜɴᴛᴇʀ xᴍᴅ',
+                    newsletterName: 'blaze tech',
                     serverMessageId: 143
                 }            
             }

@@ -19,9 +19,9 @@ if (!isGroup) return reply(msr.only_gp)
 if (!isAdmins) { if (!isDev) return reply(msr.you_adm),{quoted:mek }} 
 if (!isBotAdmins) return reply(msr.give_adm)
 const ppUrls = [
-        'https://files.catbox.moe/06osjk.png',
-        'https://files.catbox.moe/06osjk.png',
-        'https://files.catbox.moe/06osjk.png',
+        'https://files.catbox.moe/gv53bk.png',
+        'https://files.catbox.moe/gv53bk.png',
+        'https://files.catbox.moe/gv53bk.png',
       ];
 let ppUrl = await conn.profilePictureUrl( from , 'image')
 if (!ppUrl) { ppUrl = ppUrls[Math.floor(Math.random() * ppUrls.length)];}
