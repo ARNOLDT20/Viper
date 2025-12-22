@@ -27,8 +27,8 @@ async function uploadToCatbox(filePath) {
 }
 // Define the command with aliases for play
 ezra({
-  nomCom: "play",
-  aliases: ["song", "playdoc", "audio", "mp3"],
+  nomCom: "play2",
+  aliases: ["song2", "playdoc2", "audio2", "mp32"],
   categorie: "sir-bravin downloader",
   reaction: "🎧"
 }, async (dest, zk, commandOptions) => {
@@ -175,7 +175,7 @@ ezra({
 
 // Define the command with aliases for video
 ezra({
-  nomCom: "video",
+  nomCom: "video2",
   aliases: ["videodoc", "film", "mp4"],
   categorie: "download",
   reaction: "🎞️"
