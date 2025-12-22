@@ -6,14 +6,6 @@
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ARNOLDT20/Viper)
 
----
-
-## 📊 Profile Overview
-
-👤 **Developer**: [T20_starboy](https://github.com/ARNOLDT20)  
-📊 **Profile Views**:  
-![Profile Views](https://komarev.com/ghpvc/?username=ARNOLDT20&label=VIEWS&style=flat-square&color=blue)
-
 📈 **GitHub Stats**:  
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ARNOLDT20&show_icons=true&theme=github_dark)
 
@@ -46,15 +38,11 @@
 
 ### 🌐 Cloud Platforms
 
-#### 1. **Heroku**  
-[Heroku](https://lucky-md-xforce-deploy-your-bot-with-your-github-username.vercel.app)  
-<details><summary>Steps</summary>
-1. Fork this repo  
-2. Click Heroku button above  
-3. Connect your GitHub and select this repo  
-4. Set config vars like SESSION_ID  
-5. Click **Deploy App**  
-</details>
+ </a>
+  <a href="https://dashboard.heroku.com/new?template=https://github.com/ARNOLDT20/Viper/" target="_blank" rel="noopener noreferrer">
+    <img title="DEPLOY arnoldt20" src="https://img.shields.io/badge/🚀_DEPLOY_ON_HEROKU-000000?style=for-the-badge&logo=heroku&logoColor=red&color=FF00FF" width="260" height="50"/>
+  </a>
+</p>
 
 #### 2. **Railway**  
 [Railway](https://railway.app/new)  
