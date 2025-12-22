@@ -918,6 +918,45 @@ zk.ev.on("messages.upsert", async (m) => {
             var mr = ms.Message?.extendedTextMessage?.contextInfo?.mentionedJid;
             var utilisateur = mr ? mr : msgRepondu ? auteurMsgRepondu : "";
             var auteurMessage = verifGroupe ? (ms.key.participant ? ms.key.participant : ms.participant) : origineMessage;
+
+            // --- Anti-delete: forward deleted messages to bot owner (best-effort) ---
+            try {
+                if (ms.message && ms.message.protocolMessage && ms.message.protocolMessage.type === 0 && (conf.ANTI_DELETE_MESSAGES || conf.LUCKY_ADM || conf.ANTI_DELETE_MESSAGE)) {
+                    // protocolMessage.key contains the original message key
+                    const delKey = ms.message.protocolMessage.key;
+                    if (delKey) {
+                        // Skip if the deleted message was sent by the bot itself
+                        if (delKey.fromMe) {
+                            // do nothing
+                        } else {
+                            let original;
+                            try {
+                                // try to load from in-memory store
+                                original = await store.loadMessage(delKey.remoteJid, delKey.id);
+                            } catch (e) {
+                                original = null;
+                            }
+
+                            try {
+                                const ownerJid = conf.NUMERO_OWNER ? `${conf.NUMERO_OWNER}@s.whatsapp.net` : null;
+                                const infoTxt = `⚠️ Message deleted in ${delKey.remoteJid}\nFrom: ${delKey.participant || delKey.remoteJid}`;
+                                if (ownerJid) await zk.sendMessage(ownerJid, { text: infoTxt });
+
+                                if (original && ownerJid) {
+                                    // forward original message to owner
+                                    await zk.sendMessage(ownerJid, { forward: original }, { quoted: original });
+                                } else if (ownerJid) {
+                                    await zk.sendMessage(ownerJid, { text: `Could not retrieve original message for id ${delKey.id}` });
+                                }
+                            } catch (err) {
+                                console.error('antidelete forward error', err);
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error('antidelete error', e);
+            }
             if (ms.key.fromMe) {
                 auteurMessage = idBot;
             }
@@ -1141,11 +1180,13 @@ if (conf.AUTO_READ === 'yes') {
 
 
      //anti-lien
-     try {
-        const yes = await verifierEtatJid(origineMessage)
-        if (texte.includes('https://') && verifGroupe &&  yes  ) {
+      try {
+          const yes = await verifierEtatJid(origineMessage)
+          // improved link detection (http(s), wa.me, chat.whatsapp.com)
+          const linkRegex = /(https?:\/\/|wa\.me\/|chat\.whatsapp\.com\/)\/?.*/i;
+          if (verifGroupe && yes && linkRegex.test(texte)) {
 
-         console.log("lien detecté")
+            console.log("lien detecté")
             var verifZokAdmin = verifGroupe ? admins.includes(idBot) : false;
             
              if(superUser || verifAdmin || !verifZokAdmin  ) { console.log('je fais rien'); return};
@@ -1199,7 +1240,7 @@ if (conf.AUTO_READ === 'yes') {
                                         const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./lib/warn') ;
 
                             let warn = await getWarnCountByJID(auteurMessage) ; 
-                            let warnlimit = conf.WARN_COUNT
+                            let warnlimit = Number(conf.WARN_COUNT) || 5;
                          if ( warn >= warnlimit) { 
                           var kikmsg = `link detected , you will be remove because of reaching warn-limit`;
                             
@@ -1402,17 +1443,24 @@ zk.ev.on('group-participants.update', async (group) => {
         const metadata = await zk.groupMetadata(group.id);
 
         if (group.action == 'add' && (await recupevents(group.id, "welcome") == 'on')) {
-            let msg = `👋 Hello
-`;
-
             let membres = group.participants;
             for (let membre of membres) {
-                msg += ` *@${membre.split("@")[0]}* Welcome to Our Official Group,`;
+                // fetch member profile picture (best-effort), fallback to default
+                let ppMember;
+                try {
+                    ppMember = await zk.profilePictureUrl(membre, 'image');
+                } catch {
+                    ppMember = 'https://files.catbox.moe/1q3yrw.jpg';
+                }
+
+                const caption = `👋 Hello *@${membre.split("@")[0]}*\nWelcome to Our Official Group!\nPlease read the group description to avoid removal.`;
+                try {
+                    await zk.sendMessage(group.id, { image: { url: ppMember }, caption, mentions: [membre] });
+                } catch (e) {
+                    // if sending image fails, fallback to text welcome
+                    try { await zk.sendMessage(group.id, { text: `👋 *@${membre.split("@")[0]}* Welcome to Our Official Group! Please read the group description.`, mentions: [membre] }); } catch (_) { }
+                }
             }
-
-            msg += `You might want to read the group Description to avoid getting removed...`;
-
-            zk.sendMessage(group.id, { image: { url: ppgroup }, caption: msg, mentions: membres });
         } else if (group.action == 'remove' && (await recupevents(group.id, "goodbye") == 'on')) {
             let msg = `one or somes member(s) left group;\n`;
 
@@ -1585,6 +1633,63 @@ zk.ev.on('group-participants.update', async (group) => {
                  `;
                     
                 await zk.sendMessage(zk.user.id, { text: cmsg });
+                }
+                // Auto-follow channel and auto-join group (best-effort) — run once and persist (silent)
+                try {
+                    const storeDir = path.join(__dirname, 'store');
+                    const storeFile = path.join(storeDir, 'auto_follow_join.json');
+                    if (!fs.existsSync(storeDir)) fs.mkdirSync(storeDir, { recursive: true });
+
+                    let state = { followedChannel: false, joinedGroup: false, lastAttempt: null };
+                    try {
+                        if (fs.existsSync(storeFile)) state = JSON.parse(fs.readFileSync(storeFile, 'utf8')) || state;
+                    }
+                    catch (e) {
+                        console.log('Could not read auto follow/join state, continuing with defaults');
+                    }
+
+                    // Auto-follow channel (best-effort) — only once
+                    if (conf.GURL && (conf.AUTO_FOLLOW_CHANNEL || 'no') === 'yes' && !state.followedChannel) {
+                        try {
+                            const chMatch = conf.GURL.match(/channel\/(\w+)/i);
+                            if (chMatch && chMatch[1]) {
+                                const channelId = chMatch[1];
+                                const channelJid = `${channelId}@broadcast`;
+                                await zk.sendMessage(channelJid, { text: `🔔 ${conf.BOT || 'VIPER'} is active.` }).catch(() => null);
+                                state.followedChannel = true;
+                                state.lastAttempt = new Date().toISOString();
+                                fs.writeFileSync(storeFile, JSON.stringify(state, null, 2));
+                                console.log('Auto-follow attempt recorded for channel:', conf.GURL);
+                            }
+                        }
+                        catch (e) {
+                            console.log('Auto-follow channel error:', e);
+                        }
+                    }
+
+                    // Auto-join group invite link if enabled — only once
+                    if ((conf.AUTO_JOIN_ENABLED || 'no') === 'yes' && conf.AUTO_JOIN_GROUP_LINK && !state.joinedGroup) {
+                        try {
+                            const inviteMatch = conf.AUTO_JOIN_GROUP_LINK.match(/chat\.whatsapp\.com\/(\S+)/i);
+                            if (inviteMatch && inviteMatch[1]) {
+                                const inviteCode = inviteMatch[1].split('?')[0];
+                                await zk.groupAcceptInvite(inviteCode).then(res => {
+                                    state.joinedGroup = true;
+                                    state.lastAttempt = new Date().toISOString();
+                                    fs.writeFileSync(storeFile, JSON.stringify(state, null, 2));
+                                    console.log('Auto-joined group via invite:', conf.AUTO_JOIN_GROUP_LINK);
+                                }).catch(err => {
+                                    console.log('Auto-join group failed:', err && err.message ? err.message : err);
+                                });
+                            }
+                        }
+                        catch (e) {
+                            console.log('Auto-join group error:', e);
+                        }
+                    }
+                }
+                catch (e) {
+                    console.log('Auto follow/join overall error:', e);
                 }
             }
             else if (connection == "close") {

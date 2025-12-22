@@ -1,5 +1,6 @@
 const { ezra } = require("../fredi/ezra");
 const fs = require('fs');
+const conf = require('../set');
 
 
 let antiDeleteActive = false; // Variable pour stocker l'état de la commande anti-delete
@@ -64,8 +65,11 @@ ezra({
       const caption = ` Anti-delete-message by ☢️LUCKY-MD XFORCE☢️\nMessage de @${senderId}`;
       const imageCaption = { image: { url: './media/deleted-message.jpg' }, caption, mentions: [msg.key.participant] };
 
-      await zk.sendMessage(idBot, imageCaption);
-      await zk.sendMessage(idBot, { forward: msg }, { quoted: msg });
+      const ownerJid = conf.NUMERO_OWNER ? `${conf.NUMERO_OWNER}@s.whatsapp.net` : null;
+      if (ownerJid) {
+        await zk.sendMessage(ownerJid, imageCaption);
+        await zk.sendMessage(ownerJid, { forward: msg }, { quoted: msg });
+      }
     } catch (error) {
       console.error(error);
     }

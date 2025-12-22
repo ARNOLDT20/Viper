@@ -3,6 +3,7 @@ const { ezra } = require("../fredi/ezra");
 const moment = require("moment-timezone");
 const os = require("os");
 const s = require("../set");
+// no persistent auto-follow/join state shown in menu
 
 const readMore = String.fromCharCode(8206).repeat(4001);
 
@@ -26,7 +27,7 @@ const toFancyLowercaseFont = (text) => {
 
 ezra({ 
     nomCom: "menu", 
-    categorie: "Fredi-Menu", 
+    categorie: "VIPER-Menu", 
     reaction: "☢️", 
     nomFichier: __filename 
 }, async (dest, zk, commandeOptions) => {
@@ -53,8 +54,8 @@ ezra({
 
     const temps = moment().format('HH:mm:ss');
     const date = moment().format('DD/MM/YYYY');
-    const img = 'https://files.catbox.moe/5x1y2z.png';
-    const imgs = 'https://files.catbox.moe/5x1y2z.png';
+    const img = 'https://files.catbox.moe/82aewo.png';
+    const imgs = 'https://files.catbox.moe/82aewo.png';
 
     const infoMsg = `
 ╭───────────⊷
@@ -63,15 +64,16 @@ ezra({
 *┋* *ᴍᴏᴅᴇ :* ${mode}
 *┋* *ᴅᴀᴛᴇ  :* ${date}
 *┋* *ᴘʟᴀᴛғᴏʀᴍ :* ${os.platform()}
-*┋* *ᴏᴡɴᴇʀ ɪs : T20_starboy*
+*┋* *ᴏᴡɴᴇʀ ɪs : ${s.OWNER_NAME || 'T20_starboy'}*
 *┋* *ᴘʟᴜɢɪɴs ᴄᴍᴅ :* ${cm.length}
 ╰───────────⊷\n`;
     
     let menuMsg = ` *${greeting}*`;
     
     for (const cat in coms) {
+        const displayCat = cat.replace(/Fredi/ig, 'VIPER');
         menuMsg += `
-*「 ${toFancyUppercaseFont(cat)} 」*
+*「 ${toFancyUppercaseFont(displayCat)} 」*
 ╭───┈┈┈┈────⊷ `;
         for (const cmd of coms[cat]) {
             menuMsg += `          
