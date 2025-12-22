@@ -21,6 +21,9 @@
   ],
   "author": "frediezra",
   "license": "ISC",
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",  
     "@hapi/boom": "^10.0.1",

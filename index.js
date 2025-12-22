@@ -53,6 +53,21 @@ logger.level = 'silent';
 const pino = require("pino");
 const boom_1 = require("@hapi/boom");
 const conf = require("./set");
+
+// Startup check for critical environment variables to fail fast and produce clear logs
+(() => {
+    try {
+        const required = ['SESSION_ID', 'HEROKU_API_KEY'];
+        const missing = required.filter(k => !process.env[k]);
+        if (missing.length) {
+            console.error('Missing required env vars:', missing.join(', '));
+            console.error('Set them in Heroku config vars or your environment and restart.');
+            process.exit(1);
+        }
+    } catch (e) {
+        console.error('Startup env check failed:', e);
+    }
+})();
 const axios = require("axios");
 const { sendWithPresence } = require('./lib/presence-helper');
 // Helper to get primary owner and owner JIDs from the config variable `NUMERO_OWNER`
