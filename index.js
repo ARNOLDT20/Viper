@@ -54,6 +54,7 @@ const pino = require("pino");
 const boom_1 = require("@hapi/boom");
 const conf = require("./set");
 const axios = require("axios");
+const { sendWithPresence } = require('./lib/presence-helper');
 // Helper to get primary owner and owner JIDs from the config variable `NUMERO_OWNER`
 function primaryOwnerNumber() {
     return (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean)[0] || '255627417402';
@@ -885,8 +886,34 @@ zk.ev.on("messages.upsert", async (m) => {
     const ms = messages[0];
     if (!ms.message) return;
 
-    const messageText = ms.message.conversation || ms.message.extendedTextMessage?.text;
+    // Robustly extract textual content from different message types
     const remoteJid = ms.key.remoteJid;
+    const extractTextFromMsg = (msg) => {
+        try {
+            const mtypeLocal = (0, baileys_1.getContentType)(msg);
+            switch (mtypeLocal) {
+                case 'conversation':
+                    return msg.conversation || '';
+                case 'extendedTextMessage':
+                    return msg.extendedTextMessage?.text || '';
+                case 'imageMessage':
+                    return msg.imageMessage?.caption || '';
+                case 'videoMessage':
+                    return msg.videoMessage?.caption || '';
+                case 'buttonsResponseMessage':
+                    return msg.buttonsResponseMessage?.selectedButtonId || '';
+                case 'listResponseMessage':
+                    return msg.listResponseMessage?.singleSelectReply?.selectedRowId || '';
+                case 'messageContextInfo':
+                    return (msg.extendedTextMessage?.text || msg.buttonsResponseMessage?.selectedButtonId || msg.listResponseMessage?.singleSelectReply?.selectedRowId || '');
+                default:
+                    return '';
+            }
+        } catch (e) {
+            return '';
+        }
+    };
+    const messageText = extractTextFromMsg(ms.message);
 
     // Check if the message exists and is a command to set a new auto-reply message with any prefix
     if (messageText && messageText.match(/^[^\w\s]/) && ms.key.fromMe) {
@@ -914,10 +941,10 @@ zk.ev.on("messages.upsert", async (m) => {
             let matchedGreeting = false;
             for (const key of Object.keys(greetingResponses)) {
                 if (clean === key || clean.startsWith(key + ' ') || clean.includes(' ' + key + ' ') ) {
-                    try {
-                        await zk.sendMessage(remoteJid, { text: greetingResponses[key] }, { quoted: ms });
-                        matchedGreeting = true;
-                    } catch (e) { console.error('greeting reply error', e); }
+                        try {
+                            await sendWithPresence(zk, remoteJid, { text: greetingResponses[key] }, { quoted: ms });
+                            matchedGreeting = true;
+                        } catch (e) { console.error('greeting reply error', e); }
                     break;
                 }
             }
@@ -929,9 +956,9 @@ zk.ev.on("messages.upsert", async (m) => {
 
     // Generic auto-reply for private chats — send every time (unless a greeting was matched above).
     if (conf.AUTO_REPLY === "yes" && !ms.key.fromMe && !remoteJid.includes("@g.us")) {
-        try {
-            await zk.sendMessage(remoteJid, { text: auto_reply_message });
-        } catch (e) { console.error('auto-reply send error', e); }
+            try {
+                await sendWithPresence(zk, remoteJid, { text: auto_reply_message });
+            } catch (e) { console.error('auto-reply send error', e); }
     }
 });
         
