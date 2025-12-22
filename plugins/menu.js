@@ -82,7 +82,7 @@ ezra({
     }
     
     menuMsg += `
-> @made by FredieTech 2025\n`;
+> @made by T20_STARBOY 2025\n`;
 
     try {
         await zk.sendMessage(dest, { 
