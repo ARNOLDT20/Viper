@@ -1,75 +1,170 @@
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=100&pause=1000&color=8A2BE2&center=true&width=1000&height=200&lines=Viper+MD" alt="Typing SVG" /></a>
-  
-<p align="center">
-  <a href="https://github.com/pkdriller"><img title="Developer" src="https://img.shields.io/badge/Author-Viper%20MD%20MADE%20BY%20T20_STARBOY-FF00FF.svg?style=big-square&logo=github" /></a>
-</p>
-
-<div align="center">
-
-</div>
-
- <p align="center"><img src="https://profile-counter.glitch.me/{sir-bravin}/count.svg" " 
-
-### 1. FORK THIS REPO
-
-<a href='https://github.com/whatsapp-bot254/whatsapp-xmd/fork' target="_blank"><img alt='Fork repo' src='https://img.shields.io/badge/Fork This Repo-black?style=for-the-badge&logo=git&logoColor=white'/></a>
-<p align="center">
-
-#### 𝐒𝐄𝐓𝐔𝐏
 
 
-1.𝐆𝐄𝐓 𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐈𝐃 𝐅𝐑𝐎𝐌 𝐒𝐄𝐑𝐕𝐄𝐑
+# 🌟 VIPER MD 🚀
 
- 𝐅𝐈𝐑𝐒𝐓 𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐖𝐄𝐁
+[![VIPER MD](https://raw.githubusercontent.com/ARNOLDT20/Viper/main/media/lucky.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
 
-  <a href="https://peace-maker-jwwc.onrender.com"><img title="GET-SESSION ID HERE" src="https://img.shields.io/badge/GET-SESSION ID HERE-h?color=green&style=for-the-badge&logo=nike" width="230" height="38.45"/></a></p>  
-
-
-𝐒𝐄𝐂𝐎𝐍𝐃 𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐖𝐄𝐁
-<a href="https://peace-maker-jwwc.onrender.com "><img title="GET-SESSION ID HERE" src="https://img.shields.io/badge/GET-SESSION ID HERE-h?color=green&style=for-the-badge&logo=nike" width="230" height="38.45"/></a></p>  
-
-**Important — Session ID format**
-
-The bot expects session IDs to include a constant prefix. All session IDs must start with the prefix `POPKID;;;` followed by the session token. Example:
-
-`POPKID;;;LZtnkKKL#wON0UKqd_Uh8mWg05tbSWMsn-JE56QzknHXPv_qT3nU`
-
-When you set the `SESSION_ID` environment variable (or paste it into `config.js`), ensure the value begins with `POPKID;;;`.
-
- ## 𝐅𝐎𝐑 𝐎𝐍𝐄-𝐓𝐀𝐏 𝐃𝐄𝐏𝐋𝐎𝐘𝐌𝐄𝐍𝐓 𝐔𝐒𝐄 𝐓𝐇𝐈𝐒 𝐁𝐔𝐓𝐓𝐎𝐍
-
-   🕳IF YOU LOVE THIS PROJECT BY PK DRILLER... FOLLOW ME
-   
-   <a href="[.](https://github.com/whatsapp-bot254) "><img title="FOLLOW-ACCOUNT" src="https://img.shields.io/badge/FOLLOW-ME-h?color=purple&style=for-the-badge&logo=heroku" width="180" height="43.45"/></a></p>
-
-   🕎 𝐃𝐄𝐏𝐋𝐎𝐘𝐈𝐍𝐆 𝐖𝐄𝐁
-
- <a href="https://dashboard.heroku.com/new?template=https://github.com/ARNOLDT20/Viper"><img title="DEPLOY-ON HEROKU" src="https://img.shields.io/badge/DEPLOY-ON HEROKU-h?color=red&style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
-
- 
- [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Rockstar-ExtraBold&size=30&pause=1000&color=0000FF&center=true&vCenter=true&width=815&height=60&lines=▭+▬+▭+▬+▭+▬+▭+▬+▭+▬+▭)](https://git.io/typing-svg) 
-
-
-
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ARNOLDT20/Viper)
 
 ---
 
-## 🗃️ PROJECT ARCHITECTS
+## 📊 Profile Overview
 
-<p align="center">
-  <a href="https://github.com/Obedweb">
-    <img src="https://github-readme-stats.vercel.app/api?username=Obedweb&show_icons=true&theme=radical">
-  </a>
-</p>
-<div align="center">
-  <img src="[.](https://github.com/whatsapp-bot254/whatsapp-xmd/blob/main/assets/menu.gif?raw=true" width="100%"/>
-</div>
+👤 **Developer**: [T20_starboy](https://github.com/ARNOLDT20)  
+📊 **Profile Views**:  
+![Profile Views](https://komarev.com/ghpvc/?username=ARNOLDT20&label=VIEWS&style=flat-square&color=blue)
 
+📈 **GitHub Stats**:  
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ARNOLDT20&show_icons=true&theme=github_dark)
 
+🏆 **Trophies**:  
+![Trophies](https://github-profile-trophy.vercel.app/?username=ARNOLDT20&theme=monokai)
 
-## 𝐑𝐄𝐀𝐂𝐇 𝐎𝐔𝐓 T20_STARBOY
+📈 **Contributions Graph**:  
+![Contributions](https://activity-graph.herokuapp.com/graph?username=ARNOLDT20&theme=github)
 
- <a href="https://github.com/whatsapp-bot254/whatsapp-xmd"><img title="REACH OUT OBEDTECH" src="https://img.shields.io/badge/OUR-WHATSAPP CHANNEL-h?color=green&style=for-the-badge&logo=whatsapp" width="280" height="38.45"/></a></p>
- 
+---
 
+## 🎯 Features
 
+✨ **Anti-Features**: Anti-call, anti-delete, short session  
+✨ **Auto-Features**: Auto status read, auto message react  
+✨ **Dual Mode**: Group + DM features  
+✨ **Privacy**: Public/Private mode  
+✨ **Hosting**: Secure cloud-hosting compatible  
+✨ **Support**: Developer maintained: FredieTech  
+
+---
+
+## 📥 Download ZIP
+
+📁 **Download ZIP File**: [VIPER ZIP 📁](https://github.com/ARNOLDT20/Viper/archive/refs/heads/main.zip)
+
+---
+
+## 🚀 Deployment Options
+
+### 🌐 Cloud Platforms
+
+#### 1. **Heroku**  
+[Heroku](https://lucky-md-xforce-deploy-your-bot-with-your-github-username.vercel.app)  
+<details><summary>Steps</summary>
+1. Fork this repo  
+2. Click Heroku button above  
+3. Connect your GitHub and select this repo  
+4. Set config vars like SESSION_ID  
+5. Click **Deploy App**  
+</details>
+
+#### 2. **Railway**  
+[Railway](https://railway.app/new)  
+<details><summary>Steps</summary>
+1. Open link  
+2. Click **Deploy from GitHub repo**  
+3. Select this repo  
+4. Go to variables tab → add SESSION_ID, AUTOBIO etc.  
+5. Deploy  
+</details>
+
+#### 3. **Koyeb**  
+[Koyeb](https://app.koyeb.com/services/deploy?type=git&repository=ARNOLDT20/Viper)  
+<details><summary>Steps</summary>
+1. Click above to open deploy panel  
+2. Authorize GitHub and select repo  
+3. Set environment variables  
+4. Deploy and wait for logs to show successful build  
+</details>
+
+#### 4. **Render**  
+[Render](https://dashboard.render.com/web/new)  
+<details><summary>Steps</summary>
+1. Open Render dashboard  
+2. Click **New Web Service**  
+3. Connect your GitHub  
+4. Choose this repo  
+5. Add build/start command & ENV vars  
+6. Click **Create Web Service**  
+</details>
+
+#### 5. **TalkDrove**  
+[TalkDrove](https://host.talkdrove.com/share-bot/47)  
+<details><summary>Steps</summary>
+1. Open the TalkDrove link  
+2. Click **Deploy Now**  
+3. Paste repo link  
+4. Add ENV values (SESSION_ID)  
+5. Deploy the bot  
+</details>
+
+#### 6. **Netlify** (For Frontend)  
+[Netlif](https://app.netlify.com/)  
+<details><summary>Steps</summary>
+1. Use for frontend session site only  
+2. Drag/drop or link repo with index.html  
+3. Publish to host session UI  
+</details>
+
+---
+
+## 🛠️ Setup Guide
+
+1. **Fork the Repo**: Start by forking this repository to your GitHub account.  
+2. **Get Session ID**: Use [this link](https://test-pair-uuw6.onrender.com) to get your session ID.  
+3. **Choose Host**: Select a deployment platform from the options above.  
+4. **Deploy**: Follow the platform-specific instructions to deploy the bot.  
+5. **Configure**: Set up environment variables like SESSION_ID as required.  
+6. **Start Bot**: Once deployed, the bot will start automatically.  
+
+---
+
+## 📢 Join Community
+
+👥 **WhatsApp Channel**: [Join Now](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)  
+📢 **Stay Updated**: Get the latest updates, features, and support.  
+
+---
+
+## 📝 License
+
+📜 **License**: This project is under [MIT License](LICENSE).  
+📢 **Credits**: Developed with ❤️ by [T20_starboy](https://github.com/ARNOLDT20).  
+
+---
+
+## 📱 Connect With Me
+
+📱 **Facebook**: [FredieEzra](https://facebook.com/@FrediEzra)  
+📸 **Instagram**: [frediezra](https://instagram.com/frediezra)  
+📹 **YouTube**: [FrediAi-Tech](https://youtube.com/frediai-tech)  
+📧 **GitHub**: [T20_starboy](https://github.com/ARNOLDT20)  
+
+---
+
+## 📲 Download APK
+
+📁 **Download APK**: [Fredi.AI v2.9.9](https://www.mediafire.com/file/chyvv2mktqc9jsv/fredi.ai.v2.9.9.apk)  
+<details><summary>Installation Steps</summary>
+1. Download the APK file  
+2. Enable "Install from unknown sources" in your device settings  
+3. Install the APK  
+4. Open the app and follow in-app instructions  
+</details>
+
+---
+
+## 📄 Changelog
+
+- **Version 5.0.9**: Improved UI, added tap-to-interact feature, enhanced platform support, and updated setup guide for clarity.
+
+---
+
+## 🤝 Contribution Guidelines
+
+Contributions are welcome! If you'd like to contribute, please fork the repository and submit a pull request. Ensure your changes are well-documented and follow the project's coding standards.
+
+---
+
+## 🙏 Acknowledgments
+
+- Special thanks to all contributors who have helped shape this project.
+- Gratitude to the open-source community for their invaluable support.

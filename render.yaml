@@ -1,15 +1,16 @@
 services:
   - type: web
-    name: Viper MD
-    env: node
+    name: VIPER-MD
+    env: node # Change to "python" or your environment if not Node.js
     plan: free
-    repo: https://github.com/whatsapp-bot254/whatsapp-xmd
-    branch: main
-    buildCommand: npm install
-    startCommand: npm start
-    autoDeploy: true
+    buildCommand: npm install 
+    startCommand: npm start   
     envVars:
-      - key: SESSION_ID
-        sync: false  # Don't include the value here, will be entered manually on Render
-      - key: OWNER_NUMBER
+      - key: SESSION-ID
+        sync: false
+      - key: OWNER
+        sync: false
+      - key: OWNER-NUMBER
+        sync: false
+      - key: PREFIX
         sync: false

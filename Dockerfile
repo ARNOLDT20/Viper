@@ -1,19 +1,21 @@
-# Base image
-FROM node:16
+FROM node:lts
 
-# Set working directory
-WORKDIR /usr/src/app
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  npm i pm2 -g && \
+  rm -rf /var/lib/apt/lists/*
 
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
+WORKDIR /app
 
-# Copy application source code
+COPY package.json .
+RUN npm install --legacy-peer-deps
+
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 5000
 
-# Start the application
-CMD ["npm", "start"]
-
+CMD ["node", "index.js"]

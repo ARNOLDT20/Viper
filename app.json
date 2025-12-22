@@ -1,214 +1,147 @@
 {
-  "name": "WHATSAPP BOT",
-  "description": "Javascript WhatsApp bot made by T20_STARBOY",
-  "logo": "https://files.catbox.moe/gv53bk.png",
-  "keywords": ["Viper MD"],
-  "success_url": "/",
-
-    "stack": "container",
+  "name": "💦VIPER MD💨 MULTI DEVICE",
+  "description": "💦VIPER MD Whatsapp device bot by T20_starboy to help Whatsapp users...",
+  "keywords": [
+    "bot",
+    "node",
+    "baileys",
+    "whatsapp"
+  ],
+  "logo": "https://files.catbox.moe/82aewo.png",
+  "repository": "https://github.com/ARNOLDT20/Viper",
+  "succes_url": "/",
+  "stack": "container",
   "env": {
-    "SESSION_ID": {
-      "description": "Put the session-id here.",
-      "required": true,
-      "value": ""
-    },  
-    
-    "STICKER_NAME": {
-      "description": "type your sticker pack name.",
-      "required": false,
-      "value": "Viper MD"
-    }, 
-      
     "PREFIX": {
-      "description": "paste your bot prefix note! Don't apply null prefix.",
-      "required": false,
-      "value": "."
+      "description": "Choose your bot's prefix",
+      "value": ".",
+      "required": true
     },
-    
-    "MODE": {
-      "description": "select your bot work type public-private-inbox-group.",
-      "required": false,
-      "value": "public"
-      
+    "AUTO_READ_STATUS": {
+      "description": "Your contact status will be read automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+      "value": "yes",
+      "required": false
     },
-    
-    
-    "ALWAYS_ONLINE": {
-      "description": "Make it true if want always online.",
-      "required": false,
-      "value": "true"  
-    },    
-  
-    "AUTO_VOICE": {
-      "description": "Make it true if want automatic voice reply .",
-      "required": false,
-      "value": "false"
-    }, 
 
-    "AUTO_REPLY": {
-      "description": "Make it true if you want automatic reply.",
-      "required": false,
-      "value": "false"
-    }, 
-
-    "AUTO_STICKER": {
-      "description": "Make it true if you want automatic sticker.",
-      "required": false,
-      "value": "false"
-    }, 
-
-
-    "AUTO_STATUS_SEEN": {
-      "description": "Make it true for automatic status seen.",
-      "required": true,
-      "value": "true"
-    }, 
-
-    "AUTO_STATUS_REACT": {
-      "description": "make it true for automatic status reaction or like.",
-      "required": true,
-      "value": "true"
-    }, 
-
+    "GREET_MESSAGE": {
+      "description": "when enabled it automatically sends greeting message in your chats",
+      "value": "no",
+      "required": false
+    },
+    "AUTO_REACT_STATUS": {
+      "description": "Your contact status will be react automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+      "value": "yes",
+      "required": false
+    },
+    "AUTO_BIO": {
+      "description": "This automatically update your bio status.Always make sure you insert your OWNER_NAME since it uses that to update your bio name status",
+      "value": "yes",
+      "required": false
+    },
+    "AUTO_SAVE_CONTACTS": {
+      "description":"Enter yes for your bot to auto save contacts",
+      "value":"no",
+      "required":false
+    },
+    "AUTO_DOWNLOAD_STATUS": {
+      "description": "Your contact status will be downloaded automatically and sent to you (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+      "value": "no",
+      "required": false
+    },
+    "PM_PERMIT": {
+      "description": "Restrict other users from using your bot in private messages (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+      "value": "yes",
+      "required": false
+    },
+    "AUTO_STATUS_TEXT": {
+      "description": "type your genuine status message",
+      "value": "💲YOUR STATUS VIEWED BY 💦VIPER MD💨 SUCCESSFUL 😇✅✅",
+      "required": false
+    },
     "AUTO_STATUS_REPLY": {
-      "description": "Make it true for auto reply msg on status seen.",
-      "required": true,
-      "value": "false"
-    }, 
+      "description": "type your genuine status message",
+      "value": "no",
+      "required": false
+    },
+    "CHAT_BOT": {
+      "description": "urs if you want bot to chat automatic in inbox",
+      "value": "no",
+      "required": false
+    },
+    "PUBLIC_MODE": {
+      "description": "Set 'yes' to make your bot public or 'no' to keep it private",
+      "value": "yes",
+      "required": false
+    },
+    "HEROKU_API_KEY": {
+      "description": "Insert your Heroku API key (required)",
+      "value": "",
+      "required": true
+    },
 
-    "AUTO_STATUS_MSG": {
-      "description": "Type custom message on status reply",
-      "required": true,
-      "value": "*𝚂𝙴𝙴𝙽 𝚈𝙾𝚄𝚁 𝚂𝚃𝙰𝚃𝚄𝚂 𝙱𝚈 Viper MD *"
-   
-     }, 
-    
+    "SESSION_ID": {
+      "description": "Enter your session ID, the code you receive after scanning the QR code",
+      "value": "",
+      "required": true
+    },
     "OWNER_NAME": {
-      "description": "Type Bot Owner Name.",
-      "required": false,
-      "value": "T20_STARBOY"
-}, 
-
-    "OWNER_NUMBER": {
-      "description": "put the owner number for bot.",
-      "required": false,
-      "value": "255627417402"
-
-    }, 
-
-    "BOT_NAME": {
-      "description": "Type here the bot name.",
-      "required": false,
-      "value": "Viper MD"
-
-      }, 
-
-    "ANTI_LINK": {
-      "description": "Make it true if you want bot auto remove group link.",
-      "required": true,
-      "value": "true"
-      
+      "description": "don't you have a name bro.Insert your name here!!",
+      "value": "T20_starboy",
+      "required": false
     },
-
-     "ANTI_LINK_KICK": {
-      "description": "Make it true if you want bot auto remove group link.",
-      "required": true,
-      "value": "false"
-      
+    "AUTO_READ_MESSAGES": {
+      "description": "yes toactivate no to deactivate",
+      "value": "no",
+      "required": false  
     },
-    
-    "ANTI_BAD": {
-      "description": "Make it true if you want bot auto delete bad words.",
-      "required": false,
-      "value": "true"
+    "NUMERO_OWNER": {
+      "description": "Your phone number (exclude '+' and area code, e.g., '255752593977')",
+      "value": "255627417402",
+      "required": false
     },
-
-   "MENTION_REPLY": {
-      "description": "make it true if want mention reply if someone menetion you.",
-      "required": false,
-      "value": "false"
+    "STARTING_BOT_MESSAGE": {
+      "description": "Set 'yes' to display a starting bot message or 'no' to disable it",
+      "value": "yes",
+      "required": true
     },
-    
-    "MENU_IMAGE_URL": {
-      "description": "add url for mention reply and menu if want.",
-      "required": false,
-      "value": "https://files.catbox.moe/11w56r.jpg"
+    "PRESENCE": {
+      "description": "Mark your presence: 1 for online, 2 for typing, 3 for recording, or leave blank for real state",
+      "value": "1",
+      "required": false
     },
-    
-     "DESCRIPTION": {
-      "description": "add caption for menu and other",
-      "required": false,
-      "value": "*© T20_STARBOY *"
+    "ANTI_DELETE_MESSAGES": {
+      "description": "Enable anti-delete message in dm's (set 'yes' to activate or 'no' to deactivate)",
+      "value": "no",
+      "required": false
     },
-
-      "DELETE_LINKS": {
-      "description": "remove links from group automatically without removing member",
-      "required": false,
-      "value": "false"
+    "ANTI_CALL": {
+      "description": "Automatically decline incoming calls (set 'on' to activate or 'off' to deactivate)",
+      "value": "yes",
+      "required": false
     },
-    
-    "AUTO_RECORDING": {
-      "description": "Make it true if you want auto recoding.",
-      "required": false,
-      "value": "true"
+    "AUTO_BLOCK": {
+      "description": "Type true if you want bot to automatically  block those who spam your dm ",
+      "value": "no",
+      "required": false
     },
-
-    "AUTO_TYPING": {
-      "description": "Make it true if you want auto typing.",
-      "required": false,
-      "value": "false"
-    },
-
-    "AUTO_REACT": {
-      "description": "Make it true if you want react on every message.",
-      "required": false,
-      "value": "false"
-    },
-    
-    "CUSTOM_REACT": {
-      "description": "Make it true if you want custom reactions.",
-      "required": false,
-      "value": "false"
-      
-    }, 
-    
-    "CUSTOM_REACT_EMOJIS": {
-      "description": "put here custom react react emojis.",
-      "required": false,
-      "value": "💝,💖,💗,❤️‍🩹,❤️,🧡,💛,💚,💙,💜,🤎,🖤,🤍"
-    }, 
-    
-    "ANTI_DEL_PATH": {
-      "description": "change it to -same- if you want to resend deleted message in same chat",
-      "required": false,
-      "value": "log"
-    }, 
-
-    "ADMIN_EVENTS": {
-      "description": "make it true if want know who promote or demote a member .",
-      "required": false,
-      "value": "false"
-    },
-
-    "WELCOME": {
-      "description": "make it true if want goodbye and welcome message in groups.",
-      "required": false,
-      "value": "true"
-    },
-
-    "READ_MESSAGE": {
-      "description": "Make it true if you want bot read your all sms just now.",
-      "required": false,
-      "value": "false"
+    "AUTO_REACTION": {
+      "description": "Set 'yes' to enable bot reactions to messages in private chats",
+      "value": "no",
+      "required": false
     }
+    },
 
-},
+ "formation": {
+		"worker": {
+			"quantity": 1,
+			"size": "basic"
+		}
+	},
 
-     "buildpacks": [
-        {
-            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
-        }
-     ],
-  "stack": "heroku-24"
+  "addons":[
+    {
+      "plan":"heroku-postgresql:essential-0"
+    }
+  ]
+	
 }
-  
