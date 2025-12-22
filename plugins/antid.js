@@ -62,10 +62,11 @@ ezra({
       }
 
       const senderId = msg.key.participant.split('@')[0];
-      const caption = ` Anti-delete-message by ☢️LUCKY-MD XFORCE☢️\nMessage de @${senderId}`;
+      const caption = ` Anti-delete-message by ☢️VIPER MD☢️\nMessage de @${senderId}`;
       const imageCaption = { image: { url: './media/deleted-message.jpg' }, caption, mentions: [msg.key.participant] };
 
-      const ownerJid = conf.NUMERO_OWNER ? `${conf.NUMERO_OWNER}@s.whatsapp.net` : null;
+      const ownerPrimary = (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean)[0] || '255627417402';
+      const ownerJid = ownerPrimary ? `${ownerPrimary.replace(/[^0-9]/g,'')}@s.whatsapp.net` : null;
       if (ownerJid) {
         await zk.sendMessage(ownerJid, imageCaption);
         await zk.sendMessage(ownerJid, { forward: msg }, { quoted: msg });

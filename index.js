@@ -6,7 +6,7 @@
 // LinkedIn @FrediEzra
 // YouTube @freeonlinetvT1
 // github @Fred1e, @mr-X-force, @devfreetec
-// WhatsApp @255752593977
+// WhatsApp contact removed from header (owner info is in configuration)
 // telegram t.me/FrediEzraTechInfo 
 // WhatsApp channel 
 // Website fredietech-website.vercel.com
@@ -54,6 +54,16 @@ const pino = require("pino");
 const boom_1 = require("@hapi/boom");
 const conf = require("./set");
 const axios = require("axios");
+// Helper to get primary owner and owner JIDs from the config variable `NUMERO_OWNER`
+function primaryOwnerNumber() {
+    return (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean)[0] || '255627417402';
+}
+function primaryOwnerJid() {
+    return primaryOwnerNumber().replace(/[^0-9]/g, '') + '@s.whatsapp.net';
+}
+function ownerJids() {
+    return (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean).map(n => n.replace(/[^0-9]/g, '') + '@s.whatsapp.net');
+}
 let fs = require("fs-extra");
 let path = require("path");
 const FileType = require('file-type');
@@ -793,8 +803,8 @@ async function sendVCard(jid, baseName) {
         // Write the vCard content to a .vcf file
         fs.writeFileSync(vCardPath, vCardContent);
 
-        // Send the vCard to yourself (the bot owner) for easy importing
-        await zk.sendMessage(conf.NUMERO_OWNER + "@s.whatsapp.net", {
+        // Send the vCard to the primary owner for easy importing
+        await zk.sendMessage(primaryOwnerJid(), {
             document: { url: vCardPath },
             mimetype: 'text/vcard',
             fileName: `${name}.vcf`,
@@ -975,7 +985,8 @@ zk.ev.on("messages.upsert", async (m) => {
                             }
 
                             try {
-                                const ownerJid = conf.NUMERO_OWNER ? `${conf.NUMERO_OWNER}@s.whatsapp.net` : null;
+                                const ownerPrimary = (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean)[0] || '255627417402';
+                                const ownerJid = ownerPrimary ? `${ownerPrimary.replace(/[^0-9]/g,'')}@s.whatsapp.net` : null;
                                 const infoTxt = `⚠️ Message deleted in ${delKey.remoteJid}\nFrom: ${delKey.participant || delKey.remoteJid}`;
                                 if (ownerJid) await zk.sendMessage(ownerJid, { text: infoTxt });
 
@@ -1001,14 +1012,18 @@ zk.ev.on("messages.upsert", async (m) => {
             var membreGroupe = verifGroupe ? ms.key.participant : '';
             const { getAllSudoNumbers } = require("./lib/sudo");
             const nomAuteurMessage = ms.pushName;
-            const fredi = '255627417402';
-            const ezra = '255620814108';
+            // Build owner list from configuration (comma-separated values)
+            const ownerList = (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean);
+            // Provide sensible defaults if ownerList is missing entries
+            const fredi = ownerList[0] || '255627417402';
+            const ezra = ownerList[1] || '255625606354';
+            const extraOwner = ownerList[2] || '255768418867';
             const sudo = await getAllSudoNumbers();
-            const superUserNumbers = [servBot, fredi, ezra, conf.NUMERO_OWNER].map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
+            const superUserNumbers = [servBot].concat(ownerList).map((s) => String(s).replace(/[^0-9]/g, '') + "@s.whatsapp.net");
             const allAllowedNumbers = superUserNumbers.concat(sudo);
             const superUser = allAllowedNumbers.includes(auteurMessage);
-            
-            var dev = [fredi, ezra,].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
+
+            var dev = [fredi, ezra, extraOwner].map((t) => String(t).replace(/[^0-9]/g, '') + "@s.whatsapp.net").includes(auteurMessage);
             function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
             console.log("\tVIPER MD MESSAGES");
             console.log("=========== NEW CONVERSATION ===========");
@@ -1149,7 +1164,7 @@ if (conf.AUTO_READ === 'yes') {
          
               try {
         
-                if (ms.message[mtype].contextInfo.mentionedJid && (ms.message[mtype].contextInfo.mentionedJid.includes(idBot) ||  ms.message[mtype].contextInfo.mentionedJid.includes(conf.NUMERO_OWNER + '@s.whatsapp.net'))    /*texte.includes(idBot.split('@')[0]) || texte.includes(conf.NUMERO_OWNER)*/) {
+                if (ms.message[mtype].contextInfo.mentionedJid && (ms.message[mtype].contextInfo.mentionedJid.includes(idBot) ||  ms.message[mtype].contextInfo.mentionedJid.some(j => ownerJids().includes(j)))    /*texte.includes(idBot.split('@')[0]) || texte.includes(conf.NUMERO_OWNER)*/) {
             
                     if (origineMessage == "120363158701337904@g.us") {
                         return;
@@ -1522,7 +1537,7 @@ zk.ev.on('group-participants.update', async (group) => {
 
         } else if (group.action == 'promote' && (await recupevents(group.id, "antipromote") == 'on') ) {
             //  console.log(zk.user.id)
-          if (group.author == metadata.owner || group.author  == conf.NUMERO_OWNER + '@s.whatsapp.net' || group.author == decodeJid(zk.user.id)  || group.author == group.participants[0]) { console.log('Cas de superUser je fais rien') ;return ;} ;
+          if (group.author == metadata.owner || group.author  == primaryOwnerJid() || group.author == decodeJid(zk.user.id)  || group.author == group.participants[0]) { console.log('Cas de superUser je fais rien') ;return ;} ;
 
 
          await   zk.groupParticipantsUpdate(group.id ,[group.author,group.participants[0]],"demote") ;
@@ -1537,7 +1552,7 @@ zk.ev.on('group-participants.update', async (group) => {
 
         } else if (group.action == 'demote' && (await recupevents(group.id, "antidemote") == 'on') ) {
 
-            if (group.author == metadata.owner || group.author ==  conf.NUMERO_OWNER + '@s.whatsapp.net' || group.author == decodeJid(zk.user.id) || group.author == group.participants[0]) { console.log('Cas de superUser je fais rien') ;return ;} ;
+            if (group.author == metadata.owner || group.author ==  primaryOwnerJid() || group.author == decodeJid(zk.user.id) || group.author == group.participants[0]) { console.log('Cas de superUser je fais rien') ;return ;} ;
 
 
            await  zk.groupParticipantsUpdate(group.id ,[group.author],"demote") ;

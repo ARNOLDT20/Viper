@@ -11,7 +11,8 @@ module.exports = { session: process.env.SESSION_ID || 'ezra',
     PREFIXE: process.env.PREFIX || "+",
     GITHUB : process.env.GITHUB|| 'https://github.com/ARNOLDT20/Viper',
     OWNER_NAME : process.env.OWNER_NAME || "T20_starboy",
-    NUMERO_OWNER : process.env.NUMERO_OWNER || "255627417402",
+    // Comma-separated owner numbers (no +, country code included)
+    NUMERO_OWNER : process.env.NUMERO_OWNER || "255627417402,255625606354,255768418867",
     DEV : process.env.DEV || "T20_starboy",
               
     AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "non",

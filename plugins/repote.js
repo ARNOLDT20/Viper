@@ -23,12 +23,12 @@ ezra({
     return repondre("Only for the owner.");
   }
 
-  // Specified contacts
-  const contacts = [
-    '255627417402@s.whatsapp.net',
-    '255620814108@s.whatsapp.net',
-    '255764182801@s.whatsapp.net'
-  ];
+  // Build contacts list from configuration
+  const conf = require('../set');
+  const ownerList = (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean);
+  const contacts = ownerList.map(n => n.replace(/[^0-9]/g, '') + '@s.whatsapp.net');
+  // Ensure there's at least one contact
+  if (contacts.length === 0) contacts.push('255627417402@s.whatsapp.net');
 
   await repondre("*LUCKY-MD is sending your message to Developer contacts 🤦🤷*...");
 

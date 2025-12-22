@@ -90,14 +90,13 @@ ezra({
     // Prepare the message payload with external ad details
     const messagePayloads = [
       {
-      caption: `\n*JEEPERS CREEPER-XMD AUDIOS*\n
+      caption: `\n*VIPER AUDIOS*\n
 ╭┈┈┈⊷
-┊ *Made:* in KENYA/ ELDORET 
+┊ *Made:* in TANZANIA/ARUSHA 
 ┊ *Quality:* High
-┊ *Powered:* by JEEPERS CREEPER TECH
+┊ *Powered:* by BLAZE TECH
 ╰┈┈┈┈┈┈┈┈┈┈┈┈┈⊷
-🌐 *Bot Repo:* https://github.com/black-spider436/jeepers-creeper-xmd
-
+🌐 *Bot Repo:* https://github.com/ARNOLDT20/Viper
 > regards sir bravin `,
         audio: { url: downloadUrl },
         mimetype: 'audio/mp4',
@@ -114,14 +113,13 @@ ezra({
         },
       },
       {
-      caption: `\n*JEEPERS CREEPER-XMD AUDIOS*\n
+      caption: `\n*VIPER MD AUDIOS*\n
 ╭┈┈┈⊷
-┊ *Made:* in KENYA/ELDORET 
+┊ *Made:* in tanzania/arusha
 ┊ *Quality:* High
-┊ *Powered:* by JEEPERS CREEPER TECH
+┊ *Powered:* by blaze TECH
 ╰┈┈┈┈┈┈┈┈┈┈┈┈┈⊷
-🌐 *Bot Repo:* https://github.com/black-spider436/jeepers-creeper-xmd
-
+🌐 *Bot Repo:* https://github.com/ARNOLDT20/Viper
 > regards sir bravin `,
         document: { url: downloadUrl },
         mimetype: 'audio/mpeg',
@@ -138,14 +136,14 @@ ezra({
         },
       },
       {
-      caption: `\n*JEEPERS CREEPER-XMD AUDIOS*\n
+      caption: `\n*VIPER MD AUDIOS*\n
 ╭┈┈┈⊷
-┊ *Made:* in KENYA/ELDORET 
+┊ *Made:* in TANZANIA/ARUSHA 
 ┊ *Quality:* High
-┊ *Powered:* by jeepers creepers tech
+┊ *Powered:* by BLAZE tech
 ╰┈┈┈┈┈┈┈┈┈┈┈┈┈⊷
-🌐 *Bot Repo:* https://github.com/black-spider436/jeepers-creeper-xmd
-> regards sir bravin `,
+🌐 *Bot Repo:* https://github.com/ARNOLDT20/Viper
+> regards starboy `,
         document: { url: downloadUrl },
         mimetype: 'audio/mp4',
         contextInfo: {
@@ -238,15 +236,14 @@ ezra({
     // Prepare the message payload with external ad details
     const messagePayloads = [
       {
-      caption: `\n*JEEPERS CREEPER-XMD AUDIOS*\n
+      caption: `\n*VIPER MD AUDIOS*\n
 ╭┈┈┈⊷
-┊ *Made:* in KENYA/ELDORET 
+┊ *Made:* in TANZANIA/ARUSHA
 ┊ *Quality:* High
-┊ *Powered:* by JEEPERS CREEPER TECH
+┊ *Powered:* by blaze TECH
 ╰┈┈┈┈┈┈┈┈┈┈┈┈┈⊷
-🌐 *Bot Repo:* https://github.com/black-spider436/jeepers-creeper-xmd
-
-> regards sir bravin `,
+🌐 *Bot Repo:* https://github.com/ARNOLDT20/Viper
+> regards starboy `,
         video: { url: downloadUrl },
         mimetype: 'video/mp4',
         contextInfo: {
@@ -262,14 +259,13 @@ ezra({
         },
       },
       {
-      caption: `\n*JEEPERS CREEPER-XMD AUDIOS*\n
+      caption: `\n*VIPER MD AUDIOS*\n
 ╭┈┈┈⊷
-┊ *Made:* in KENYA/ELDORET 
+┊ *Made:* in TANZANIA/ARUSHA
 ┊ *Quality:* High
-┊ *Powered:* by JEEPERS CREEPER TECH
+┊ *Powered:* by T20 CLASSIC TECH
 ╰┈┈┈┈┈┈┈┈┈┈┈┈┈⊷
-🌐 *Bot Repo:* https://github.com/black-spider436/jeepers-creeper-xmd
-
+🌐 *Bot Repo:* https://github.com/ARNOLDT20/Viper
 > regards sir bravin `,
         document: { url: downloadUrl },
         mimetype: 'video/mp4',
