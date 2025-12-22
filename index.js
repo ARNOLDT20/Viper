@@ -78,7 +78,9 @@ const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = 
 //const //{loadCmd}=require("/fredi/mesfonctions")
 let { reagir } = require(__dirname + "/fredi/app");
 var session = conf.session.replace(/LUCKY-XFORCE%>/g,"");
-const prefixe = conf.PREFIXE;
+// keep a lightweight getter for the live configuration so changes to `set.env` take effect
+const getLiveConfig = () => require('./set');
+let prefixe = conf.PREFIXE;
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 const BaseUrl = process.env.GITHUB_GIT;
@@ -164,7 +166,7 @@ function getCurrentDateTime() {
 setInterval(async () => {
     if (conf.AUTO_BIO === "yes") {
         const currentDateTime = getCurrentDateTime(); // Get the current date and time
-        const bioText = `🍫 Lucky-Md-Xforce is running 🚗\n${currentDateTime}`; // Format the bio text
+        const bioText = `🍫 VIPER MD is running 🚗\n${currentDateTime}`; // Format the bio text
         await zk.updateProfileStatus(bioText); // Update the bio
         console.log(`Updated Bio: ${bioText}`); // Log the updated bio
     }
@@ -857,8 +859,8 @@ zk.ev.on("messages.upsert", async (m) => {
 // Default auto-reply message
 let auto_reply_message = "Hello, this is VIPER MD. My owner is currently unavailable. Please leave a message and we'll get back to you shortly.";
 
-// Track contacts that have already received the auto-reply
-let repliedContacts = new Set();
+// (Deprecated) previous approach used a repliedContacts set to avoid repeats.
+// Auto-replies should trigger every time a matching message is detected.
 
 // Greeting responses map (private chats only) - loaded from data/auto-replies.json
 let greetingResponses = {};
@@ -904,30 +906,31 @@ zk.ev.on("messages.upsert", async (m) => {
 
     // Auto-reply greetings in private chats when enabled
     if (conf.AUTO_REPLY === "yes" && !ms.key.fromMe && !remoteJid.includes("@g.us") && messageText) {
-        // avoid replying to commands
-        const startsWithPrefix = messageText.trim().startsWith(conf.PREFIXE || '+');
+        // avoid replying to commands — use live prefix
+        const startsWithPrefix = messageText.trim().startsWith((require('./set') || {}).PREFIXE || '+');
         if (!startsWithPrefix) {
             const clean = messageText.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
-
+            // Always attempt to match greeting phrases and reply every time a match occurs.
+            let matchedGreeting = false;
             for (const key of Object.keys(greetingResponses)) {
                 if (clean === key || clean.startsWith(key + ' ') || clean.includes(' ' + key + ' ') ) {
                     try {
                         await zk.sendMessage(remoteJid, { text: greetingResponses[key] }, { quoted: ms });
-                        // Mark as replied so the generic auto-reply won't also be sent
-                        repliedContacts.add(remoteJid);
+                        matchedGreeting = true;
                     } catch (e) { console.error('greeting reply error', e); }
                     break;
                 }
             }
+            // If no specific greeting matched, fall through to send the generic auto-reply below.
+            // If a greeting matched we skip the generic reply for clarity.
+            if (matchedGreeting) return;
         }
     }
 
-    // Check if auto-reply is enabled, contact hasn't received a reply, and it's a private chat
-    if (conf.AUTO_REPLY === "yes" && !repliedContacts.has(remoteJid) && !ms.key.fromMe && !remoteJid.includes("@g.us")) {
+    // Generic auto-reply for private chats — send every time (unless a greeting was matched above).
+    if (conf.AUTO_REPLY === "yes" && !ms.key.fromMe && !remoteJid.includes("@g.us")) {
         try {
             await zk.sendMessage(remoteJid, { text: auto_reply_message });
-            // Add contact to replied set to prevent repeat replies
-            repliedContacts.add(remoteJid);
         } catch (e) { console.error('auto-reply send error', e); }
     }
 });
@@ -985,19 +988,33 @@ zk.ev.on("messages.upsert", async (m) => {
                             }
 
                             try {
-                                const ownerPrimary = (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean)[0] || '255627417402';
-                                const ownerJid = ownerPrimary ? `${ownerPrimary.replace(/[^0-9]/g,'')}@s.whatsapp.net` : null;
-                                const infoTxt = `⚠️ Message deleted in ${delKey.remoteJid}\nFrom: ${delKey.participant || delKey.remoteJid}`;
-                                if (ownerJid) await zk.sendMessage(ownerJid, { text: infoTxt });
-
-                                if (original && ownerJid) {
-                                    // forward original message to owner
-                                    await zk.sendMessage(ownerJid, { forward: original }, { quoted: original });
-                                } else if (ownerJid) {
-                                    await zk.sendMessage(ownerJid, { text: `Could not retrieve original message for id ${delKey.id}` });
+                                // Instead of forwarding deleted messages to the owner, resend the original message back
+                                // into the chat where it was deleted, so participants (and the author) can see it.
+                                const chatId = delKey.remoteJid;
+                                if (original) {
+                                    // Forward the original message back into the chat and mention the participant if available
+                                    try {
+                                        await zk.sendMessage(chatId, { forward: original }, { quoted: original });
+                                    } catch (fwdErr) {
+                                        // Fallback: if forward failed, try to extract text and send as plain text
+                                        try {
+                                            const contentType = Object.keys(original.message || {})[0];
+                                            if (contentType === 'conversation' || contentType === 'extendedTextMessage') {
+                                                const text = original.message.conversation || original.message.extendedTextMessage?.text || '';
+                                                await zk.sendMessage(chatId, { text: `🔁 Recovered deleted message from ${delKey.participant || 'unknown'}:\n\n${text}` });
+                                            } else {
+                                                // As last resort, inform the chat that a message was deleted and couldn't be forwarded
+                                                await zk.sendMessage(chatId, { text: `⚠️ A message was deleted by ${delKey.participant || 'someone'}, but it could not be re-sent.` });
+                                            }
+                                        } catch (innerErr) {
+                                            console.error('antidelete fallback error', innerErr);
+                                        }
+                                    }
+                                } else {
+                                    await zk.sendMessage(chatId, { text: `⚠️ A message was deleted by ${delKey.participant || 'someone'}, but the original could not be retrieved.` });
                                 }
                             } catch (err) {
-                                console.error('antidelete forward error', err);
+                                console.error('antidelete resend error', err);
                             }
                         }
                     }
@@ -1048,7 +1065,8 @@ zk.ev.on("messages.upsert", async (m) => {
 
 
 
-            var etat = Number(conf.ETAT) || 0;
+            // Read presence (ETAT) from live config so presence changes apply without restart
+            var etat = Number((require('./set') || {}).ETAT) || 0;
             // Presence update logic based on etat value
             // Only send typing/recording if configured and the message is a private chat
             // or the bot is mentioned in a group to avoid spamming presence on every message.
@@ -1080,7 +1098,9 @@ const verifAdmin = verifGroupe ? admins.includes(auteurMessage) : false;
 var verifEzraAdmin = verifGroupe ? admins.includes(idBot) : false;
 
 const arg = texte ? texte.trim().split(/ +/).slice(1) : null;
-const verifCom = texte ? texte.startsWith(prefixe) : false;
+// Use the live prefix from set.js so prefix changes take effect immediately
+const currentPrefix = (require('./set') || {}).PREFIXE || prefixe || '+';
+const verifCom = texte ? texte.startsWith(currentPrefix) : false;
 const com = verifCom ? texte.slice(1).trim().split(/ +/).shift().toLowerCase() : false;
 
 const lien = conf.URL.split(',');
@@ -1109,7 +1129,8 @@ var commandeOptions = {
     nomAuteurMessage,
     idBot,
     verifEzraAdmin,
-    prefixe,
+    // provide dynamic prefix to plugins so changes apply immediately
+    prefixe: currentPrefix,
     arg,
     repondre,
     mtype,

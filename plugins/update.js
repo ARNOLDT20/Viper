@@ -28,9 +28,28 @@ ezra({ nomCom: "update", categorie: "VIPER-Menu", reaction: "🔁", nomFichier: 
             }
         }
 
-        // Fallback: exit process to let process manager restart (PM2, systemd, etc.)
-        repondre("Exiting process to allow supervisor to restart the bot...");
-        setTimeout(() => process.exit(0), 1500);
+        // Try pm2 restart if available (common in self-host setups), otherwise exit and let supervisor restart
+        const { exec } = require('child_process');
+        repondre("Attempting graceful restart: checking Heroku/PM2, then exiting if needed...");
+        // Try pm2 restart
+        exec('pm2 -v', (err) => {
+            if (!err) {
+                // pm2 is present — restart all apps
+                exec('pm2 restart all', (e, stdout, stderr) => {
+                    if (e) {
+                        console.error('pm2 restart failed', e);
+                        repondre('pm2 restart failed; exiting to let supervisor handle restart.');
+                        setTimeout(() => process.exit(0), 1500);
+                    } else {
+                        repondre('pm2 restart requested; your processes should come back shortly.');
+                    }
+                });
+            } else {
+                // No pm2 available, exit to let host supervisor restart
+                repondre('No pm2 detected; exiting so the supervisor can restart the bot.');
+                setTimeout(() => process.exit(0), 1500);
+            }
+        });
     } catch (e) {
         console.error("update command error", e);
         try { repondre("Error while attempting update/restart: " + e); } catch (_) {}

@@ -6,7 +6,7 @@ ezra({
   nomCom: "profile",
   aliases: ["pp", "who"],
   desc: "to generate profile picture",
-  categorie: "Fledi-Fun"
+  categorie: "VIPER FUN"
 }, async (dest, zk, commandeOptions) => {
   const { ms, arg, repondre, auteurMessage, nomAuteurMessage, msgRepondu, auteurMsgRepondu } = commandeOptions;
 
@@ -58,7 +58,7 @@ ezra({
   nomCom: "profile2",
   aliases: ["pp2", "whois2"],
   desc: "to generate business profile picture",
-  categorie: "Fledi-Fun"
+  categorie: "VIPER FUN"
 }, async (dest, zk, commandeOptions) => {
   const { ms, arg, repondre, auteurMessage, nomAuteurMessage, msgRepondu, auteurMsgRepondu } = commandeOptions;
 

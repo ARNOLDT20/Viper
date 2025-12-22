@@ -56,7 +56,7 @@ ezra({
       // reload set.js
       try { delete require.cache[require.resolve('../set.js')]; } catch (e) {}
       require('../set.js');
-      return repondre(`Prefix updated to \`${val}\`. Some parts may require a bot restart to take full effect.`);
+      return repondre(`Prefix updated to \`${val}\` and is active immediately.`);
     }
 
     if (sub === 'mode') {
@@ -67,7 +67,7 @@ ezra({
       process.env.PUBLIC_MODE = envVal;
       try { delete require.cache[require.resolve('../set.js')]; } catch (e) {}
       require('../set.js');
-      return repondre(`Mode updated to *${val}*. Restart may be required for all handlers to pick this up.`);
+      return repondre(`Mode updated to *${val}*. Change is active where supported.`);
     }
 
     if (sub === 'set') {
@@ -79,7 +79,7 @@ ezra({
       process.env[key] = value;
       try { delete require.cache[require.resolve('../set.js')]; } catch (e) {}
       require('../set.js');
-      return repondre(`Saved ${key}=${value} to \`set.env\`. Restart may be needed.`);
+      return repondre(`Saved ${key}=${value} to \`set.env\`. Change is active where supported.`);
     }
 
     if (sub === 'get') {
