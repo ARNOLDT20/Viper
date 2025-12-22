@@ -57,52 +57,45 @@ ezra({
     const img = 'https://files.catbox.moe/82aewo.png';
     const imgs = 'https://files.catbox.moe/82aewo.png';
 
-    const infoMsg = `
-╭───────────⊷
-*┋* *ʙᴏᴛ ɴᴀᴍᴇ :  ☢️VIPER MD☢️*
-*┋* *ᴘʀᴇғɪx :* [ ${s.PREFIXE} ]
-*┋* *ᴍᴏᴅᴇ :* ${mode}
-*┋* *ᴅᴀᴛᴇ  :* ${date}
-*┋* *ᴘʟᴀᴛғᴏʀᴍ :* ${os.platform()}
-*┋* *ᴏᴡɴᴇʀ ɪs : ${s.OWNER_NAME || 'T20_starboy'}*
-*┋* *ᴘʟᴜɢɪɴs ᴄᴍᴅ :* ${cm.length}
-╰───────────⊷\n`;
-    
-    let menuMsg = ` *${greeting}*`;
-    
-    for (const cat in coms) {
+    const header = `┏━━━━━━━━━━━━━━━━━┓\n` +
+                   `┃  ☢️  *VIPER MD*  ☢️  ┃\n` +
+                   `┗━━━━━━━━━━━━━━━━━┛\n`;
+
+    const infoMsg = `*${s.BOT || 'VIPER MD'}* — *Main Menu*\n\n` +
+        `👑 Owner: *${s.OWNER_NAME || 'T20_STARBOY'}*\n` +
+        `🔰 Prefix: *${s.PREFIXE}*   •   Mode: *${mode}*\n` +
+        `📅 Date: *${date}*   •   ⏰ Time: *${temps}*\n` +
+        `💠 Platform: *${os.platform()}*   •   ⚙️ Plugins: *${cm.length}*\n\n`;
+
+    let menuMsg = `*${greeting}* 👋\n\n`;
+
+    for (const cat of Object.keys(coms).sort()) {
         const displayCat = cat.replace(/Fredi/ig, 'VIPER');
-        menuMsg += `
-*「 ${toFancyUppercaseFont(displayCat)} 」*
-╭───┈┈┈┈────⊷ `;
-        for (const cmd of coms[cat]) {
-            menuMsg += `          
-*┋* ${toFancyLowercaseFont(cmd)}`;   
+        menuMsg += `*» ${toFancyUppercaseFont(displayCat)}*\n`;
+        const cmds = coms[cat].slice().sort();
+        let line = '';
+        for (const cmd of cmds) {
+            line += `\`${s.PREFIXE}${cmd}\` `;
+            if (line.length > 60) { menuMsg += line + '\n'; line = ''; }
         }
-        menuMsg += `
-╰───┈┈┈┈────⊷`;
+        if (line) menuMsg += line + '\n';
+        menuMsg += '\n';
     }
-    
-    menuMsg += `
-> @made by T20_STARBOY 2025\n`;
+
+    menuMsg += `———\n` +
+               `📌 *Tips:* Type *${s.PREFIXE}getsettings* to see bot config.\n` +
+               `🔔 *Made by:* T20_STARBOY — 2025\n`;
 
     try {
-        await zk.sendMessage(dest, { 
-            image: { url: "https://files.catbox.moe/82aewo.png" },
-            caption: infoMsg + menuMsg,
+        await zk.sendMessage(dest, {
+            image: { url: s.URL || 'https://files.catbox.moe/82aewo.png' },
+            caption: header + '\n' + infoMsg + menuMsg,
             contextInfo: {
-                isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363420222821450@newsletter",
-                    newsletterName: "@T20_starboy",
-                    serverMessageId: -1
-                },
-                forwardingScore: 999,
                 externalAdReply: {
-                    title: "☢️VIPER MD☢️",
-                    body: "🔑🗝️ Command List",
-                    thumbnailUrl: "https://files.catbox.moe/82aewo.png",
-                    sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
+                    title: `${s.BOT || 'VIPER MD'} — Commands`,
+                    body: `Owner: ${s.OWNER_NAME || 'T20_STARBOY'}`,
+                    thumbnailUrl: s.URL || 'https://files.catbox.moe/82aewo.png',
+                    sourceUrl: s.GURL || 'https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d',
                     mediaType: 1,
                     renderLargerThumbnail: true
                 }

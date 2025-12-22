@@ -845,10 +845,28 @@ zk.ev.on("messages.upsert", async (m) => {
 
 
 // Default auto-reply message
-let auto_reply_message = "Hello,its Lucky Md Xforce on board. My owner is currently unavailable. Please leave a message, and we will get back to you as soon as possible.";
+let auto_reply_message = "Hello, this is VIPER MD. My owner is currently unavailable. Please leave a message and we'll get back to you shortly.";
 
 // Track contacts that have already received the auto-reply
 let repliedContacts = new Set();
+
+// Greeting responses map (private chats only) - loaded from data/auto-replies.json
+let greetingResponses = {};
+try {
+    greetingResponses = require('./data/auto-replies.json');
+} catch (e) {
+    // fallback defaults
+    greetingResponses = {
+        'hi': 'Hello! 👋 I am VIPER MD. How can I help you today?',
+        'hello': 'Hello! 👋 I am here to help — what can I do for you?',
+        'hey': 'Hey there! 👋',
+        'good morning': 'Good morning! ☀️ Have a great day!',
+        'good afternoon': 'Good afternoon! 🌤️',
+        'good night': 'Good night! 🌙 Sleep well!',
+        'sup': 'Hey! What\'s up?',
+        'how are you': 'I\'m a bot — always ready! How can I assist you today?'
+    };
+}
 
 zk.ev.on("messages.upsert", async (m) => {
     const { messages } = m;
@@ -874,14 +892,33 @@ zk.ev.on("messages.upsert", async (m) => {
         }
     }
 
+    // Auto-reply greetings in private chats when enabled
+    if (conf.AUTO_REPLY === "yes" && !ms.key.fromMe && !remoteJid.includes("@g.us") && messageText) {
+        // avoid replying to commands
+        const startsWithPrefix = messageText.trim().startsWith(conf.PREFIXE || '+');
+        if (!startsWithPrefix) {
+            const clean = messageText.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+
+            for (const key of Object.keys(greetingResponses)) {
+                if (clean === key || clean.startsWith(key + ' ') || clean.includes(' ' + key + ' ') ) {
+                    try {
+                        await zk.sendMessage(remoteJid, { text: greetingResponses[key] }, { quoted: ms });
+                        // Mark as replied so the generic auto-reply won't also be sent
+                        repliedContacts.add(remoteJid);
+                    } catch (e) { console.error('greeting reply error', e); }
+                    break;
+                }
+            }
+        }
+    }
+
     // Check if auto-reply is enabled, contact hasn't received a reply, and it's a private chat
     if (conf.AUTO_REPLY === "yes" && !repliedContacts.has(remoteJid) && !ms.key.fromMe && !remoteJid.includes("@g.us")) {
-        await zk.sendMessage(remoteJid, {
-            text: auto_reply_message,
-        });
-
-        // Add contact to replied set to prevent repeat replies
-        repliedContacts.add(remoteJid);
+        try {
+            await zk.sendMessage(remoteJid, { text: auto_reply_message });
+            // Add contact to replied set to prevent repeat replies
+            repliedContacts.add(remoteJid);
+        } catch (e) { console.error('auto-reply send error', e); }
     }
 });
         
@@ -1427,7 +1464,7 @@ if (conf.AUTO_READ === 'yes') {
         //fin événement message
 
 /******** evenement groupe update ****************/
-const { recupevents } = require('./lib/welcome'); 
+const { recupevents, makeWelcomeCaption, makeGoodbyeCaption } = require('./lib/welcome'); 
 
 zk.ev.on('group-participants.update', async (group) => {
     console.log(group);
@@ -1452,24 +1489,36 @@ zk.ev.on('group-participants.update', async (group) => {
                 } catch {
                     ppMember = 'https://files.catbox.moe/1q3yrw.jpg';
                 }
-
-                const caption = `👋 Hello *@${membre.split("@")[0]}*\nWelcome to Our Official Group!\nPlease read the group description to avoid removal.`;
+                const caption = makeWelcomeCaption(membre, metadata, conf.BOT || conf.CAPTION || 'Viper MD');
                 try {
-                    await zk.sendMessage(group.id, { image: { url: ppMember }, caption, mentions: [membre] });
+                    await zk.sendMessage(group.id, {
+                        image: { url: ppMember },
+                        caption,
+                        mentions: [membre],
+                        contextInfo: {
+                            externalAdReply: {
+                                title: conf.BOT || conf.CAPTION || 'Viper MD',
+                                body: `${metadata.subject || 'Group'}`,
+                                thumbnailUrl: ppMember,
+                                sourceUrl: conf.GURL || 'https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d',
+                                mediaType: 1,
+                                renderLargerThumbnail: true
+                            }
+                        }
+                    });
                 } catch (e) {
                     // if sending image fails, fallback to text welcome
-                    try { await zk.sendMessage(group.id, { text: `👋 *@${membre.split("@")[0]}* Welcome to Our Official Group! Please read the group description.`, mentions: [membre] }); } catch (_) { }
+                    try { await zk.sendMessage(group.id, { text: caption, mentions: [membre] }); } catch (_) { }
                 }
             }
         } else if (group.action == 'remove' && (await recupevents(group.id, "goodbye") == 'on')) {
-            let msg = `one or somes member(s) left group;\n`;
-
             let membres = group.participants;
-            for (let membre of membres) {
-                msg += `@${membre.split("@")[0]}\n`;
+            const caption = makeGoodbyeCaption(membres, metadata, conf.BOT || conf.CAPTION || 'Viper MD');
+            try {
+                await zk.sendMessage(group.id, { image: { url: ppgroup }, caption, mentions: membres, contextInfo: { externalAdReply: { title: conf.BOT || conf.CAPTION || 'Viper MD', body: `${metadata.subject || 'Group'}`, thumbnailUrl: ppgroup, sourceUrl: conf.GURL || '', mediaType: 1, renderLargerThumbnail: true } } });
+            } catch (e) {
+                try { await zk.sendMessage(group.id, { text: caption, mentions: membres }); } catch (_) {}
             }
-
-            zk.sendMessage(group.id, { text: msg, mentions: membres });
 
         } else if (group.action == 'promote' && (await recupevents(group.id, "antipromote") == 'on') ) {
             //  console.log(zk.user.id)
@@ -1571,16 +1620,16 @@ zk.ev.on('group-participants.update', async (group) => {
         zk.ev.on("connection.update", async (con) => {
             const { lastDisconnect, connection } = con;
             if (connection === "connecting") {
-                console.log("ℹ️ lucky is connecting...");
+                console.log("ℹ️ VIPER is connecting...");
             }
             else if (connection === 'open') {
-                console.log("✅ lucky Connected to WhatsApp! ☺️");
+                console.log("✅ VIPER Connected to WhatsApp! ☺️");
                 console.log("--");
                 await (0, baileys_1.delay)(200);
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("Lucky is Online 🕸\n\n");
+                console.log("VIPER is Online 🕸\n\n");
                 //chargement des plugins 
                 console.log("Loading Lucky Commands ...\n");
                 fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
@@ -1620,14 +1669,14 @@ zk.ev.on('group-participants.update', async (group) => {
 ║ Prefix: [ ${prefixe} ]
 ║ Mode: ${md}
 ║ Model: V 5.0.9
-║ Bot Name: Lucky-Md-Bot 
-║ Owner: FrediEzra
+║ Bot Name: VIPER MD
+║ Owner: STARBOY_T20
 ╚═════ ❖ •✦
 -_-<-<-<-<-<-<-<--<-<-<-<-<-<
 
 *🪀Follow my channel for updates and free hacks🙃*
  
-> https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f
+> https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d
 
                 
                  `;
