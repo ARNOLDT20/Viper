@@ -1,0 +1,12 @@
+<svg width="260" height="64" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rnd" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#ff7a18"/>
+      <stop offset="50%" stop-color="#ffb347"/>
+      <stop offset="100%" stop-color="#ff7a18"/>
+    </linearGradient>
+  </defs>
+  <rect rx="12" width="260" height="64" fill="url(#rnd)"/>
+  <text x="40" y="38" font-family="Verdana" font-size="16" fill="#111">⚡ Deploy to Render</text>
+  <animateTransform attributeName="transform" attributeType="XML" type="scale" values="1;1.02;1" dur="3s" repeatCount="indefinite"/>
+</svg>

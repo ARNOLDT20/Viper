@@ -1,0 +1,11 @@
+<svg width="260" height="64" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="td" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#66ffcc"/>
+      <stop offset="100%" stop-color="#00ff99"/>
+    </linearGradient>
+  </defs>
+  <rect rx="12" width="260" height="64" fill="url(#td)"/>
+  <text x="40" y="38" font-family="monospace" font-size="16" fill="#002">💬 Deploy to TalkDrove</text>
+  <animate attributeName="x" values="40;44;40" dur="2.6s" repeatCount="indefinite"/>
+</svg>
