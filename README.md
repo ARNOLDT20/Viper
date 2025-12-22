@@ -24,7 +24,7 @@
 ✨ **Dual Mode**: Group + DM features  
 ✨ **Privacy**: Public/Private mode  
 ✨ **Hosting**: Secure cloud-hosting compatible  
-✨ **Support**: Developer maintained: FredieTech  
+✨ **Support**: Developer maintained: T20_STARBOY  
 
 ---
 
@@ -121,16 +121,16 @@
 
 ## 📱 Connect With Me
 
-📱 **Facebook**: [FredieEzra](https://facebook.com/@FrediEzra)  
-📸 **Instagram**: [frediezra](https://instagram.com/frediezra)  
-📹 **YouTube**: [FrediAi-Tech](https://youtube.com/frediai-tech)  
+📱 **Facebook**: [T20_STARBOY](https://facebook.com/@FrediEzra)  
+📸 **Instagram**: [T20_STARBOY](https://instagram.com/frediezra)  
+📹 **YouTube**: [T20_STARBOY](https://youtube.com/frediai-tech)  
 📧 **GitHub**: [T20_starboy](https://github.com/ARNOLDT20)  
 
 ---
 
 ## 📲 Download APK
 
-📁 **Download APK**: [Fredi.AI v2.9.9](https://www.mediafire.com/file/chyvv2mktqc9jsv/fredi.ai.v2.9.9.apk)  
+📁 **Download APK**: [T20_STARBOY v2.9.9](https://www.mediafire.com/file/chyvv2mktqc9jsv/fredi.ai.v2.9.9.apk)  
 <details><summary>Installation Steps</summary>
 1. Download the APK file  
 2. Enable "Install from unknown sources" in your device settings  
