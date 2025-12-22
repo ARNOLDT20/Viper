@@ -1048,17 +1048,31 @@ zk.ev.on("messages.upsert", async (m) => {
 
 
 
-            var etat = conf.ETAT;
-// Presence update logic based on etat value
-if (etat == 1) {
-    await zk.sendPresenceUpdate("available", origineMessage);
-} else if (etat == 2) {
-    await zk.sendPresenceUpdate("composing", origineMessage);
-} else if (etat == 3) {
-    await zk.sendPresenceUpdate("recording", origineMessage);
-} else {
-    await zk.sendPresenceUpdate("unavailable", origineMessage);
-}
+            var etat = Number(conf.ETAT) || 0;
+            // Presence update logic based on etat value
+            // Only send typing/recording if configured and the message is a private chat
+            // or the bot is mentioned in a group to avoid spamming presence on every message.
+            try {
+                const shouldShowPresence = (!verifGroupe) || (ms.message && ms.message[mtype] && ms.message[mtype].contextInfo && ms.message[mtype].contextInfo.mentionedJid && ms.message[mtype].contextInfo.mentionedJid.includes(idBot));
+                if (etat === 1) {
+                    await zk.sendPresenceUpdate("available", origineMessage);
+                } else if (etat === 2 && shouldShowPresence) {
+                    await zk.sendPresenceUpdate("composing", origineMessage);
+                    // revert to available after short delay to avoid permanent typing state
+                    setTimeout(async () => {
+                        try { await zk.sendPresenceUpdate("available", origineMessage); } catch (e) { }
+                    }, 4000);
+                } else if (etat === 3 && shouldShowPresence) {
+                    await zk.sendPresenceUpdate("recording", origineMessage);
+                    setTimeout(async () => {
+                        try { await zk.sendPresenceUpdate("available", origineMessage); } catch (e) { }
+                    }, 4000);
+                } else if (etat === 0) {
+                    try { await zk.sendPresenceUpdate("unavailable", origineMessage); } catch (e) { }
+                }
+            } catch (e) {
+                console.error('presence update error', e);
+            }
 
 const mbre = verifGroupe ? await infosGroupe.participants : '';
 let admins = verifGroupe ? groupeAdmin(mbre) : '';
@@ -1488,7 +1502,7 @@ zk.ev.on('group-participants.update', async (group) => {
     try {
         ppgroup = await zk.profilePictureUrl(group.id, 'image');
     } catch {
-        ppgroup = 'https://files.catbox.moe/1q3yrw.jpg';
+        ppgroup = conf.URL || 'https://files.catbox.moe/82aewo.png';
     }
 
     try {
@@ -1502,7 +1516,7 @@ zk.ev.on('group-participants.update', async (group) => {
                 try {
                     ppMember = await zk.profilePictureUrl(membre, 'image');
                 } catch {
-                    ppMember = 'https://files.catbox.moe/1q3yrw.jpg';
+                    ppMember = conf.URL || 'https://files.catbox.moe/82aewo.png';
                 }
                 const caption = makeWelcomeCaption(membre, metadata, conf.BOT || conf.CAPTION || 'Viper MD');
                 try {
