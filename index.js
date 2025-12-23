@@ -89,13 +89,13 @@ const ezraapikey = process.env.BOT_OWNER;
 async function authentification() {
     try {
         //console.log("le data "+data)
+        const decodedSession = session ? Buffer.from(session, 'base64').toString('utf8') : '';
         if (!fs.existsSync(__dirname + "/scan/creds.json")) {
             console.log("connexion en cour ...");
-            await fs.writeFileSync(__dirname + "/scan/creds.json", atob(session), "utf8");
-            //console.log(session)
+            await fs.writeFileSync(__dirname + "/scan/creds.json", decodedSession, "utf8");
         }
         else if (fs.existsSync(__dirname + "/scan/creds.json") && session != "zokk") {
-            await fs.writeFileSync(__dirname + "/scan/creds.json", atob(session), "utf8");
+            await fs.writeFileSync(__dirname + "/scan/creds.json", decodedSession, "utf8");
         }
     }
     catch (e) {
