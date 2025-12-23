@@ -36,6 +36,8 @@
 ## 🚀 Deployment Options
 ### 🚀 Deploy — pick a provider
 
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ARNOLDT20/Viper)
+
 <p align="center">
   <a href="https://heroku.com/deploy?template=https://github.com/ARNOLDT20/Viper" target="_blank" rel="noopener noreferrer">
     <img src="media/deploy-heroku.svg" alt="Deploy to Heroku" width="260" height="64" />
