@@ -53,23 +53,7 @@ logger.level = 'silent';
 const pino = require("pino");
 const boom_1 = require("@hapi/boom");
 const conf = require("./set");
-
-// Startup check for critical environment variables to fail fast and produce clear logs
-(() => {
-    try {
-        const required = ['SESSION_ID', 'HEROKU_API_KEY'];
-        const missing = required.filter(k => !process.env[k]);
-        if (missing.length) {
-            console.error('Missing required env vars:', missing.join(', '));
-            console.error('Set them in Heroku config vars or your environment and restart.');
-            process.exit(1);
-        }
-    } catch (e) {
-        console.error('Startup env check failed:', e);
-    }
-})();
 const axios = require("axios");
-const { sendWithPresence } = require('./lib/presence-helper');
 // Helper to get primary owner and owner JIDs from the config variable `NUMERO_OWNER`
 function primaryOwnerNumber() {
     return (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean)[0] || '255627417402';
@@ -956,10 +940,10 @@ zk.ev.on("messages.upsert", async (m) => {
             let matchedGreeting = false;
             for (const key of Object.keys(greetingResponses)) {
                 if (clean === key || clean.startsWith(key + ' ') || clean.includes(' ' + key + ' ') ) {
-                        try {
-                            await sendWithPresence(zk, remoteJid, { text: greetingResponses[key] }, { quoted: ms });
-                            matchedGreeting = true;
-                        } catch (e) { console.error('greeting reply error', e); }
+                    try {
+                        await zk.sendMessage(remoteJid, { text: greetingResponses[key] }, { quoted: ms });
+                        matchedGreeting = true;
+                    } catch (e) { console.error('greeting reply error', e); }
                     break;
                 }
             }
@@ -971,9 +955,9 @@ zk.ev.on("messages.upsert", async (m) => {
 
     // Generic auto-reply for private chats — send every time (unless a greeting was matched above).
     if (conf.AUTO_REPLY === "yes" && !ms.key.fromMe && !remoteJid.includes("@g.us")) {
-            try {
-                await sendWithPresence(zk, remoteJid, { text: auto_reply_message });
-            } catch (e) { console.error('auto-reply send error', e); }
+        try {
+            await zk.sendMessage(remoteJid, { text: auto_reply_message });
+        } catch (e) { console.error('auto-reply send error', e); }
     }
 });
         

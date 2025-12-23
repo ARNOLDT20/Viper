@@ -1,21 +1,16 @@
-FROM node:18-slim
+FROM node:lts-buster
 
-RUN apt-get update && \
-  apt-get install -y --no-install-recommends \
-  ffmpeg \
-  webp && \
-  npm i pm2 -g && \
-  rm -rf /var/lib/apt/lists/*
+# Clone bot from GitHub
+RUN git clone https://github.com/ARNOLDT20/Viper.git /root/viper-md
 
-WORKDIR /app
+# Set working directory
+WORKDIR /root/viper-md
 
-# Install dependencies first to leverage Docker cache
-COPY package.json package-lock.json* ./
-RUN npm install --legacy-peer-deps
+# Install dependencies
+RUN npm install && npm install -g pm2
 
-# Copy rest of the app
-COPY . .
+# Expose port
+EXPOSE 9090
 
-EXPOSE 5000
-
-CMD ["node", "index.js"]
+# Start the bot
+CMD ["npm", "start"]

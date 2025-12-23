@@ -109,22 +109,13 @@ ezra({
         };
         if (s.URL) externalAd.thumbnailUrl = s.URL;
 
-        // send with presence helper to simulate typing before menu appears
-        try {
-            const ph = require('../lib/presence-helper');
-            await ph.sendWithPresence(zk, dest, {
-                image: { url: s.URL || 'https://files.catbox.moe/82aewo.png' },
-                caption: header + '\n' + infoMsg + menuMsg,
-                contextInfo: { externalAdReply: externalAd }
-            }, { quoted: null });
-        } catch (e) {
-            // fallback
-            await zk.sendMessage(dest, {
-                image: { url: s.URL || 'https://files.catbox.moe/82aewo.png' },
-                caption: header + '\n' + infoMsg + menuMsg,
-                contextInfo: { externalAdReply: externalAd }
-            });
-        }
+        await zk.sendMessage(dest, {
+            image: { url: s.URL || 'https://files.catbox.moe/82aewo.png' },
+            caption: header + '\n' + infoMsg + menuMsg,
+            contextInfo: {
+                externalAdReply: externalAd
+            }
+        });
       } catch (error) {
         console.error("Menu error: ", error);
         repondre("🥵🥵 Menu error: " + error);
