@@ -844,14 +844,14 @@ setTimeout(() => {
                         const meta = await zk.groupMetadata(origineMessage);
                         const member = meta.participants.find(p => p.id === author) || {};
                         const isAdmin = member.admin || member.isAdmin || false;
-                        const ownerJid = (conf.NUMERO_OWNER || '').replace(/[^0-9]/g,'') + '@s.whatsapp.net';
+                        const ownerJid = (conf.NUMERO_OWNER || '').replace(/[^0-9]/g, '') + '@s.whatsapp.net';
                         if (!isAdmin && author !== ownerJid) {
                             try {
                                 // delete the offending message
                                 await zk.sendMessage(origineMessage, { delete: ms.key });
                                 // send a polite warning message
                                 const senderShort = author.split('@')[0];
-                                await zk.sendMessage(origineMessage, { text: `@${senderShort} Please avoid mentioning members or statuses in this group. Message removed.` , mentions: [author] });
+                                await zk.sendMessage(origineMessage, { text: `@${senderShort} Please avoid mentioning members or statuses in this group. Message removed.`, mentions: [author] });
                             } catch (e) { console.error('Failed to delete mention message', e); }
                             // stop further processing of this message
                             return;
