@@ -1406,26 +1406,65 @@ setTimeout(() => {
                 const metadata = await zk.groupMetadata(group.id);
 
                 if (group.action == 'add' && (await recupevents(group.id, "welcome") == 'on')) {
-                    let msg = `👋 Hello
-`;
+                    try {
+                        const membres = group.participants;
+                        const meta = await zk.groupMetadata(group.id);
+                        const subject = meta.subject || 'this group';
+                        const owner = (meta.owner || '').split('@')[0] || 'owner';
+                        const total = meta.participants ? meta.participants.length : membres.length;
 
-                    let membres = group.participants;
-                    for (let membre of membres) {
-                        msg += ` *@${membre.split("@")[0]}* Welcome to Our Official Group,`;
+                        for (let membre of membres) {
+                            // try fetch member profile pic
+                            let ppic = ppgroup;
+                            try { ppic = await zk.profilePictureUrl(membre, 'image'); } catch (e) { ppic = ppgroup; }
+
+                            const name = membre.split('@')[0];
+                            const captionLines = [];
+                            captionLines.push('╔════════════════════════╗');
+                            captionLines.push('║      ☢️ VIPER WELCOME ☢️   ║');
+                            captionLines.push('╠════════════════════════╣');
+                            captionLines.push(`║ Hi  •  *@${name}*`);
+                            captionLines.push('╠════════════════════════╣');
+                            captionLines.push(`║ Group : ${subject}`);
+                            captionLines.push(`║ Owner : @${owner}`);
+                            captionLines.push(`║ Members: ${total}`);
+                            if (meta.desc) captionLines.push('╠════════════════════════╣');
+                            if (meta.desc) captionLines.push(`║ ${meta.desc.substring(0, 120)}`);
+                            captionLines.push('╠════════════════════════╣');
+                            captionLines.push('║ Read the rules and enjoy! ║');
+                            captionLines.push('╚════════════════════════╝');
+
+                            await zk.sendMessage(group.id, { image: { url: ppic }, caption: captionLines.join('\n'), mentions: [membre] });
+                        }
+                    } catch (e) {
+                        console.error('Welcome message error', e);
                     }
-
-                    msg += `You might want to read the group Description to avoid getting removed...`;
-
-                    zk.sendMessage(group.id, { image: { url: ppgroup }, caption: msg, mentions: membres });
                 } else if (group.action == 'remove' && (await recupevents(group.id, "goodbye") == 'on')) {
-                    let msg = `one or somes member(s) left group;\n`;
+                    try {
+                        const membres = group.participants;
+                        const meta = await zk.groupMetadata(group.id);
+                        const subject = meta.subject || 'this group';
+                        const total = meta.participants ? meta.participants.length : (meta.size || 0);
 
-                    let membres = group.participants;
-                    for (let membre of membres) {
-                        msg += `@${membre.split("@")[0]}\n`;
+                        for (let membre of membres) {
+                            const name = membre.split('@')[0];
+                            const lines = [];
+                            lines.push('╔════════════════════════╗');
+                            lines.push('║      🕊️ VIPER GOODBYE 🕊️    ║');
+                            lines.push('╠════════════════════════╣');
+                            lines.push(`║ Goodbye *@${name}*`);
+                            lines.push('╠════════════════════════╣');
+                            lines.push(`║ Group : ${subject}`);
+                            lines.push(`║ Members now: ${total}`);
+                            lines.push('╠════════════════════════╣');
+                            lines.push('║ We will miss you. Bye!   ║');
+                            lines.push('╚════════════════════════╝');
+
+                            await zk.sendMessage(group.id, { image: { url: ppgroup }, caption: lines.join('\n'), mentions: [membre] });
+                        }
+                    } catch (e) {
+                        console.error('Goodbye message error', e);
                     }
-
-                    zk.sendMessage(group.id, { text: msg, mentions: membres });
 
                 } else if (group.action == 'promote' && (await recupevents(group.id, "antipromote") == 'on')) {
                     //  console.log(zk.user.id)
