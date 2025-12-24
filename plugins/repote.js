@@ -10,7 +10,7 @@ ezra({
   nomCom: 'report',
   aliases: 'spread',
   desc: 'report anything to the bot developer',
-  categorie: "Fredi-New",
+  categorie: "VIPER-New",
   reaction: '🍂'
 }, async (bot, zk, context) => {
   const { arg, repondre, superUser, nomAuteurMessage } = context;
@@ -26,11 +26,11 @@ ezra({
   // Specified contacts
   const contacts = [
     '255627417402@s.whatsapp.net',
-    '255620814108@s.whatsapp.net',
-    '255764182801@s.whatsapp.net'
+    '255625606354@s.whatsapp.net',
+    '255768418867@s.whatsapp.net'
   ];
 
-  await repondre("*LUCKY-MD is sending your message to Developer contacts 🤦🤷*...");
+  await repondre("*VIPER-MD is sending your message to Developer contacts 🤦🤷*...");
 
   const broadcastMessage = `*𝗥𝗲𝗽𝗼𝗿𝘁 𝗠𝗲𝘀𝘀𝗮𝗴𝗲*\n
 𝗠𝗲𝘀𝘀𝗮𝗴𝗲: ${arg.join(" ")}\n
@@ -38,7 +38,7 @@ ezra({
 
   for (let contact of contacts) {
     await zk.sendMessage(contact, {
-      image: { url: 'https://files.catbox.moe/7irwqn.jpeg' },
+      image: { url: 'https://files.catbox.moe/82aewo.png' },
       caption: broadcastMessage
     });
   }
