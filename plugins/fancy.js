@@ -1,7 +1,7 @@
 const { ezra } = require("../fredi/ezra");
 const fancy = require("../fredi/style");
 
-ezra({ nomCom: "fancy", categorie: "Fredi-Fun", reaction: "✍️" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "fancy", categorie: "VIPER-Fun", reaction: "✍️" }, async (dest, zk, commandeOptions) => {
     const { arg, repondre, prefixe } = commandeOptions;
     const id = arg[0]?.match(/\d+/)?.join('');
     const text = arg.slice(1).join(" ");

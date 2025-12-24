@@ -1,27 +1,28 @@
 const { ezra } = require("../fredi/ezra");
 const canvacord = require("canvacord");
-const {uploadImageToImgur} = require("../fredi/imgur")
+const { uploadImageToImgur } = require("../fredi/imgur")
 
 // Generic function to create a canvacord order
 function createCanvacordCommand(commandName, canvacordFunction) {
   ezra({
     nomCom: commandName,
-    categorie: "Fredi-Image-Edit",
+    categorie: "VIPER-Image-Edit",
     reaction: "🎉"
   }, async (origineMessage, zk, commandeOptions) => {
     const { ms, msgRepondu, auteurMsgRepondu } = commandeOptions;
-  const clientId = 'b40a1820d63cd4e' ;
+    const clientId = 'b40a1820d63cd4e';
 
     try {
       let img;
       if (msgRepondu) {
 
-     if (msgRepondu.imageMessage) {
-        const image = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage)
-         img = await uploadImageToImgur(image, clientId )
-     } else {
-        
-        img = await zk.profilePictureUrl(auteurMsgRepondu, 'image'); }
+        if (msgRepondu.imageMessage) {
+          const image = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage)
+          img = await uploadImageToImgur(image, clientId)
+        } else {
+
+          img = await zk.profilePictureUrl(auteurMsgRepondu, 'image');
+        }
       } else {
         img = "https://i.pinimg.com/564x/84/09/12/840912dd744e6662ab211b8070b5d84c.jpg";
       }
@@ -48,10 +49,10 @@ createCanvacordCommand("hitler", canvacord.Canvacord.hitler);
 createCanvacordCommand("invert", canvacord.Canvacord.invert);
 createCanvacordCommand("jail", canvacord.Canvacord.jail);
 createCanvacordCommand("affect", canvacord.Canvacord.affect);
-  createCanvacordCommand("beautiful", canvacord.Canvacord.beautiful);
-    createCanvacordCommand("blur", canvacord.Canvacord.blur);
+createCanvacordCommand("beautiful", canvacord.Canvacord.beautiful);
+createCanvacordCommand("blur", canvacord.Canvacord.blur);
 
-   createCanvacordCommand("circle", canvacord.Canvacord.circle);
-        createCanvacordCommand("facepalm", canvacord.Canvacord.facepalm);
-        createCanvacordCommand("greyscale", canvacord.Canvacord.greyscale);
-        createCanvacordCommand("jokes", canvacord.Canvacord.jokeOverHead);
+createCanvacordCommand("circle", canvacord.Canvacord.circle);
+createCanvacordCommand("facepalm", canvacord.Canvacord.facepalm);
+createCanvacordCommand("greyscale", canvacord.Canvacord.greyscale);
+createCanvacordCommand("jokes", canvacord.Canvacord.jokeOverHead);

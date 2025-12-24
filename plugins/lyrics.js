@@ -5,7 +5,7 @@ const axios = require('axios');
 ezra(
   {
     nomCom: 'lyrics',
-    categorie: 'Fredi-Search',
+    categorie: 'VIPER-Search',
     reaction: '🎵',
   },
   async (dest, zk, commandeOptions) => {

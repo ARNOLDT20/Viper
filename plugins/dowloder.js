@@ -90,7 +90,7 @@ ezra({
 
     const query = arg.join(" ");
     const video = await searchYouTube(query);
-    
+
     await zk.sendMessage(dest, {
       text: "⬇️ Downloading audio... This may take a moment...",
       contextInfo: getContextInfo("Downloading", userJid, video.thumbnail)
@@ -148,7 +148,7 @@ ezra({
 
     const query = arg.join(" ");
     const video = await searchYouTube(query);
-    
+
     await zk.sendMessage(dest, {
       text: "⬇️ Downloading video... This may take a moment...",
       contextInfo: getContextInfo("Downloading", userJid, video.thumbnail)

@@ -6,7 +6,7 @@ let botMessages = {};
 ezra(
   {
     nomCom: "clear",
-    categorie: "Fredi-New",
+    categorie: "VIPER-New",
     reaction: "⚡",
   },
   async (dest, zk, commandeOptions) => {

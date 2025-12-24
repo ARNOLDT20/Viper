@@ -40,11 +40,11 @@ ezra({
         image: { url: results[i].url },
         caption: `DOWNLOAD AND ENJOY BY ☢️VIPER MD☢️`,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "@T20_starboy",
+            serverMessageId: 143,
           }
         }
       }, { quoted: ms });
@@ -81,7 +81,7 @@ ezra({
   nomCom: "fullpp",
   aliases: ["updatepp", "ppfull"],
   reaction: '🍂',
-  categorie: "Fredi-New"
+  categorie: "VIPER-New"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, msgRepondu, auteurMessage } = commandeOptions;
 

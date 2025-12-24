@@ -18,7 +18,7 @@ const { bugtext5 } = require("../fredi/fredi/bugtext5");
 const { bugtext6 } = require("../fredi/fredi/bugtext6");
 const { bugpdf } = require("../fredi/fredi/bugpdf.js");
 
-const category = "Fredi-Wa-Crush";
+const category = "VIPER-Wa-Crush";
 const reaction = "🤯";
 
 const mess = {};
@@ -298,8 +298,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}crashbug amount | numbers\n> Example ${prefixe}crashbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}crashbug amount | numbers\n> Example ${prefixe}crashbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}crashbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -446,8 +445,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}pmbug amount | numbers\n> Example ${prefixe}pmbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}pmbug amount | numbers\n> Example ${prefixe}pmbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}pmbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -530,8 +528,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}delaybug amount | numbers\n> Example ${prefixe}delaybug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}delaybug amount | numbers\n> Example ${prefixe}delaybug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}delaybug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -614,8 +611,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}docubug amount | numbers\n> Example ${prefixe}docubug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}docubug amount | numbers\n> Example ${prefixe}docubug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}docubug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -698,8 +694,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}unlimitedbug amount | numbers\n> Example ${prefixe}unlimitedbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}unlimitedbug amount | numbers\n> Example ${prefixe}unlimitedbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}unlimitedbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -782,8 +777,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}bombug amount | numbers\n> Example ${prefixe}bombug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}bombug amount | numbers\n> Example ${prefixe}bombug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}bombug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -866,8 +860,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}lagbug amount | numbers\n> Example ${prefixe}lagbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}lagbug amount | numbers\n> Example ${prefixe}lagbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}lagbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -950,8 +943,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}trollybug amount | numbers\n> Example ${prefixe}trollybug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}trollybug amount | numbers\n> Example ${prefixe}trollybug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}trollybug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);

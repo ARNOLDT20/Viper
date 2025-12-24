@@ -3,13 +3,13 @@
 const { ezra } = require("../fredi/ezra")
 //const { getGroupe } = require("../lib/groupe")
 const { Sticker, StickerTypes } = require('wa-sticker-formatter');
-const {ajouterOuMettreAJourJid,mettreAJourAction,verifierEtatJid} = require("../lib/antilien")
-const {atbajouterOuMettreAJourJid,atbverifierEtatJid} = require("../lib/antibot")
+const { ajouterOuMettreAJourJid, mettreAJourAction, verifierEtatJid } = require("../lib/antilien")
+const { atbajouterOuMettreAJourJid, atbverifierEtatJid } = require("../lib/antibot")
 const { search, download } = require("aptoide-scraper");
 const fs = require("fs-extra");
 const conf = require("../set");
 const { default: axios } = require('axios');
-const {ajouterUtilisateurAvecWarnCount , getWarnCountByJID , resetWarnCountByJID} = require('../lib/warn')
+const { ajouterUtilisateurAvecWarnCount, getWarnCountByJID, resetWarnCountByJID } = require('../lib/warn')
 const s = require("../set")
 //const { uploadImageToImgur } = require('../fredi/imgur');
 
@@ -17,43 +17,46 @@ const s = require("../set")
 
 // COMMAND TO WARN USERS GROUP 
 ezra(
-    {
-        nomCom : 'warn',
-        categorie : 'Fredi-Group'
-        
-    },async (dest,zk,commandeOptions) => {
+  {
+    nomCom: 'warn',
+    categorie: 'VIPER-Group'
 
- const {ms , arg, repondre,superUser,verifGroupe,verifAdmin , msgRepondu , auteurMsgRepondu} = commandeOptions;
-if(!verifGroupe ) {repondre('this is a group commands') ; return};
+  }, async (dest, zk, commandeOptions) => {
 
-if(verifAdmin || superUser) {
-   if(!msgRepondu){repondre('reply a message of user to warn'); return};
-   
-   if (!arg || !arg[0] || arg.join('') === '') {
-    await ajouterUtilisateurAvecWarnCount(auteurMsgRepondu)
-   let warn = await getWarnCountByJID(auteurMsgRepondu)
-   let warnlimit = s.WARN_COUNT
-   
-   if( warn >= warnlimit ) { await repondre('this user reach limit of warning , so i kick him/her');
-                zk.groupParticipantsUpdate(dest, [auteurMsgRepondu], "remove")
- } else { 
+    const { ms, arg, repondre, superUser, verifGroupe, verifAdmin, msgRepondu, auteurMsgRepondu } = commandeOptions;
+    if (!verifGroupe) { repondre('this is a group commands'); return };
 
-    var rest = warnlimit - warn ;
-     repondre(`this user is warn , rest before kick : ${rest} `)
-   }
-} else if ( arg[0] === 'reset') { await resetWarnCountByJID(auteurMsgRepondu) 
+    if (verifAdmin || superUser) {
+      if (!msgRepondu) { repondre('reply a message of user to warn'); return };
 
-    repondre("Warn count is reset for this user")} else ( repondre('reply to a user by typing  .warn ou .warn reset'))
-   
-}  else {
-    repondre('you are not admin')
-}
- 
-   });
-   
-   
- // COMMAND TO GETALLMEMBERS 
-ezra({ nomCom: "getallmembers", categorie: 'Fredi-Group', reaction: "📣" }, async (dest, zk, commandeOptions) => {
+      if (!arg || !arg[0] || arg.join('') === '') {
+        await ajouterUtilisateurAvecWarnCount(auteurMsgRepondu)
+        let warn = await getWarnCountByJID(auteurMsgRepondu)
+        let warnlimit = s.WARN_COUNT
+
+        if (warn >= warnlimit) {
+          await repondre('this user reach limit of warning , so i kick him/her');
+          zk.groupParticipantsUpdate(dest, [auteurMsgRepondu], "remove")
+        } else {
+
+          var rest = warnlimit - warn;
+          repondre(`this user is warn , rest before kick : ${rest} `)
+        }
+      } else if (arg[0] === 'reset') {
+        await resetWarnCountByJID(auteurMsgRepondu)
+
+        repondre("Warn count is reset for this user")
+      } else (repondre('reply to a user by typing  .warn ou .warn reset'))
+
+    } else {
+      repondre('you are not admin')
+    }
+
+  });
+
+
+// COMMAND TO GETALLMEMBERS 
+ezra({ nomCom: "getallmembers", categorie: 'VIPER-Group', reaction: "📣" }, async (dest, zk, commandeOptions) => {
   const { ms, repondre, arg, verifGroupe, nomGroupe, infosGroupe, nomAuteurMessage, verifAdmin, superUser } = commandeOptions;
 
   if (!verifGroupe) return repondre("✋🏿 This command is reserved for groups ❌");
@@ -66,7 +69,7 @@ ezra({ nomCom: "getallmembers", categorie: 'Fredi-Group', reaction: "📣" }, as
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n
 > regards frediezra®\n\n`;
 
-  const emoji = ['💡', '☢️', '🗡️', '🖌️', '🪫', '🔋', '⚙️', '🕶️', '🌡️', '✏️', '📌', '©️', '$','®️','™️','⚔️','🔏'];
+  const emoji = ['💡', '☢️', '🗡️', '🖌️', '🪫', '🔋', '⚙️', '🕶️', '🌡️', '✏️', '📌', '©️', '$', '®️', '™️', '⚔️', '🔏'];
   const randomEmoji = emoji[Math.floor(Math.random() * emoji.length)];
 
   let mentions = [];
@@ -91,21 +94,21 @@ ezra({ nomCom: "getallmembers", categorie: 'Fredi-Group', reaction: "📣" }, as
 
 
 // COMMAND TO TAGALL
-ezra({ nomCom: "tagall", categorie: 'Fredi-Group', reaction: "📯" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "tagall", categorie: 'VIPER-Group', reaction: "📯" }, async (dest, zk, commandeOptions) => {
 
   const { ms, repondre, arg, verifGroupe, nomGroupe, infosGroupe, nomAuteurMessage, verifAdmin, superUser } = commandeOptions
 
 
- 
+
 
   if (!verifGroupe) { repondre("⚠️ uuuuhh Dr this command is reserved for groups ❌"); return; }
   if (!arg || arg === ' ') {
-  mess = 'Aucun Message'
+    mess = 'Aucun Message'
   } else {
     mess = arg.join(' ')
-  } ;
+  };
   let membresGroupe = verifGroupe ? await infosGroupe.participants : ""
-  var tag = ""; 
+  var tag = "";
   tag += `┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n  
         🌟 *VIPER MD TAGS* 🌟
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n
@@ -120,7 +123,7 @@ ezra({ nomCom: "tagall", categorie: 'Fredi-Group', reaction: "📯" }, async (de
 
 
 
-  let emoji = ['💡', '☢️', '🗡️', '🖌️', '🪫', '🔋', '⚙️', '🕶️', '🌡️', '✏️', '📌', '©️', '$','®️','™️','⚔️','🔏']
+  let emoji = ['💡', '☢️', '🗡️', '🖌️', '🪫', '🔋', '⚙️', '🕶️', '🌡️', '✏️', '📌', '©️', '$', '®️', '™️', '⚔️', '🔏']
   let random = Math.floor(Math.random() * (emoji.length - 1))
 
 
@@ -128,18 +131,18 @@ ezra({ nomCom: "tagall", categorie: 'Fredi-Group', reaction: "📯" }, async (de
     tag += `${emoji[random]}      @${membre.id.split("@")[0]}\n`
   }
 
- 
- if (verifAdmin || superUser) {
 
-  zk.sendMessage(dest, { text: tag, mentions: membresGroupe.map((i) => i.id) }, { quoted: ms })
+  if (verifAdmin || superUser) {
 
-   } else { repondre('command reserved for admins')}
+    zk.sendMessage(dest, { text: tag, mentions: membresGroupe.map((i) => i.id) }, { quoted: ms })
+
+  } else { repondre('command reserved for admins') }
 
 });
 
 
 // COMMAND TO LINK GROUP 
-ezra({ nomCom: "link", categorie: 'Fredi-Group', reaction: "🚜" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "link", categorie: 'VIPER-Group', reaction: "🚜" }, async (dest, zk, commandeOptions) => {
   const { repondre, nomGroupe, nomAuteurMessage, verifGroupe } = commandeOptions;
   if (!verifGroupe) { repondre("wait bro , you want the link to my dm?"); return; };
 
@@ -158,7 +161,7 @@ Grp link :${lien} \n\n★𝙿𝚘𝚠𝚎𝚛𝚎𝚍 𝚋𝚢  ☢️VIPER MD�
 
 // COMMAND TO PROMOTE ADM
 /** *nommer un membre comme admin */
-ezra({ nomCom: "promote", categorie: 'Fredi-Group', reaction: "💐" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "promote", categorie: 'VIPER-Group', reaction: "💐" }, async (dest, zk, commandeOptions) => {
   let { repondre, msgRepondu, infosGroupe, auteurMsgRepondu, verifGroupe, auteurMessage, superUser, idBot } = commandeOptions;
   let membresGroupe = verifGroupe ? await infosGroupe.participants : ""
   if (!verifGroupe) { return repondre("For groups only"); }
@@ -218,7 +221,7 @@ ezra({ nomCom: "promote", categorie: 'Fredi-Group', reaction: "💐" }, async (d
 })
 
 // COMMAND TO DEMOTE ADM
-ezra({ nomCom: "demote", categorie: 'Fredi-Group', reaction: "👨🏿‍💼" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "demote", categorie: 'VIPER-Group', reaction: "👨🏿‍💼" }, async (dest, zk, commandeOptions) => {
   let { repondre, msgRepondu, infosGroupe, auteurMsgRepondu, verifGroupe, auteurMessage, superUser, idBot } = commandeOptions;
   let membresGroupe = verifGroupe ? await infosGroupe.participants : ""
   if (!verifGroupe) { return repondre("For groups only"); }
@@ -282,7 +285,7 @@ ezra({ nomCom: "demote", categorie: 'Fredi-Group', reaction: "👨🏿‍💼" }
 
 
 // COMMAND TO REMOVE MEMBERS 
-ezra({ nomCom: "remove", categorie: 'Fredi-Group', reaction: "😱" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "remove", categorie: 'VIPER-Group', reaction: "😱" }, async (dest, zk, commandeOptions) => {
   let { repondre, msgRepondu, infosGroupe, auteurMsgRepondu, verifGroupe, nomAuteurMessage, auteurMessage, superUser, idBot } = commandeOptions;
   let membresGroupe = verifGroupe ? await infosGroupe.participants : ""
   if (!verifGroupe) { return repondre("for groups only"); }
@@ -338,7 +341,7 @@ ezra({ nomCom: "remove", categorie: 'Fredi-Group', reaction: "😱" }, async (de
 
               await sticker.toFile("st.webp")
               var txt = `@${auteurMsgRepondu.split("@")[0]} was removed from the group.\n`
-            /*  zk.sendMessage(dest, { sticker: fs.readFileSync("st.webp") }, { quoted: ms.message.extendedTextMessage.contextInfo.stanzaId})*/
+              /*  zk.sendMessage(dest, { sticker: fs.readFileSync("st.webp") }, { quoted: ms.message.extendedTextMessage.contextInfo.stanzaId})*/
               await zk.groupParticipantsUpdate(dest, [auteurMsgRepondu], "remove");
               zk.sendMessage(dest, { text: txt, mentions: [auteurMsgRepondu] })
 
@@ -355,137 +358,136 @@ ezra({ nomCom: "remove", categorie: 'Fredi-Group', reaction: "😱" }, async (de
 })
 
 // COMMAND TO DELETE 
-ezra({ nomCom: "del", categorie: 'Fredi-Group',reaction:"🧹" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "del", categorie: 'VIPER-Group', reaction: "🧹" }, async (dest, zk, commandeOptions) => {
 
-  const { ms, repondre, verifGroupe,auteurMsgRepondu,idBot, msgRepondu, verifAdmin, superUser} = commandeOptions;
-  
+  const { ms, repondre, verifGroupe, auteurMsgRepondu, idBot, msgRepondu, verifAdmin, superUser } = commandeOptions;
+
   if (!msgRepondu) {
     repondre("Please mention the message to delete.");
     return;
   }
-  if(superUser && auteurMsgRepondu==idBot )
-  {
-    
-       if(auteurMsgRepondu==idBot)
-       {
-         const key={
-            remoteJid:dest,
-      fromMe: true,
-      id: ms.message.extendedTextMessage.contextInfo.stanzaId,
-         }
-         await zk.sendMessage(dest,{delete:key});return;
-       } 
+  if (superUser && auteurMsgRepondu == idBot) {
+
+    if (auteurMsgRepondu == idBot) {
+      const key = {
+        remoteJid: dest,
+        fromMe: true,
+        id: ms.message.extendedTextMessage.contextInfo.stanzaId,
+      }
+      await zk.sendMessage(dest, { delete: key }); return;
+    }
   }
 
-          if(verifGroupe)
-          {
-               if(verifAdmin || superUser)
-               {
-                    
-                         try{
-                
-      
-            const key=   {
-               remoteJid : dest,
-               id : ms.message.extendedTextMessage.contextInfo.stanzaId ,
-               fromMe : false,
-               participant : ms.message.extendedTextMessage.contextInfo.participant
+  if (verifGroupe) {
+    if (verifAdmin || superUser) {
 
-            }        
-         
-         await zk.sendMessage(dest,{delete:key});return;
+      try {
 
-             }catch(e){repondre( "I need admin rights.")}
-                    
-                      
-               }else{repondre("Sorry, you are not an administrator of the group.")}
-          }
+
+        const key = {
+          remoteJid: dest,
+          id: ms.message.extendedTextMessage.contextInfo.stanzaId,
+          fromMe: false,
+          participant: ms.message.extendedTextMessage.contextInfo.participant
+
+        }
+
+        await zk.sendMessage(dest, { delete: key }); return;
+
+      } catch (e) { repondre("I need admin rights.") }
+
+
+    } else { repondre("Sorry, you are not an administrator of the group.") }
+  }
 
 });
 
 // COMMAND TO GRUP INFO
-ezra({ nomCom: "info", categorie: 'Fredi-Group' }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "info", categorie: 'VIPER-Group' }, async (dest, zk, commandeOptions) => {
   const { ms, repondre, verifGroupe } = commandeOptions;
   if (!verifGroupe) { repondre("order reserved for the group only"); return };
 
- try { ppgroup = await zk.profilePictureUrl(dest ,'image') ; } catch { ppgroup = conf.IMAGE_MENU}
+  try { ppgroup = await zk.profilePictureUrl(dest, 'image'); } catch { ppgroup = conf.IMAGE_MENU }
 
-    const info = await zk.groupMetadata(dest)
+  const info = await zk.groupMetadata(dest)
 
-    /*console.log(metadata.id + ", title: " + metadata.subject + ", description: " + metadata.desc)*/
-
-
-    let mess = {
-      image: { url: ppgroup },
-      caption:  `☢️VIPER MD☢️\n\n*━━━━『𝙶𝚁𝙾𝚄𝙿 𝙸𝙽𝙵𝙾』━━━━*\n\n*🎐Name:* ${info.subject}\n\n*🔩Group's ID:* ${dest}\n\n*🔍Desc:* \n\n${info.desc}`
-    }
+  /*console.log(metadata.id + ", title: " + metadata.subject + ", description: " + metadata.desc)*/
 
 
-    zk.sendMessage(dest, mess, { quoted: ms })
-  });
+  let mess = {
+    image: { url: ppgroup },
+    caption: `☢️VIPER MD☢️\n\n*━━━━『𝙶𝚁𝙾𝚄𝙿 𝙸𝙽𝙵𝙾』━━━━*\n\n*🎐Name:* ${info.subject}\n\n*🔩Group's ID:* ${dest}\n\n*🔍Desc:* \n\n${info.desc}`
+  }
+
+
+  zk.sendMessage(dest, mess, { quoted: ms })
+});
 
 
 
- // COMMAND TO ACTVATE ANTILINK GROUP
- ezra({ nomCom: "antilink", categorie: 'Fredi-Group', reaction: "🔗" }, async (dest, zk, commandeOptions) => {
+// COMMAND TO ACTVATE ANTILINK GROUP
+ezra({ nomCom: "antilink", categorie: 'VIPER-Group', reaction: "🔗" }, async (dest, zk, commandeOptions) => {
 
 
   var { repondre, arg, verifGroupe, superUser, verifAdmin } = commandeOptions;
-  
 
-  
+
+
   if (!verifGroupe) {
     return repondre("*for groups only*");
   }
-  
-  if( superUser || verifAdmin) {
+
+  if (superUser || verifAdmin) {
     const enetatoui = await verifierEtatJid(dest)
     try {
-      if (!arg || !arg[0] || arg === ' ') { repondre("antilink on to activate the anti-link feature\nantilink off to deactivate the anti-link feature\nantilink action/remove to directly remove the link without notice\nantilink action/warn to give warnings\nantilink action/delete to remove the link without any sanctions\n\nPlease note that by default, the anti-link feature is set to delete.") ; return};
-     
-      if(arg[0] === 'on') {
+      if (!arg || !arg[0] || arg === ' ') { repondre("antilink on to activate the anti-link feature\nantilink off to deactivate the anti-link feature\nantilink action/remove to directly remove the link without notice\nantilink action/warn to give warnings\nantilink action/delete to remove the link without any sanctions\n\nPlease note that by default, the anti-link feature is set to delete."); return };
 
-      
-       if(enetatoui ) { repondre("the antilink is already activated for this group")
-                    } else {
-                  await ajouterOuMettreAJourJid(dest,"oui");
-                
-              repondre("the antilink is activated successfully") }
-     
-            } else if (arg[0] === "off") {
+      if (arg[0] === 'on') {
 
-              if (enetatoui) { 
-                await ajouterOuMettreAJourJid(dest , "non");
 
-                repondre("The antilink has been successfully deactivated");
-                
-              } else {
-                repondre("antilink is not activated for this group");
-              }
-            } else if (arg.join('').split("/")[0] === 'action') {
-                            
+        if (enetatoui) {
+          repondre("the antilink is already activated for this group")
+        } else {
+          await ajouterOuMettreAJourJid(dest, "oui");
 
-              let action = (arg.join('').split("/")[1]).toLowerCase() ;
+          repondre("the antilink is activated successfully")
+        }
 
-              if ( action == 'remove' || action == 'warn' || action == 'delete' ) {
+      } else if (arg[0] === "off") {
 
-                await mettreAJourAction(dest,action);
+        if (enetatoui) {
+          await ajouterOuMettreAJourJid(dest, "non");
 
-                repondre(`The anti-link action has been updated to ${arg.join('').split("/")[1]}`);
+          repondre("The antilink has been successfully deactivated");
 
-              } else {
-                  repondre("The only actions available are warn, remove, and delete") ;
-              }
-            
+        } else {
+          repondre("antilink is not activated for this group");
+        }
+      } else if (arg.join('').split("/")[0] === 'action') {
 
-            } else repondre("antilink on to activate the anti-link feature\nantilink off to deactivate the anti-link feature\nantilink action/remove to directly remove the link without notice\nantilink action/warn to give warnings\nantilink action/delete to remove the link without any sanctions\n\nPlease note that by default, the anti-link feature is set to delete.")
 
-      
+        let action = (arg.join('').split("/")[1]).toLowerCase();
+
+        if (action == 'remove' || action == 'warn' || action == 'delete') {
+
+          await mettreAJourAction(dest, action);
+
+          repondre(`The anti-link action has been updated to ${arg.join('').split("/")[1]}`);
+
+        } else {
+          repondre("The only actions available are warn, remove, and delete");
+        }
+
+
+      } else repondre("antilink on to activate the anti-link feature\nantilink off to deactivate the anti-link feature\nantilink action/remove to directly remove the link without notice\nantilink action/warn to give warnings\nantilink action/delete to remove the link without any sanctions\n\nPlease note that by default, the anti-link feature is set to delete.")
+
+
     } catch (error) {
-       repondre(error)
+      repondre(error)
     }
 
-  } else { repondre('You are not entitled to this order') ;
+  } else {
+    repondre('You are not entitled to this order');
   }
 
 });
@@ -493,67 +495,70 @@ ezra({ nomCom: "info", categorie: 'Fredi-Group' }, async (dest, zk, commandeOpti
 
 
 
- // COMMAND TO ACTIVATE ANTIBOT
+// COMMAND TO ACTIVATE ANTIBOT
 
- ezra({ nomCom: "antibot", categorie: 'Fredi-Group', reaction: "👾" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "antibot", categorie: 'VIPER-Group', reaction: "👾" }, async (dest, zk, commandeOptions) => {
 
 
   var { repondre, arg, verifGroupe, superUser, verifAdmin } = commandeOptions;
-  
 
-  
+
+
   if (!verifGroupe) {
     return repondre("*for groups only*");
   }
-  
-  if( superUser || verifAdmin) {
+
+  if (superUser || verifAdmin) {
     const enetatoui = await atbverifierEtatJid(dest)
     try {
-      if (!arg || !arg[0] || arg === ' ') { repondre('antibot on to activate the anti-bot feature\nantibot off to deactivate the antibot feature\nantibot action/remove to directly remove the bot without notice\nantibot action/warn to give warnings\nantilink action/delete to remove the bot message without any sanctions\n\nPlease note that by default, the anti-bot feature is set to delete.') ; return};
-     
-      if(arg[0] === 'on') {
+      if (!arg || !arg[0] || arg === ' ') { repondre('antibot on to activate the anti-bot feature\nantibot off to deactivate the antibot feature\nantibot action/remove to directly remove the bot without notice\nantibot action/warn to give warnings\nantilink action/delete to remove the bot message without any sanctions\n\nPlease note that by default, the anti-bot feature is set to delete.'); return };
 
-      
-       if(enetatoui ) { repondre("the antibot is already activated for this group")
-                    } else {
-                  await atbajouterOuMettreAJourJid(dest,"oui");
-                
-              repondre("the antibot is successfully activated") }
-     
-            } else if (arg[0] === "off") {
+      if (arg[0] === 'on') {
 
-              if (enetatoui) { 
-                await atbajouterOuMettreAJourJid(dest , "non");
 
-                repondre("The antibot has been successfully deactivated");
-                
-              } else {
-                repondre("antibot is not activated for this group");
-              }
-            } else if (arg.join('').split("/")[0] === 'action') {
+        if (enetatoui) {
+          repondre("the antibot is already activated for this group")
+        } else {
+          await atbajouterOuMettreAJourJid(dest, "oui");
 
-              let action = (arg.join('').split("/")[1]).toLowerCase() ;
+          repondre("the antibot is successfully activated")
+        }
 
-              if ( action == 'remove' || action == 'warn' || action == 'delete' ) {
+      } else if (arg[0] === "off") {
 
-                await mettreAJourAction(dest,action);
+        if (enetatoui) {
+          await atbajouterOuMettreAJourJid(dest, "non");
 
-                repondre(`The anti-bot action has been updated to ${arg.join('').split("/")[1]}`);
+          repondre("The antibot has been successfully deactivated");
 
-              } else {
-                  repondre("The only actions available are warn, remove, and delete") ;
-              }
-            
+        } else {
+          repondre("antibot is not activated for this group");
+        }
+      } else if (arg.join('').split("/")[0] === 'action') {
 
-            } else {  
-              repondre('antibot on to activate the anti-bot feature\nantibot off to deactivate the antibot feature\nantibot action/remove to directly remove the bot without notice\nantibot action/warn to give warnings\nantilink action/delete to remove the bot message without any sanctions\n\nPlease note that by default, the anti-bot feature is set to delete.') ;
+        let action = (arg.join('').split("/")[1]).toLowerCase();
 
-                            }
+        if (action == 'remove' || action == 'warn' || action == 'delete') {
+
+          await mettreAJourAction(dest, action);
+
+          repondre(`The anti-bot action has been updated to ${arg.join('').split("/")[1]}`);
+
+        } else {
+          repondre("The only actions available are warn, remove, and delete");
+        }
+
+
+      } else {
+        repondre('antibot on to activate the anti-bot feature\nantibot off to deactivate the antibot feature\nantibot action/remove to directly remove the bot without notice\nantibot action/warn to give warnings\nantilink action/delete to remove the bot message without any sanctions\n\nPlease note that by default, the anti-bot feature is set to delete.');
+
+      }
     } catch (error) {
-       repondre(error)
+      repondre(error)
     }
 
-  } else { repondre('You are not entitled to this order') ;
+  } else {
+    repondre('You are not entitled to this order');
 
   }
 
@@ -561,7 +566,7 @@ ezra({ nomCom: "info", categorie: 'Fredi-Group' }, async (dest, zk, commandeOpti
 
 // COMMAND TO GROUP ACTION OPN/CLS
 
-ezra({ nomCom: "group", categorie: 'Fredi-Group' }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "group", categorie: 'VIPER-Group' }, async (dest, zk, commandeOptions) => {
 
   const { repondre, verifGroupe, verifAdmin, superUser, arg } = commandeOptions;
 
@@ -582,12 +587,12 @@ ezra({ nomCom: "group", categorie: 'Fredi-Group' }, async (dest, zk, commandeOpt
       default: repondre("Please don't invent an option")
     }
 
-    
+
   } else {
     repondre("order reserved for the administratorr");
     return;
   }
- 
+
 
 });
 
@@ -600,13 +605,13 @@ ezra({ nomCom: "left", categorie: "Fredi-User" }, async (dest, zk, commandeOptio
     repondre("command reserved for the bot owner");
     return;
   }
-  await repondre('sayonnara') ;
-   
+  await repondre('sayonnara');
+
   zk.groupLeave(dest)
 });
 
 // COMMAND TO EDIT GROUP NAME
-ezra({ nomCom: "gname", categorie: 'Fredi-Group' }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "gname", categorie: 'VIPER-Group' }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin } = commandeOptions;
 
@@ -618,15 +623,15 @@ ezra({ nomCom: "gname", categorie: 'Fredi-Group' }, async (dest, zk, commandeOpt
     repondre("Please enter the group name");
     return;
   };
-   const nom = arg.join(' ')
+  const nom = arg.join(' ')
   await zk.groupUpdateSubject(dest, nom);
-    repondre(`group name refresh: *${nom}*`)
+  repondre(`group name refresh: *${nom}*`)
 
- 
-}) ;
+
+});
 
 // COMMAND TO EDIT GROUP DESK
-ezra({ nomCom: "gdesc", categorie: 'Fredi-Group' }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "gdesc", categorie: 'VIPER-Group' }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin } = commandeOptions;
 
@@ -638,32 +643,32 @@ ezra({ nomCom: "gdesc", categorie: 'Fredi-Group' }, async (dest, zk, commandeOpt
     repondre("Please enter the group description");
     return;
   };
-   const nom = arg.join(' ')
+  const nom = arg.join(' ')
   await zk.groupUpdateDescription(dest, nom);
-    repondre(`group description update: *${nom}*`)
+  repondre(`group description update: *${nom}*`)
 
- 
-}) ;
+
+});
 
 // COMMAND TO GET GROUP PROFILE PHOTO
-ezra({ nomCom: "gpp", categorie: 'Fredi-Group' }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "gpp", categorie: 'VIPER-Group' }, async (dest, zk, commandeOptions) => {
 
   const { repondre, msgRepondu, verifAdmin } = commandeOptions;
 
   if (!verifAdmin) {
     repondre("order reserved for administrators of the group");
     return;
-  }; 
+  };
   if (msgRepondu.imageMessage) {
-    const pp = await  zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage) ;
+    const pp = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage);
 
     await zk.updateProfilePicture(dest, { url: pp })
-                .then( () => {
-                    zk.sendMessage(dest,{text:"Group pfp changed"})
-                    fs.unlinkSync(pp)
-                }).catch(() =>   zk.sendMessage(dest,{text:err})
-)
-        
+      .then(() => {
+        zk.sendMessage(dest, { text: "Group pfp changed" })
+        fs.unlinkSync(pp)
+      }).catch(() => zk.sendMessage(dest, { text: err })
+      )
+
   } else {
     repondre('Please mention an image')
   }
@@ -671,69 +676,69 @@ ezra({ nomCom: "gpp", categorie: 'Fredi-Group' }, async (dest, zk, commandeOptio
 });
 
 // COMMAND TO TAG ALL MEMBERS
-ezra({nomCom:"tag",categorie:'Fredi-Group',reaction:"🎤"},async(dest,zk,commandeOptions)=>{
+ezra({ nomCom: "tag", categorie: 'VIPER-Group', reaction: "🎤" }, async (dest, zk, commandeOptions) => {
 
-  const {repondre,msgRepondu,verifGroupe,arg ,verifAdmin , superUser}=commandeOptions;
+  const { repondre, msgRepondu, verifGroupe, arg, verifAdmin, superUser } = commandeOptions;
 
-  if(!verifGroupe)  { repondre('This command is only allowed in groups.')} ;
-  if (verifAdmin || superUser) { 
+  if (!verifGroupe) { repondre('This command is only allowed in groups.') };
+  if (verifAdmin || superUser) {
 
-  let metadata = await zk.groupMetadata(dest) ;
+    let metadata = await zk.groupMetadata(dest);
 
-  //console.log(metadata.participants)
- let tag = [] ;
-  for (const participant of metadata.participants ) {
+    //console.log(metadata.participants)
+    let tag = [];
+    for (const participant of metadata.participants) {
 
-      tag.push(participant.id) ;
-  }
-  //console.log(tag)
+      tag.push(participant.id);
+    }
+    //console.log(tag)
 
-    if(msgRepondu) {
+    if (msgRepondu) {
       console.log(msgRepondu)
-      let msg ;
+      let msg;
 
       if (msgRepondu.imageMessage) {
 
-        
 
-     let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage) ;
-     // console.log(msgRepondu) ;
-     msg = {
 
-       image : { url : media } ,
-       caption : msgRepondu.imageMessage.caption,
-       mentions :  tag
-       
-     }
-    
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage);
+        // console.log(msgRepondu) ;
+        msg = {
+
+          image: { url: media },
+          caption: msgRepondu.imageMessage.caption,
+          mentions: tag
+
+        }
+
 
       } else if (msgRepondu.videoMessage) {
 
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.videoMessage) ;
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.videoMessage);
 
         msg = {
 
-          video : { url : media } ,
-          caption : msgRepondu.videoMessage.caption,
-          mentions :  tag
-          
+          video: { url: media },
+          caption: msgRepondu.videoMessage.caption,
+          mentions: tag
+
         }
 
       } else if (msgRepondu.audioMessage) {
-    
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.audioMessage) ;
-       
+
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.audioMessage);
+
         msg = {
-   
-          audio : { url : media } ,
-          mimetype:'audio/mp4',
-          mentions :  tag
-           }     
-        
+
+          audio: { url: media },
+          mimetype: 'audio/mp4',
+          mentions: tag
+        }
+
       } else if (msgRepondu.stickerMessage) {
 
-    
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
+
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
           pack: 'VIPER MD',
@@ -744,104 +749,106 @@ ezra({nomCom:"tag",categorie:'Fredi-Group',reaction:"🎤"},async(dest,zk,comman
           background: "transparent",
         });
         const stickerBuffer2 = await stickerMess.toBuffer();
-       
-        msg = { sticker: stickerBuffer2 , mentions : tag}
+
+        msg = { sticker: stickerBuffer2, mentions: tag }
 
 
-      }  else {
-          msg = {
-             text : msgRepondu.conversation,
-             mentions : tag
-          }
+      } else {
+        msg = {
+          text: msgRepondu.conversation,
+          mentions: tag
+        }
       }
 
-    zk.sendMessage(dest,msg)
+      zk.sendMessage(dest, msg)
 
     } else {
 
-        if(!arg || !arg[0]) { repondre('Enter the text to announce or mention the message to announce');
-        ; return} ;
+      if (!arg || !arg[0]) {
+        repondre('Enter the text to announce or mention the message to announce');
+        ; return
+      };
 
       zk.sendMessage(
-         dest,
-         {
-          text : arg.join(' ') ,
-          mentions : tag
-         }     
+        dest,
+        {
+          text: arg.join(' '),
+          mentions: tag
+        }
       )
     }
 
-} else {
-  repondre('Command reserved for administrators.')
-}
+  } else {
+    repondre('Command reserved for administrators.')
+  }
 
 });
 
 
 // COMMAND TO TAG ALL MEMBERS
-ezra({nomCom:"hidetag",categorie:'Fredi-Group',reaction:"🎤"},async(dest,zk,commandeOptions)=>{
+ezra({ nomCom: "hidetag", categorie: 'VIPER-Group', reaction: "🎤" }, async (dest, zk, commandeOptions) => {
 
-  const {repondre,msgRepondu,verifGroupe,arg ,verifAdmin , superUser}=commandeOptions;
+  const { repondre, msgRepondu, verifGroupe, arg, verifAdmin, superUser } = commandeOptions;
 
-  if(!verifGroupe)  { repondre('This command is only allowed in groups.')} ;
-  if (verifAdmin || superUser) { 
+  if (!verifGroupe) { repondre('This command is only allowed in groups.') };
+  if (verifAdmin || superUser) {
 
-  let metadata = await zk.groupMetadata(dest) ;
+    let metadata = await zk.groupMetadata(dest);
 
-  //console.log(metadata.participants)
- let tag = [] ;
-  for (const participant of metadata.participants ) {
+    //console.log(metadata.participants)
+    let tag = [];
+    for (const participant of metadata.participants) {
 
-      tag.push(participant.id) ;
-  }
-  //console.log(tag)
+      tag.push(participant.id);
+    }
+    //console.log(tag)
 
-    if(msgRepondu) {
+    if (msgRepondu) {
       console.log(msgRepondu)
-      let msg ;
+      let msg;
 
       if (msgRepondu.imageMessage) {
 
-        
 
-     let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage) ;
-     // console.log(msgRepondu) ;
-     msg = {
 
-       image : { url : media } ,
-       caption : msgRepondu.imageMessage.caption,
-       mentions :  tag
-       
-     }
-    
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage);
+        // console.log(msgRepondu) ;
+        msg = {
+
+          image: { url: media },
+          caption: msgRepondu.imageMessage.caption,
+          mentions: tag
+
+        }
+
 
       } else if (msgRepondu.videoMessage) {
 
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.videoMessage) ;
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.videoMessage);
 
         msg = {
 
-          video : { url : media } ,
-          caption : msgRepondu.videoMessage.caption,
-          mentions :  tag
-          
+          video: { url: media },
+          caption: msgRepondu.videoMessage.caption,
+          mentions: tag
+
         }
 
       } else if (msgRepondu.audioMessage) {
-    
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.audioMessage) ;
-       
+
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.audioMessage);
+
         msg = {
-   
-          audio : { url : media } ,
-          mimetype:'audio/mp4',
-          mentions :  tag
-           }     
-        
+
+          audio: { url: media },
+          mimetype: 'audio/mp4',
+          mentions: tag
+        }
+
       } else if (msgRepondu.stickerMessage) {
 
-    
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
+
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
           pack: 'VIPER MD',
@@ -852,104 +859,106 @@ ezra({nomCom:"hidetag",categorie:'Fredi-Group',reaction:"🎤"},async(dest,zk,co
           background: "transparent",
         });
         const stickerBuffer2 = await stickerMess.toBuffer();
-       
-        msg = { sticker: stickerBuffer2 , mentions : tag}
+
+        msg = { sticker: stickerBuffer2, mentions: tag }
 
 
-      }  else {
-          msg = {
-             text : msgRepondu.conversation,
-             mentions : tag
-          }
+      } else {
+        msg = {
+          text: msgRepondu.conversation,
+          mentions: tag
+        }
       }
 
-    zk.sendMessage(dest,msg)
+      zk.sendMessage(dest, msg)
 
     } else {
 
-        if(!arg || !arg[0]) { repondre('Enter the text to announce or mention the message to announce');
-        ; return} ;
+      if (!arg || !arg[0]) {
+        repondre('Enter the text to announce or mention the message to announce');
+        ; return
+      };
 
       zk.sendMessage(
-         dest,
-         {
-          text : arg.join(' ') ,
-          mentions : tag
-         }     
+        dest,
+        {
+          text: arg.join(' '),
+          mentions: tag
+        }
       )
     }
 
-} else {
-  repondre('Command reserved for administrators.')
-}
+  } else {
+    repondre('Command reserved for administrators.')
+  }
 
 });
 
 
 // COMMAND TO TAG ALL MEMBERS
-ezra({nomCom:"htag",categorie:'Fredi-Group',reaction:"🎤"},async(dest,zk,commandeOptions)=>{
+ezra({ nomCom: "htag", categorie: 'VIPER-Group', reaction: "🎤" }, async (dest, zk, commandeOptions) => {
 
-  const {repondre,msgRepondu,verifGroupe,arg ,verifAdmin , superUser}=commandeOptions;
+  const { repondre, msgRepondu, verifGroupe, arg, verifAdmin, superUser } = commandeOptions;
 
-  if(!verifGroupe)  { repondre('This command is only allowed in groups.')} ;
-  if (verifAdmin || superUser) { 
+  if (!verifGroupe) { repondre('This command is only allowed in groups.') };
+  if (verifAdmin || superUser) {
 
-  let metadata = await zk.groupMetadata(dest) ;
+    let metadata = await zk.groupMetadata(dest);
 
-  //console.log(metadata.participants)
- let tag = [] ;
-  for (const participant of metadata.participants ) {
+    //console.log(metadata.participants)
+    let tag = [];
+    for (const participant of metadata.participants) {
 
-      tag.push(participant.id) ;
-  }
-  //console.log(tag)
+      tag.push(participant.id);
+    }
+    //console.log(tag)
 
-    if(msgRepondu) {
+    if (msgRepondu) {
       console.log(msgRepondu)
-      let msg ;
+      let msg;
 
       if (msgRepondu.imageMessage) {
 
-        
 
-     let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage) ;
-     // console.log(msgRepondu) ;
-     msg = {
 
-       image : { url : media } ,
-       caption : msgRepondu.imageMessage.caption,
-       mentions :  tag
-       
-     }
-    
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.imageMessage);
+        // console.log(msgRepondu) ;
+        msg = {
+
+          image: { url: media },
+          caption: msgRepondu.imageMessage.caption,
+          mentions: tag
+
+        }
+
 
       } else if (msgRepondu.videoMessage) {
 
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.videoMessage) ;
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.videoMessage);
 
         msg = {
 
-          video : { url : media } ,
-          caption : msgRepondu.videoMessage.caption,
-          mentions :  tag
-          
+          video: { url: media },
+          caption: msgRepondu.videoMessage.caption,
+          mentions: tag
+
         }
 
       } else if (msgRepondu.audioMessage) {
-    
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.audioMessage) ;
-       
+
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.audioMessage);
+
         msg = {
-   
-          audio : { url : media } ,
-          mimetype:'audio/mp4',
-          mentions :  tag
-           }     
-        
+
+          audio: { url: media },
+          mimetype: 'audio/mp4',
+          mentions: tag
+        }
+
       } else if (msgRepondu.stickerMessage) {
 
-    
-        let media  = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
+
+        let media = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
           pack: 'VIPER MD',
@@ -960,258 +969,260 @@ ezra({nomCom:"htag",categorie:'Fredi-Group',reaction:"🎤"},async(dest,zk,comma
           background: "transparent",
         });
         const stickerBuffer2 = await stickerMess.toBuffer();
-       
-        msg = { sticker: stickerBuffer2 , mentions : tag}
+
+        msg = { sticker: stickerBuffer2, mentions: tag }
 
 
-      }  else {
-          msg = {
-             text : msgRepondu.conversation,
-             mentions : tag
-          }
+      } else {
+        msg = {
+          text: msgRepondu.conversation,
+          mentions: tag
+        }
       }
 
-    zk.sendMessage(dest,msg)
+      zk.sendMessage(dest, msg)
 
     } else {
 
-        if(!arg || !arg[0]) { repondre('Enter the text to announce or mention the message to announce');
-        ; return} ;
+      if (!arg || !arg[0]) {
+        repondre('Enter the text to announce or mention the message to announce');
+        ; return
+      };
 
       zk.sendMessage(
-         dest,
-         {
-          text : arg.join(' ') ,
-          mentions : tag
-         }     
+        dest,
+        {
+          text: arg.join(' '),
+          mentions: tag
+        }
       )
     }
 
-} else {
-  repondre('Command reserved for administrators.')
-}
+  } else {
+    repondre('Command reserved for administrators.')
+  }
 
 });
 
 
 /*******************************  automute && autoummute ***************************/
 
-const cron = require(`../lib/cron`) ;
+const cron = require(`../lib/cron`);
 
 
 ezra({
-      nomCom : 'automute',
-      categorie : 'Fredi-Group'
-  } , async (dest,zk,commandeOptions) => {
+  nomCom: 'automute',
+  categorie: 'Fredi-Group'
+}, async (dest, zk, commandeOptions) => {
 
-      const {arg , repondre , verifAdmin } = commandeOptions ;
+  const { arg, repondre, verifAdmin } = commandeOptions;
 
-      if (!verifAdmin) { repondre('You are not an administrator of the group') ; return}
+  if (!verifAdmin) { repondre('You are not an administrator of the group'); return }
 
-      group_cron = await cron.getCronById(dest) ;
-      
-     
+  group_cron = await cron.getCronById(dest);
 
-      if (!arg || arg.length == 0) {
 
-        let state ;
-        if (group_cron == null || group_cron.mute_at == null) {
-  
-            state =  "No time set for automatic mute"
-        } else {
-  
-          state =  `The group will be muted at ${(group_cron.mute_at).split(':')[0]} ${(group_cron.mute_at).split(':')[1]}`
-        }
-  
-        let msg = `* *State:* ${state}
+
+  if (!arg || arg.length == 0) {
+
+    let state;
+    if (group_cron == null || group_cron.mute_at == null) {
+
+      state = "No time set for automatic mute"
+    } else {
+
+      state = `The group will be muted at ${(group_cron.mute_at).split(':')[0]} ${(group_cron.mute_at).split(':')[1]}`
+    }
+
+    let msg = `* *State:* ${state}
         * *Instructions:* To activate automatic mute, add the minute and hour after the command separated by ':'
         Example automute 9:30
         * To delete the automatic mute, use the command *automute del*`
-        
 
-          repondre(msg) ;
-          return ;
+
+    repondre(msg);
+    return;
+  } else {
+
+    let texte = arg.join(' ')
+
+    if (texte.toLowerCase() === `del`) {
+
+      if (group_cron == null) {
+
+        repondre('No cronometrage is active');
       } else {
 
-        let texte = arg.join(' ')
+        await cron.delCron(dest);
 
-        if (texte.toLowerCase() === `del` ) { 
-
-          if (group_cron == null) {
-
-              repondre('No cronometrage is active') ;
-          } else {
-
-              await cron.delCron(dest) ;
-
-              repondre("The automatic mute has been removed; restart to apply changes") 
-              .then(() => {
-
-                exec("pm2 restart all");
-              }) ;
-          }
-        } else if (texte.includes(':')) {
-
-          //let { hr , min } = texte.split(':') ;
-
-          await cron.addCron(dest,"mute_at",texte) ;
-
-          repondre(`Setting up automatic mute for ${texte} ; restart to apply changes`) 
+        repondre("The automatic mute has been removed; restart to apply changes")
           .then(() => {
 
             exec("pm2 restart all");
-          }) ;
-
-        } else {
-            repondre('Please enter a valid time with hour and minute separated by :') ;
-        }
-
-
+          });
       }
-  });
+    } else if (texte.includes(':')) {
+
+      //let { hr , min } = texte.split(':') ;
+
+      await cron.addCron(dest, "mute_at", texte);
+
+      repondre(`Setting up automatic mute for ${texte} ; restart to apply changes`)
+        .then(() => {
+
+          exec("pm2 restart all");
+        });
+
+    } else {
+      repondre('Please enter a valid time with hour and minute separated by :');
+    }
 
 
-  ezra({
-    nomCom : 'autounmute',
-    categorie : 'Fredi-Group'
-} , async (dest,zk,commandeOptions) => {
+  }
+});
 
-    const {arg , repondre , verifAdmin } = commandeOptions ;
 
-    if (!verifAdmin) { repondre('You are not an administrator of the group') ; return}
+ezra({
+  nomCom: 'autounmute',
+  categorie: 'Fredi-Group'
+}, async (dest, zk, commandeOptions) => {
 
-    group_cron = await cron.getCronById(dest) ;
-    
-   
+  const { arg, repondre, verifAdmin } = commandeOptions;
 
-    if (!arg || arg.length == 0) {
+  if (!verifAdmin) { repondre('You are not an administrator of the group'); return }
 
-      let state ;
-      if (group_cron == null || group_cron.unmute_at == null) {
+  group_cron = await cron.getCronById(dest);
 
-          state = "No time set for autounmute" ;
 
-      } else {
 
-        state = `The group will be un-muted at ${(group_cron.unmute_at).split(':')[0]}H ${(group_cron.unmute_at).split(':')[1]}`
-      }
+  if (!arg || arg.length == 0) {
 
-      let msg = `* *State:* ${state}
+    let state;
+    if (group_cron == null || group_cron.unmute_at == null) {
+
+      state = "No time set for autounmute";
+
+    } else {
+
+      state = `The group will be un-muted at ${(group_cron.unmute_at).split(':')[0]}H ${(group_cron.unmute_at).split(':')[1]}`
+    }
+
+    let msg = `* *State:* ${state}
       * *Instructions:* To activate autounmute, add the minute and hour after the command separated by ':'
       Example autounmute 7:30
       * To delete autounmute, use the command *autounmute del*`
 
-        repondre(msg) ;
-        return ;
+    repondre(msg);
+    return;
 
-    } else {
+  } else {
 
-      let texte = arg.join(' ')
+    let texte = arg.join(' ')
 
-      if (texte.toLowerCase() === `del` ) { 
+    if (texte.toLowerCase() === `del`) {
 
-        if (group_cron == null) {
+      if (group_cron == null) {
 
-            repondre('No cronometrage has been activated') ;
-        } else {
+        repondre('No cronometrage has been activated');
+      } else {
 
-            await cron.delCron(dest) ;
+        await cron.delCron(dest);
 
-            repondre("The autounmute has been removed; restart to apply the changes")
-            .then(() => {
+        repondre("The autounmute has been removed; restart to apply the changes")
+          .then(() => {
 
-              exec("pm2 restart all");
-            }) ;
+            exec("pm2 restart all");
+          });
 
-            
 
-        }
-      } else if (texte.includes(':')) {
 
-       
+      }
+    } else if (texte.includes(':')) {
 
-        await cron.addCron(dest,"unmute_at",texte) ;
 
-        repondre(`Setting up autounmute for ${texte}; restart to apply the changes`)
+
+      await cron.addCron(dest, "unmute_at", texte);
+
+      repondre(`Setting up autounmute for ${texte}; restart to apply the changes`)
         .then(() => {
 
           exec("pm2 restart all");
-        }) ;
+        });
 
-      } else {
-          repondre('Please enter a valid time with hour and minute separated by :') ;
-      }
-
-
+    } else {
+      repondre('Please enter a valid time with hour and minute separated by :');
     }
+
+
+  }
 });
 
 
 // COMMAND TO KICK
 ezra({
-  nomCom : 'fkick',
-  categorie : 'Fredi-Group'
-} , async (dest,zk,commandeOptions) => {
+  nomCom: 'fkick',
+  categorie: 'Fredi-Group'
+}, async (dest, zk, commandeOptions) => {
 
-  const {arg , repondre , verifAdmin , superUser , verifezraAdmin } = commandeOptions ;
+  const { arg, repondre, verifAdmin, superUser, verifezraAdmin } = commandeOptions;
 
   if (verifAdmin || superUser) {
 
-    if(!verifezraAdmin){ repondre('You need administrative rights to perform this command') ; return ;}
+    if (!verifezraAdmin) { repondre('You need administrative rights to perform this command'); return; }
 
-    if (!arg || arg.length == 0) { repondre('Please enter the country code whose members will be removed') ; return ;}
+    if (!arg || arg.length == 0) { repondre('Please enter the country code whose members will be removed'); return; }
 
-      let metadata = await zk.groupMetadata(dest) ;
+    let metadata = await zk.groupMetadata(dest);
 
-      let participants = metadata.participants ;
+    let participants = metadata.participants;
 
-      for (let i = 0 ; i < participants.length ; i++) {
+    for (let i = 0; i < participants.length; i++) {
 
-          if (participants[i].id.startsWith(arg[0]) && participants[i].admin === null ) {
+      if (participants[i].id.startsWith(arg[0]) && participants[i].admin === null) {
 
-             await zk.groupParticipantsUpdate(dest, [participants[i].id], "remove") ;
-          }
+        await zk.groupParticipantsUpdate(dest, [participants[i].id], "remove");
       }
+    }
 
   } else {
     repondre('Sorry, you are not an administrator of the group')
   }
 
 
-}) ;
+});
 
 
 // COMMAND TO NSFW
 ezra({
-      nomCom : 'nsfw',
-      categorie : 'Fredi-Group'
-}, async (dest,zk,commandeOptions) => {
-  
-    const {arg , repondre , verifAdmin } = commandeOptions ;
+  nomCom: 'nsfw',
+  categorie: 'Fredi-Group'
+}, async (dest, zk, commandeOptions) => {
 
-  if(!verifAdmin) { repondre('Sorry, you cannot enable NSFW content without being an administrator of the group') ; return}
+  const { arg, repondre, verifAdmin } = commandeOptions;
 
-      let hbd = require('../lib/hentai') ;
+  if (!verifAdmin) { repondre('Sorry, you cannot enable NSFW content without being an administrator of the group'); return }
 
-    let isHentaiGroupe = await hbd.checkFromHentaiList(dest) ;
+  let hbd = require('../lib/hentai');
+
+  let isHentaiGroupe = await hbd.checkFromHentaiList(dest);
 
   if (arg[0] == 'on') {
-    
-       if(isHentaiGroupe) {repondre('NSFW content is already active for this group') ; return} ;
 
-      await hbd.addToHentaiList(dest) ;
+    if (isHentaiGroupe) { repondre('NSFW content is already active for this group'); return };
 
-      repondre('NSFW content is now active for this group') ;
-       
+    await hbd.addToHentaiList(dest);
+
+    repondre('NSFW content is now active for this group');
+
   } else if (arg[0] == 'off') {
 
-     if(!isHentaiGroupe) {repondre('NSFW content is already disabled for this group') ; return} ;
+    if (!isHentaiGroupe) { repondre('NSFW content is already disabled for this group'); return };
 
-      await hbd.removeFromHentaiList(dest) ;
+    await hbd.removeFromHentaiList(dest);
 
-      repondre('NSFW content is now disabled for this group') ;
+    repondre('NSFW content is now disabled for this group');
   } else {
 
-      repondre('You must enter "on" or "off"') ;
-    }
-} ) ;
+    repondre('You must enter "on" or "off"');
+  }
+});

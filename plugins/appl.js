@@ -9,7 +9,7 @@ ezra({
   nomCom: 'apk',
   aliases: ['app', 'playstore'],
   reaction: '📂',
-  categorie: 'Fredi-Download'
+  categorie: 'VIPER-Download'
 }, async (groupId, client, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
@@ -47,11 +47,11 @@ ezra({
       mimetype: "application/vnd.android.package-archive",
       caption: `APPLICATION DOWLODED BY ☢️VIPER MD☢️`,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         }
       }
     }, { quoted: ms });
@@ -68,7 +68,7 @@ ezra({
   'nomCom': 'app',
   'aliases': ['apks', 'playstore'],
   'reaction': '🉑',
-  'categorie': 'Fredi-Download'
+  'categorie': 'VIPER-Download'
 }, async (groupId, client, context) => {
   const { repondre, arg, ms } = context;
 
@@ -121,7 +121,7 @@ ezra({
 ezra({
   nomCom: "gitclone",
   aliases: ["zip", "clone"],
-  categorie: "Fredi-Download"
+  categorie: "VIPER-Download"
 }, async (dest, zk, context) => {
   const { ms, repondre, arg } = context;
   const githubLink = arg.join(" ");
@@ -137,7 +137,7 @@ ezra({
 
   // Extract owner and repo from the GitHub URL using a regex pattern
   let [, owner, repo] = githubLink.match(/(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i) || [];
-  
+
   // Check if owner and repo were extracted correctly
   if (!owner || !repo) {
     return repondre("Couldn't extract owner and repo from the provided link.");
@@ -161,11 +161,11 @@ ezra({
       mimetype: "application/zip",
       caption: `GITHUB ZIP BY ☢️VIPER MD☢️`,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         }
       }
     }, { quoted: ms });
