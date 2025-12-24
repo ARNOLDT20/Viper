@@ -17,16 +17,24 @@ async function uploadToCatbox(Path) {
   }
 
   try {
-    const response = await catbox.uploadFile({
-      path: Path // Provide the path to the file
-    });
+    const response = await catbox.uploadFile({ path: Path });
+    console.log('Catbox upload response:', response);
 
-    if (response) {
-      return response; // returns the uploaded file URL
-    } else {
-      throw new Error("Error retrieving the file link");
-    }
+    if (!response) throw new Error('Error retrieving the file link');
+
+    // normalize common response shapes to a URL string
+    let url = null;
+    if (typeof response === 'string') url = response;
+    else if (response.url) url = response.url;
+    else if (response.data && response.data.url) url = response.data.url;
+    else if (response.result && typeof response.result === 'string') url = response.result;
+    else if (Array.isArray(response) && response.length && typeof response[0] === 'string') url = response[0];
+    else url = JSON.stringify(response);
+
+    console.log('Normalized Catbox URL:', url);
+    return url;
   } catch (err) {
+    console.error('Catbox upload error detailed:', err);
     throw new Error(String(err));
   }
 }
@@ -41,8 +49,8 @@ async function convertToMp3(inputPath, outputPath) {
   });
 }
 
-ezra({ nomCom: "url", categorie: "General-VIPER", reaction: "👨🏿‍💻" }, async (origineMessage, zk, commandeOptions) => {
-  const { msgRepondu, repondre } = commandeOptions;
+ezra({ nomCom: "url", categorie: "General-VIPER", reaction: "👨🏿‍💻" }, async (dest, zk, commandeOptions) => {
+  const { msgRepondu, repondre, ms } = commandeOptions;
 
   if (!msgRepondu) {
     repondre('Please reply to an image, video, or audio file.');
@@ -87,6 +95,7 @@ ezra({ nomCom: "url", categorie: "General-VIPER", reaction: "👨🏿‍💻" },
 
   try {
     const catboxUrl = await uploadToCatbox(mediaPath);
+    console.log('Resolved catboxUrl (before TinyURL):', catboxUrl);
     fs.unlinkSync(mediaPath); // Remove the local file after uploading
 
     // Create a TinyURL short link for convenience
