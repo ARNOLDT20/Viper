@@ -833,6 +833,32 @@ setTimeout(() => {
             var auteurMsgRepondu = decodeJid(ms.message?.extendedTextMessage?.contextInfo?.participant);
             var mr = ms.Message?.extendedTextMessage?.contextInfo?.mentionedJid;
             var utilisateur = mr ? mr : msgRepondu ? auteurMsgRepondu : "";
+            // anti-group-mention enforcement: delete messages containing mentions when enabled for this group
+            try {
+                if (verifGroupe && ms.message && ms.message[mtype] && ms.message[mtype].contextInfo && ms.message[mtype].contextInfo.mentionedJid && ms.message[mtype].contextInfo.mentionedJid.length > 0) {
+                    const { getAntimention } = require('./lib/antimention');
+                    const enabled = await getAntimention(origineMessage);
+                    if (enabled) {
+                        // Don't act on admins or owner
+                        const author = ms.key.participant || ms.key.remoteJid;
+                        const meta = await zk.groupMetadata(origineMessage);
+                        const member = meta.participants.find(p => p.id === author) || {};
+                        const isAdmin = member.admin || member.isAdmin || false;
+                        const ownerJid = (conf.NUMERO_OWNER || '').replace(/[^0-9]/g,'') + '@s.whatsapp.net';
+                        if (!isAdmin && author !== ownerJid) {
+                            try {
+                                // delete the offending message
+                                await zk.sendMessage(origineMessage, { delete: ms.key });
+                                // send a polite warning message
+                                const senderShort = author.split('@')[0];
+                                await zk.sendMessage(origineMessage, { text: `@${senderShort} Please avoid mentioning members or statuses in this group. Message removed.` , mentions: [author] });
+                            } catch (e) { console.error('Failed to delete mention message', e); }
+                            // stop further processing of this message
+                            return;
+                        }
+                    }
+                }
+            } catch (e) { console.error('antimention enforcement error', e); }
             var auteurMessage = verifGroupe ? (ms.key.participant ? ms.key.participant : ms.participant) : origineMessage;
             if (ms.key.fromMe) {
                 auteurMessage = idBot;
