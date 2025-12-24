@@ -4,7 +4,6 @@
 
 [![VIPER MD](https://raw.githubusercontent.com/ARNOLDT20/Viper/main/media/lucky.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ARNOLDT20/Viper)
 
 📈 **GitHub Stats**:  
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ARNOLDT20&show_icons=true&theme=github_dark)
