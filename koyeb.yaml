@@ -1,6 +1,6 @@
-name: whatsapp xmd
+name: VIPER MD
 services:
-  - name: whatsapp-xmd-service
+  - name: viper-md-service
     type: web
     ports:
       - 5000

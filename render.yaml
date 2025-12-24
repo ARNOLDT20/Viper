@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: whatsapp xmd
+    name: VIPER MD
     env: node
     plan: free
     repo: https://github.com/whatsapp-bot254/whatsapp-xmd

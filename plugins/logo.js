@@ -1,69 +1,71 @@
 const { ezra } = require("../fredi/ezra");
 var mumaker = require("mumaker");
-ezra({ nomCom: "hacker",
-    categorie: "Fredi-Logo", reaction: "👨🏿‍💻" }, async (origineMessage, zk, commandeOptions) => {
-    const { prefixe, arg, ms, repondre } = commandeOptions;
-    if (!arg || arg == "") {
-        repondre("*__Exemple : * " + prefixe + "hacker Fredie");
-        return;
-    }
-    try {
-        let radio = "984dd03e-220d-4335-a6ba-7ac56b092240";
-        let anu = await mumaker.ephoto("https://en.ephoto360.com/create-anonymous-hacker-avatars-cyan-neon-677.html", arg); //
-        //
-       // let res = Object.values(anu)[3];
-        // console.log("&€"+res);
-      //  let lien = "https://e1.yotools.net" + res;
-        repondre("* processing...*");
-        await zk.sendMessage(origineMessage, { image: { url:anu.image}, caption: "* \t Logo made by LUCKY MD XFORCE*" }, { quoted: ms });
-    }
-    catch (e) {
-        repondre("🥵🥵 " + e);
-    }
+ezra({
+  nomCom: "hacker",
+  categorie: "Fredi-Logo", reaction: "👨🏿‍💻"
+}, async (origineMessage, zk, commandeOptions) => {
+  const { prefixe, arg, ms, repondre } = commandeOptions;
+  if (!arg || arg == "") {
+    repondre("*__Exemple : * " + prefixe + "hacker T20_STARBOY");
+    return;
+  }
+  try {
+    let radio = "984dd03e-220d-4335-a6ba-7ac56b092240";
+    let anu = await mumaker.ephoto("https://en.ephoto360.com/create-anonymous-hacker-avatars-cyan-neon-677.html", arg); //
+    //
+    // let res = Object.values(anu)[3];
+    // console.log("&€"+res);
+    //  let lien = "https://e1.yotools.net" + res;
+    repondre("* processing...*");
+    await zk.sendMessage(origineMessage, { image: { url: anu.image }, caption: "* Logo made by VIPER MD*" }, { quoted: ms });
+  }
+  catch (e) {
+    repondre("🥵🥵 " + e);
+  }
 });
 ezra({ nomCom: "dragonball", categorie: "Fredi-Logo", reaction: "🐉" }, async (dest, zk, commandeOptions) => {
-    let { arg, repondre, prefixe, ms } = commandeOptions;
-    try {
-        const noArgMsg = `*_EXEMPLE *:  ${prefixe}dragonball Fredi`;
-        //  if(arg=='') {await zok.sendMessage(dest,{text:noArgMsg},{quoted:infoMessage}); return;}
-        if (arg == '' || !arg) {
-            repondre(noArgMsg);
-            return;
-        }
-        var lienMaker = "https://ephoto360.com/tao-hieu-ung-chu-phong-cach-dragon-ball-truc-tuyen-1000.html";
-        var lienMaker2 = "https://en.ephoto360.com/create-dragon-ball-style-text-effects-online-809.html";
-      
-       
-        const imgInfo = await mumaker.ephoto(lienMaker2, arg.join(' '));
-       
-        await zk.sendMessage(dest, { text: " *\t Traitement en cours ...*" }, { quoted: ms });
-       // var idImg = Object.values(imgInfo)[3];
-       
-        await zk.sendMessage(dest, { image: { url: imgInfo.image }, caption: "* \t Logo by LUCKY MD XFORCE*" }, { quoted: ms });
+  let { arg, repondre, prefixe, ms } = commandeOptions;
+  try {
+    const noArgMsg = `*_EXEMPLE *:  ${prefixe}dragonball T20_STARBOY`;
+    //  if(arg=='') {await zok.sendMessage(dest,{text:noArgMsg},{quoted:infoMessage}); return;}
+    if (arg == '' || !arg) {
+      repondre(noArgMsg);
+      return;
     }
-    catch (e) {
-        repondre("🥵🥵 " + e);
-    }
+    var lienMaker = "https://ephoto360.com/tao-hieu-ung-chu-phong-cach-dragon-ball-truc-tuyen-1000.html";
+    var lienMaker2 = "https://en.ephoto360.com/create-dragon-ball-style-text-effects-online-809.html";
+
+
+    const imgInfo = await mumaker.ephoto(lienMaker2, arg.join(' '));
+
+    await zk.sendMessage(dest, { text: " *\t Traitement en cours ...*" }, { quoted: ms });
+    // var idImg = Object.values(imgInfo)[3];
+
+    await zk.sendMessage(dest, { image: { url: imgInfo.image }, caption: "* Logo by VIPER MD*" }, { quoted: ms });
+  }
+  catch (e) {
+    repondre("🥵🥵 " + e);
+  }
 });
 ////////////////////////////
 ezra({ nomCom: "naruto", categorie: "Fredi-Logo", reaction: "👀" }, async (dest, zk, commandeOptions) => {
-    let { ms, arg, repondre, prefixe } = commandeOptions;
-    try {
-        if (!arg || arg == '') {
-            repondre("*_Exemple : * " + prefixe + "naruto lucky");
-            return;
-        }
-        var nar = "https://en.ephoto360.com/naruto-shippuden-logo-style-text-effect-online-808.html";
-        //let img= await //mumaker.textpro('https://textpro.me/create-naruto-logo-style-text-effect-online-1125.html',arg);
-        repondre("*traitement en cours...*");
-        var radio2 = "e0723d60-fc0d-421f-bf8f-a9b9b61e4be6";
-        var img = await mumaker.ephoto("https://en.ephoto360.com/naruto-shippuden-logo-style-text-effect-online-808.html", arg.join(' '));
-        
-        await zk.sendMessage(dest, { image: { url: img.image }, caption: "\t\t *Logo by LUCKY MD XFORCE*" }, { quoted: ms });
+  let { ms, arg, repondre, prefixe } = commandeOptions;
+  try {
+    if (!arg || arg == '') {
+      repondre("*_Exemple : * " + prefixe + "naruto VIPER");
+      return;
     }
-    catch (e) {
-        repondre("🥵🥵 " + e);
-    }
+    var nar = "https://en.ephoto360.com/naruto-shippuden-logo-style-text-effect-online-808.html";
+    //let img= await //mumaker.textpro('https://textpro.me/create-naruto-logo-style-text-effect-online-1125.html',arg);
+    repondre("*traitement en cours...*");
+    var radio2 = "e0723d60-fc0d-421f-bf8f-a9b9b61e4be6";
+    var img = await mumaker.ephoto("https://en.ephoto360.com/naruto-shippuden-logo-style-text-effect-online-808.html", arg.join(' '));
+
+    await zk.sendMessage(dest, { image: { url: img.image }, caption: "\t\t *Logo by VIPER MD*" }, { quoted: ms });
+  }
+  catch (e) {
+    repondre("🥵🥵 " + e);
+  }
 });
 //didong
 /*ezra({ nomCom: "didong", categorie: "Logo", reaction: "📱" }, async (dest, zk, commandeOptions) => {
@@ -89,89 +91,88 @@ ezra({ nomCom: "naruto", categorie: "Fredi-Logo", reaction: "👀" }, async (des
 
 
 ezra({ nomCom: "didong", categorie: "Fredi-Logo", reaction: "📱" }, async (dest, zk, commandeOptions) => {
-    let { arg, repondre, prefixe, ms } = commandeOptions;
-   try {
-     var titre = "\t* logo by Lucky_Md*";
-      var lien = "https://ephoto360.com/tao-anh-che-vui-tu-choi-cuoc-goi-voi-ten-cua-ban-930.html";
-        if (!arg || arg == "") {
-           repondre(`*exemple :* ${prefixe}didong fredi`)
-            return ;
-        }
-     
-        var maker =await mumaker.ephoto(lien,arg.join(' '));
-    
-        
-     repondre('*processing...*')
-       await zk.sendMessage(dest, { image: { url: maker.image}, caption: titre });
+  let { arg, repondre, prefixe, ms } = commandeOptions;
+  try {
+    var titre = "\t* logo by VIPER MD*";
+    var lien = "https://ephoto360.com/tao-anh-che-vui-tu-choi-cuoc-goi-voi-ten-cua-ban-930.html";
+    if (!arg || arg == "") {
+      repondre(`*exemple :* ${prefixe}didong T20_STARBOY`)
+      return;
     }
-    catch (e) {
-        repondre("🥵🥵 " + e);
-    }
-    }
+
+    var maker = await mumaker.ephoto(lien, arg.join(' '));
+
+
+    repondre('*processing...*')
+    await zk.sendMessage(dest, { image: { url: maker.image }, caption: titre });
+  }
+  catch (e) {
+    repondre("🥵🥵 " + e);
+  }
+}
 );
 
 
-ezra({nomCom : "wall",categorie : "Fredi-Logo",reaction : "👍"} , async (dest,zk,commandeOptions) =>{
+ezra({ nomCom: "wall", categorie: "Fredi-Logo", reaction: "👍" }, async (dest, zk, commandeOptions) => {
 
-  const {arg,repondre,ms,prefixe} = commandeOptions;
-  if(!arg[0]) { repondre( `Exemple of using commande:\n ${prefixe}wall Lucky_Md` ); return ;}
-   let text = arg.join(" ")
-   mumaker.textpro("https://textpro.me/break-wall-text-effect-871.html", text)
-.then((data) =>{
- zk.sendMessage(dest,{image : { url : data.image},caption : 'Logo by LUCKY XFORCE'},{quoted:ms})
-}) 
-.catch(console.log)
+  const { arg, repondre, ms, prefixe } = commandeOptions;
+  if (!arg[0]) { repondre(`Exemple of using commande:\n ${prefixe}wall VIPER_MD`); return; }
+  let text = arg.join(" ")
+  mumaker.textpro("https://textpro.me/break-wall-text-effect-871.html", text)
+    .then((data) => {
+      zk.sendMessage(dest, { image: { url: data.image }, caption: 'Logo by VIPER MD' }, { quoted: ms })
+    })
+    .catch(console.log)
 })
-;
-ezra({nomCom: "summer", categorie: "Fredi-Logo", reaction: "🌞"}, async (dest, zk, commandeOptions) => {
+  ;
+ezra({ nomCom: "summer", categorie: "Fredi-Logo", reaction: "🌞" }, async (dest, zk, commandeOptions) => {
   const { arg, repondre, ms, prefixe } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}summer My text`);
     return;
   }
-  
+
   const text = arg.join(" ");
   mumaker.textpro("https://textpro.me/create-sunset-light-text-effects-online-for-free-1124.html", text)
     .then((data) => {
-      zk.sendMessage(dest, { image: { url: data.image }, caption: 'Logo by LUCKY XFORCE' }, { quoted: ms });
+      zk.sendMessage(dest, { image: { url: data.image }, caption: 'Logo by VIPER MD' }, { quoted: ms });
     })
     .catch(console.error);
 });
 
-ezra({nomCom: "neonlight", categorie: "Fredi-Logo", reaction: "💡"}, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "neonlight", categorie: "Fredi-Logo", reaction: "💡" }, async (dest, zk, commandeOptions) => {
   const { arg, repondre, ms, prefixe } = commandeOptions;
   /*if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}neonlight My text`);
     return;
   }*/
-  if(!arg ||arg=="")
-  {
-      repondre(`Exemple of using commande:\n ${prefixe}neonlight My text`);
+  if (!arg || arg == "") {
+    repondre(`Exemple of using commande:\n ${prefixe}neonlight My text`);
     return;
   }
-  
+
   const text = arg.join(" ");
-  try{
-    
-    let maker=await mumaker.textpro("https://textpro.me/create-glowing-neon-light-text-effect-online-free-1061.html",arg)
+  try {
+
+    let maker = await mumaker.textpro("https://textpro.me/create-glowing-neon-light-text-effect-online-free-1061.html", arg)
     //repondre(stringify(maker))
     /*.then((data) => {*/
-     zk.sendMessage(dest, { image: { url: maker.image }, caption: 'Logo by LUCKY XFORCE' }, { quoted: ms });
-    
+    zk.sendMessage(dest, { image: { url: maker.image }, caption: 'Logo by LUCKY XFORCE' }, { quoted: ms });
+
     /*.catch(console.error);*/
 
-  
-}catch(e){repondre("🥵🥵 "+e)}
+
+  } catch (e) { repondre("🥵🥵 " + e) }
 
 });
 
-ezra({nomCom: "greenneon", categorie: "Fredi-Logo", reaction: "🟢"}, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "greenneon", categorie: "Fredi-Logo", reaction: "🟢" }, async (dest, zk, commandeOptions) => {
   const { arg, repondre, ms, prefixe } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}greenneon My text`);
     return;
   }
-  
+
   const text = arg.join(" ");
   mumaker.textpro("https://textpro.me/green-neon-text-effect-874.html", text)
     .then((data) => {
@@ -180,13 +181,13 @@ ezra({nomCom: "greenneon", categorie: "Fredi-Logo", reaction: "🟢"}, async (de
     .catch(console.error);
 });
 
-ezra({nomCom: "glitch", categorie: "Fredi-Logo", reaction: "🎛️"}, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "glitch", categorie: "Fredi-Logo", reaction: "🎛️" }, async (dest, zk, commandeOptions) => {
   const { arg, repondre, ms, prefixe } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}glitch My text`);
     return;
   }
-  
+
   const text = arg.join(" ");
   mumaker.textpro("https://textpro.me/create-impressive-glitch-text-effects-online-1027.html", text)
     .then((data) => {
@@ -195,15 +196,15 @@ ezra({nomCom: "glitch", categorie: "Fredi-Logo", reaction: "🎛️"}, async (de
     .catch(console.error);
 });
 
-ezra({nomCom: "devil", categorie: "Fredi-Logo", reaction: "😈"}, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "devil", categorie: "Fredi-Logo", reaction: "😈" }, async (dest, zk, commandeOptions) => {
   const { arg, repondre, ms, prefixe } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}devil My text`);
     return;
   }
-  
+
   const text = arg.join(" ");
-  mumaker.textpro("https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html",arg)
+  mumaker.textpro("https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html", arg)
     .then((data) => {
       zk.sendMessage(dest, { image: { url: data.image }, caption: 'Logo by LUCKY XFORCE' }, { quoted: ms });
     })
@@ -211,68 +212,68 @@ ezra({nomCom: "devil", categorie: "Fredi-Logo", reaction: "😈"}, async (dest, 
 });
 ////////////////////
 ezra(
-  {nomCom:"boomlg",categorie:
-    "Fredi-Logo",reaction:"💥"},async(dest,zk,commandeOptions)=>{
+  {
+    nomCom: "boomlg", categorie:
+      "Fredi-Logo", reaction: "💥"
+  }, async (dest, zk, commandeOptions) => {
 
-    let {ms,repondre,prefixe,arg}=commandeOptions;
+    let { ms, repondre, prefixe, arg } = commandeOptions;
 
-        if(!arg||arg=="")
-        {
-   
-          repondre(`  Exemple :* ${prefixe}boom fredie`)
-          return ;
-        }
-       try{
-              var radio2 = "e0723d60-fc0d-421f-bf8f-a9b9b61e4be6";
-         let radio = "984dd03e-220d-4335-a6ba-7ac56b092240";
-var lien="https://en.ephoto360.com/boom-text-comic-style-text-effect-675.html";
-        console.log(arg)
-         var img =await mumaker.ephoto(lien,arg)
+    if (!arg || arg == "") {
 
-        //var idImg = Object.values(img)[3];
-       // var lienImage = "https://e1.yotools.net/" + idImg; 
-
-  /* let radio = "984dd03e-220d-4335-a6ba-7ac56b092240";
-         var v="https://en.ephoto360.com/boom-text-comic-style-text-effect-675.html";
-         var c="https://en.ephoto360.com/create-anonymous-hacker-avatars-cyan-neon-677.html"
-        let anu = await mumaker.ephoto4(v, arg, radio);      
-         let res = Object.values(anu)[3];*/
-        // console.log("&€"+res);
-       // let lien = "https://e1.yotools.net" + res;
-         
-
-repondre("  processing ...")
-         await zk.sendMessage(dest,{image:{url:img.image},caption:"\t *Logo by LUCKY MD XFORCE*"})
-         
-        // await zk.sendMessage(dest,{image:{url:lienImage},caption:"\t *Logo by Lucky-Md*"})
-         
-
-
-       }catch(e){repondre("🥵🥵 "+e)}
-    
+      repondre(`  Exemple :* ${prefixe}boom fredie`)
+      return;
     }
+    try {
+      var radio2 = "e0723d60-fc0d-421f-bf8f-a9b9b61e4be6";
+      let radio = "984dd03e-220d-4335-a6ba-7ac56b092240";
+      var lien = "https://en.ephoto360.com/boom-text-comic-style-text-effect-675.html";
+      console.log(arg)
+      var img = await mumaker.ephoto(lien, arg)
+
+      //var idImg = Object.values(img)[3];
+      // var lienImage = "https://e1.yotools.net/" + idImg; 
+
+      /* let radio = "984dd03e-220d-4335-a6ba-7ac56b092240";
+             var v="https://en.ephoto360.com/boom-text-comic-style-text-effect-675.html";
+             var c="https://en.ephoto360.com/create-anonymous-hacker-avatars-cyan-neon-677.html"
+            let anu = await mumaker.ephoto4(v, arg, radio);      
+             let res = Object.values(anu)[3];*/
+      // console.log("&€"+res);
+      // let lien = "https://e1.yotools.net" + res;
+
+
+      repondre("  processing ...")
+      await zk.sendMessage(dest, { image: { url: img.image }, caption: "\t *Logo by LUCKY MD XFORCE*" })
+
+      // await zk.sendMessage(dest,{image:{url:lienImage},caption:"\t *Logo by Lucky-Md*"})
+
+
+
+    } catch (e) { repondre("🥵🥵 " + e) }
+
+  }
 )
 //water
-ezra({nomCom:"water",categorie:"Fredi-Logo",reation:"💦"},async(dest,zk,commandeOptions)=>{
+ezra({ nomCom: "water", categorie: "Fredi-Logo", reation: "💦" }, async (dest, zk, commandeOptions) => {
 
-  
-var {ms,repondre,arg,prefixe}=commandeOptions;
-  if(!arg||arg=="")
-  {
+
+  var { ms, repondre, arg, prefixe } = commandeOptions;
+  if (!arg || arg == "") {
     repondre(`${prefixe}water 𝗵𝗮𝗻𝘀`)
     return;
   }
-  try{
-    var lien ="https://en.ephoto360.com/create-water-effect-text-online-295.html";
-    var img =await mumaker.ephoto(lien,arg);
+  try {
+    var lien = "https://en.ephoto360.com/create-water-effect-text-online-295.html";
+    var img = await mumaker.ephoto(lien, arg);
     repondre(" processing ...")
-    await zk.sendMessage(dest,{image:{url:img.image},caption:"  *Logo by LUCKY MD XFORCE*"})
-  }catch(e){repondre(`🥵🥵 ${e}`)}
+    await zk.sendMessage(dest, { image: { url: img.image }, caption: "  *Logo by LUCKY MD XFORCE*" })
+  } catch (e) { repondre(`🥵🥵 ${e}`) }
 
 });
 
 ezra({ nomCom: "snow", categorie: "Fredi-Logo", reaction: "❄️" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}Snow My text`);
     return;
@@ -289,7 +290,7 @@ ezra({ nomCom: "snow", categorie: "Fredi-Logo", reaction: "❄️" }, async (des
 });
 
 ezra({ nomCom: "transformer", categorie: "Fredi-Logo", reaction: "🤖" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}Transformer My text`);
     return;
@@ -306,7 +307,7 @@ ezra({ nomCom: "transformer", categorie: "Fredi-Logo", reaction: "🤖" }, async
 });
 
 ezra({ nomCom: "thunder", categorie: "Fredi-Logo", reaction: "⚡" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}Thunder My text`);
     return;
@@ -323,7 +324,7 @@ ezra({ nomCom: "thunder", categorie: "Fredi-Logo", reaction: "⚡" }, async (des
 });
 
 ezra({ nomCom: "harrypotter", categorie: "Fredi-Logo", reaction: "🧙‍♂️" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}HarryPotter My text`);
     return;
@@ -356,10 +357,10 @@ ezra({ nomCom: "cat", categorie: "Fredi-Logo", reaction: "🪟" }, async (dest, 
     });
 });
 
-                                                                         
+
 
 ezra({ nomCom: "whitegold", categorie: "Fredi-Logo", reaction: "💫" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}WhiteGold My text`);
     return;
@@ -376,7 +377,7 @@ ezra({ nomCom: "whitegold", categorie: "Fredi-Logo", reaction: "💫" }, async (
 });
 
 ezra({ nomCom: "lightglow", categorie: "Fredi-Logo", reaction: "🌟" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}LightGlow My text`);
     return;
@@ -393,7 +394,7 @@ ezra({ nomCom: "lightglow", categorie: "Fredi-Logo", reaction: "🌟" }, async (
 });
 
 ezra({ nomCom: "thor", categorie: "Fredi-Logo", reaction: "🔨" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}Thor My text`);
     return;
@@ -410,7 +411,7 @@ ezra({ nomCom: "thor", categorie: "Fredi-Logo", reaction: "🔨" }, async (dest,
 });
 
 ezra({ nomCom: "neon", categorie: "Fredi-Logo", reaction: "💡" }, async (dest, zk, commandeOptions) => {
-  const { arg, ms, prefixe,repondre } = commandeOptions;
+  const { arg, ms, prefixe, repondre } = commandeOptions;
   if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}Neon My text`);
     return;
@@ -428,74 +429,71 @@ ezra({ nomCom: "neon", categorie: "Fredi-Logo", reaction: "💡" }, async (dest,
 
 
 
-ezra({nomCom:"purple",categorie:"Fredi-Logo",reaction:"🧳"},async(dest,zk,commandeOptions)=>{
-  var {ms,repondre,prefixe,arg}=commandeOptions;
-  
-    try{
-      if(!arg||arg=="")
-  {
-    repondre(prefixe+"purple Lucky");return;}
-      const lien="https://en.ephoto360.com/purple-text-effect-online-100.html"
-      var img = await mumaker.ephoto(lien,arg);
-      repondre(" processing ...")
-      await zk.sendMessage(dest,{image:{url:img.image},caption:"      *Logo by LUCKY MD XFORCE*"});
-    }catch(e){repondre(e)}
-  
+ezra({ nomCom: "purple", categorie: "Fredi-Logo", reaction: "🧳" }, async (dest, zk, commandeOptions) => {
+  var { ms, repondre, prefixe, arg } = commandeOptions;
+
+  try {
+    if (!arg || arg == "") {
+      repondre(prefixe + "purple Lucky"); return;
+    }
+    const lien = "https://en.ephoto360.com/purple-text-effect-online-100.html"
+    var img = await mumaker.ephoto(lien, arg);
+    repondre(" processing ...")
+    await zk.sendMessage(dest, { image: { url: img.image }, caption: "      *Logo by LUCKY MD XFORCE*" });
+  } catch (e) { repondre(e) }
+
 })
 
-ezra({nomCom:"gold",categorie:"Fredi-Logo",reaction:"🧚🏿‍♀️"},async(dest,zk,commandeOptions)=>{
+ezra({ nomCom: "gold", categorie: "Fredi-Logo", reaction: "🧚🏿‍♀️" }, async (dest, zk, commandeOptions) => {
 
 
-  let {ms,arg,prefixe,repondre}=commandeOptions;
-  try{
-      if(!arg||arg=="")
-      {
-        repondre(prefixe+"gold Lucky-MD");return;
-      }
+  let { ms, arg, prefixe, repondre } = commandeOptions;
+  try {
+    if (!arg || arg == "") {
+      repondre(prefixe + "gold Lucky-MD"); return;
+    }
 
-    var lien="https://en.ephoto360.com/modern-gold-4-213.html";
+    var lien = "https://en.ephoto360.com/modern-gold-4-213.html";
 
-    var img = await mumaker.ephoto(lien,arg);
-   repondre("processing ...")
-    await zk.sendMessage(dest,{image:{url:img.image},caption:" *Logo by LUCKY MD XFORCE*"},{quoted:ms})
-  }catch(e){repondre(e)}
+    var img = await mumaker.ephoto(lien, arg);
+    repondre("processing ...")
+    await zk.sendMessage(dest, { image: { url: img.image }, caption: " *Logo by LUCKY MD XFORCE*" }, { quoted: ms })
+  } catch (e) { repondre(e) }
 })
 
 
-ezra({nomCom:"arena",categorie:"Fredi-Logo",reaction:"🥵"},async(dest,zk,commandeOptions)=>{
+ezra({ nomCom: "arena", categorie: "Fredi-Logo", reaction: "🥵" }, async (dest, zk, commandeOptions) => {
 
 
-  let {ms,arg,prefixe,repondre}=commandeOptions;
-  try{
-      if(!arg||arg=="")
-      {
-        repondre(prefixe+"arena Lucky-MD");return;
-      }
+  let { ms, arg, prefixe, repondre } = commandeOptions;
+  try {
+    if (!arg || arg == "") {
+      repondre(prefixe + "arena Lucky-MD"); return;
+    }
 
-    var lien="https://en.ephoto360.com/create-cover-arena-of-valor-by-mastering-360.html";
+    var lien = "https://en.ephoto360.com/create-cover-arena-of-valor-by-mastering-360.html";
 
-    var img = await mumaker.ephoto(lien,arg.join(' '));
-   repondre("processing ...")
-    await zk.sendMessage(dest,{image:{url:img.image},caption:" *Logo by LUCKY MD XFORCE*"},{quoted:ms})
-  }catch(e){repondre(e)}
+    var img = await mumaker.ephoto(lien, arg.join(' '));
+    repondre("processing ...")
+    await zk.sendMessage(dest, { image: { url: img.image }, caption: " *Logo by LUCKY MD XFORCE*" }, { quoted: ms })
+  } catch (e) { repondre(e) }
 })
 
-ezra({nomCom:"incandescent",categorie:"Fredi-Logo",reaction:"😋"},async(dest,zk,commandeOptions)=>{
+ezra({ nomCom: "incandescent", categorie: "Fredi-Logo", reaction: "😋" }, async (dest, zk, commandeOptions) => {
 
 
-  let {ms,arg,prefixe,repondre}=commandeOptions;
-  try{
-      if(!arg||arg=="")
-      {
-        repondre(prefixe+"incandescent LUCKY-MD");return;
-      }
+  let { ms, arg, prefixe, repondre } = commandeOptions;
+  try {
+    if (!arg || arg == "") {
+      repondre(prefixe + "incandescent LUCKY-MD"); return;
+    }
 
-    var lien="https://en.ephoto360.com/text-effects-incandescent-bulbs-219.html";
+    var lien = "https://en.ephoto360.com/text-effects-incandescent-bulbs-219.html";
 
-    var img = await mumaker.ephoto(lien,arg.join(' '));
-   repondre("processing ...")
-    await zk.sendMessage(dest,{image:{url:img.image},caption:" *Logo by LUCKY MD XFORCE*"},{quoted:ms})
-  } catch(e){repondre(e)}
+    var img = await mumaker.ephoto(lien, arg.join(' '));
+    repondre("processing ...")
+    await zk.sendMessage(dest, { image: { url: img.image }, caption: " *Logo by LUCKY MD XFORCE*" }, { quoted: ms })
+  } catch (e) { repondre(e) }
 })
 
 ezra({ nomCom: "gif×1", categorie: "Fredi-Logo", reaction: "😋" }, async (dest, zk, commandeOptions) => {

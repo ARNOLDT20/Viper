@@ -37,9 +37,9 @@ ezra({
         },
         'forwardingScore': 0x3e7,
         'externalAdReply': {
-          'title': "LUCKY-MD-XFORCE",
+          'title': "VIPER MD",
           'body': "⚫ Pong: " + _0x4950ba + "ms\n📅 *Date:* " + _0x4c687e + "\n⏰ *Time:* " + _0xb5466b,
-          'thumbnailUrl': "https://files.catbox.moe/uw4l17.jpeg",
+          'thumbnailUrl': "https://files.catbox.moe/82aewo.png",
           'mediaType': 0x1,
           'renderSmallThumbnail': true
         }
@@ -74,19 +74,19 @@ ezra({
 
     await zk.sendMessage(dest, {
       image: { url: 'https://files.catbox.moe/uw4l17.jpeg' },
-      caption: gitdata,
-      contextInfo: {
+          caption: gitdata,
+          contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_STARBOY",
           serverMessageId: -1
         },
         forwardingScore: 999,
         externalAdReply: {
-          title: "LUCKY MD XFORCE",
+          title: "VIPER MD",
           body: "🫧 repo link request 🫧",
-          thumbnailUrl: "https://files.catbox.moe/3o37c5.jpeg",
+          thumbnailUrl: "https://files.catbox.moe/82aewo.png",
           mediaType: 1,
           sourceUrl: data.html_url || "https://github.com/mr-X-force/LUCKY-MD-XFORCE"
         }
@@ -97,12 +97,12 @@ ezra({
       audio: { url: "https://files.catbox.moe/j3sp1o.mp3" },
       mimetype: "audio/mp4",
       ptt: true,
-      caption: "*🫧 Lucky Xforce repo song 🫧",
+      caption: "*🫧 VIPER MD repo song 🫧",
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363313124070136@newsletter",
-          newsletterName: "@FrediEzra",
+          newsletterJid: "120363420222821450@newsletter",
+          newsletterName: "@T20_STARBOY",
           serverMessageId: -1
         }
       }
@@ -125,18 +125,18 @@ ezra({
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;
-  
+
   // Simple version without API calls
-  const repoInfo = `🫧 *LUCKY-MD-XFORCE Repository* 🫧\n\n` +
-                   `✨ *Stars:* 100+\n` +
-                   `🔱 *Forks:* 50+\n` +
-                   `👁️ *Watchers:* 200+\n\n` +
-                   `🔗 *GitHub:* https://github.com/mr-X-force/LUCKY-MD-XFORCE\n\n` +
-                   `_Click buttons below to interact_`;
-  
+  const repoInfo = `🫧 *VIPER MD Repository* 🫧\n\n` +
+    `✨ *Stars:* 100+\n` +
+    `🔱 *Forks:* 50+\n` +
+    `👁️ *Watchers:* 200+\n\n` +
+    `🔗 *GitHub:* https://github.com/mr-X-force/LUCKY-MD-XFORCE\n\n` +
+    `_Click buttons below to interact_`;
+
   await zk.sendMessage(dest, {
     text: repoInfo,
-    footer: "FrediEzra Tech Info",
+    footer: "T20_STARBOY Tech Info",
     buttons: [
       { buttonId: 'id1', buttonText: { displayText: '🌐 Visit Repo' } },
       { buttonId: 'id2', buttonText: { displayText: '⭐ Star Now' } },

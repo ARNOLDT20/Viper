@@ -2,13 +2,13 @@
 
 # 🌟 LUCKY XFORCE 🚀
 
-[![VIPER MD](https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/lucky.svg)](https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f)
+[![FREDIEZRA TECH](https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/lucky.svg)](https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f)
 
 ---
 
 ## 📊 Profile Overview
 
-👤 **Developer**: [Viper MD](https://github.com/mr-X-force)  
+👤 **Developer**: [FREDI AI](https://github.com/mr-X-force)  
 📊 **Profile Views**:  
 ![Profile Views](https://komarev.com/ghpvc/?username=mr-X-force&label=VIEWS&style=flat-square&color=blue)
 
@@ -30,7 +30,7 @@
 ✨ **Dual Mode**: Group + DM features  
 ✨ **Privacy**: Public/Private mode  
 ✨ **Hosting**: Secure cloud-hosting compatible  
-✨ **Support**: Developer maintained: Viper MD  
+✨ **Support**: Developer maintained: FredieTech  
 
 ---
 
@@ -125,16 +125,16 @@
 ## 📝 License
 
 📜 **License**: This project is under [MIT License](LICENSE).  
-📢 **Credits**: Developed with ❤️ by [Viper MD](https://github.com/mr-X-force).  
+📢 **Credits**: Developed with ❤️ by [FredieTech](https://github.com/mr-X-force).  
 
 ---
 
 ## 📱 Connect With Me
 
-📱 **Facebook**: [Viper MD](https://facebook.com/@FrediEzra)  
-📸 **Instagram**: [Viper MD](https://instagram.com/frediezra)  
-📹 **YouTube**: [Viper MD](https://youtube.com/frediai-tech)  
-📧 **GitHub**: [Viper MD](https://github.com/mr-X-force)  
+📱 **Facebook**: [FredieEzra](https://facebook.com/@FrediEzra)  
+📸 **Instagram**: [frediezra](https://instagram.com/frediezra)  
+📹 **YouTube**: [FrediAi-Tech](https://youtube.com/frediai-tech)  
+📧 **GitHub**: [Fredi Ai](https://github.com/mr-X-force)  
 
 ---
 
