@@ -71,8 +71,8 @@ ezra({ nomCom: "logo", categorie: "Fredi-Search", reaction: "🤭" }, async (des
       mentionedJid: [ms.sender], // Mention the sender
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
       },
     };

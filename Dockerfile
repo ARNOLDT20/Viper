@@ -1,16 +1,21 @@
-FROM node:lts-buster
+FROM node:lts
 
-# Clone bot from GitHub
-RUN git clone https://github.com/ARNOLDT20/Viper.git /root/viper-md
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  npm i pm2 -g && \
+  rm -rf /var/lib/apt/lists/*
 
-# Set working directory
-WORKDIR /root/viper-md
+WORKDIR /app
 
-# Install dependencies
-RUN npm install && npm install -g pm2
+COPY package.json .
+RUN npm install --legacy-peer-deps
 
-# Expose port
-EXPOSE 9090
+COPY . .
 
-# Start the bot
-CMD ["npm", "start"]
+EXPOSE 5000
+
+CMD ["node", "index.js"]

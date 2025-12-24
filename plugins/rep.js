@@ -22,27 +22,26 @@ ezra({
   };
   const _0x4950ba = Math.floor(Math.random() * 0x64) + 0x1;
   try {
-        await _0x2d8d4e.sendMessage(_0x12a838, {
+    await _0x2d8d4e.sendMessage(_0x12a838, {
       'audio': {
         'url': "https://files.catbox.moe/se9mii.mp3"
       },
       'mimetype': "audio/mp4",
       'ptt': true,
-        'contextInfo': {
+      'contextInfo': {
         'isForwarded': true,
         'forwardedNewsletterMessageInfo': {
-          'newsletterJid': "120363420222821450@newsletter",
-          'newsletterName': "@T20_starboy",
+          'newsletterJid': "120363313124070136@newsletter",
+          'newsletterName': "@FrediEzra",
           'serverMessageId': 0x8f
         },
         'forwardingScore': 0x3e7,
         'externalAdReply': {
-          'title': "VIPER MD",
+          'title': "LUCKY-MD-XFORCE",
           'body': "⚫ Pong: " + _0x4950ba + "ms\n📅 *Date:* " + _0x4c687e + "\n⏰ *Time:* " + _0xb5466b,
-          'thumbnailUrl': "https://files.catbox.moe/82aewo.png",
+          'thumbnailUrl': "https://files.catbox.moe/uw4l17.jpeg",
           'mediaType': 0x1,
-          'renderSmallThumbnail': true,
-          'sourceUrl': "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d"
+          'renderSmallThumbnail': true
         }
       }
     }, {
@@ -62,7 +61,7 @@ ezra({
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
   const { pushname, repondre } = commandeOptions;
-  const githubRepo = 'https://api.github.com/repos/ARNOLDT20/Viper';
+  const githubRepo = 'https://api.github.com/repos/mr-X-force/LUCKY-MD-XFORCE';
 
   try {
     const response = await axios.get(githubRepo);
@@ -74,22 +73,22 @@ ezra({
     const gitdata = `> *ɴᴀᴍᴇ:*    ${conf.BOT}\n\n> *sᴛᴀʀs:*  ${data.stargazers_count}\n\n> *ғᴏʀᴋs:*  ${data.forks_count}\n\n> *ᴡᴀᴛᴄʜᴇʀs:*  ${data.watchers}\n\n> *ᴜᴘᴅᴀᴛᴇᴅ:*  ${updated}\n\n> *Repo:* ${data.html_url}\n\n_Powered by FrediEzra Tech Info_`;
 
     await zk.sendMessage(dest, {
-      image: { url: 'https://files.catbox.moe/82aewo.png' },
+      image: { url: 'https://files.catbox.moe/uw4l17.jpeg' },
       caption: gitdata,
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
-          newsletterName: "@T20_starboy",
+          newsletterJid: '120363313124070136@newsletter',
+          newsletterName: "@FrediEzra",
           serverMessageId: -1
         },
         forwardingScore: 999,
         externalAdReply: {
-          title: "VIPER MD",
+          title: "LUCKY MD XFORCE",
           body: "🫧 repo link request 🫧",
-          thumbnailUrl: "https://files.catbox.moe/82aewo.png",
+          thumbnailUrl: "https://files.catbox.moe/3o37c5.jpeg",
           mediaType: 1,
-          sourceUrl: data.html_url || "https://github.com/ARNOLDT20/Viper"
+          sourceUrl: data.html_url || "https://github.com/mr-X-force/LUCKY-MD-XFORCE"
         }
       }
     });
@@ -102,8 +101,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363420222821450@newsletter",
-          newsletterName: "@T20_starboy",
+          newsletterJid: "120363313124070136@newsletter",
+          newsletterName: "@FrediEzra",
           serverMessageId: -1
         }
       }
@@ -128,11 +127,11 @@ ezra({
   const { repondre, ms } = commandeOptions;
   
   // Simple version without API calls
-  const repoInfo = `🫧 *VIPER Repository* 🫧\n\n` +
+  const repoInfo = `🫧 *LUCKY-MD-XFORCE Repository* 🫧\n\n` +
                    `✨ *Stars:* 100+\n` +
                    `🔱 *Forks:* 50+\n` +
                    `👁️ *Watchers:* 200+\n\n` +
-                   `🔗 *GitHub:* https://github.com/ARNOLDT20/Viper\n\n` +
+                   `🔗 *GitHub:* https://github.com/mr-X-force/LUCKY-MD-XFORCE\n\n` +
                    `_Click buttons below to interact_`;
   
   await zk.sendMessage(dest, {

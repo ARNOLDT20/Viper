@@ -18,7 +18,7 @@ ezra(
       }
 
       if (!arg[0] || !arg.join(' ').includes('=')) {
-        return repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255627417402\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
+        return repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255752593977\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
       }
 
       const text = arg.join(' ').trim();

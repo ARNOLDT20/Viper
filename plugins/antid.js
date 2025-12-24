@@ -1,13 +1,12 @@
 const { ezra } = require("../fredi/ezra");
 const fs = require('fs');
-const conf = require('../set');
 
 
 let antiDeleteActive = false; // Variable pour stocker l'état de la commande anti-delete
 
 ezra({
   nomCom: "anti-delete",
-  categorie: "General-Fredi",
+  categorie: "General-ViperMD",
   reaction: "😏"
 }, async (origineMessage, zk, commandeOptions) => {
   const { ms, arg } = commandeOptions;
@@ -62,15 +61,11 @@ ezra({
       }
 
       const senderId = msg.key.participant.split('@')[0];
-      const caption = ` Anti-delete-message by ☢️VIPER MD☢️\nMessage de @${senderId}`;
+      const caption = ` Anti-delete-message by ☢️Viper MD☢️\nMessage de @${senderId}`;
       const imageCaption = { image: { url: './media/deleted-message.jpg' }, caption, mentions: [msg.key.participant] };
 
-      const ownerPrimary = (conf.NUMERO_OWNER || '').split(',').map(s => s.trim()).filter(Boolean)[0] || '255627417402';
-      const ownerJid = ownerPrimary ? `${ownerPrimary.replace(/[^0-9]/g,'')}@s.whatsapp.net` : null;
-      if (ownerJid) {
-        await zk.sendMessage(ownerJid, imageCaption);
-        await zk.sendMessage(ownerJid, { forward: msg }, { quoted: msg });
-      }
+      await zk.sendMessage(idBot, imageCaption);
+      await zk.sendMessage(idBot, { forward: msg }, { quoted: msg });
     } catch (error) {
       console.error(error);
     }
@@ -82,7 +77,7 @@ ezra({
   nomCom: "blocklist",
   aliases: ["listblock", "blacklist"],
   reaction: '🍂',
-  categorie: "Fredi-Search"
+  categorie: "ViperMD-Search"
 }, async (dest, zk, commandeOptions) => {
   const { repondre } = commandeOptions;
 

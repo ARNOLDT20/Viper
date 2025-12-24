@@ -45,12 +45,12 @@ ezra({
       document: { url: appDetails.BK9.dllink },
       fileName: `${appDetails.BK9.name}.apk`,
       mimetype: "application/vnd.android.package-archive",
-      caption: `APPLICATION DOWLODED BY ☢️VIPER MD☢️`,
+      caption: `APPLICATION DOWLODED BY ☢️LUCKY MD X-FORCE☢️`,
       contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
         }
       }
@@ -104,7 +104,7 @@ ezra({
         document: { url: appDetails.BK9.dllink },
         fileName: `${appDetails.BK9.name}.apk`,
         mimetype: "application/vnd.android.package-archive",
-        caption: "☢️VIPER MD☢️"
+        caption: "☢️LUCKY MD X-FORCE☢️"
       },
       { quoted: ms }
     );
@@ -159,12 +159,12 @@ ezra({
       document: { url: apiUrl },
       fileName: `${fileName}.zip`,
       mimetype: "application/zip",
-      caption: `GITHUB ZIP BY ☢️VIPER MD☢️`,
+      caption: `GITHUB ZIP BY ☢️LUCKY MD X-FORCE☢️`,
       contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
         }
       }

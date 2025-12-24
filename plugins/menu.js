@@ -2,8 +2,7 @@
 const { ezra } = require("../fredi/ezra");
 const moment = require("moment-timezone");
 const os = require("os");
-// Note: require `set` at runtime inside the handler so changes persist without restart
-// no persistent auto-follow/join state shown in menu
+const s = require("../set");
 
 const readMore = String.fromCharCode(8206).repeat(4001);
 
@@ -27,13 +26,11 @@ const toFancyLowercaseFont = (text) => {
 
 ezra({ 
     nomCom: "menu", 
-    categorie: "VIPER-Menu", 
+    categorie: "Fredi-Menu", 
     reaction: "☢️", 
     nomFichier: __filename 
 }, async (dest, zk, commandeOptions) => {
     const { repondre, prefixe, nomAuteurMessage } = commandeOptions;
-    // live config
-    const s = require('../set');
     const { cm } = require("../fredi/ezra");
     let coms = {};
     let mode = "public";
@@ -56,64 +53,57 @@ ezra({
 
     const temps = moment().format('HH:mm:ss');
     const date = moment().format('DD/MM/YYYY');
-    const img = 'https://files.catbox.moe/82aewo.png';
-    const imgs = 'https://files.catbox.moe/82aewo.png';
+    const img = 'https://files.catbox.moe/5x1y2z.png';
+    const imgs = 'https://files.catbox.moe/5x1y2z.png';
 
-    const header = `╔════════════════════════════╗\n` +
-                   `║  ✨  *VIPER MD* — Main Menu  ✨  ║\n` +
-                   `╚════════════════════════════╝\n`;
-
-    const infoMsg = `*${s.BOT || 'VIPER MD'}* — *Main Menu*\n\n` +
-        `👑 Owner: *${s.OWNER_NAME || 'T20_STARBOY'}*\n` +
-        `🔰 Prefix: *${s.PREFIXE}*   •   Mode: *${mode}*\n` +
-        `📅 Date: *${date}*   •   ⏰ Time: *${temps}*\n` +
-        `💠 Platform: *${os.platform()}*   •   ⚙️ Plugins: *${cm.length}*\n\n`;
-
-    let menuMsg = `*${greeting}* 👋\n\n`;
-
-    // nice icons for categories
-    const categoryIcons = {
-        'VIPER-Menu': '☢️',
-        'VIPER FUN': '🎮',
-        'VIPER-Admin': '🔒',
-        'VIPER-Tools': '🛠️',
-        'VIPER-Media': '🖼️'
-    };
-
-    for (const cat of Object.keys(coms).sort()) {
-        const displayCat = cat.replace(/Fredi/ig, 'VIPER');
-        const icon = categoryIcons[displayCat] || '•';
-        menuMsg += `*${icon} ${toFancyUppercaseFont(displayCat)}*\n`;
-        const cmds = coms[cat].slice().sort();
-        let line = '';
-        for (const cmd of cmds) {
-            line += `\`${s.PREFIXE}${cmd}\` `;
-            if (line.length > 60) { menuMsg += line + '\n'; line = ''; }
+    const infoMsg = `
+╭───────────⊷
+*┋* *ʙᴏᴛ ɴᴀᴍᴇ :  ☢️LUCKY MD X-FORCE☢️*
+*┋* *ᴘʀᴇғɪx :* [ ${s.PREFIXE} ]
+*┋* *ᴍᴏᴅᴇ :* ${mode}
+*┋* *ᴅᴀᴛᴇ  :* ${date}
+*┋* *ᴘʟᴀᴛғᴏʀᴍ :* ${os.platform()}
+*┋* *ᴏᴡɴᴇʀ ɪs : FREDI*
+*┋* *ᴘʟᴜɢɪɴs ᴄᴍᴅ :* ${cm.length}
+╰───────────⊷\n`;
+    
+    let menuMsg = ` *${greeting}*`;
+    
+    for (const cat in coms) {
+        menuMsg += `
+*「 ${toFancyUppercaseFont(cat)} 」*
+╭───┈┈┈┈────⊷ `;
+        for (const cmd of coms[cat]) {
+            menuMsg += `          
+*┋* ${toFancyLowercaseFont(cmd)}`;   
         }
-        if (line) menuMsg += line + '\n';
-        menuMsg += '\n';
+        menuMsg += `
+╰───┈┈┈┈────⊷`;
     }
-
-    menuMsg += `———\n` +
-               `📌 *Tips:* Type *${s.PREFIXE}getsettings* to see bot config.\n` +
-               `🔔 *Made by:* T20_STARBOY — 2025\n`;
+    
+    menuMsg += `
+> @made by FredieTech 2025\n`;
 
     try {
-        // Build externalAdReply only when an image (thumbnail) is available to avoid empty thumbnail fields
-        const externalAd = {
-            title: `${s.BOT || 'VIPER MD'} — Commands`,
-            body: `Owner: ${s.OWNER_NAME || 'T20_STARBOY'}`,
-            sourceUrl: s.GURL || 'https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d',
-            mediaType: 1,
-            renderLargerThumbnail: true
-        };
-        if (s.URL) externalAd.thumbnailUrl = s.URL;
-
-        await zk.sendMessage(dest, {
-            image: { url: s.URL || 'https://files.catbox.moe/82aewo.png' },
-            caption: header + '\n' + infoMsg + menuMsg,
+        await zk.sendMessage(dest, { 
+            image: { url: "https://files.catbox.moe/uw4l17.jpeg" },
+            caption: infoMsg + menuMsg,
             contextInfo: {
-                externalAdReply: externalAd
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363313124070136@newsletter",
+                    newsletterName: "@FrediEzra",
+                    serverMessageId: -1
+                },
+                forwardingScore: 999,
+                externalAdReply: {
+                    title: "☢️LUCKY MD X-FORCE☢️",
+                    body: "🔑🗝️ Command List",
+                    thumbnailUrl: "https://files.catbox.moe/3o37c5.jpeg",
+                    sourceUrl: "https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f",
+                    mediaType: 1,
+                    renderLargerThumbnail: true
+                }
             }
         });
       } catch (error) {

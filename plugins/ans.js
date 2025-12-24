@@ -6,7 +6,7 @@ const { default: axios } = require('axios');
 
 
 
-ezra({nomCom:"starboy",reaction:"🤷",categorie:"VIPER-IA"},async(dest,zk,commandeOptions)=>{
+ezra({nomCom:"lucky",reaction:"🤷",categorie:"Fredi-IA"},async(dest,zk,commandeOptions)=>{
 
   const {repondre,ms,arg}=commandeOptions;
   
@@ -58,7 +58,7 @@ fetch(`http://api.brainshop.ai/get?bid=177607&key=NwzhALqeO1kubFVD&uid=[uid]&msg
       const response = await axios.get(`http://api.maher-zubair.tech/ai/photoleap?q=${image}`);
       
       const data = response.data;
-      let caption = '*bing images by T20 CLASSIC Tech*';
+      let caption = '*bing images by Fredie Tech*';
       
       if (data.status == 200) {
         // Utiliser les données retournées par le service

@@ -392,21 +392,21 @@ let menuMsg = `
         // Use correct variable for sender name
     try {
         await zk.sendMessage(dest, { 
-            image: { url: "https://files.catbox.moe/82aewo.png" },
+            image: { url: "https://files.catbox.moe/uw4l17.jpeg" },
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363420222821450@newsletter",
-                    newsletterName: "@T20_starboy",
+                    newsletterJid: "120363313124070136@newsletter",
+                    newsletterName: "@FrediEzra",
                     serverMessageId: -1
                 },
                 forwardingScore: 999,
                 externalAdReply: {
                     title: "☢️LUCKY MD X-FORCE☢️",
                     body: "Quran verses List",
-                    thumbnailUrl: "https://files.catbox.moe/82aewo.png",
-                    sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
+                    thumbnailUrl: "https://files.catbox.moe/3o37c5.jpeg",
+                    sourceUrl: "https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f",
                     mediaType: 1,
                     renderLargerThumbnail: true
                 }

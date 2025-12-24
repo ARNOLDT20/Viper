@@ -29,7 +29,7 @@ ezra({
     const { respond, prefix, nomAuteurMessage } = context;
     const commands = require(__dirname + "/../fredi/ezra").cm;
 
-    let menu = '☢️VIPER MD☢️ COMMAND LIST\n\n';
+    let menu = '☢️LUCKY MD X-FORCE☢️ COMMAND LIST\n\n';
     let ezraList = [];
 
     // Loop through all commands to fetch the relevant information (commands, description, and aliases)
@@ -60,8 +60,8 @@ ezra({
         contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
             }
         }

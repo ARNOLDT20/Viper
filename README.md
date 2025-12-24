@@ -1,18 +1,25 @@
 
 
-# 🌟 VIPER MD 🚀
+# 🌟 LUCKY XFORCE 🚀
 
-[![VIPER MD](https://raw.githubusercontent.com/ARNOLDT20/Viper/main/media/lucky.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
+[![VIPER MD](https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/lucky.svg)](https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f)
 
+---
+
+## 📊 Profile Overview
+
+👤 **Developer**: [Viper MD](https://github.com/mr-X-force)  
+📊 **Profile Views**:  
+![Profile Views](https://komarev.com/ghpvc/?username=mr-X-force&label=VIEWS&style=flat-square&color=blue)
 
 📈 **GitHub Stats**:  
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ARNOLDT20&show_icons=true&theme=github_dark)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=mr-X-force&show_icons=true&theme=github_dark)
 
 🏆 **Trophies**:  
-![Trophies](https://github-profile-trophy.vercel.app/?username=ARNOLDT20&theme=monokai)
+![Trophies](https://github-profile-trophy.vercel.app/?username=mr-X-force&theme=monokai)
 
 📈 **Contributions Graph**:  
-![Contributions](https://activity-graph.herokuapp.com/graph?username=ARNOLDT20&theme=github)
+![Contributions](https://activity-graph.herokuapp.com/graph?username=mr-X-force&theme=github)
 
 ---
 
@@ -23,74 +30,76 @@
 ✨ **Dual Mode**: Group + DM features  
 ✨ **Privacy**: Public/Private mode  
 ✨ **Hosting**: Secure cloud-hosting compatible  
-✨ **Support**: Developer maintained: T20_STARBOY  
+✨ **Support**: Developer maintained: Viper MD  
 
 ---
 
 ## 📥 Download ZIP
 
-📁 **Download ZIP File**: [VIPER ZIP 📁](https://github.com/ARNOLDT20/Viper/archive/refs/heads/main.zip)
+📁 **Download ZIP File**: [LUCKY XFORCE ZIP 📁](https://github.com/mr-X-force/LUCKY-MD-XFORCE/archive/refs/heads/main.zip)
 
 ---
 
 ## 🚀 Deployment Options
-### 🚀 Deploy — pick a provider
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ARNOLDT20/Viper)
+### 🌐 Cloud Platforms
 
-<p align="center">
-  <a href="https://dashboard.heroku.com/new?template=https://github.com/ARNOLDT20/Viper/" target="_blank" rel="noopener noreferrer">
-    <img title="DEPLOY arnoldt20" src="https://img.shields.io/badge/🚀_DEPLOY_ON_HEROKU-000000?style=for-the-badge&logo=heroku&logoColor=red&color=FF00FF" width="260" height="50"/>
-  </a>
-  <a href="https://railway.app/new" target="_blank" rel="noopener noreferrer">
-    <img src="media/deploy-railway.svg" alt="Deploy to Railway" width="260" height="64" />
-  </a>
-  <a href="https://app.koyeb.com/services/deploy?type=git&repository=ARNOLDT20/Viper" target="_blank" rel="noopener noreferrer">
-    <img src="media/deploy-koyeb.svg" alt="Deploy to Koyeb" width="260" height="64" />
-  </a>
-  <a href="https://dashboard.render.com/web/new" target="_blank" rel="noopener noreferrer">
-    <img src="media/deploy-render.svg" alt="Deploy to Render" width="260" height="64" />
-  </a>
-  <a href="https://host.talkdrove.com/share-bot/47" target="_blank" rel="noopener noreferrer">
-    <img src="media/deploy-talkdrove.svg" alt="Deploy to TalkDrove" width="260" height="64" />
-  </a>
-  <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
-    <img src="media/deploy-docker.svg" alt="Deploy with Docker" width="260" height="64" />
-  </a>
-</p>
+#### 1. **Heroku**  
+[Heroku](https://lucky-md-xforce-deploy-your-bot-with-your-github-username.vercel.app)  
+<details><summary>Steps</summary>
+1. Fork this repo  
+2. Click Heroku button above  
+3. Connect your GitHub and select this repo  
+4. Set config vars like SESSION_ID  
+5. Click **Deploy App**  
+</details>
 
-<details>
-<summary>Click to expand deploy steps for each provider</summary>
+#### 2. **Railway**  
+[Railway](https://railway.app/new)  
+<details><summary>Steps</summary>
+1. Open link  
+2. Click **Deploy from GitHub repo**  
+3. Select this repo  
+4. Go to variables tab → add SESSION_ID, AUTOBIO etc.  
+5. Deploy  
+</details>
 
-#### Heroku
-1. Open the Heroku link above and log in.  
-2. Create a new app or use the deploy template.  
-3. Set required env vars (see Setup Guide).  
-4. Deploy and watch logs.  
+#### 3. **Koyeb**  
+[Koyeb](https://app.koyeb.com/services/deploy?type=git&repository=mr-X-force/LUCKY-MD-XFORCE)  
+<details><summary>Steps</summary>
+1. Click above to open deploy panel  
+2. Authorize GitHub and select repo  
+3. Set environment variables  
+4. Deploy and wait for logs to show successful build  
+</details>
 
-#### Railway
-1. Open Railway and use "Deploy from GitHub".  
-2. Connect repo and set environment variables.  
-3. Deploy and verify logs.  
+#### 4. **Render**  
+[Render](https://dashboard.render.com/web/new)  
+<details><summary>Steps</summary>
+1. Open Render dashboard  
+2. Click **New Web Service**  
+3. Connect your GitHub  
+4. Choose this repo  
+5. Add build/start command & ENV vars  
+6. Click **Create Web Service**  
+</details>
 
-#### Koyeb
-1. Use the Koyeb link above and authorize GitHub.  
-2. Configure build & env vars.  
-3. Deploy and check service health.  
+#### 5. **TalkDrove**  
+[TalkDrove](https://host.talkdrove.com/share-bot/47)  
+<details><summary>Steps</summary>
+1. Open the TalkDrove link  
+2. Click **Deploy Now**  
+3. Paste repo link  
+4. Add ENV values (SESSION_ID)  
+5. Deploy the bot  
+</details>
 
-#### Render
-1. Create a new web service on Render.  
-2. Connect the GitHub repo, specify build/start commands & env vars.  
-3. Deploy and check the service.  
-
-#### TalkDrove
-1. Open TalkDrove and choose deploy; provide repo link and env vars.  
-2. Follow their quick deploy flow.  
-
-#### Docker (Self-host)
-1. Build the image with `docker build -t viper .`  
-2. Run with `docker run -e SESSION_ID=... -p 3000:3000 viper`  
-
+#### 6. **Netlify** (For Frontend)  
+[Netlif](https://app.netlify.com/)  
+<details><summary>Steps</summary>
+1. Use for frontend session site only  
+2. Drag/drop or link repo with index.html  
+3. Publish to host session UI  
 </details>
 
 ---
@@ -108,7 +117,7 @@
 
 ## 📢 Join Community
 
-👥 **WhatsApp Channel**: [Join Now](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)  
+👥 **WhatsApp Channel**: [Join Now](https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f)  
 📢 **Stay Updated**: Get the latest updates, features, and support.  
 
 ---
@@ -116,22 +125,22 @@
 ## 📝 License
 
 📜 **License**: This project is under [MIT License](LICENSE).  
-📢 **Credits**: Developed with ❤️ by [T20_starboy](https://github.com/ARNOLDT20).  
+📢 **Credits**: Developed with ❤️ by [Viper MD](https://github.com/mr-X-force).  
 
 ---
 
 ## 📱 Connect With Me
 
-📱 **Facebook**: [T20_STARBOY](https://facebook.com/@FrediEzra)  
-📸 **Instagram**: [T20_STARBOY](https://instagram.com/frediezra)  
-📹 **YouTube**: [T20_STARBOY](https://youtube.com/frediai-tech)  
-📧 **GitHub**: [T20_starboy](https://github.com/ARNOLDT20)  
+📱 **Facebook**: [Viper MD](https://facebook.com/@FrediEzra)  
+📸 **Instagram**: [Viper MD](https://instagram.com/frediezra)  
+📹 **YouTube**: [Viper MD](https://youtube.com/frediai-tech)  
+📧 **GitHub**: [Viper MD](https://github.com/mr-X-force)  
 
 ---
 
 ## 📲 Download APK
 
-📁 **Download APK**: [T20_STARBOY v2.9.9](https://www.mediafire.com/file/chyvv2mktqc9jsv/fredi.ai.v2.9.9.apk)  
+📁 **Download APK**: [Fredi.AI v2.9.9](https://www.mediafire.com/file/chyvv2mktqc9jsv/fredi.ai.v2.9.9.apk)  
 <details><summary>Installation Steps</summary>
 1. Download the APK file  
 2. Enable "Install from unknown sources" in your device settings  

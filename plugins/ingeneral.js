@@ -21,9 +21,9 @@ ezra({
       text: news,
       contextInfo: {
          isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         forwardedNewsletterMessageInfo: {
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzral",
          serverMessageId: 143,
         },
       },
@@ -49,8 +49,8 @@ ezra({
       contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
         },
       },
@@ -65,8 +65,8 @@ ezra({
         contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
           },
         },
@@ -91,8 +91,8 @@ ezra({
       contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
         },
       },
@@ -103,11 +103,11 @@ ezra({
     await repondre("An error occurred while fetching the Bible passage. Please try again later.", {
       contextInfo: {
          isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         forwardedNewsletterMessageInfo: {
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
-          },
+        },
       },
     });
   }
@@ -142,8 +142,8 @@ ezra({
         contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
           },
         },
@@ -233,7 +233,7 @@ ezra({
     const thumb = data.image; // Assuming the API returns an 'image' property for the element thumbnail
 
     const formattedMessage = `
-  *☢️VIPER MD☢️ ELEMENT INFO:*
+*☢️LUCKY MD X-FORCE☢️ ELEMENT INFO:*
 🚀 *Name:* ${data.name}
 🚀 *Symbol:* ${data.symbol}
 🚀 *Atomic Number:* ${data.atomic_number}
@@ -250,8 +250,8 @@ Regards ${conf.OWNER_NAME} `;
       contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
         },
       },
@@ -307,8 +307,8 @@ ezra({
       contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
         },
       },
@@ -338,8 +338,8 @@ You can use this email for temporary purposes. I will notify you if you receive 
       contextInfo: {
          isForwarded: true,
          forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
          serverMessageId: 143,
         }
       }
@@ -361,13 +361,13 @@ You can use this email for temporary purposes. I will notify you if you receive 
             await zk.sendMessage(dest, {
               text: `You have received a new email!\n\nFrom: ${emailData.from}\nSubject: ${emailData.subject}\n\n${emailData.textBody}\nLinks found:\n${linksText}`,
               contextInfo: {
-               isForwarded: true,
-               forwardedNewsletterMessageInfo: {
-               newsletterJid: '120363420222821450@newsletter',
-               newsletterName: "@T20_starboy",
-               serverMessageId: 143,
-                      }
-                    }
+         isForwarded: true,
+         forwardedNewsletterMessageInfo: {
+         newsletterJid: '120363313124070136@newsletter',
+         newsletterName: "@FrediEzra",
+         serverMessageId: 143,
+                }
+              }
             }, { quoted: messageQuote });
           }
         }

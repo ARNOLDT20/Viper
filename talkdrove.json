@@ -1,10 +1,10 @@
 {
-  "bot-name": "VIPER MD",
-  "description": "VIPER MD Whatsapp device bot made by T20_STARBOY to help Whatsapp users to enjoy while helping...",
-  "logo": "https://files.catbox.moe/82aewo.png",
+  "bot-name": "LUCKY-MD-XFORCE MULT DEVICE",
+  "description": "Lucky Whatsapp device bot made by FrediEzra to help Whatsapp users to enjoy while helping...",
+  "logo": "https://files.catbox.moe/uw4l17.jpeg",
   "keywords": ["Fredi-Ezra", "Lucky-Md", "mdtech"],
   "documentation-link": "https://lucky-xforce-session-site.onrender.com",
-  "owner-verification":"Atarimo117@gmail.com",
+  "owner-verification":"frediezra001@gmail.com",
   "env": {
     "PREFIX":
     {
@@ -71,7 +71,7 @@
     },
     "BOT_NAME": {
       "description": "you must give a name for you bot uhh??!!",
-      "value": "VIPER MD",
+      "value": "⁠LUCKY-MD-XFORCE",
       "required": false 
     },
     "PUBLIC_MODE": {
@@ -96,12 +96,12 @@
     },
     "OWNER_NAME": {
       "description": "don't you have a name bro.Insert your name here!!",
-      "value": "T20_starboy",
+      "value": "FrediEzra",
       "required": false
     },
     "URL": {
       "description": "you must add your bot image url.Get your image url now and fill it here",
-      "value": "https://files.catbox.moe/82aewo.png",
+      "value": "https://files.catbox.moe/uw4l17.jpeg",
       "required": true
     },
     "AUTO_READ_MESSAGES": {
@@ -110,8 +110,8 @@
       "required": false  
     },
     "NUMERO_OWNER": {
-      "description": "Your phone number (exclude '+' and area code, e.g., '255627417402')",
-      "value": "255627417402",
+      "description": "Your phone number (exclude '+' and area code, e.g., '255752593977')",
+      "value": "255752593977",
       "required": false
     },
     "WARN_COUNT": {

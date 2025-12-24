@@ -91,15 +91,15 @@ ezra({ nomCom: "url", categorie: "General-Fredi", reaction: "👨🏿‍💻" },
 
         // Respond with the URL based on media type
         switch (mediaType) {
-          case 'image':
-            repondre(`VIPER MD url: ${catboxUrl}`);
-            break;
-          case 'video':
-            repondre(`VIPER MD url: ${catboxUrl}`);
-            break;
-          case 'audio':
-            repondre(`VIPER MD url: ${catboxUrl}`);
-            break;
+            case 'image':
+                repondre(`Lucky md Xforce url: ${catboxUrl}`);
+                break;
+            case 'video':
+                repondre(`Lucky md Xforce url: ${catboxUrl}`);
+                break;
+            case 'audio':
+                repondre(`Lucky md Xforce url: ${catboxUrl}`);
+                break;
             default:
                 repondre('An unknown error occurred.');
                 break;
@@ -145,7 +145,7 @@ const alea = (ext) => {
     }
 
     sticker = new Sticker(buffer, {
-      pack:"VIPER MD",
+      pack:"LUCKY-MD-XFORCE",
       author: nomAuteurMessage,
       type:
         arg.includes("crop") || arg.includes("c")
@@ -169,7 +169,7 @@ const alea = (ext) => {
     }
 
     sticker = new Sticker(buffer, {
-      pack:"VIPER MD", // pack stick
+      pack:"LUCKY-MD-XFORCE", // pack stick
       author:  nomAuteurMessage, // name of the author of the stick
       type:
         arg.includes("-r") || arg.includes("-c")
@@ -224,8 +224,8 @@ mediamsg = msgRepondu.videoMessage
 
   var stick = await zk.downloadAndSaveMediaMessage(mediamsg)
 
-         let stickerMess = new Sticker(stick, {
-           pack: "VIPER MD",
+     let stickerMess = new Sticker(stick, {
+            pack: Lucky-md-xforce,
             
             type: StickerTypes.CROPPED,
             categories: ["🤩", "🎉"],
@@ -260,8 +260,8 @@ mediamsg = msgRepondu.videoMessage
 
   var stick = await zk.downloadAndSaveMediaMessage(mediamsg)
 
-         let stickerMess = new Sticker(stick, {
-           pack: "VIPER MD",
+     let stickerMess = new Sticker(stick, {
+            pack: LUCKY-MD-XFORCE,
             
             type: StickerTypes.FULL,
             categories: ["🤩", "🎉"],
@@ -327,7 +327,7 @@ ezra({ nomCom: "write", categorie: "Fredi-Conversion", reaction: "👨🏿‍�
     // Create the sticker
     const stickerMess = new Sticker(meme, {
       pack: nomAuteurMessage,
-      author: 'VIPER MD',
+      author: 'LUCKY-XFORCE',
       type: StickerTypes.FULL,
       categories: ["🤩", "🎉"],
       id: "12345",
