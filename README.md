@@ -45,13 +45,16 @@
 ### 🌐 Cloud Platforms
 
 #### 1. **Heroku**  
-[Heroku](https://lucky-md-xforce-deploy-your-bot-with-your-github-username.vercel.app)  
+#### 1. **Heroku**  
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ARNOLDT20/Viper)
+
 <details><summary>Steps</summary>
-1. Fork this repo  
-2. Click Heroku button above  
-3. Connect your GitHub and select this repo  
-4. Set config vars like SESSION_ID  
-5. Click **Deploy App**  
+1. Fork this repo
+2. Replace `OWNER/REPO` in the Deploy link above with your GitHub user/repo (for example: `https://github.com/youruser/Viper`)
+3. Click the Deploy button, connect your GitHub and select this repo
+4. Set config vars (see `app.json` for required env names like `SESSION_ID`)
+5. Click **Deploy App**
 </details>
 
 #### 2. **Railway**  
