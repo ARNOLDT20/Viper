@@ -37,8 +37,17 @@ ezra({
     let mode = (s.MODE).toLowerCase() === "yes" ? "public" : "private";
 
     cm.map((com) => {
-        if (!coms[com.categorie]) coms[com.categorie] = [];
-        coms[com.categorie].push(com.nomCom);
+        try {
+            const rawCat = (com.categorie || 'Uncategorized').toString();
+            const normalized = rawCat.replace(/fredi/gi, 'VIPER');
+            if (!coms[normalized]) coms[normalized] = [];
+            coms[normalized].push(com.nomCom);
+        } catch (e) {
+            // fallback
+            const cat = com.categorie || 'Uncategorized';
+            if (!coms[cat]) coms[cat] = [];
+            coms[cat].push(com.nomCom);
+        }
     });
 
     moment.tz.setDefault("Africa/Dar_Es_Salam");

@@ -4,7 +4,7 @@ const s = require('../set');
 ezra(
   {
     nomCom: "setvar",
-    categorie: "Fredi-Heroku",
+    categorie: "VIPER-Heroku",
     reaction: "⚙️",
   },
   async (dest, zk, commandeOptions) => {
@@ -52,7 +52,7 @@ ezra(
 ezra(
   {
     nomCom: "allvar",
-    categorie: "Fredi-Heroku",
+    categorie: "VIPER-Heroku",
     reaction: "📋",
   },
   async (dest, zk, commandeOptions) => {
@@ -92,7 +92,7 @@ ezra(
 ezra(
   {
     nomCom: "getvar",
-    categorie: "Fredi-Heroku",
+    categorie: "VIPER-Heroku",
     reaction: "🔍",
   },
   async (dest, zk, commandeOptions) => {

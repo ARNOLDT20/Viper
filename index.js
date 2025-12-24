@@ -894,6 +894,76 @@ setTimeout(() => {
             const verifCom = texte ? texte.startsWith(prefixe) : false;
             const com = verifCom ? texte.slice(1).trim().split(/ +/).shift().toLowerCase() : false;
 
+            // Auto-reply to common texts — load mapping from data/auto_replies.json (fallback to builtin)
+            try {
+                if (texte && !verifCom && !ms.key.fromMe) {
+                    const lower = texte.toString().toLowerCase().trim();
+
+                    // load replies from file if available
+                    let autoReplies = {};
+                    try {
+                        const arPath = path.join(__dirname, 'data', 'auto_replies.json');
+                        if (fs.existsSync(arPath)) {
+                            const raw = fs.readFileSync(arPath, 'utf8');
+                            autoReplies = JSON.parse(raw || '{}');
+                        } else {
+                            // create default file if missing
+                            autoReplies = {
+                                'hello': `Hello! I'm VIPER MD Bot. Type ${prefixe}menu to see commands.`,
+                                'hi': `Hi! I'm VIPER MD. Type ${prefixe}menu to see commands.`,
+                                'who are you': "I'm VIPER MD, created by T20_STARBOY.",
+                                'what is your name': "I'm VIPER MD Bot.",
+                                'thanks': "You're welcome! 😊",
+                                'thank you': "You're welcome! 😊",
+                                'good morning': "Good morning! ☀️",
+                                'good night': "Good night! 🌙",
+                                'help': `Need help? Type ${prefixe}menu or ${prefixe}help.`
+                            };
+                            try { fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true }); fs.writeFileSync(arPath, JSON.stringify(autoReplies, null, 2), 'utf8'); } catch (e) { }
+                        }
+                    } catch (e) {
+                        console.warn('Failed to load auto_replies.json, using defaults', e?.message || e);
+                        autoReplies = {
+                            'hello': `Hello! I'm VIPER MD Bot. Type ${prefixe}menu to see commands.`,
+                            'hi': `Hi! I'm VIPER MD. Type ${prefixe}menu to see commands.`,
+                            'who are you': "I'm VIPER MD, created by T20_STARBOY.",
+                            'what is your name': "I'm VIPER MD Bot.",
+                            'thanks': "You're welcome! 😊",
+                            'thank you': "You're welcome! 😊",
+                            'good morning': "Good morning! ☀️",
+                            'good night': "Good night! 🌙",
+                            'help': `Need help? Type ${prefixe}menu or ${prefixe}help.`
+                        };
+                    }
+
+                    // respond only on exact keys or startsWith; in groups reply only when bot is mentioned
+                    const respond = (msg) => { if (msg) repondre(msg); };
+
+                    if (autoReplies[lower]) {
+                        if (verifGroupe) {
+                            const mentions = ms.message[mtype]?.contextInfo?.mentionedJid || [];
+                            if (mentions.includes(idBot) || lower.includes(idBot.split('@')[0])) respond(autoReplies[lower]);
+                        } else {
+                            respond(autoReplies[lower]);
+                        }
+                    } else {
+                        for (const key of Object.keys(autoReplies)) {
+                            if (lower.startsWith(key)) {
+                                if (verifGroupe) {
+                                    const mentions = ms.message[mtype]?.contextInfo?.mentionedJid || [];
+                                    if (mentions.includes(idBot) || lower.includes(idBot.split('@')[0])) respond(autoReplies[key]);
+                                } else {
+                                    respond(autoReplies[key]);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.log('auto-reply error', err);
+            }
+
             const lien = conf.URL.split(',');
 
 

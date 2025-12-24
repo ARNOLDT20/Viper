@@ -597,7 +597,7 @@ ezra({ nomCom: "group", categorie: 'VIPER-Group' }, async (dest, zk, commandeOpt
 });
 
 // COMMAND ACTION TO LEFT GROUP
-ezra({ nomCom: "left", categorie: "Fredi-User" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "left", categorie: "VIPER-User" }, async (dest, zk, commandeOptions) => {
 
   const { repondre, verifGroupe, superUser } = commandeOptions;
   if (!verifGroupe) { repondre("order reserved for group only"); return };
@@ -1012,7 +1012,7 @@ const cron = require(`../lib/cron`);
 
 ezra({
   nomCom: 'automute',
-  categorie: 'Fredi-Group'
+  categorie: 'VIPER-Group'
 }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin } = commandeOptions;
@@ -1084,7 +1084,7 @@ ezra({
 
 ezra({
   nomCom: 'autounmute',
-  categorie: 'Fredi-Group'
+  categorie: 'VIPER-Group'
 }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin } = commandeOptions;
@@ -1161,7 +1161,7 @@ ezra({
 // COMMAND TO KICK
 ezra({
   nomCom: 'fkick',
-  categorie: 'Fredi-Group'
+  categorie: 'VIPER-Group'
 }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin, superUser, verifezraAdmin } = commandeOptions;
@@ -1195,7 +1195,7 @@ ezra({
 // COMMAND TO NSFW
 ezra({
   nomCom: 'nsfw',
-  categorie: 'Fredi-Group'
+  categorie: 'VIPER-Group'
 }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin } = commandeOptions;

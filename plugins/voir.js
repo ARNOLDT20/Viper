@@ -1,7 +1,7 @@
-const {ezra}=require("../fredi/ezra")
-const {getContentType}=require("@whiskeysockets/baileys")
+const { ezra } = require("../fredi/ezra")
+const { getContentType } = require("@whiskeysockets/baileys")
 
-ezra({ nomCom: "vv", aliases: ["send", "keep"], categorie: "Fredi-New" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "vv", aliases: ["send", "keep"], categorie: "VIPER-New" }, async (dest, zk, commandeOptions) => {
   const { repondre, msgRepondu, superUser } = commandeOptions;
 
   if (msgRepondu) {

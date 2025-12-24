@@ -7,7 +7,7 @@ const conf = require(__dirname + "/../set");
 ezra({
   nomCom: "technews",
   reaction: '📰',
-  categorie: 'Fredi-New'
+  categorie: 'VIPER-New'
 }, async (dest, zk, context) => {
   const { repondre, ms } = context;
 
@@ -20,11 +20,11 @@ ezra({
     await zk.sendMessage(dest, {
       text: news,
       contextInfo: {
-         isForwarded: true,
+        isForwarded: true,
         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         },
       },
     }, { quoted: ms });
@@ -43,36 +43,36 @@ ezra({
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const reference = arg.join(" ");
-  
+
   if (!reference) {
     return repondre("Please specify the book, chapter, and verse you want to read. Example: bible Mathew 3:16", {
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         },
       },
     });
   }
-  
+
   try {
     const response = await axios.get(`https://bible-api.com/${reference}`);
-    
+
     if (!response.data) {
       return repondre("Invalid reference. Example: bible mathew 3:16", {
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "@T20_starboy",
+            serverMessageId: 143,
           },
         },
       });
     }
-    
+
     const data = response.data;
     const messageText = `
 📖 ☢️LUCKY MD X-FORCE☢️ HOLY BIBLE 📖
@@ -85,29 +85,29 @@ ezra({
 
 ⁠ *_LANGUAGE:_* ${data.translation_name}
  `;
-    
+
     await zk.sendMessage(dest, {
       text: messageText,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         },
       },
     }, { quoted: ms });
-    
+
   } catch (error) {
     console.error("Error fetching Bible passage:", error);
     await repondre("An error occurred while fetching the Bible passage. Please try again later.", {
       contextInfo: {
-         isForwarded: true,
+        isForwarded: true,
         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
-          },
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
+        },
       },
     });
   }
@@ -117,7 +117,7 @@ ezra({
   nomCom: "define",
   aliases: ["dictionaries", "dict", "def"],
   reaction: '😁',
-  categorie: "Fredi-New"
+  categorie: "VIPER-New"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const term = arg.join(" ");
@@ -140,11 +140,11 @@ ezra({
       await zk.sendMessage(dest, {
         text: definitionMessage,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "@T20_starboy",
+            serverMessageId: 143,
           },
         },
       }, { quoted: ms });
@@ -189,11 +189,11 @@ ezra({
       await zk.sendMessage(dest, {
         text: pairingCode,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363313124070136@newsletter',
+            newsletterName: "@FrediEzra",
+            serverMessageId: 143,
           },
         },
       }, { quoted: ms });
@@ -213,7 +213,7 @@ ezra({
 ezra({
   nomCom: "elements",
   reaction: '📓',
-  categorie: "Fredi-New"
+  categorie: "VIPER-New"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const elementQuery = arg.join(" ").trim();
@@ -224,7 +224,7 @@ ezra({
 
   try {
     const response = await axios.get(`https://api.popcat.xyz/periodic-table?element=${elementQuery}`);
-    
+
     if (!response.data) {
       return repondre("Could not find information for the provided element. Please check the symbol or name.");
     }
@@ -248,11 +248,11 @@ Regards ${conf.OWNER_NAME} `;
     await zk.sendMessage(dest, {
       text: formattedMessage,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         },
       },
     }, { quoted: ms });
@@ -267,7 +267,7 @@ ezra({
   nomCom: "githubs",
   aliases: ["gits"],
   reaction: '💻',
-  categorie: "Fredi-New"
+  categorie: "VIPER-New"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const githubUsername = arg.join(" ");
@@ -305,11 +305,11 @@ ezra({
     await zk.sendMessage(dest, {
       text: githubMessage,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         },
       },
     }, { quoted: ms });
@@ -324,7 +324,7 @@ ezra({
   nomCom: "tempmail",
   aliases: ['maile', 'tempe'],
   reaction: '📧',
-  categorie: "Fredi-New"
+  categorie: "VIPER-New"
 }, async (dest, zk, context) => {
   const { repondre: replyToUser, prefix, ms: messageQuote } = context;
 
@@ -336,11 +336,11 @@ ezra({
 
 You can use this email for temporary purposes. I will notify you if you receive any emails.`,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363420222821450@newsletter',
-         newsletterName: "@T20_starboy",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "@T20_starboy",
+          serverMessageId: 143,
         }
       }
     }, { quoted: messageQuote });
@@ -361,13 +361,13 @@ You can use this email for temporary purposes. I will notify you if you receive 
             await zk.sendMessage(dest, {
               text: `You have received a new email!\n\nFrom: ${emailData.from}\nSubject: ${emailData.subject}\n\n${emailData.textBody}\nLinks found:\n${linksText}`,
               contextInfo: {
-               isForwarded: true,
-               forwardedNewsletterMessageInfo: {
-               newsletterJid: '120363420222821450@newsletter',
-               newsletterName: "@T20_starboy",
-               serverMessageId: 143,
-                      }
-                    }
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                  newsletterJid: '120363420222821450@newsletter',
+                  newsletterName: "@T20_starboy",
+                  serverMessageId: 143,
+                }
+              }
             }, { quoted: messageQuote });
           }
         }
@@ -385,11 +385,11 @@ You can use this email for temporary purposes. I will notify you if you receive 
       zk.sendMessage(dest, {
         text: "Your temporary email session has ended. Please create a new temporary email if needed.",
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363313124070136@newsletter',
+            newsletterName: "@FrediEzra",
+            serverMessageId: 143,
           }
         }
       }, { quoted: messageQuote });
@@ -400,11 +400,11 @@ You can use this email for temporary purposes. I will notify you if you receive 
     await zk.sendMessage(dest, {
       text: "Error generating temporary email. Please try again later.",
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363313124070136@newsletter',
+          newsletterName: "@FrediEzra",
+          serverMessageId: 143,
         }
       }
     }, { quoted: messageQuote });
@@ -414,19 +414,19 @@ ezra({
   nomCom: "wikipedia",
   aliases: ["wiki", "wikipeda"],
   reaction: '🤡',
-  categorie: "Fredi-New"
+  categorie: "VIPER-New"
 }, async (zk, dest, context) => {
   const { repondre, arg, ms } = context;
 
   // Ensure that the search term is provided
-  const text = arg.join(" ").trim(); 
+  const text = arg.join(" ").trim();
 
   try {
     if (!text) return repondre(`Provide the term to search,\nE.g What is JavaScript!`);
-    
+
     // Fetch summary from Wikipedia
     const con = await wiki.summary(text);
-    
+
     // Format the reply message
     const texa = `
 *📚 Wikipedia Summary 📚*
@@ -468,11 +468,11 @@ ezra({
       await zk.sendMessage(dest, {
         text: `📜 *Hadith of the Day:*\n\n"${hadithText}"`,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363313124070136@newsletter',
+            newsletterName: "@FrediEzra",
+            serverMessageId: 143,
           },
         },
       });

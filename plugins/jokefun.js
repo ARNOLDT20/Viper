@@ -6,7 +6,7 @@ ezra({
   nomCom: "joke",
   aliases: ["jokeapi", "getjoke"],
   desc: "Fetch a random joke from JokeAPI.",
-  categorie: "Fredi-Fun",
+  categorie: "VIPER-Fun",
   reaction: '🤭',
 }, async (dest, zk, context) => {
   const { repondre } = context;
@@ -37,7 +37,7 @@ ezra({
   nomCom: "randomjoke",
   aliases: ["jokeap"],
   desc: "Fetch a random joke from JokeAPI.",
-  categorie: "Fredi-Fun",
+  categorie: "VIPER-Fun",
   reaction: '🤭',
 }, async (dest, zk, context) => {
   const { repondre } = context;
