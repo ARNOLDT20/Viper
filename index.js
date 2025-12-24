@@ -1249,7 +1249,7 @@ setTimeout(() => {
                     // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
                     const gifLink = "https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/remover.gif";
                     var sticker = new Sticker(gifLink, {
-                        pack: 'FrediAI',
+                        pack: 'VIPER AI',
                         author: conf.OWNER_NAME,
                         type: StickerTypes.FULL,
                         categories: ['🤩', '🎉'],
@@ -1595,13 +1595,13 @@ setTimeout(() => {
                 console.log("ℹ️ lucky is connecting...");
             }
             else if (connection === 'open') {
-                console.log("✅ lucky Connected to WhatsApp! ☺️");
+                console.log("✅ VIPER Connected to WhatsApp! ☺️");
                 console.log("--");
                 await (0, baileys_1.delay)(200);
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("Lucky is Online 🕸\n\n");
+                console.log("VIPER is Online 🕸\n\n");
                 //chargement des plugins 
                 console.log("Loading Lucky Commands ...\n");
                 fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
@@ -1641,15 +1641,17 @@ setTimeout(() => {
 ║ Prefix: [ ${prefixe} ]
 ║ Mode: ${md}
 ║ Model: V 5.0.9
-║ Bot Name: Lucky-Md-Bot 
-║ Owner: FrediEzra
+║ Bot Name: VIPER-Md-Bot 
+║ Owner: T20_STARBOY
+║ Users: ${store.users.length}
+║ Groups: ${store.groups.length}
+║ Commands: ${evt.cm.length}
 ╚═════ ❖ •✦
 -_-<-<-<-<-<-<-<--<-<-<-<-<-<
 
 *🪀Follow my channel for updates and free hacks🙃*
  
-> https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f
-
+> https://whatsapp.com/channel/0029Vb6HjF9hXEzZFlD6F3d
                 
                  `;
 
