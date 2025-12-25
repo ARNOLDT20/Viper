@@ -12,6 +12,7 @@ ezra({
     const { repondre, prefixe, nomAuteurMessage } = opts;
     // load registered commands
     const { cm } = require("../fredi/ezra");
+    const menuState = require('../lib/menu2State');
 
     // build category map
     const categories = [];
@@ -53,8 +54,37 @@ ezra({
         return repondre(out.join('\n'));
     }
 
-    // otherwise show list of categories as a WhatsApp List message
+    // otherwise show image + list of categories as a WhatsApp List message
     try {
+        // stylish header and thumbnail image
+        const header = [];
+        header.push('╔════════════════════════╗');
+        header.push('║      ☢️ VIPER MENU ☢️       ║');
+        header.push('╠════════════════════════╣');
+        header.push(`║ Hello ${nomAuteurMessage}`);
+        header.push('╠════════════════════════╣');
+        header.push('║ Reply with the category number to view commands');
+        header.push('╚════════════════════════╝');
+
+        // send image first for a nicer display
+        try {
+            await zk.sendMessage(dest, {
+                image: { url: 'https://files.catbox.moe/82aewo.png' },
+                caption: header.join('\n'),
+                contextInfo: {
+                    externalAdReply: {
+                        title: "VIPER — Command Menu",
+                        body: "Reply with number to select a category",
+                        thumbnailUrl: 'https://files.catbox.moe/82aewo.png',
+                        sourceUrl: 'https://github.com/ARNOLDT20/Viper'
+                    }
+                }
+            });
+        } catch (err) {
+            // ignore image send errors, continue to list
+            console.error('menu2 image send error', err);
+        }
+
         const sections = [{
             title: "VIPER Categories",
             rows: categories.map((c, i) => ({
@@ -71,6 +101,9 @@ ezra({
             buttonText: "Choose category",
             sections
         };
+
+        // mark this user as having a pending menu (so plain-number replies are handled)
+        await menuState.setPending(dest);
 
         await zk.sendMessage(dest, list);
     } catch (e) {

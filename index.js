@@ -916,6 +916,21 @@ setTimeout(() => {
             const verifAdmin = verifGroupe ? admins.includes(auteurMessage) : false;
             var verifEzraAdmin = verifGroupe ? admins.includes(idBot) : false;
 
+            // if user recently viewed menu2, allow plain numeric replies to select category
+            try {
+                const menu2State = require('./lib/menu2State');
+                if (texte && !texte.startsWith(prefixe)) {
+                    const maybe = texte.toString().trim();
+                    if (/^\d{1,3}$/.test(maybe)) {
+                        const pending = await menu2State.getPending(origineMessage);
+                        if (pending) {
+                            // transform into a menu2 command invocation
+                            texte = `${prefixe}menu2 ${maybe}`;
+                        }
+                    }
+                }
+            } catch (e) { /* ignore */ }
+
             const arg = texte ? texte.trim().split(/ +/).slice(1) : null;
             const verifCom = texte ? texte.startsWith(prefixe) : false;
             const com = verifCom ? texte.slice(1).trim().split(/ +/).shift().toLowerCase() : false;
