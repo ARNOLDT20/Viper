@@ -162,7 +162,7 @@ ezra({
   nomCom: "pair",
   aliases: ["session", "qrcode"],
   reaction: '🚀',
-  categorie: 'General-Fredi'
+  categorie: 'General-VIPER'
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
@@ -453,7 +453,7 @@ ezra({
   nomCom: "hadith",
   aliases: ["islam", "hadees"],
   reaction: '📖',
-  categorie: "Fredi-New"
+  categorie: "VIPER-New"
 }, async (dest, zk, params) => {
   const { repondre } = params;
 

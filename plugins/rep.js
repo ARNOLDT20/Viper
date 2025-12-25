@@ -8,7 +8,7 @@ moment.tz.setDefault('' + set.TIMEZONE);
 
 ezra({
   'nomCom': "ping",
-  'categorie': "General-Fredi"
+  'categorie': "General-VIPER"
 }, async (_0x12a838, _0x2d8d4e, _0x1f0ba4) => {
   let {
     ms: _0x5d2f0c
@@ -22,13 +22,13 @@ ezra({
   };
   const _0x4950ba = Math.floor(Math.random() * 0x64) + 0x1;
   try {
-        await _0x2d8d4e.sendMessage(_0x12a838, {
+    await _0x2d8d4e.sendMessage(_0x12a838, {
       'audio': {
         'url': "https://files.catbox.moe/se9mii.mp3"
       },
       'mimetype': "audio/mp4",
       'ptt': true,
-        'contextInfo': {
+      'contextInfo': {
         'isForwarded': true,
         'forwardedNewsletterMessageInfo': {
           'newsletterJid': "120363420222821450@newsletter",
@@ -57,7 +57,7 @@ ezra({
 /*
 ezra({
   nomCom: "repo",
-  categorie: "General-Fredi",
+  categorie: "General-VIPER",
   reaction: "🫧",
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
@@ -126,22 +126,37 @@ ezra({
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;
-  
-  // Simple version without API calls
-  const repoInfo = `🫧 *VIPER Repository* 🫧\n\n` +
-                   `✨ *Stars:* 100+\n` +
-                   `🔱 *Forks:* 50+\n` +
-                   `👁️ *Watchers:* 200+\n\n` +
-                   `🔗 *GitHub:* https://github.com/ARNOLDT20/Viper\n\n` +
-                   `_Click buttons below to interact_`;
-  
-  await zk.sendMessage(dest, {
-    text: repoInfo,
-    footer: "FrediEzra Tech Info",
-    buttons: [
-      { buttonId: 'id1', buttonText: { displayText: '🌐 Visit Repo' } },
-      { buttonId: 'id2', buttonText: { displayText: '⭐ Star Now' } },
-      { buttonId: 'id3', buttonText: { displayText: '📁 Fork Now' } }
-    ]
-  }, { quoted: ms });
+  const githubApi = 'https://api.github.com/repos/ARNOLDT20/Viper';
+
+  try {
+    const res = await axios.get(githubApi, { headers: { Accept: 'application/vnd.github.v3+json' } });
+    const data = res.data;
+
+    const created = moment(data.created_at).format('DD/MM/YYYY');
+    const updated = moment(data.updated_at).format('DD/MM/YYYY');
+
+    const gitdata = `🫧 *VIPER Repository* 🫧\n\n` +
+      `*Name:* ${data.full_name}\n` +
+      `*Description:* ${data.description || 'No description'}\n\n` +
+      `⭐ *Stars:* ${data.stargazers_count}\n` +
+      `🍴 *Forks:* ${data.forks_count}\n` +
+      `👀 *Watchers:* ${data.watchers_count}\n` +
+      `📅 *Created:* ${created}\n` +
+      `🛠️ *Updated:* ${updated}\n\n` +
+      `🔗 ${data.html_url}`;
+
+    // Send main info with a URL button
+    await zk.sendMessage(dest, {
+      text: gitdata,
+      footer: 'VIPER • Repository Info',
+      templateButtons: [
+        { urlButton: { displayText: '🌐 Open on GitHub', url: data.html_url } },
+        { quickReplyButton: { displayText: '🔁 Refresh', id: 'repo_refresh' } }
+      ]
+    }, { quoted: ms });
+
+  } catch (err) {
+    console.error('Error fetching repo info:', err?.message || err);
+    await repondre('❌ Unable to fetch repository info right now.');
+  }
 });
