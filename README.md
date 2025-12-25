@@ -10,60 +10,6 @@
 
 🏆 **Trophies**:  
 ![Trophies](https://github-profile-trophy.vercel.app/?username=ARNOLDT20&theme=monokai)
-
-📈 **Contributions Graph**:  
-![Contributions](https://activity-graph.herokuapp.com/graph?username=ARNOLDT20&theme=github)
-
----
-
-## 🎯 Features
-
-✨ **Anti-Features**: Anti-call, anti-delete, short session  
-✨ **Auto-Features**: Auto status read, auto message react  
-✨ **Dual Mode**: Group + DM features  
-✨ **Privacy**: Public/Private mode  
-✨ **Hosting**: Secure cloud-hosting compatible  
-✨ **Support**: Developer maintained: FredieTech  
-
----
-
-## 📥 Download ZIP
-
-📁 **Download ZIP File**: [VIPER ZIP 📁](https://github.com/ARNOLDT20/Viper/archive/refs/heads/main.zip)
-
----
-
-## 🚀 Deployment Options
-
-### 🌐 Cloud Platforms
-
- </a>
-  <a href="https://dashboard.heroku.com/new?template=https://github.com/ARNOLDT20/Viper/" target="_blank" rel="noopener noreferrer">
-    <img title="DEPLOY arnoldt20" src="https://img.shields.io/badge/🚀_DEPLOY_ON_HEROKU-000000?style=for-the-badge&logo=heroku&logoColor=red&color=FF00FF" width="260" height="50"/>
-  </a>
-</p>
-
-#### 2. **Railway**  
-[Railway](https://railway.app/new)  
-<details><summary>Steps</summary>
-1. Open link  
-2. Click **Deploy from GitHub repo**  
-3. Select this repo  
-4. Go to variables tab → add SESSION_ID, AUTOBIO etc.  
-5. Deploy  
-</details>
-
-#### 3. **Koyeb**  
-[Koyeb](https://app.koyeb.com/services/deploy?type=git&repository=ARNOLDT20/Viper)  
-<details><summary>Steps</summary>
-1. Click above to open deploy panel  
-2. Authorize GitHub and select repo  
-3. Set environment variables  
-4. Deploy and wait for logs to show successful build  
-</details>
-
-#### 4. **Render**  
-[Render](https://dashboard.render.com/web/new)  
 # VIPER MD
 
 VIPER MD is a WhatsApp automation bot built with Baileys. It provides moderation tools, auto-replies, media utilities, group management and admin commands for self-hosted WhatsApp bot instances.
@@ -99,7 +45,7 @@ node index.js
 ```
 
 ## Deployment
-This repository can be deployed to common Node.js hosts (Heroku, Railway, Render, etc.). When deploying, make sure required environment variables and `ffmpeg` are available on the host.
+This repository can be deployed to common Node.js hosts (Heroku, etc.). When deploying, make sure required environment variables and `ffmpeg` are available on the host.
 
 ## Contributing
 Contributions are welcome. Please open issues or pull requests with clear descriptions and tests where appropriate.
