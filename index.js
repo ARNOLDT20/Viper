@@ -962,25 +962,15 @@ setTimeout(() => {
                         };
                     }
 
-                    // respond only on exact keys or startsWith; in groups reply only when bot is mentioned
+                    // respond on exact keys or startsWith in both private and group chats
                     const respond = (msg) => { if (msg) repondre(msg); };
 
                     if (autoReplies[lower]) {
-                        if (verifGroupe) {
-                            const mentions = ms.message[mtype]?.contextInfo?.mentionedJid || [];
-                            if (mentions.includes(idBot) || lower.includes(idBot.split('@')[0])) respond(autoReplies[lower]);
-                        } else {
-                            respond(autoReplies[lower]);
-                        }
+                        respond(autoReplies[lower]);
                     } else {
                         for (const key of Object.keys(autoReplies)) {
                             if (lower.startsWith(key)) {
-                                if (verifGroupe) {
-                                    const mentions = ms.message[mtype]?.contextInfo?.mentionedJid || [];
-                                    if (mentions.includes(idBot) || lower.includes(idBot.split('@')[0])) respond(autoReplies[key]);
-                                } else {
-                                    respond(autoReplies[key]);
-                                }
+                                respond(autoReplies[key]);
                                 break;
                             }
                         }

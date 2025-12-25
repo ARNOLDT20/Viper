@@ -64,94 +64,49 @@
 
 #### 4. **Render**  
 [Render](https://dashboard.render.com/web/new)  
-<details><summary>Steps</summary>
-1. Open Render dashboard  
-2. Click **New Web Service**  
-3. Connect your GitHub  
-4. Choose this repo  
-5. Add build/start command & ENV vars  
-6. Click **Create Web Service**  
-</details>
+# VIPER MD
 
-#### 5. **TalkDrove**  
-[TalkDrove](https://host.talkdrove.com/share-bot/47)  
-<details><summary>Steps</summary>
-1. Open the TalkDrove link  
-2. Click **Deploy Now**  
-3. Paste repo link  
-4. Add ENV values (SESSION_ID)  
-5. Deploy the bot  
-</details>
+VIPER MD is a WhatsApp automation bot built with Baileys. It provides moderation tools, auto-replies, media utilities, group management and admin commands for self-hosted WhatsApp bot instances.
 
-#### 6. **Netlify** (For Frontend)  
-[Netlif](https://app.netlify.com/)  
-<details><summary>Steps</summary>
-1. Use for frontend session site only  
-2. Drag/drop or link repo with index.html  
-3. Publish to host session UI  
-</details>
+## Key Features
+- Anti-delete & anti-link tools
+- Auto-replies and quick commands
+- Media conversion (image/video/sticker)
+- Group welcome/goodbye and mention protection
+- Owner/admin utilities (broadcast, restart, set name/picture)
 
----
+## Requirements
+- Node.js 16 or newer
+- ffmpeg (for media/sticker conversions)
+- Git
 
-## 🛠️ Setup Guide
+## Quick Start
+1. Clone the repo:
 
-1. **Fork the Repo**: Start by forking this repository to your GitHub account.  
-2. **Get Session ID**: Use [this link](https://test-pair-uuw6.onrender.com) to get your session ID.  
-3. **Choose Host**: Select a deployment platform from the options above.  
-4. **Deploy**: Follow the platform-specific instructions to deploy the bot.  
-5. **Configure**: Set up environment variables like SESSION_ID as required.  
-6. **Start Bot**: Once deployed, the bot will start automatically.  
+```bash
+git clone https://github.com/ARNOLDT20/Viper.git
+cd Viper
+npm install
+```
 
----
+2. Configure your environment:
+- Create a `set.env` or export environment variables required by the project (for example `SESSION_ID`, `OWNER_NUMBER`, `PREFIX`). Check `set.js` for exact variable names used by this codebase.
 
-## 📢 Join Community
+3. Run the bot locally:
 
-👥 **WhatsApp Channel**: [Join Now](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)  
-📢 **Stay Updated**: Get the latest updates, features, and support.  
+```bash
+node index.js
+```
+
+## Deployment
+This repository can be deployed to common Node.js hosts (Heroku, Railway, Render, etc.). When deploying, make sure required environment variables and `ffmpeg` are available on the host.
+
+## Contributing
+Contributions are welcome. Please open issues or pull requests with clear descriptions and tests where appropriate.
+
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
 
-## 📝 License
-
-📜 **License**: This project is under [MIT License](LICENSE).  
-📢 **Credits**: Developed with ❤️ by [T20_starboy](https://github.com/ARNOLDT20).  
-
----
-
-## 📱 Connect With Me
-
-📱 **Facebook**: [FredieEzra](https://facebook.com/@FrediEzra)  
-📸 **Instagram**: [frediezra](https://instagram.com/frediezra)  
-📹 **YouTube**: [FrediAi-Tech](https://youtube.com/frediai-tech)  
-📧 **GitHub**: [T20_starboy](https://github.com/ARNOLDT20)  
-
----
-
-## 📲 Download APK
-
-📁 **Download APK**: [Fredi.AI v2.9.9](https://www.mediafire.com/file/chyvv2mktqc9jsv/fredi.ai.v2.9.9.apk)  
-<details><summary>Installation Steps</summary>
-1. Download the APK file  
-2. Enable "Install from unknown sources" in your device settings  
-3. Install the APK  
-4. Open the app and follow in-app instructions  
-</details>
-
----
-
-## 📄 Changelog
-
-- **Version 5.0.9**: Improved UI, added tap-to-interact feature, enhanced platform support, and updated setup guide for clarity.
-
----
-
-## 🤝 Contribution Guidelines
-
-Contributions are welcome! If you'd like to contribute, please fork the repository and submit a pull request. Ensure your changes are well-documented and follow the project's coding standards.
-
----
-
-## 🙏 Acknowledgments
-
-- Special thanks to all contributors who have helped shape this project.
-- Gratitude to the open-source community for their invaluable support.
+Maintainer: ARNOLDT20 / T20_starboy — https://github.com/ARNOLDT20
