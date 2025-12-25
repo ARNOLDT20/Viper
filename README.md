@@ -45,7 +45,30 @@ node index.js
 ```
 
 ## Deployment
-This repository can be deployed to common Node.js hosts (Heroku, etc.). When deploying, make sure required environment variables and `ffmpeg` are available on the host.
+
+### Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/ARNOLDT20/Viper)
+
+Steps to deploy on Heroku:
+
+1. Click the **Deploy to Heroku** button above or open the Heroku Dashboard and choose **New > Create new app**.
+2. Connect your GitHub account and select the `ARNOLDT20/Viper` repository.
+3. In the **Settings > Config Vars** add required variables (examples):
+	- `SESSION_ID`
+	- `OWNER_NUMBER`
+	- `PREFIX`
+	- any other keys used by `set.js`
+4. Ensure a Node.js `start` script exists in `package.json` (default: `node index.js`).
+5. Add an ffmpeg buildpack if your Heroku stack does not include ffmpeg, for example:
+
+```text
+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest
+```
+
+6. Deploy and monitor logs for any runtime errors.
+
+Other hosts: this project can also run on other Node.js hosts; ensure required env vars and `ffmpeg` are available.
 
 ## Contributing
 Contributions are welcome. Please open issues or pull requests with clear descriptions and tests where appropriate.
