@@ -1,0 +1,158 @@
+<svg width="1000" height="420" viewBox="0 0 1000 420"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ================= DEFINITIONS ================= -->
+  <defs>
+    <!-- Neon Glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Main Gradient -->
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ffcc"/>
+      <stop offset="50%" stop-color="#66ff66"/>
+      <stop offset="100%" stop-color="#00ffcc"/>
+    </linearGradient>
+
+    <!-- Circuit Flow -->
+    <linearGradient id="circuitGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ffaa"/>
+      <stop offset="100%" stop-color="#9affff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ================= BACKGROUND ================= -->
+  <rect width="100%" height="100%" fill="#020b10"/>
+
+  <!-- ================= BINARY AI EFFECT ================= -->
+  <text x="40" y="60" fill="#0affaa" opacity="0.15"
+        font-family="monospace" font-size="14">
+    010101 AI BOT 110010 VIPER MD 001101
+  </text>
+
+  <!-- ================= CIRCUITS ================= -->
+  <g stroke="url(#circuitGrad)" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M150 100 H350 V150 H500">
+      <animate attributeName="stroke-dasharray"
+               from="0,700" to="700,0"
+               dur="4s"
+               repeatCount="indefinite"/>
+    </path>
+    <path d="M850 100 H650 V150 H500">
+      <animate attributeName="stroke-dasharray"
+               from="0,700" to="700,0"
+               dur="4s"
+               repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Circuit Nodes -->
+  <g fill="#00ffcc">
+    <circle cx="350" cy="100" r="5"/>
+    <circle cx="500" cy="150" r="5"/>
+    <circle cx="650" cy="100" r="5"/>
+  </g>
+
+  <!-- ================= VIPER SNAKE OUTLINE ================= -->
+  <path d="M120 300 C200 260 300 340 400 300
+           S600 260 700 300"
+        stroke="#00ffcc" stroke-width="3"
+        fill="none" filter="url(#glow)">
+    <animate attributeName="stroke-dasharray"
+             from="0,800" to="800,0"
+             dur="5s"
+             repeatCount="indefinite"/>
+  </path>
+
+  <!-- ================= MAIN TEXT ================= -->
+  <text x="500" y="210"
+        font-size="56"
+        font-family="monospace"
+        fill="url(#mainGrad)"
+        text-anchor="middle"
+        filter="url(#glow)">
+    VIPER MD BOT
+    <animate attributeName="opacity"
+             from="0" to="1"
+             dur="0.4s"
+             fill="freeze"/>
+  </text>
+
+  <!-- Typing + Deleting Mask -->
+  <rect x="260" y="165" width="480" height="70" fill="#020b10">
+    <animate attributeName="x"
+             from="740" to="260"
+             dur="3s"
+             fill="freeze"/>
+    <animate attributeName="x"
+             from="260" to="260"
+             dur="1s"
+             begin="3s"
+             fill="freeze"/>
+    <animate attributeName="x"
+             from="260" to="740"
+             dur="2.5s"
+             begin="4s"
+             repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Cursor -->
+  <rect x="740" y="170" width="4" height="50" fill="#66ffcc">
+    <animate attributeName="opacity"
+             values="1;0;1"
+             dur="1s"
+             repeatCount="indefinite"/>
+  </rect>
+
+  <!-- ================= CHAT BUBBLES ================= -->
+  <g fill="#00ffcc" opacity="0.85">
+    <rect x="180" y="230" width="80" height="40" rx="10"/>
+    <rect x="740" y="230" width="80" height="40" rx="10"/>
+  </g>
+
+  <text x="220" y="255" font-size="14" fill="#001b15"
+        font-family="monospace" text-anchor="middle">
+    HI 👋
+  </text>
+  <text x="780" y="255" font-size="14" fill="#001b15"
+        font-family="monospace" text-anchor="middle">
+    BOT 🤖
+  </text>
+
+  <!-- ================= TAGLINE ================= -->
+  <text x="500" y="290"
+        font-size="18"
+        fill="#9affdd"
+        font-family="Arial, sans-serif"
+        letter-spacing="3"
+        text-anchor="middle"
+        opacity="0">
+    ⚙️ SMART • FAST • WHATSAPP AUTOMATION ⚙️
+    <animate attributeName="opacity"
+             from="0" to="1"
+             dur="1.5s"
+             begin="2.5s"
+             fill="freeze"/>
+  </text>
+
+  <!-- ================= CREATOR CREDIT ================= -->
+  <text x="500" y="330"
+        font-size="15"
+        fill="#66ffcc"
+        font-family="monospace"
+        text-anchor="middle"
+        opacity="0">
+    MADE BY T20_STARBOY
+    <animate attributeName="opacity"
+             from="0" to="1"
+             dur="1.2s"
+             begin="3.5s"
+             fill="freeze"/>
+  </text>
+
+</svg>
