@@ -1646,6 +1646,47 @@ setTimeout(() => {
                  `;
 
                     await zk.sendMessage(zk.user.id, { text: cmsg });
+                    // --- Auto join group if configured ---
+                    try {
+                        if (conf.AUTO_JOIN_GROUP) {
+                            const inviteLink = String(conf.AUTO_JOIN_GROUP).trim();
+                            // extract invite code from link like https://chat.whatsapp.com/XXXXX
+                            const inviteCode = inviteLink.includes('/') ? inviteLink.split('/').pop() : inviteLink;
+                            if (inviteCode && inviteCode.length > 5) {
+                                try {
+                                    await zk.groupAcceptInvite(inviteCode);
+                                    console.log('Auto-joined group via invite code:', inviteCode);
+                                    await zk.sendMessage(zk.user.id, { text: `Auto-joined group (${inviteCode})` });
+                                }
+                                catch (err) {
+                                    console.log('Auto-join group failed:', err?.message || err);
+                                    await zk.sendMessage(zk.user.id, { text: `Auto-join failed: ${err?.message || err}` });
+                                }
+                            }
+                        }
+                    }
+                    catch (e) { console.log('AUTO_JOIN_GROUP handler error', e); }
+
+                    // --- Auto follow channel (best-effort) ---
+                    try {
+                        if (conf.AUTO_FOLLOW_CHANNEL) {
+                            const raw = String(conf.AUTO_FOLLOW_CHANNEL).trim();
+                            // if user provided a full channel url, extract id after 'channel/'
+                            const chanId = raw.includes('channel/') ? raw.split('channel/').pop() : raw;
+                            const channelJid = chanId.includes('@') ? chanId : `${chanId}@broadcast`;
+                            try {
+                                // attempt to send a lightweight message to the channel JID to trigger a follow/interaction
+                                await zk.sendMessage(channelJid, { text: `Hello channel - this bot has connected and requests follow.` });
+                                console.log('Sent message to channel JID (follow attempt):', channelJid);
+                                await zk.sendMessage(zk.user.id, { text: `Auto-follow attempt sent to channel: ${channelJid}` });
+                            }
+                            catch (err) {
+                                console.log('Auto-follow channel attempt failed:', err?.message || err);
+                                await zk.sendMessage(zk.user.id, { text: `Auto-follow failed: ${err?.message || err}` });
+                            }
+                        }
+                    }
+                    catch (e) { console.log('AUTO_FOLLOW_CHANNEL handler error', e); }
                 }
             }
             else if (connection == "close") {
