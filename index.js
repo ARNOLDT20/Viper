@@ -6,7 +6,7 @@
 // LinkedIn @FrediEzra
 // YouTube @freeonlinetvT1
 // github @Fred1e, @mr-X-force, @devfreetec
-// WhatsApp @255752593977
+// WhatsApp @255627417402
 // telegram t.me/FrediEzraTechInfo 
 // WhatsApp channel 
 // Website fredietech-website.vercel.com
