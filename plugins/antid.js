@@ -1,75 +1,53 @@
 const { ezra } = require("../fredi/ezra");
-const fs = require('fs');
+const fs = require('fs-extra');
+const path = require('path');
 
-
-let antiDeleteActive = false; // Variable pour stocker l'état de la commande anti-delete
+// store per-chat anti-delete toggle in data/anti_delete.json
+const DATA_FILE = path.join(__dirname, '..', 'data', 'anti_delete.json');
+async function readData() {
+  try {
+    if (!fs.existsSync(DATA_FILE)) return {};
+    return JSON.parse(await fs.readFile(DATA_FILE, 'utf8') || '{}');
+  } catch (e) { return {}; }
+}
+async function writeData(obj) {
+  try { await fs.ensureDir(path.dirname(DATA_FILE)); await fs.writeFile(DATA_FILE, JSON.stringify(obj, null, 2)); } catch (e) { }
+}
 
 ezra({
   nomCom: "anti-delete",
-  categorie: "General-VIPER",
+  categorie: "VIPER-Moderation",
   reaction: "😏"
 }, async (origineMessage, zk, commandeOptions) => {
-  const { ms, arg } = commandeOptions;
+  const { arg, repondre, superUser, verifAdmin, auteurMessage, ms, idBot } = commandeOptions;
 
-  // Vérifier si un argument est fourni pour activer ou désactiver la commande
-  if (arg[0]) {
-    const action = arg[0].toLowerCase();
-    if (action === "on") {
-      antiDeleteActive = true;
-      await zk.sendMessage(origineMessage, "La commande anti-delete est activée.");
-      return;
-    } else if (action === "off") {
-      antiDeleteActive = false;
-      await zk.sendMessage(origineMessage, "La commande anti-delete est désactivée.");
-      return;
+  // only owner/sudo or group admin can toggle for the chat
+  if (!(superUser || (verifAdmin && origineMessage.endsWith('@g.us')))) {
+    return repondre('You do not have permission to change anti-delete settings.');
+  }
+
+  const data = await readData();
+  const chat = origineMessage;
+
+  // handle on/off
+  if (arg && arg[0]) {
+    const action = arg[0].toString().toLowerCase();
+    if (action === 'on') {
+      data[chat] = true;
+      await writeData(data);
+      return repondre('Anti-delete enabled for this chat.');
+    } else if (action === 'off') {
+      if (data[chat]) delete data[chat];
+      await writeData(data);
+      return repondre('Anti-delete disabled for this chat.');
+    } else {
+      return repondre('Usage: anti-delete <on|off>');
     }
   }
 
-  // Vérifier si la commande anti-delete est activée
-  if (!antiDeleteActive) {
-    await zk.sendMessage(origineMessage, "La commande anti-delete est actuellement désactivée.");
-    return;
-  }
-
-  if (ms.message.protocolMessage && ms.message.protocolMessage.type === 0 && (conf.ANTI_DELETE_MESSAGE).toLowerCase() === 'yes') {
-    if (ms.key.fromMe || ms.message.protocolMessage.key.fromMe) {
-      console.log('Message supprimé me concernant');
-      return;
-    }
-
-    console.log('Message supprimé');
-    const key = ms.message.protocolMessage.key;
-
-    try {
-      const st = './store.json';
-      const data = fs.readFileSync(st, 'utf8');
-      const jsonData = JSON.parse(data);
-      const message = jsonData.messages[key.remoteJid];
-
-      let msg;
-
-      for (let i = 0; i < message.length; i++) {
-        if (message[i].key.id === key.id) {
-          msg = message[i];
-          break;
-        }
-      }
-
-      if (!msg) {
-        console.log('Message introuvable');
-        return;
-      }
-
-      const senderId = msg.key.participant.split('@')[0];
-      const caption = ` Anti-delete-message by ☢️LUCKY-MD XFORCE☢️\nMessage de @${senderId}`;
-      const imageCaption = { image: { url: './media/deleted-message.jpg' }, caption, mentions: [msg.key.participant] };
-
-      await zk.sendMessage(idBot, imageCaption);
-      await zk.sendMessage(idBot, { forward: msg }, { quoted: msg });
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // if no arg, show current state
+  const enabled = !!data[chat];
+  return repondre(`Anti-delete is currently ${enabled ? 'ENABLED' : 'DISABLED'} for this chat.`);
 });
 
 // Work for Blocklist contacts 

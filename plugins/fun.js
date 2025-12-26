@@ -45,7 +45,7 @@ ezra({
   const { arg, repondre } = commandeOptions;
 
   if (!arg[0] || arg === "") {
-    repondre("Give me a query.\n*Example: .google Who is Lucky Md.*");
+    repondre("Give me a query.\n*Example: .google Who is VIPER MD.*");
     return;
   }
 
@@ -84,7 +84,7 @@ ezra({
     const imdbData = response.data;
 
     let imdbInfo = "⚍⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚍\n";
-    imdbInfo += " ``` lMDB SEARCH BY LUCKY MD XFORCE```\n";
+    imdbInfo += " ``` lMDB SEARCH BY VIPER MD XFORCE```\n";
     imdbInfo += "⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎\n";
     imdbInfo += "🎬Title    : " + imdbData.Title + "\n";
     imdbInfo += "📅year      : " + imdbData.Year + "\n";
@@ -148,7 +148,7 @@ ezra({
       // Si la requête a réussi, envoyez l'image résultante
 
       let stickerMess = new Sticker(response.data.result, {
-        pack: "LUCKY MD XFORCE",
+        pack: "VIPER MD XFORCE",
         type: StickerTypes.CROPPED,
         categories: ["🤩", "🎉"],
         id: "12345",

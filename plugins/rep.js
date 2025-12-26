@@ -98,7 +98,7 @@ ezra({
       audio: { url: "https://files.catbox.moe/j3sp1o.mp3" },
       mimetype: "audio/mp4",
       ptt: true,
-      caption: "*🫧 Lucky Xforce repo song 🫧",
+      caption: "*🫧 VIPER Xforce repo song 🫧",
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {

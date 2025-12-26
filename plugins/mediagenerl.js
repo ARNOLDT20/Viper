@@ -16,10 +16,10 @@ ezra({ nomCom: "igdl", categorie: "VIPER-Download" }, async (dest, zk, commandeO
     let igvid = await axios('https://api.vihangayt.com/downloader/ig?url=' + link)
 
     if (igvid.data.data.data[0].type == 'video') {
-      zk.sendMessage(dest, { video: { url: igvid.data.data.data[0].url }, caption: "ig video downloader powered by *☢️LUCKY MD X-FORCE☢️*", gifPlayback: false }, { quoted: ms })
+      zk.sendMessage(dest, { video: { url: igvid.data.data.data[0].url }, caption: "ig video downloader powered by *☢️VIPER MD X-FORCE☢️*", gifPlayback: false }, { quoted: ms })
     }
     else {
-      zk.sendMessage(dest, { image: { url: igvid.data.data.data[0].url }, caption: "ig image downloader powered by *☢️LUCKY MD X-FORCE☢️*" })
+      zk.sendMessage(dest, { image: { url: igvid.data.data.data[0].url }, caption: "ig image downloader powered by *☢️VIPER MD X-FORCE☢️*" })
     }
 
   } catch (e) { repondre("erreur survenue lors du téléchargement \n " + e) }
@@ -50,7 +50,7 @@ ezra({
         Lien: ${result.url}
       `;
           zk.sendMessage(dest, { image: { url: result.thumbnail }, caption: caption }, { quoted: ms });
-          zk.sendMessage(dest, { video: { url: result.hd }, caption: 'facebook video downloader powered by *☢️LUCKY MD X-FORCE☢️*' }, { quoted: ms });
+          zk.sendMessage(dest, { video: { url: result.hd }, caption: 'facebook video downloader powered by *☢️VIPER MD X-FORCE☢️*' }, { quoted: ms });
 
         })
         .catch((error) => {
@@ -116,7 +116,7 @@ ezra({
         Lien: ${result.url}
       `;
           zk.sendMessage(dest, { image: { url: result.thumbnail }, caption: caption }, { quoted: ms });
-          zk.sendMessage(dest, { video: { url: result.sd }, caption: 'facebook video downloader powered by *☢️LUCKY MD X-FORCE☢️*' }, { quoted: ms });
+          zk.sendMessage(dest, { video: { url: result.sd }, caption: 'facebook video downloader powered by *☢️VIPER MD X-FORCE☢️*' }, { quoted: ms });
 
         })
         .catch((error) => {

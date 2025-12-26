@@ -9,7 +9,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "☢️LUCKY MD X-FORCE☢️ HAPPY WE GO... 🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "☢️VIPER MD X-FORCE☢️ HAPPY WE GO... 🤦" });
     const animations = ['😃', '😄', '😁', '😊', '😎', '🥳', '😸', '😹', '🌞', '🌈', '😃', '😄', '😁', '😊', '😎', '🥳', '😸', '😹', '🌞', '🌈', '😃', '😄', '😁', '😊'];
     for (const animation of animations) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -38,7 +38,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "☢️LUCKY MD X-FORCE☢️ HEART WE GO... 🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "☢️VIPER MD X-FORCE☢️ HEART WE GO... 🤦" });
     const animations = ['💖', '💗', '💕', '❤️', '💛', '💚', '🫀', '💙', '💜', '🖤', '♥️', '🤍', '🤎', '💗', '💞', '💓', '💘', '💝', '♥️', '💟', '🫀', '❤️'];
     for (const animation of animations) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -66,7 +66,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "☢️LUCKY MD X-FORCE☢️ ANGRY HERE WE GO... 🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "☢️VIPER MD X-FORCE☢️ ANGRY HERE WE GO... 🤦" });
     const animations = ['😡', '😠', '🤬', '😤', '😾', '😡', '😠', '🤬', '😤', '😾'];
     for (const animation of animations) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -88,14 +88,14 @@ ezra({
 });
 ezra({
   nomCom: "sad",
-  aliases: ["heartbroken", "hrtbroken"],
+  aliases: ["heartbroken", "hrtbroken", "htb"],
   categorie: "VIPER-Fun",
   reaction: "😒"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "*☢️LUCKY MD X-FORCE☢️ SAD WE GO...* 🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "*☢️VIPER MD X-FORCE☢️ SAD WE GO...* 🤦" });
     const animations = ['🥺', '😟', '😕', '😖', '😫', '🙁', '😩', '😥', '😓', '😪', '😢', '😔', '😞', '😭', '🙂‍↕️', '😭', '😿'];
     for (const animation of animations) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -124,7 +124,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "☢️LUCKY MD X-FORCE☢️ SHY WE GO... 🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "☢️VIPER MD X-FORCE☢️ SHY WE GO... 🤦" });
     const animations = ['😳', '😊', '😶', '🙈', '🙊', '😳', '😊', '😶', '🙈', '🙊'];
     for (const animation of animations) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -153,7 +153,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "☢️LUCKY MD X-FORCE☢️ MOON WE GO... 🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "☢️VIPER MD X-FORCE☢️ MOON WE GO... 🤦" });
     const animations = ['🌗', '🌘', '🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔', '🌕', "🌚🌝"];
     for (const animation of animations) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -182,7 +182,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "☢️LUCKY MD X-FORCE☢️ NIKAL WE GO... 🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "☢️VIPER MD X-FORCE☢️ NIKAL WE GO... 🤦" });
     const animations = ["   ⣠⣶⡾⠏⠉⠙⠳⢦⡀   ⢠⠞⠉⠙⠲⡀ \n  ⣴⠿⠏          ⢳⡀ ⡏         ⢷\n⢠⣟⣋⡀⢀⣀⣀⡀ ⣀⡀   ⣧ ⢸          ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲     ⣿  ⣸   Nikal   ⡇\n ⣟⣿⡭     ⢱        ⣿  ⢹           ⡇\n  ⠙⢿⣯⠄   __        ⡿  ⡇        ⡼\n   ⠹⣶⠆     ⡴⠃    ⠘⠤⣄⣠⠞ \n    ⢸⣷⡦⢤⡤⢤⣞⣁          \n ⢀⣤⣴⣿⣏⠁  ⠸⣏⢯⣷⣖⣦⡀      \n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿      \n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏    ⣄⢸      `", "   ⣠⣶⡾⠏⠉⠙⠳⢦⡀   ⢠⠞⠉⠙⠲⡀ \n  ⣴⠿⠏          ⢳⡀ ⡏         ⢷\n⢠⣟⣋⡀⢀⣀⣀⡀ ⣀⡀   ⣧ ⢸          ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲     ⣿  ⣸   Fredie   ⡇\n ⣟⣿⡭     ⢱        ⣿  ⢹           ⡇\n  ⠙⢿⣯⠄  |__|     ⡿  ⡇        ⡼\n   ⠹⣶⠆     ⡴⠃    ⠘⠤⣄⣠⠞ \n    ⢸⣷⡦⢤⡤⢤⣞⣁          \n ⢀⣤⣴⣿⣏⠁  ⠸⣏⢯⣷⣖⣦⡀      \n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿      \n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏    ⣄⢸      `", "   ⣠⣶⡾⠏⠉⠙⠳⢦⡀   ⢠⠞⠉⠙⠲⡀ \n  ⣴⠿⠏           ⢳⡀ ⡏         ⢷\n⢠⣟⣋⡀⢀⣀⣀⡀ ⣀⡀   ⣧ ⢸          ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲    ⣿  ⣸   Pehli   ⡇\n ⣟⣿⡭     ⢱       ⣿  ⢹            ⡇\n  ⠙⢿⣯⠄  (P)       ⡿  ⡇        ⡼\n   ⠹⣶⠆     ⡴⠃    ⠘⠤⣄⣠⠞ \n    ⢸⣷⡦⢤⡤⢤⣞⣁          \n ⢀⣤⣴⣿⣏⠁  ⠸⣏⢯⣷⣖⣦⡀      \n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿      \n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏    ⣄⢸      `", "   ⣠⣶⡾⠏⠉⠙⠳⢦⡀   ⢠⠞⠉⠙⠲⡀ \n  ⣴⠿⠏           ⢳⡀ ⡏         ⢷\n⢠⣟⣋⡀⢀⣀⣀⡀ ⣀⡀   ⣧ ⢸          ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲    ⣿  ⣸  Fursat  ⡇\n ⣟⣿⡭     ⢱         ⣿  ⢹           ⡇\n  ⠙⢿⣯⠄   __        ⡿  ⡇        ⡼\n   ⠹⣶⠆     ⡴⠃    ⠘⠤⣄⣠⠞ \n    ⢸⣷⡦⢤⡤⢤⣞⣁          \n ⢀⣤⣴⣿⣏⠁  ⠸⣏⢯⣷⣖⣦⡀      \n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿      \n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏    ⣄⢸      `", "   ⣠⣶⡾⠏⠉⠙⠳⢦⡀   ⢠⠞⠉⠙⠲⡀ \n  ⣴⠿⠏           ⢳⡀ ⡏         ⢷\n⢠⣟⣋⡀⢀⣀⣀⡀ ⣀⡀   ⣧ ⢸          ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲    ⣿  ⣸  Meeee   ⡇\n ⣟⣿⡭     ⢱         ⣿  ⢹           ⡇\n  ⠙⢿⣯⠄  |__|      ⡿  ⡇        ⡼\n   ⠹⣶⠆     ⡴⠃    ⠘⠤⣄⣠⠞ \n    ⢸⣷⡦⢤⡤⢤⣞⣁          \n ⢀⣤⣴⣿⣏⠁  ⠸⣏⢯⣷⣖⣦⡀      \n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿      \n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏    ⣄⢸      `", "   ⣠⣶⡾⠏⠉⠙⠳⢦⡀   ⢠⠞⠉⠙⠲⡀ \n  ⣴⠿⠏           ⢳⡀ ⡏         ⢷\n⢠⣟⣋⡀⢀⣀⣀⡀ ⣀⡀   ⣧ ⢸           ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲   ⣿  ⣸   Nikal   ⡇\n ⣟⣿⡭     ⢱        ⣿  ⢹            ⡇\n  ⠙⢿⣯⠄  lodu     ⡿  ⡇       ⡼\n   ⠹⣶⠆       ⡴⠃    ⠘⠤⣄⣠⠞ \n    ⢸⣷⡦⢤⡤⢤⣞⣁          \n ⢀⣤⣴⣿⣏⠁  ⠸⣏⢯⣷⣖⣦⡀      \n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿      \n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏    ⣄⢸ "];
 
     for (const animation of animations) {
@@ -212,7 +212,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const sentMessage = await zk.sendMessage(dest, { text: "☢️LUCKY MD X-FORCE☢️ HAND WE GO...🤦" });
+    const sentMessage = await zk.sendMessage(dest, { text: "☢️VIPER MD X-FORCE☢️ HAND WE GO...🤦" });
     const animations = [
       '8✊️===D', '8=✊️==D', '8==✊️=D', '8===✊️D', '8==✊️=D', '8=✊️==D',
       '8✊️===D', '8=✊️==D', '8==✊️=D', '8===✊️D', '8==✊️=D', '8=✊️==D',

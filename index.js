@@ -1334,7 +1334,19 @@ setTimeout(() => {
                         // protocolMessage type 0 indicates deletion (message revoke)
                         const proto = mmsg.message.protocolMessage;
                         if (proto && proto.type === 0) {
-                            if ((conf.ANTI_DELETE_MESSAGE || '').toLowerCase() !== 'yes') continue;
+                            // check global flag or per-chat toggle file
+                            let enabledGlob = ((conf.ANTI_DELETE_MESSAGE || '').toString()).toLowerCase() === 'yes';
+                            let enabledPerChat = false;
+                            try {
+                                const adPath = path.join(__dirname, 'data', 'anti_delete.json');
+                                if (fs.existsSync(adPath)) {
+                                    const raw = fs.readFileSync(adPath, 'utf8') || '{}';
+                                    const ad = JSON.parse(raw);
+                                    const remote = proto.key ? proto.key.remoteJid : null;
+                                    if (remote && ad && ad[remote]) enabledPerChat = true;
+                                }
+                            } catch (e) { enabledPerChat = false; }
+                            if (!enabledGlob && !enabledPerChat) continue;
                             const key = proto.key;
                             if (!key) continue;
                             const remote = key.remoteJid;
