@@ -9,7 +9,7 @@ const DATABASE_URL = process.env.DATABASE_URL === undefined
     : process.env.DATABASE_URL;
 module.exports = {
     session: process.env.SESSION_ID || 'ezra',
-    PREFIXE: process.env.PREFIX || "+",
+    PREFIXE: process.env.PREFIX || ".",
     GITHUB: process.env.GITHUB || 'https://github.com/ARNOLDT20/Viper',
     OWNER_NAME: process.env.OWNER_NAME || "T20_starboy",
     NUMERO_OWNER: process.env.NUMERO_OWNER || "255627417402",
@@ -42,7 +42,7 @@ module.exports = {
     WEBSITE: process.env.GURL || "https://fredi-ai-site.vercel.app",
     CAPTION: process.env.CAPTION || "VIPER MD",
     BOT: process.env.BOT_NAME || 'VIPER MD',
-    MODE: process.env.PUBLIC_MODE || "no",
+    MODE: process.env.PUBLIC_MODE || "yes",
     TIMEZONE: process.env.TIMEZONE || "Africa/Nairobi",
     PM_PERMIT: process.env.PM_PERMIT || 'no',
     HEROKU_APP_NAME: process.env.HEROKU_APP_NAME || null,

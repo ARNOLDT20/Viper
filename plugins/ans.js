@@ -44,7 +44,7 @@ ezra({ nomCom: "starboy", reaction: "🤷", categorie: "VIPER-IA" }, async (dest
 
 
 
-ezra({ nomCom: "bing4", reaction: "🌀", categorie: "VIPER-IA" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "bing4", aliases: ["imagine", "createimg"], reaction: "🌀", categorie: "VIPER-IA" }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
   try {
@@ -54,7 +54,7 @@ ezra({ nomCom: "bing4", reaction: "🌀", categorie: "VIPER-IA" }, async (dest, 
 
     // Regrouper les arguments en une seule chaîne séparée par "-"
     const image = arg.join(' ');
-    const response = await axios.get(`http://api.maher-zubair.tech/ai/photoleap?q=${image}`);
+    const response = await axios.get(`http://api.maher-zubair.tech/ai/photoleap?q=${encodeURIComponent(image)}`);
 
     const data = response.data;
     let caption = '*bing images by T20 classic Tech*';
