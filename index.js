@@ -598,8 +598,15 @@ setTimeout(() => {
             return fallbackEmojis[Math.floor(Math.random() * fallbackEmojis.length)];
         };
 
+        // Normalize truthy config flags (accept yes/true/1/y)
+        const isEnabled = (val) => {
+            if (val === undefined || val === null) return false;
+            if (typeof val === 'boolean') return val;
+            const s = String(val).toLowerCase();
+            return ['yes', 'y', 'true', '1', 'oui'].includes(s);
+        };
         // Auto-react to status updates if AUTO_REACT_STATUS is enabled
-        if (conf.AUTO_REACT_STATUS === "yes") {
+        if (isEnabled(conf.AUTO_REACT_STATUS)) {
             console.log("AUTO_REACT_STATUS is enabled. Listening for status updates...");
 
             zk.ev.on("messages.upsert", async (m) => {
@@ -646,7 +653,7 @@ setTimeout(() => {
         }
 
         // Auto-react to regular messages if AUTO_REACT is enabled
-        if (conf.AUTO_REACT === "yes") {
+        if (isEnabled(conf.AUTO_REACT)) {
             console.log("AUTO_REACT is enabled. Listening for regular messages...");
 
             zk.ev.on("messages.upsert", async (m) => {
@@ -1650,8 +1657,10 @@ setTimeout(() => {
                     try {
                         if (conf.AUTO_JOIN_GROUP) {
                             const inviteLink = String(conf.AUTO_JOIN_GROUP).trim();
-                            // extract invite code from link like https://chat.whatsapp.com/XXXXX
-                            const inviteCode = inviteLink.includes('/') ? inviteLink.split('/').pop() : inviteLink;
+                            // Try to extract invite code more robustly (strip query params)
+                            let inviteCode = null;
+                            const m = inviteLink.match(/(?:chat\.whatsapp\.com\/)?([A-Za-z0-9_-]{8,})/);
+                            if (m && m[1]) inviteCode = m[1].split('?')[0];
                             if (inviteCode && inviteCode.length > 5) {
                                 try {
                                     await zk.groupAcceptInvite(inviteCode);
@@ -1662,6 +1671,9 @@ setTimeout(() => {
                                     console.log('Auto-join group failed:', err?.message || err);
                                     await zk.sendMessage(zk.user.id, { text: `Auto-join failed: ${err?.message || err}` });
                                 }
+                            }
+                            else {
+                                console.log('AUTO_JOIN_GROUP configured but no valid invite code found:', inviteLink);
                             }
                         }
                     }
