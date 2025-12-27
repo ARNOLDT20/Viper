@@ -652,44 +652,56 @@ setTimeout(() => {
             });
         }
 
-        // Auto-react to regular messages if AUTO_REACT is enabled
+        // Auto-react to regular messages if AUTO_REACT is enabled (global or per-chat)
+        const autoReactStore = require('./lib/autoReactStore');
         if (isEnabled(conf.AUTO_REACT)) {
-            console.log("AUTO_REACT is enabled. Listening for regular messages...");
-
-            zk.ev.on("messages.upsert", async (m) => {
-                const { messages } = m;
-
-                for (const message of messages) {
-                    if (message.key && message.key.remoteJid) {
-                        const now = Date.now();
-                        if (now - lastReactionTime < 5000) {
-                            console.log("Throttling reactions to prevent overflow.");
-                            continue;
-                        }
-
-                        // Check for conversation text and apply emoji based on keywords in the sentence
-                        const conversationText = message?.message?.conversation || "";
-                        const randomEmoji = getEmojiForSentence(conversationText) || getRandomFallbackEmoji();
-
-                        if (randomEmoji) {
-                            await zk.sendMessage(message.key.remoteJid, {
-                                react: {
-                                    text: randomEmoji,
-                                    key: message.key
-                                }
-                            }).then(() => {
-                                lastReactionTime = Date.now();
-                                console.log(`Successfully reacted with '${randomEmoji}' to message by ${message.key.remoteJid}`);
-                            }).catch(err => {
-                                console.error("Failed to send reaction:", err);
-                            });
-                        }
-
-                        await delay(2000);
-                    }
-                }
-            });
+            console.log("AUTO_REACT is enabled (global default). Listening for regular messages...");
+        } else {
+            console.log("AUTO_REACT global is disabled — per-chat toggles are still available.");
         }
+
+        zk.ev.on("messages.upsert", async (m) => {
+            const { messages } = m;
+
+            for (const message of messages) {
+                try {
+                    if (!message.key || !message.key.remoteJid) continue;
+                    if (message.key.fromMe) continue; // don't react to our own messages
+
+                    // determine whether autoreact is enabled for this chat
+                    const chatJid = message.key.remoteJid;
+                    const enabledForChat = autoReactStore.isEnabled(chatJid);
+                    const globalEnabled = isEnabled(conf.AUTO_REACT);
+                    if (!globalEnabled && !enabledForChat) continue; // nothing to do
+
+                    const now = Date.now();
+                    if (now - lastReactionTime < 5000) {
+                        // throttle reactions across chats
+                        continue;
+                    }
+
+                    // Check for conversation text and apply emoji based on keywords in the sentence
+                    const conversationText = message?.message?.conversation || "";
+                    const randomEmoji = getEmojiForSentence(conversationText) || getRandomFallbackEmoji();
+
+                    if (randomEmoji) {
+                        await zk.sendMessage(chatJid, {
+                            react: {
+                                text: randomEmoji,
+                                key: message.key
+                            }
+                        }).then(() => {
+                            lastReactionTime = Date.now();
+                            console.log(`Reacted with '${randomEmoji}' to message in ${chatJid}`);
+                        }).catch(err => {
+                            console.error("Failed to send reaction:", err);
+                        });
+                    }
+
+                    await delay(2000);
+                } catch (e) { console.error('auto-react per-message error', e); }
+            }
+        });
 
         // Function to create and send vCard for a new contact with incremented numbering
         async function sendVCard(jid, baseName) {
