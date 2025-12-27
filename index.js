@@ -69,6 +69,7 @@ const { isGroupOnlyAdmin, addGroupToOnlyAdminList, removeGroupFromOnlyAdminList 
 let { reagir } = require(__dirname + "/fredi/app");
 var session = conf.session.replace(/LUCKY-XFORCE%>/g, "");
 const prefixe = conf.PREFIXE;
+let lastReactionTime = 0;
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 const BaseUrl = process.env.GITHUB_GIT;
