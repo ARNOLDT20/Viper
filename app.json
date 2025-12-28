@@ -1,8 +1,3 @@
-
-
-
-
-
 {
   "name": "💦VIPER MD💨 MULTI DEVICE",
   "description": "💦VIPER MD Whatsapp device bot by T20_starboy to help Whatsapp users...",
@@ -27,7 +22,6 @@
       "value": "yes",
       "required": false
     },
-
     "GREET_MESSAGE": {
       "description": "when enabled it automatically sends greeting message in your chats",
       "value": "no",
@@ -44,9 +38,9 @@
       "required": false
     },
     "AUTO_SAVE_CONTACTS": {
-      "description":"Enter yes for your bot to auto save contacts",
-      "value":"no",
-      "required":false
+      "description": "Enter yes for your bot to auto save contacts",
+      "value": "no",
+      "required": false
     },
     "AUTO_DOWNLOAD_STATUS": {
       "description": "Your contact status will be downloaded automatically and sent to you (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
@@ -83,7 +77,6 @@
       "value": "",
       "required": true
     },
-
     "SESSION_ID": {
       "description": "Enter your session ID, the code you receive after scanning the QR code",
       "value": "",
@@ -97,7 +90,7 @@
     "AUTO_READ_MESSAGES": {
       "description": "yes toactivate no to deactivate",
       "value": "no",
-      "required": false  
+      "required": false
     },
     "NUMERO_OWNER": {
       "description": "Your phone number (exclude '+' and area code, e.g., '255752593977')",
@@ -133,20 +126,32 @@
       "description": "Set 'yes' to enable bot reactions to messages in private chats",
       "value": "no",
       "required": false
-    }
     },
-
- "formation": {
-		"worker": {
-			"quantity": 1,
-			"size": "basic"
-		}
-	},
-
-  "addons":[
+    "AUTO_REPLY": {
+      "description": "Enable automatic private-message replies (yes/no)",
+      "value": "no",
+      "required": false
+    },
+    "AUTO_REPLY_COOLDOWN_HOURS": {
+      "description": "Minimum hours between auto-replies to the same contact",
+      "value": "24",
+      "required": false
+    },
+    "AUTO_REPLY_MAX_PER_DAY": {
+      "description": "Maximum auto-replies per contact per day (0 = unlimited)",
+      "value": "1",
+      "required": false
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
     {
-      "plan":"heroku-postgresql:essential-0"
+      "plan": "heroku-postgresql:essential-0"
     }
   ]
-	
 }

@@ -5,40 +5,57 @@ const conf = require('../set');
 ezra({ nomCom: 'menu2', aliases: ['menu'], categorie: 'VIPER-Menu', reaction: '📜' }, async (dest, zk, commandeOptions) => {
     const { repondre, ms } = commandeOptions;
 
-    const title = 'VIPER • Main Menu';
-    const description = 'Choose a category by replying the number or tapping a button.';
+    const title = '🛡️ VIPER • MAIN MENU';
+    const description = '✨ Choose a category by replying with a number or tapping a button below.';
     const thumbnail = conf.URL || 'https://files.catbox.moe/82aewo.png';
 
     // build sections
     const sections = [
         {
-            title: 'Fun & Games',
+            title: '🎮 Fun & Games',
             rows: [
-                { title: '1. Fun', rowId: '.menu 1', description: 'Stylish fun commands' },
-                { title: '2. Games', rowId: '.menu 2', description: 'Play games' }
+                { title: '① Fun', rowId: '.menu 1', description: 'Stylish & entertaining commands' },
+                { title: '② Games', rowId: '.menu 2', description: 'Play exciting mini-games' }
             ]
         },
         {
-            title: 'Downloads',
+            title: '⬇️ Downloads',
             rows: [
-                { title: '3. Media', rowId: '.menu 3', description: 'Downloaders & converters' },
-                { title: '4. URLs', rowId: '.menu 4', description: 'URL tools' }
+                { title: '③ Media', rowId: '.menu 3', description: 'Download videos & audio' },
+                { title: '④ URLs', rowId: '.menu 4', description: 'Smart URL tools & helpers' }
             ]
         },
         {
-            title: 'AI & Tools',
+            title: '🤖 AI & Tools',
             rows: [
-                { title: '5. AI', rowId: '.menu 5', description: 'GPT / Image generation' },
-                { title: '6. Utilities', rowId: '.menu 6', description: 'Misc tools' }
+                { title: '⑤ AI', rowId: '.menu 5', description: 'GPT & image generation' },
+                { title: '⑥ Utilities', rowId: '.menu 6', description: 'Useful system tools' }
             ]
         }
     ];
 
     try {
-        // send thumbnail as externalAdReply in a template message
+        // build a human-readable caption listing sections and rows
+        let caption = `╭─❖  *${title}*  ❖─╮\n`;
+        caption += `${description}\n`;
+        caption += `╰───────────────╯\n\n`;
+
+        for (const s of sections) {
+            caption += `✦ *${s.title}*\n`;
+            for (const r of s.rows) {
+                caption += `  ▸ ${r.title}\n    ↳ ${r.description}\n    ↳ _Send:_ ${r.rowId}\n`;
+            }
+            caption += `\n`;
+        }
+
+        caption += `━━━━━━━━━━━━━━━━━━━\n`;
+        caption += `📝 _Reply with a number or tap a button below._\n`;
+        caption += `⚡ Powered by *VIPER MD*`;
+
         await zk.sendMessage(dest, {
-            text: `*${title}*\n${description}`,
-            footer: 'VIPER MD',
+            image: { url: thumbnail },
+            caption,
+            footer: '🐍 VIPER MD • Smart WhatsApp Bot',
             templateButtons: [
                 { quickReplyButton: { displayText: '🔍 Search', id: 'menu_search' } },
                 { quickReplyButton: { displayText: '📥 My Downloads', id: 'menu_downloads' } },
@@ -54,19 +71,10 @@ ezra({ nomCom: 'menu2', aliases: ['menu'], categorie: 'VIPER-Menu', reaction: '�
             }
         }, { quoted: ms });
 
-        // also send a section list to support older clients
-        await zk.sendMessage(dest, {
-            title,
-            text: description,
-            buttonText: 'Open Menu',
-            footer: 'VIPER MD',
-            sections
-        }, { quoted: ms });
-
         // set pending state so a user can reply with a number
         await menuState.setPending(dest);
     } catch (e) {
-        repondre('Failed to send menu: ' + e?.message || e);
+        repondre('❌ Failed to send menu:\n' + (e?.message || e));
     }
 
 });

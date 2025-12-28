@@ -68,7 +68,7 @@ const { isGroupOnlyAdmin, addGroupToOnlyAdminList, removeGroupFromOnlyAdminList 
 //const //{loadCmd}=require("/fredi/mesfonctions")
 let { reagir } = require(__dirname + "/fredi/app");
 var session = conf.session.replace(/LUCKY-XFORCE%>/g, "");
-const prefixe = conf.PREFIXE;
+let prefixe = conf.PREFIXE;
 let lastReactionTime = 0;
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
@@ -133,6 +133,127 @@ setTimeout(() => {
 
         const zk = (0, baileys_1.default)(sockOptions);
         store.bind(zk.ev);
+
+        // Presence ticker: can be started/stopped at runtime
+        let presenceTickerId = null;
+        const startPresenceTicker = (intervalSec) => {
+            if (presenceTickerId) return; // already running
+            presenceTickerId = setInterval(async () => {
+                try {
+                    let contacts = [];
+
+                    // Option: limit to known chats/messages instead of all contacts
+                    const onlyRecent = (conf.PRESENCE_ONLY_RECENT || '').toString().toLowerCase() === 'yes';
+                    if (onlyRecent) {
+                        // try several store shapes (Map or plain object)
+                        if (store.messages && typeof store.messages.keys === 'function') {
+                            for (const jid of store.messages.keys()) contacts.push(jid);
+                        } else if (store.messages && typeof store.messages === 'object') {
+                            contacts = contacts.concat(Object.keys(store.messages));
+                        }
+                        if (contacts.length === 0 && store.chats && typeof store.chats === 'object') {
+                            contacts = contacts.concat(Object.keys(store.chats));
+                        }
+                    } else {
+                        // fallback to contacts list
+                        contacts = Object.keys(store.contacts || {});
+                    }
+
+                    // dedupe
+                    contacts = Array.from(new Set(contacts));
+
+                    for (const jid of contacts) {
+                        if (!jid || !jid.endsWith('@s.whatsapp.net')) continue;
+                        await zk.sendPresenceUpdate('composing', jid).catch(() => { });
+                    }
+                } catch (e) { console.error('presence always typing error', e); }
+            }, Math.max(5, intervalSec) * 1000);
+        };
+        const stopPresenceTicker = () => {
+            if (!presenceTickerId) return;
+            clearInterval(presenceTickerId);
+            presenceTickerId = null;
+        };
+
+        // Apply runtime effects for known settings keys
+        const applyRuntimeSetting = (envKey, envValue) => {
+            try {
+                switch ((envKey || '').toString()) {
+                    case 'PREFIX':
+                        prefixe = envValue || prefixe;
+                        break;
+                    case 'PRESENCE_ALWAYS_TYPING': {
+                        const enabled = (envValue || '').toString().toLowerCase() === 'yes' || (envValue || '').toString().toLowerCase() === 'true';
+                        if (enabled) {
+                            const intervalSec = parseInt(conf.PRESENCE_ALWAYS_INTERVAL) || 15;
+                            startPresenceTicker(intervalSec);
+                        } else {
+                            stopPresenceTicker();
+                        }
+                        break;
+                    }
+                    case 'PRESENCE_ALWAYS_INTERVAL': {
+                        if (presenceTickerId) {
+                            stopPresenceTicker();
+                            const intervalSec = parseInt(envValue) || 15;
+                            startPresenceTicker(intervalSec);
+                        }
+                        break;
+                    }
+                    case 'PRESENCE_ONLY_RECENT':
+                    case 'PRESENCE_ONLY_MINUTES':
+                        // handled by ticker when it runs
+                        break;
+                    case 'AUTO_REPLY':
+                        conf.AUTO_REPLY = envValue;
+                        break;
+                    case 'AUTO_REPLY_COOLDOWN_HOURS':
+                        conf.AUTO_REPLY_COOLDOWN_HOURS = envValue;
+                        break;
+                    case 'AUTO_REPLY_MAX_PER_DAY':
+                        conf.AUTO_REPLY_MAX_PER_DAY = envValue;
+                        break;
+                    case 'ETAT':
+                        conf.ETAT = envValue;
+                        break;
+                    default:
+                        // generic update
+                        conf[envKey] = envValue;
+                        break;
+                }
+            } catch (e) { console.error('applyRuntimeSetting error', e); }
+        };
+
+        try {
+            if ((conf.PRESENCE_ALWAYS_TYPING || '').toString().toLowerCase() === 'yes' || (conf.PRESENCE_ALWAYS_TYPING || '').toString().toLowerCase() === 'true') {
+                const intervalSec = parseInt(conf.PRESENCE_ALWAYS_INTERVAL) || 15;
+                startPresenceTicker(intervalSec);
+            }
+        } catch (e) { console.error('failed to init presence always typing', e); }
+
+        // Watch set.env for external changes and apply them immediately
+        try {
+            const envPath = path.join(__dirname, 'set.env');
+            if (fs.existsSync(envPath)) {
+                fs.watchFile(envPath, { interval: 2000 }, (curr, prev) => {
+                    try {
+                        const txt = fs.readFileSync(envPath, 'utf8');
+                        const lines = txt.split(/\r?\n/);
+                        for (const l of lines) {
+                            if (!l || l.startsWith('#')) continue;
+                            const idx = l.indexOf('=');
+                            if (idx === -1) continue;
+                            const k = l.slice(0, idx).trim();
+                            const v = l.slice(idx + 1).trim();
+                            if (!k) continue;
+                            process.env[k] = v;
+                            conf[k] = v;
+                            applyRuntimeSetting(k, v);
+                        }
+                    } catch (e) { console.error('failed to reload set.env', e); }
+                });
+            }
+        } catch (e) { console.error('failed to watch set.env', e); }
 
 
         // Function to get the current date and time in Tanzania
@@ -783,8 +904,22 @@ setTimeout(() => {
         // Default auto-reply message
         let auto_reply_message = "Hello,its Lucky Md Xforce on board. My owner is currently unavailable. Please leave a message, and we will get back to you as soon as possible.";
 
-        // Track contacts that have already received the auto-reply
-        let repliedContacts = new Set();
+        // Persistent per-contact tracker path (stores lastReply timestamp and daily counts)
+        const autoReplyTrackerPath = './data/auto_reply_tracker.json';
+        let autoReplyTracker = {};
+        try {
+            autoReplyTracker = JSON.parse(fs.readFileSync(autoReplyTrackerPath, 'utf8') || '{}');
+        } catch (e) {
+            autoReplyTracker = {};
+        }
+
+        const saveAutoReplyTracker = () => {
+            try {
+                fs.writeFileSync(autoReplyTrackerPath, JSON.stringify(autoReplyTracker, null, 2));
+            } catch (e) {
+                console.error('Failed to save auto-reply tracker', e);
+            }
+        };
 
         zk.ev.on("messages.upsert", async (m) => {
             const { messages } = m;
@@ -794,13 +929,12 @@ setTimeout(() => {
             const messageText = ms.message.conversation || ms.message.extendedTextMessage?.text;
             const remoteJid = ms.key.remoteJid;
 
-            // Check if the message exists and is a command to set a new auto-reply message with any prefix
+            // Allow setting the auto-reply message by owner via any prefix command
             if (messageText && messageText.match(/^[^\w\s]/) && ms.key.fromMe) {
                 const prefix = messageText[0]; // Detect the prefix
                 const command = messageText.slice(1).split(" ")[0]; // Command after prefix
                 const newMessage = messageText.slice(prefix.length + command.length).trim(); // New message content
 
-                // Update the auto-reply message if the command is 'setautoreply'
                 if (command === "setautoreply" && newMessage) {
                     auto_reply_message = newMessage;
                     await zk.sendMessage(remoteJid, {
@@ -810,14 +944,49 @@ setTimeout(() => {
                 }
             }
 
-            // Check if auto-reply is enabled, contact hasn't received a reply, and it's a private chat
-            if (conf.AUTO_REPLY === "yes" && !repliedContacts.has(remoteJid) && !ms.key.fromMe && !remoteJid.includes("@g.us")) {
-                await zk.sendMessage(remoteJid, {
-                    text: auto_reply_message,
-                });
+            // Only act on private chats, not from the bot itself
+            if (conf.AUTO_REPLY !== "yes" || ms.key.fromMe || remoteJid.includes("@g.us")) return;
 
-                // Add contact to replied set to prevent repeat replies
-                repliedContacts.add(remoteJid);
+            // Load limits from config (defaults provided)
+            const cooldownHours = parseInt(conf.AUTO_REPLY_COOLDOWN_HOURS) || 24;
+            const maxPerDay = parseInt(conf.AUTO_REPLY_MAX_PER_DAY) || 1;
+
+            const now = Date.now();
+            let entry = autoReplyTracker[remoteJid] || { lastReply: 0, dayCount: 0, dayStart: 0 };
+
+            // Normalize dayStart to midnight UTC of that day (or 0 if not set)
+            const startOfToday = new Date(new Date(now).toISOString().slice(0, 10)).getTime();
+            if (!entry.dayStart || entry.dayStart < startOfToday) {
+                entry.dayStart = startOfToday;
+                entry.dayCount = 0;
+            }
+
+            // Respect cooldown
+            const cooldownMs = cooldownHours * 3600 * 1000;
+            if (entry.lastReply && (now - entry.lastReply) < cooldownMs) {
+                // Still in cooldown window — skip replying
+                autoReplyTracker[remoteJid] = entry;
+                saveAutoReplyTracker();
+                return;
+            }
+
+            // Respect daily limit
+            if (maxPerDay > 0 && entry.dayCount >= maxPerDay) {
+                autoReplyTracker[remoteJid] = entry;
+                saveAutoReplyTracker();
+                return;
+            }
+
+            // Send auto-reply and update tracker
+            try {
+                await zk.sendMessage(remoteJid, { text: auto_reply_message });
+                entry.lastReply = now;
+                entry.dayCount = (entry.dayCount || 0) + 1;
+                entry.dayStart = startOfToday;
+                autoReplyTracker[remoteJid] = entry;
+                saveAutoReplyTracker();
+            } catch (e) {
+                console.error('Failed to send auto-reply to', remoteJid, e);
             }
         });
 
@@ -1368,6 +1537,112 @@ setTimeout(() => {
 
             //execution des plugins   
             if (verifCom) {
+                // runtime read config: .getcfg
+                if (com === 'getcfg' || com === 'getconfig' || com === 'get') {
+                    if (!superUser) { repondre('Only the bot owner can read runtime settings.'); return; }
+                    const out = [];
+                    out.push(`PREFIX = ${prefixe}`);
+                    out.push(`AUTO_REPLY = ${conf.AUTO_REPLY}`);
+                    out.push(`AUTO_REPLY_COOLDOWN_HOURS = ${conf.AUTO_REPLY_COOLDOWN_HOURS || ''}`);
+                    out.push(`AUTO_REPLY_MAX_PER_DAY = ${conf.AUTO_REPLY_MAX_PER_DAY || ''}`);
+                    out.push(`AUTO_REPLY_MESSAGE = ${auto_reply_message}`);
+                    out.push(`PRESENCE_ALWAYS_TYPING = ${conf.PRESENCE_ALWAYS_TYPING || ''}`);
+                    out.push(`PRESENCE_ALWAYS_INTERVAL = ${conf.PRESENCE_ALWAYS_INTERVAL || ''}`);
+                    out.push(`PRESENCE_ONLY_RECENT = ${conf.PRESENCE_ONLY_RECENT || ''}`);
+                    out.push(`ETAT = ${conf.ETAT || ''}`);
+                    repondre(out.join('\n'));
+                    return;
+                }
+                // runtime config command for owners: .setcfg key value
+                if (com === 'setcfg' || com === 'setconfig' || com === 'set') {
+                    if (!superUser) { repondre('Only the bot owner can change settings at runtime.'); return; }
+                    const k = arg && arg[0] ? arg[0].toLowerCase() : null;
+                    const v = arg && arg.length > 1 ? arg.slice(1).join(' ').trim() : (arg && arg[0] ? '' : null);
+                    if (!k) { repondre(`Usage: ${prefixe}setcfg <key> <value>`); return; }
+
+                    // mapping of friendly keys to env/conf names
+                    const map = {
+                        'auto_reply': 'AUTO_REPLY',
+                        'auto_reply_cooldown': 'AUTO_REPLY_COOLDOWN_HOURS',
+                        'auto_reply_max_per_day': 'AUTO_REPLY_MAX_PER_DAY',
+                        'presence_always_typing': 'PRESENCE_ALWAYS_TYPING',
+                        'presence_always_interval': 'PRESENCE_ALWAYS_INTERVAL',
+                        'etat': 'ETAT',
+                        'prefix': 'PREFIX',
+                        'prefixe': 'PREFIX',
+                        'auto_reply_message': '__AUTO_REPLY_MESSAGE__'
+                    };
+
+                    const target = map[k];
+                    if (!target) { repondre('Unknown setting key.'); return; }
+
+                    // special: update in-memory auto-reply message
+                    if (target === '__AUTO_REPLY_MESSAGE__') {
+                        auto_reply_message = v || '';
+                        repondre('Auto-reply message updated.');
+                        return;
+                    }
+
+                    const envKey = target;
+                    const envValue = (v === null || v === undefined) ? '' : v;
+
+                    // update in-memory conf where possible and notify owner
+                    try {
+                        conf[envKey] = envValue;
+                        process.env[envKey] = envValue;
+
+                        if (envKey === 'PREFIX') {
+                            prefixe = envValue || prefixe;
+                        }
+
+                        // Handle presence ticker toggle or interval change
+                        if (envKey === 'PRESENCE_ALWAYS_TYPING') {
+                            const enabled = (envValue || '').toString().toLowerCase() === 'yes' || (envValue || '').toString().toLowerCase() === 'true';
+                            if (enabled) {
+                                const intervalSec = parseInt(conf.PRESENCE_ALWAYS_INTERVAL) || 15;
+                                startPresenceTicker(intervalSec);
+                            } else {
+                                stopPresenceTicker();
+                            }
+                        }
+                        if (envKey === 'PRESENCE_ALWAYS_INTERVAL') {
+                            if (presenceTickerId) {
+                                stopPresenceTicker();
+                                const intervalSec = parseInt(envValue) || 15;
+                                startPresenceTicker(intervalSec);
+                            }
+                        }
+
+                        // persist to set.env
+                        const envPath = path.join(__dirname, 'set.env');
+                        let content = '';
+                        if (fs.existsSync(envPath)) content = fs.readFileSync(envPath, 'utf8');
+                        const line = `${envKey}=${envValue}`;
+                        if (new RegExp('^' + envKey + '=', 'm').test(content)) {
+                            content = content.replace(new RegExp('^' + envKey + '=.*', 'm'), line);
+                        } else {
+                            if (content.length && !content.endsWith('\n')) content += '\n';
+                            content += line + '\n';
+                        }
+                        fs.writeFileSync(envPath, content, 'utf8');
+
+                        // apply immediately in runtime
+                        applyRuntimeSetting(envKey, envValue);
+                        repondre(`Updated ${envKey} = ${envValue}`);
+
+                        // Notify owner chat about the change
+                        try {
+                            const ownerJid = (conf.NUMERO_OWNER || '').toString().split(',')[0].replace(/[^0-9]/g, '') + '@s.whatsapp.net';
+                            await zk.sendMessage(ownerJid, { text: `Setting changed by ${auteurMessage.split('@')[0]}:\n${envKey} = ${envValue}` });
+                        } catch (notifyErr) {
+                            console.error('Failed to notify owner of setting change', notifyErr);
+                        }
+                    } catch (e) {
+                        console.error('Failed to update setting', e);
+                        repondre('Failed to update setting: ' + e.message);
+                    }
+                    return;
+                }
                 //await await zk.readMessages(ms.key);
                 const cd = evt.cm.find((ezra) => ezra.nomCom === (com));
                 if (cd) {
