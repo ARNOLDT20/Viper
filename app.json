@@ -73,9 +73,9 @@
       "required": false
     },
     "HEROKU_API_KEY": {
-      "description": "Insert your Heroku API key (required)",
+      "description": "Insert your Heroku API key (optional)",
       "value": "",
-      "required": true
+      "required": false
     },
     "SESSION_ID": {
       "description": "Enter your session ID, the code you receive after scanning the QR code",
