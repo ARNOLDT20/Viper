@@ -1,7 +1,7 @@
-const {ezra}=require("../fredi/ezra")
-const {getContentType}=require("@whiskeysockets/baileys")
+const { ezra } = require("../fredi/ezra")
+const { getContentType } = require("@whiskeysockets/baileys")
 
-ezra({ nomCom: "vv", aliases: ["send", "keep"], categorie: "Fredi-New" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "vv", aliases: ["send", "keep"], categorie: "VIPER-New" }, async (dest, zk, commandeOptions) => {
   const { repondre, msgRepondu, superUser } = commandeOptions;
 
   if (msgRepondu) {
@@ -21,7 +21,7 @@ ezra({ nomCom: "vv", aliases: ["send", "keep"], categorie: "Fredi-New" }, async 
       } else if (msgRepondu.stickerMessage) {
         const media = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage);
         const stickerMess = new Sticker(media, {
-          pack: 'LUCKY XFORCE',
+          pack: 'VIPER XFORCE',
           type: StickerTypes.CROPPED,
           categories: ["🤩", "🎉"],
           id: "12345",

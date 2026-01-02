@@ -4,7 +4,7 @@ const s = require('../set');
 ezra(
   {
     nomCom: "setvar",
-    categorie: "Fredi-Heroku",
+    categorie: "VIPER-Heroku",
     reaction: "⚙️",
   },
   async (dest, zk, commandeOptions) => {
@@ -14,22 +14,22 @@ ezra(
       console.log('DEBUG - setvar triggered:', { arg, superUser });
 
       if (!superUser) {
-        return repondre(`LUCKY-MD-XFORCE says only owner or Fredie can use this command 🚫`);
+        return repondre(`VIPER-MD-XFORCE says only owner or Fredie can use this command 🚫`);
       }
 
       if (!arg[0] || !arg.join(' ').includes('=')) {
-        return repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255752593977\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
+        return repondre(`VIPER-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255625606354\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
       }
 
       const text = arg.join(' ').trim();
       const [key, value] = text.split('=').map(str => str.trim());
 
       if (!key || !value) {
-        return repondre(`LUCKY-MD-XFORCE says STOP WASTING MY TIME! Provide a valid KEY=VALUE pair!🙂‍↔️`);
+        return repondre(`VIPER-MD-XFORCE says STOP WASTING MY TIME! Provide a valid KEY=VALUE pair!🙂‍↔️`);
       }
 
       if (!s.HEROKU_API_KEY || !s.HEROKU_APP_NAME) {
-        return repondre(`LUCKY-MD-XFORCE says CONFIG ERROR! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Fix it now!`);
+        return repondre(`VIPER-MD-XFORCE says CONFIG ERROR! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Fix it now!`);
       }
 
       const Heroku = require("heroku-client");
@@ -40,11 +40,11 @@ ezra(
         body: { [key]: value },
       });
 
-      await repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ BOOM! Heroku var ${key} set to ${value}! bot is rebooting...🛒\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
+      await repondre(`VIPER-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ BOOM! Heroku var ${key} set to ${value}! bot is rebooting...🛒\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
 
     } catch (error) {
       console.error('setvar error:', error);
-      await repondre(`LUCKY-MD-XFORCE FAIL! Something broke: ${error.message} 😴 Fix it or suffer!`);
+      await repondre(`VIPER-MD-XFORCE FAIL! Something broke: ${error.message} 😴 Fix it or suffer!`);
     }
   }
 );

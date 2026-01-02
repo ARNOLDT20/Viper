@@ -23,7 +23,7 @@ ezra({ nomCom: "forward", categorie: 'VIPER-Group', reaction: "📤" }, async (d
       // Send the message directly to the member's DM
       await zk.sendMessage(memberNumber, { text: mess });
     }
-    repondre('*Lucky Xforce Forwarded Your Message To All group members in their DMs.*');
+    repondre('*VIPERXforce Forwarded Your Message To All group members in their DMs.*');
   } else {
     repondre('*Only My Owner Can Use This Command.*');
   }

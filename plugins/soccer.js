@@ -3,7 +3,7 @@ const axios = require("axios");
 
 ezra({
   nomCom: "cricket",
-  categorie: "Fredi-Soccer",
+  categorie: "VIPER-Soccer",
   desc: "Sends info of given query from soccer Search.",
   reaction: "🏏",
 }, async (dest, zk, commandeOptions) => {
@@ -28,7 +28,7 @@ ezra({
       text += `*Match Started:* ${data.data[i].matchStarted}\n`;
       text += `*Match Ended:* ${data.data[i].matchEnded}\n\n`;
     }
-      
+
     return repondre(text, { quoted: ms });
   } catch (error) {
     console.error("*_Uhh dear, Did not get any results!_*", error);

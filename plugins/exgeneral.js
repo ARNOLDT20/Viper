@@ -11,7 +11,7 @@ const fs = require("fs");
 ezra({
   nomCom: "img",
   aliases: ["image", "images"],
-  categorie: "Fredi-Images",
+  categorie: "VIPER-Images",
   reaction: "📸"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms, arg } = commandeOptions;
@@ -56,7 +56,7 @@ ezra({
 ezra({
   nomCom: "insult",
   aliases: ["abuse", "tusi"],
-  categorie: "Fredi-Search",
+  categorie: "VIPER-Search",
   reaction: "🤷"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;

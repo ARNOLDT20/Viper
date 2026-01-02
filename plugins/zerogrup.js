@@ -67,7 +67,7 @@ ezra({ nomCom: "getallmembers", categorie: 'VIPER-Group', reaction: "📣" }, as
   let tag = `☢️VIPER MD☢️\n\n┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n  
         🌟 *GROUP MEMBERS GIDS* 🌟
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n
-> regards frediezra®\n\n`;
+> regards starboy®\n\n`;
 
   const emoji = ['💡', '☢️', '🗡️', '🖌️', '🪫', '🔋', '⚙️', '🕶️', '🌡️', '✏️', '📌', '©️', '$', '®️', '™️', '⚔️', '🔏'];
   const randomEmoji = emoji[Math.floor(Math.random() * emoji.length)];
@@ -1012,7 +1012,7 @@ const cron = require(`../lib/cron`);
 
 ezra({
   nomCom: 'automute',
-  categorie: 'Fredi-Group'
+  categorie: 'VIPER-Group'
 }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin } = commandeOptions;
@@ -1084,7 +1084,7 @@ ezra({
 
 ezra({
   nomCom: 'autounmute',
-  categorie: 'Fredi-Group'
+  categorie: 'VIPERGroup'
 }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin } = commandeOptions;
@@ -1161,7 +1161,7 @@ ezra({
 // COMMAND TO KICK
 ezra({
   nomCom: 'fkick',
-  categorie: 'Fredi-Group'
+  categorie: 'VIPER-Group'
 }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, verifAdmin, superUser, verifezraAdmin } = commandeOptions;
