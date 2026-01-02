@@ -4,24 +4,24 @@ function delay(ms) {
 }
 
 
-async function loading (dest, zk) {
-var lod = [
-"《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
-"《 ████▒▒▒▒▒▒▒▒》30%",
-"《 ███████▒▒▒▒▒》50%",
-"《 ██████████▒▒》80%",
-"《 ████████████》100%",
-"Lucky load Completed✅"
-]
-let { key } = await zk.sendMessage(dest, {text: 'Loading Please Wait'})
+async function loading(dest, zk) {
+  var lod = [
+    "《 █▒▒▒▒▒▒▒▒▒▒▒》10%",
+    "《 ████▒▒▒▒▒▒▒▒》30%",
+    "《 ███████▒▒▒▒▒》50%",
+    "《 ██████████▒▒》80%",
+    "《 ████████████》100%",
+    "viper load Completed✅"
+  ]
+  let { key } = await zk.sendMessage(dest, { text: 'Loading Please Wait' })
 
-for (let i = 0; i < lod.length; i++) {
-await zk.sendMessage(dest, {text: lod[i], edit: key });
-}
+  for (let i = 0; i < lod.length; i++) {
+    await zk.sendMessage(dest, { text: lod[i], edit: key });
+  }
 }
 
-function react(dest, zk, msg, reaction){
-  zk.sendMessage(dest, {react: {text : reaction, key: msg.key}});
+function react(dest, zk, msg, reaction) {
+  zk.sendMessage(dest, { react: { text: reaction, key: msg.key } });
 }
 
 module.exports = {
