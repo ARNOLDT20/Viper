@@ -26,12 +26,12 @@ ezra(
       const data = response.data;
 
       if (!data.success || !data.result) {
-        return repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ UGH, ${nomAuteurMessage}! No lyrics for "${query}"! Pick a real song! 😣\n╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈`);
+        return repondre(`VIPER-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ UGH, ${nomAuteurMessage}! No lyrics for "${query}"! Pick a real song! 😣\n╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈`);
       }
 
       const lyrics = data.result.trim();
       if (!lyrics) {
-        return repondre(`LUCKY-MD-XFORCE\n\nNO YET, ${nomAuteurMessage}! Lyrics for "${query}" are missing! Try another banger! 😤`);
+        return repondre(`VIPER-MD-XFORCE\n\nNO YET, ${nomAuteurMessage}! Lyrics for "${query}" are missing! Try another banger! 😤`);
       }
 
       // Truncate if too long for WhatsApp (4096 char limit)
@@ -43,8 +43,8 @@ ezra(
       await zk.sendMessage(
         dest,
         {
-          text: `LUCKY-MD-XFORCE\n\n◈━━━━━━━━━━━━━━━━◈\n🔥BOOM, ${nomAuteurMessage}! Got the lyrics for "${query}"! 🎤\nLyrics:\n${formattedLyrics}\n\n> Powered by FredieTech`,
-          footer: `Hey ${nomAuteurMessage}! Here is Lucky Xforce lyrics`,
+          text: `VIPER-MD-XFORCE\n\n◈━━━━━━━━━━━━━━━━◈\n🔥BOOM, ${nomAuteurMessage}! Got the lyrics for "${query}"! 🎤\nLyrics:\n${formattedLyrics}\n\n> Powered by STARBOY`,
+          footer: `Hey ${nomAuteurMessage}! Here is VIPER MD lyrics`,
         },
         { quoted: ms }
       );
