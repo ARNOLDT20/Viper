@@ -1151,7 +1151,7 @@ setTimeout(() => {
                     };
                     var txt = "bot detected, \n";
                     // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
-                    const gifLink = "https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/remover.gif";
+                    const gifLink = "https://raw.githubusercontent.com/ARNOLDT20/viper/main/media/remover.gif";
                     var sticker = new Sticker(gifLink, {
                         pack: 'FrediAI',
                         author: conf.OWNER_NAME,
@@ -1457,18 +1457,18 @@ setTimeout(() => {
         zk.ev.on("connection.update", async (con) => {
             const { lastDisconnect, connection } = con;
             if (connection === "connecting") {
-                console.log("ℹ️ lucky is connecting...");
+                console.log("ℹ️ viper is connecting...");
             }
             else if (connection === 'open') {
-                console.log("✅ lucky Connected to WhatsApp! ☺️");
+                console.log("✅ viper Connected to WhatsApp! ☺️");
                 console.log("--");
                 await (0, baileys_1.delay)(200);
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("Lucky is Online 🕸\n\n");
+                console.log("viper is Online 🕸\n\n");
                 //chargement des plugins 
-                console.log("Loading Lucky Commands ...\n");
+                console.log("Loading viper Commands ...\n");
                 fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
                     if (path.extname(fichier).toLowerCase() == (".js")) {
                         try {
@@ -1506,14 +1506,14 @@ setTimeout(() => {
 ║ Prefix: [ ${prefixe} ]
 ║ Mode: ${md}
 ║ Model: V 5.0.9
-║ Bot Name: Lucky-Md-Bot 
-║ Owner: FrediEzra
+║ Bot Name: viper-Md-Bot 
+║ Owner: starboy
 ╚═════ ❖ •✦
 -_-<-<-<-<-<-<-<--<-<-<-<-<-<
 
 *🪀Follow my channel for updates and free hacks🙃*
  
-> https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f
+> https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d
 
                 
                  `;
