@@ -10,7 +10,8 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const apiUrl = "https://api.cricapi.com/v1/currentMatches?apikey=f68d1cb5-a9c9-47c5-8fcd-fbfe52bace78";
+    const conf = require('../set');
+    const apiUrl = `https://api.cricapi.com/v1/currentMatches?apikey=${conf.CRICAPI_KEY}`;
     const response = await axios.get(apiUrl);
     const data = response.data;
 

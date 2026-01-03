@@ -6,7 +6,7 @@ let antiDeleteActive = false; // Variable pour stocker l'état de la commande an
 
 ezra({
   nomCom: "anti-delete",
-  categorie: "General-Fredi",
+  categorie: "General-VIPER",
   reaction: "😏"
 }, async (origineMessage, zk, commandeOptions) => {
   const { ms, arg } = commandeOptions;

@@ -1,4 +1,5 @@
 const { ezra } = require('../fredi/ezra');
+const conf = require('../set');
 const fs = require('fs');
 const getFBInfo = require("@xaviabot/fb-downloader");
 const { default: axios } = require('axios');
@@ -147,7 +148,7 @@ ezra({
 
   const movieTitle = arg.join(" ");
   const movie = await getJson(
-    `http://www.omdbapi.com/?apikey=742b2d09&t=${encodeURIComponent(movieTitle)}&plot=full`
+    `http://www.omdbapi.com/?apikey=${conf.OMDB_API_KEY}&t=${encodeURIComponent(movieTitle)}&plot=full`
   );
 
   if (movie.Response !== 'True') {

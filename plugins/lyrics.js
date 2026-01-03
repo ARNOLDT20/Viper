@@ -1,6 +1,7 @@
 const util = require('util');
 const { ezra } = require(__dirname + '/../fredi/ezra');
 const axios = require('axios');
+const conf = require('../set');
 
 ezra(
   {
@@ -21,7 +22,7 @@ ezra(
       const query = arg.join(' ').trim();
       await repondre(` Yoh ${nomAuteurMessage}, hunting for "${query}" lyrics like a rockstar! 🔍`);
 
-      const apiUrl = `https://api.giftedtech.web.id/api/search/lyrics?apikey=gifted&query=${encodeURIComponent(query)}`;
+      const apiUrl = `https://api.giftedtech.web.id/api/search/lyrics?apikey=${conf.GIFTED_API_KEY}&query=${encodeURIComponent(query)}`;
       const response = await axios.get(apiUrl);
       const data = response.data;
 

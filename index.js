@@ -1336,26 +1336,44 @@ setTimeout(() => {
                 const metadata = await zk.groupMetadata(group.id);
 
                 if (group.action == 'add' && (await recupevents(group.id, "welcome") == 'on')) {
-                    let msg = `👋 Hello
-`;
-
                     let membres = group.participants;
+
+                    // try to extract group description
+                    let groupDesc = '';
+                    try {
+                        groupDesc = (metadata.desc && metadata.desc.body) ? metadata.desc.body : (metadata.description || metadata.desc || 'No description');
+                    } catch (e) { groupDesc = 'No description'; }
+
                     for (let membre of membres) {
-                        msg += ` *@${membre.split("@")[0]}* Welcome to Our Official Group,`;
+                        let username = membre.split("@")[0];
+                        // fetch member profile picture
+                        let ppUser;
+                        try {
+                            ppUser = await zk.profilePictureUrl(membre, 'image');
+                        } catch {
+                            ppUser = ppgroup; // fallback to group picture
+                        }
+
+                        let msg = `👋 Hello *@${username}*\n\nWelcome to *${metadata.subject || 'this group'}*.`;
+                        if (groupDesc && groupDesc != 'No description') {
+                            msg += `\n\n*Group description:* ${groupDesc}`;
+                        }
+                        msg += `\n\nPlease read the description to avoid removal.`;
+
+                        await zk.sendMessage(group.id, { image: { url: ppUser }, caption: msg, mentions: [membre] });
                     }
 
-                    msg += `You might want to read the group Description to avoid getting removed...`;
-
-                    zk.sendMessage(group.id, { image: { url: ppgroup }, caption: msg, mentions: membres });
                 } else if (group.action == 'remove' && (await recupevents(group.id, "goodbye") == 'on')) {
-                    let msg = `one or somes member(s) left group;\n`;
-
                     let membres = group.participants;
-                    for (let membre of membres) {
-                        msg += `@${membre.split("@")[0]}\n`;
-                    }
 
-                    zk.sendMessage(group.id, { text: msg, mentions: membres });
+                    for (let membre of membres) {
+                        let username = membre.split("@")[0];
+                        let ppUser;
+                        try { ppUser = await zk.profilePictureUrl(membre, 'image'); } catch { ppUser = ppgroup; }
+
+                        let msg = `😢 Goodbye *@${username}*\n\nWe hope to see you again.`;
+                        await zk.sendMessage(group.id, { image: { url: ppUser }, caption: msg, mentions: [membre] });
+                    }
 
                 } else if (group.action == 'promote' && (await recupevents(group.id, "antipromote") == 'on')) {
                     //  console.log(zk.user.id)

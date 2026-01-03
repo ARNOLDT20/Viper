@@ -24,7 +24,7 @@ ezra({
   try {
     await _0x2d8d4e.sendMessage(_0x12a838, {
       'audio': {
-        'url': "https://www.myinstants.com/en/instant/technologia-53863/?utm_source=copy&utm_medium=share"
+        'url': "https://files.catbox.moe/lu3f94.mp3"
       },
       'mimetype': "audio/mp4",
       'ptt': true,
@@ -71,7 +71,7 @@ ezra({
     const created = moment(data.created_at).format("DD/MM/YYYY");
     const updated = moment(data.updated_at).format("DD/MM/YYYY");
 
-    const gitdata = `> *ɴᴀᴍᴇ:*    ${conf.BOT}\n\n> *sᴛᴀʀs:*  ${data.stargazers_count}\n\n> *ғᴏʀᴋs:*  ${data.forks_count}\n\n> *ᴡᴀᴛᴄʜᴇʀs:*  ${data.watchers}\n\n> *ᴜᴘᴅᴀᴛᴇᴅ:*  ${updated}\n\n> *Repo:* ${data.html_url}\n\n_Powered by FrediEzra Tech Info_`;
+    const gitdata = `> *ɴᴀᴍᴇ:*    ${conf.BOT}\n\n> *sᴛᴀʀs:*  ${data.stargazers_count}\n\n> *ғᴏʀᴋs:*  ${data.forks_count}\n\n> *ᴡᴀᴛᴄʜᴇʀs:*  ${data.watchers}\n\n> *ᴜᴘᴅᴀᴛᴇᴅ:*  ${updated}\n\n> *Repo:* ${data.html_url}\n\n_Powered by VIPER Tech Info_`;
 
     await zk.sendMessage(dest, {
       image: { url: 'https://files.catbox.moe/82aewo.png' },
@@ -137,7 +137,7 @@ ezra({
 
   await zk.sendMessage(dest, {
     text: repoInfo,
-    footer: "FrediEzra Tech Info",
+    footer: "VIPER Tech Info",
     buttons: [
       { buttonId: 'id1', buttonText: { displayText: '🌐 Visit Repo' } },
       { buttonId: 'id2', buttonText: { displayText: '⭐ Star Now' } },

@@ -140,7 +140,7 @@ ezra({ nomCom: "summer", categorie: "VIPER-Logo", reaction: "🌞" }, async (des
     .catch(console.error);
 });
 
-ezra({ nomCom: "neonlight", categorie: "Fredi-Logo", reaction: "💡" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "neonlight", categorie: "VIPER-Logo", reaction: "💡" }, async (dest, zk, commandeOptions) => {
   const { arg, repondre, ms, prefixe } = commandeOptions;
   /*if (!arg[0]) {
     repondre(`Exemple of using commande:\n ${prefixe}neonlight My text`);
@@ -214,7 +214,7 @@ ezra({ nomCom: "devil", categorie: "VIPER-Logo", reaction: "😈" }, async (dest
 ezra(
   {
     nomCom: "boomlg", categorie:
-      "Fredi-Logo", reaction: "💥"
+      "VIPER-Logo", reaction: "💥"
   }, async (dest, zk, commandeOptions) => {
 
     let { ms, repondre, prefixe, arg } = commandeOptions;
@@ -429,7 +429,7 @@ ezra({ nomCom: "neon", categorie: "VIPER-Logo", reaction: "💡" }, async (dest,
 
 
 
-ezra({ nomCom: "purple", categorie: "Fredi-Logo", reaction: "🧳" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "purple", categorie: "VIPER-Logo", reaction: "🧳" }, async (dest, zk, commandeOptions) => {
   var { ms, repondre, prefixe, arg } = commandeOptions;
 
   try {
@@ -504,8 +504,9 @@ ezra({ nomCom: "gif×1", categorie: "VIPER-Logo", reaction: "😋" }, async (des
       return;
     }
 
+    const conf = require('../set');
     const text = arg.join(" ");
-    const lien = `https://api.caliph.biz.id/api/kaneki?nama=${encodeURIComponent(text)}&apikey=caliphkey`;
+    const lien = `https://api.caliph.biz.id/api/kaneki?nama=${encodeURIComponent(text)}&apikey=${conf.CALIPH_API_KEY}`;
     const img = await mumaker.sendFile(m.chat, lien, 'logo.png', '✅ Result', m);
     repondre("Processing...");
     await zk.sendMessage(dest, { image: { url: img }, caption: "*Logo by VIPER MD XFORCE*" }, { quoted: ms });

@@ -1,10 +1,11 @@
 const axios = require('axios');
+const conf = require('../set');
 
 async function fetchVideoData(url) {
     try {
         const res = await axios.get(`https://api.giftedtech.web.id/api/download/dlmp3`, {
             params: {
-                apikey: "gifted",
+                apikey: conf.GIFTED_API_KEY || 'gifted',
                 url: url
             }
         });

@@ -5,7 +5,7 @@ const axios = require('axios');
 
 ezra({
     nomCom: "chifumi",
-    categorie: "Fredi-Games",
+    categorie: "VIPER-Games",
     reaction: "🪫"
 },
     async (origineMessage, zk, commandeOptions) => {

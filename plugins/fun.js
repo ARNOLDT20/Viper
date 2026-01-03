@@ -80,7 +80,7 @@ ezra({
 
   try {
 
-    const response = await axios.get(`http://www.omdbapi.com/?apikey=742b2d09&t=${arg}&plot=full`);
+    const response = await axios.get(`http://www.omdbapi.com/?apikey=${conf.OMDB_API_KEY}&t=${arg}&plot=full`);
     const imdbData = response.data;
 
     let imdbInfo = "⚍⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚍\n";

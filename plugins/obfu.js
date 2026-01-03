@@ -3,7 +3,7 @@ const { ezra } = require("../fredi/ezra");
 
 ezra({
   'nomCom': "obt",
-  'categorie': 'General-Fredi'
+  'categorie': 'General-VIPER'
 }, async (_0x3cf1f0, _0x36cbf1, _0x90621a) => {
   const {
     ms: _0x4b944b,
@@ -37,4 +37,4 @@ ezra({
   }
 });
 
-      
+

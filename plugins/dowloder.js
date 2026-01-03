@@ -78,7 +78,7 @@ async function downloadFromApis(apis) {
 ezra({
   nomCom: "play2",
   aliases: ["song", "playdoc", "audio", "mp3"],
-  categorie: "Fredi-Download",
+  categorie: "VIPER-Download",
   reaction: "🎵"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -99,7 +99,7 @@ ezra({
     const apis = [
       `https://api.davidcyriltech.my.id/download/ytmp3?url=${encodeURIComponent(video.url)}`,
       `https://www.dark-yasiya-api.site/download/ytmp3?url=${encodeURIComponent(video.url)}`,
-      `https://api.giftedtech.web.id/api/download/dlmp3?url=${encodeURIComponent(video.url)}&apikey=gifted-md`,
+      `https://api.giftedtech.web.id/api/download/dlmp3?url=${encodeURIComponent(video.url)}&apikey=${conf.GIFTED_API_KEY || 'gifted'}`,
       `https://api.dreaded.site/api/ytdl/audio?url=${encodeURIComponent(video.url)}`
     ];
 
@@ -136,7 +136,7 @@ ezra({
 ezra({
   nomCom: "video2",
   aliases: ["videodoc", "film", "mp4"],
-  categorie: "Fredi-Download",
+  categorie: "VIPER-Download",
   reaction: "🎥"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -157,7 +157,7 @@ ezra({
     const apis = [
       `https://api.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(video.url)}`,
       `https://www.dark-yasiya-api.site/download/ytmp4?url=${encodeURIComponent(video.url)}`,
-      `https://api.giftedtech.web.id/api/download/dlmp4?url=${encodeURIComponent(video.url)}&apikey=gifted-md`,
+      `https://api.giftedtech.web.id/api/download/dlmp4?url=${encodeURIComponent(video.url)}&apikey=${conf.GIFTED_API_KEY || 'gifted'}`,
       `https://api.dreaded.site/api/ytdl/video?url=${encodeURIComponent(video.url)}`
     ];
 
@@ -193,7 +193,7 @@ ezra({
 // URL upload command
 ezra({
   nomCom: 'url-link',
-  categorie: "Fredi-Download",
+  categorie: "VIPER-Download",
   reaction: '👨🏿‍💻'
 }, async (dest, zk, commandOptions) => {
   const { msgRepondu, userJid, ms } = commandOptions;

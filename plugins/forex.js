@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { ezra } = require('../fredi/ezra');
+const conf = require('../set');
 
 ezra({
   nomCom: "currencylist",
@@ -54,7 +55,7 @@ ezra({
   const { repondre } = commandeOptions;
 
   try {
-    const apiUrl = "https://api.polygon.io/v2/reference/news?apiKey=Y4iTYoJANwppB8I3Bm4QVWdV5oXlvc45";
+    const apiUrl = `https://api.polygon.io/v2/reference/news?apiKey=${conf.POLYGON_API_KEY}`;
     const response = await axios.get(apiUrl);
     const data = response.data;
 
@@ -91,7 +92,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   try {
-    const apiUrl = "https://api.polygon.io/v1/marketstatus/now?apiKey=Y4iTYoJANwppB8I3Bm4QVWdV5oXlvc45";
+    const apiUrl = `https://api.polygon.io/v1/marketstatus/now?apiKey=${conf.POLYGON_API_KEY}`;
     const response = await axios.get(apiUrl);
     const data = response.data;
 
@@ -138,7 +139,7 @@ ezra({
 
 ezra({
   nomCom: "fxpairs",
-aliases: ["forexpairs", "pairforex"],
+  aliases: ["forexpairs", "pairforex"],
   categorie: "trade-place",
   desc: "Fetches a list of active forex currency pairs",
   reaction: "💲",
@@ -146,7 +147,7 @@ aliases: ["forexpairs", "pairforex"],
   const { repondre, ms } = commandeOptions;
 
   try {
-    const apiUrl = "https://api.polygon.io/v3/reference/tickers?market=fx&active=true&apiKey=Y4iTYoJANwppB8I3Bm4QVWdV5oXlvc45";
+    const apiUrl = `https://api.polygon.io/v3/reference/tickers?market=fx&active=true&apiKey=${conf.POLYGON_API_KEY}`;
     const response = await axios.get(apiUrl);
     const data = response.data;
 
@@ -177,7 +178,7 @@ ezra({
 
   try {
     const limit = 100; // Assuming a default limit of 100, or you can customize this as needed
-    const apiUrl = `https://api.polygon.io/v3/reference/tickers?active=true&limit=${limit}&apiKey=Y4iTYoJANwppB8I3Bm4QVWdV5oXlvc45`;
+    const apiUrl = `https://api.polygon.io/v3/reference/tickers?active=true&limit=${limit}&apiKey=${conf.POLYGON_API_KEY}`;
     const response = await axios.get(apiUrl);
     const data = response.data;
 

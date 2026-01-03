@@ -1,8 +1,3 @@
-
-
-
-
-
 {
   "name": "💦VIPER MD💨 MULTI DEVICE",
   "description": "💦VIPER MD Whatsapp device bot by T20_starboy to help Whatsapp users...",
@@ -27,7 +22,6 @@
       "value": "yes",
       "required": false
     },
-
     "GREET_MESSAGE": {
       "description": "when enabled it automatically sends greeting message in your chats",
       "value": "no",
@@ -44,9 +38,9 @@
       "required": false
     },
     "AUTO_SAVE_CONTACTS": {
-      "description":"Enter yes for your bot to auto save contacts",
-      "value":"no",
-      "required":false
+      "description": "Enter yes for your bot to auto save contacts",
+      "value": "no",
+      "required": false
     },
     "AUTO_DOWNLOAD_STATUS": {
       "description": "Your contact status will be downloaded automatically and sent to you (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
@@ -79,11 +73,10 @@
       "required": false
     },
     "HEROKU_API_KEY": {
-      "description": "Insert your Heroku API key (required)",
+      "description": "Insert your Heroku API key (optional)",
       "value": "",
-      "required": true
+      "required": false
     },
-
     "SESSION_ID": {
       "description": "Enter your session ID, the code you receive after scanning the QR code",
       "value": "",
@@ -97,7 +90,7 @@
     "AUTO_READ_MESSAGES": {
       "description": "yes toactivate no to deactivate",
       "value": "no",
-      "required": false  
+      "required": false
     },
     "NUMERO_OWNER": {
       "description": "Your phone number (exclude '+' and area code, e.g., '255752593977')",
@@ -134,19 +127,16 @@
       "value": "no",
       "required": false
     }
-    },
-
- "formation": {
-		"worker": {
-			"quantity": 1,
-			"size": "basic"
-		}
-	},
-
-  "addons":[
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
     {
-      "plan":"heroku-postgresql:essential-0"
+      "plan": "heroku-postgresql:essential-0"
     }
   ]
-	
 }
