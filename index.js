@@ -849,7 +849,27 @@ setTimeout(() => {
             const superUser = allAllowedNumbers.includes(auteurMessage);
 
             var dev = [fredi, ezra,].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
-            function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
+            async function repondre(mes) {
+                try {
+                    const fs = require('fs');
+                    const path = require('path');
+                    const cfgPath = path.join(__dirname, 'plugins', 'autotyping.json');
+                    let enabled = false;
+                    try {
+                        if (fs.existsSync(cfgPath)) {
+                            const raw = fs.readFileSync(cfgPath, 'utf8') || '{}';
+                            const cfg = JSON.parse(raw);
+                            enabled = !!cfg[origineMessage];
+                        }
+                    } catch (e) { /* ignore read errors */ }
+
+                    if (enabled) {
+                        try { await zk.sendPresenceUpdate('composing', origineMessage); } catch (e) { }
+                    }
+
+                    await zk.sendMessage(origineMessage, { text: mes }, { quoted: ms });
+                } catch (e) { console.error('repondre error', e); }
+            }
             console.log("\tVIPER MD MESSAGES");
             console.log("=========== NEW CONVERSATION ===========");
             if (verifGroupe) {
