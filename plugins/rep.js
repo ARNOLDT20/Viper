@@ -25,7 +25,7 @@ ezra({
   const _0x4950ba = Math.floor(Math.random() * 0x64) + 0x1;
   try {
     const audioPath = path.join(__dirname, '..', 'media', 'ping.mp3');
-    const audioUrl = fs.existsSync(audioPath) ? audioPath : "media/ping.mp3";
+    const audioUrl = fs.existsSync(audioPath) ? audioPath : "https://files.catbox.moe/lu3f94.mp3";
 
     await _0x2d8d4e.sendMessage(_0x12a838, {
       audio: { url: audioUrl },
