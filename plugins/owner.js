@@ -1,3 +1,12 @@
+"use strict";
+const { ezra } = require("../fredi/ezra");
+
+ezra({ nomCom: "owner", categorie: "General-VIPER", reaction: "👑", nomFichier: __filename }, async (dest, zk, opts) => {
+    const { repondre } = opts;
+    try {
+        repondre(`Owner: ${process.env.BOT_OWNER || 'unknown'}\nContact: ${process.env.NUMERO_OWNER || 'not set'}`);
+    } catch (e) { console.error('owner error', e); repondre('❌ Owner info failed'); }
+});
 const { ezra } = require('../fredi/ezra');
 const conf = require('../set');
 

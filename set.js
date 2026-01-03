@@ -65,6 +65,13 @@ module.exports = {
     DATABASE_URL,
     DATABASE: DATABASE_URL === databasePath
         ? "postgresql://postgres:bKlIqoOUWFIHOAhKxRWQtGfKfhGKgmRX@viaduct.proxy.rlwy.net:47738/railway" : "postgresql://postgres:bKlIqoOUWFIHOAhKxRWQtGfKfhGKgmRX@viaduct.proxy.rlwy.net:47738/railway",
+    // Downloader API endpoints (set to your preferred service)
+    TIKTOK_API_URL: process.env.TIKTOK_API_URL || '',
+    INSTAGRAM_API_URL: process.env.INSTAGRAM_API_URL || '',
+    YT_DLP_FALLBACK_URL: process.env.YT_DLP_FALLBACK_URL || ''
+
+    // Default free public APIs (comma-separated). These are tried in order when no custom API is provided.
+    , DEFAULT_TIKTOK_APIS: process.env.DEFAULT_TIKTOK_APIS || 'https://api.tikmate.app/api/lookup?url=,https://api.tikdown.org/?url='
 
 };
 let fichier = require.resolve(__filename);

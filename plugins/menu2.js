@@ -107,6 +107,16 @@ ezra({
 
         await menuState.setPending(dest);
         await zk.sendMessage(dest, list);
+
+        // send menu audio if available in media/menu.mp3
+        try {
+            const audioPath = path.join(__dirname, '..', 'media', 'menu.mp3');
+            if (fs.existsSync(audioPath)) {
+                await zk.sendMessage(dest, { audio: { url: audioPath }, mimetype: 'audio/mp3', ptt: true });
+            }
+        } catch (e) {
+            console.error('menu2 audio send error', e);
+        }
     } catch (e) {
         console.error("menu2 send error", e);
         repondre("❌ Menu error. Try again later.");

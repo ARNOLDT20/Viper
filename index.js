@@ -951,6 +951,27 @@ setTimeout(() => {
                 mybotpic
             };
 
+            // If a menu was recently sent and is pending, allow simple numeric replies
+            try {
+                const menuState = require('./lib/menu2State');
+                if (!verifCom && typeof texte === 'string' && /^[0-9]+$/.test(texte) && await menuState.isPending(origineMessage)) {
+                    const cd = evt.cm.find((ezra) => ezra.nomCom === 'menu2');
+                    if (cd) {
+                        commandeOptions.arg = [texte.trim()];
+                        await menuState.clearPending(origineMessage);
+                        try {
+                            await cd.fonction(origineMessage, zk, commandeOptions);
+                        } catch (err) {
+                            console.error('menu2 invoke error', err);
+                            repondre('❌ Menu error. Try again later.');
+                        }
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.error('menu2 pending handler err', err);
+            }
+
 
             // Auto read messages (Existing code, optional)
             if (conf.AUTO_READ === 'yes') {
