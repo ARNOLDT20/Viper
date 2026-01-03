@@ -3,6 +3,8 @@
 const { ezra } = require("../fredi/ezra");
 const axios = require('axios');
 const moment = require("moment-timezone");
+const fs = require('fs');
+const path = require('path');
 const set = require(__dirname + '/../set');
 moment.tz.setDefault('' + set.TIMEZONE);
 
@@ -22,13 +24,14 @@ ezra({
   };
   const _0x4950ba = Math.floor(Math.random() * 0x64) + 0x1;
   try {
+    const audioPath = path.join(__dirname, '..', 'media', 'ping.mp3');
+    const audioUrl = fs.existsSync(audioPath) ? audioPath : "media/ping.mp3";
+
     await _0x2d8d4e.sendMessage(_0x12a838, {
-      'audio': {
-        'url': "https://files.catbox.moe/lu3f94.mp3"
-      },
-      'mimetype': "audio/mp4",
-      'ptt': true,
-      'contextInfo': {
+      audio: { url: audioUrl },
+      mimetype: fs.existsSync(audioPath) ? 'audio/mp3' : 'audio/mp4',
+      ptt: true,
+      contextInfo: {
         'isForwarded': true,
         'forwardedNewsletterMessageInfo': {
           'newsletterJid': "120363420222821450@newsletter",
