@@ -24,7 +24,7 @@ ezra({
   try {
     await _0x2d8d4e.sendMessage(_0x12a838, {
       'audio': {
-        'url': "https://files.catbox.moe/se9mii.mp3"
+        'url': "https://www.myinstants.com/en/instant/technologia-53863/?utm_source=copy&utm_medium=share"
       },
       'mimetype': "audio/mp4",
       'ptt': true,
